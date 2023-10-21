@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../App.css';
 import { useScroll } from '../hooks/hooks';
+import { SelectLanguage } from './SelectLanguage';
 
 export const sections = [
     { id: 'welcome', title: 'Welcome', backgroundColor: '#282c34' },
@@ -28,8 +29,9 @@ export const Header = ({ sectionRefs }) => {
             <div style={{
                 display: 'flex',
                 alignItems: 'flex-start',
-                justifyContent: 'flex-end',
+                justifyContent: 'space-between',
             }}>
+                <SelectLanguage />
                 <button onClick={onClick}>
                     {isOpen ? 'Close Menu' : 'Open Menu'}
                 </button>

@@ -12,20 +12,33 @@ export const sections = [
 
 export const Header = ({ sectionRefs }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const isScrolledUp = useScroll();
 
     const onClick = () => {
         setIsOpen(!isOpen);
     };
-    const scrollToSection = (sectionId) => {
-        const section = sectionRefs[sectionId];
-        if (section) {
-            onClick();
-            section.current.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
+
     return (
-        <div className={`Sticky-header ${isScrolledUp || isOpen ? 'visible' : 'hidden'} ${isOpen && 'open'}`}>
+        <>
+            <HeaderToggle
+                onClick={onClick}
+                isOpen={isOpen}
+            />
+            <HeaderSections
+                onClick={onClick}
+                sectionRefs={sectionRefs}
+                isOpen={isOpen}
+            />
+        </>
+    );
+};
+
+const HeaderToggle = ({
+    isOpen,
+    onClick
+}) => {
+    const isScrolledUp = useScroll();
+    return (
+        <div className={`Sticky-header ${isScrolledUp || isOpen ? 'visible' : 'hidden'}`}>
             <div style={{
                 display: 'flex',
                 alignItems: 'flex-start',
@@ -36,28 +49,40 @@ export const Header = ({ sectionRefs }) => {
                     {isOpen ? 'Close Menu' : 'Open Menu'}
                 </button>
             </div>
-            {isOpen &&
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'flex-start',
-                }}>
-                    <ol>
-                        {
-                            sections.map((section) => {
-                                return (
-                                    <li
-                                        key={section.id}
-                                        onClick={() => scrollToSection(section.id)}
-                                    >
-                                        {section.title}
-                                    </li>
-                                );
-                            })
-                        }
-                    </ol>
-                </div>
-            }
+
+        </div>
+    );
+};
+
+const HeaderSections = ({
+    onClick,
+    sectionRefs,
+    isOpen
+}) => {
+
+    const scrollToSection = (sectionId) => {
+        const section = sectionRefs[sectionId];
+        if (section) {
+            onClick();
+            section.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+    return (
+        <div className={`header-sections ${isOpen ? 'open' : 'closed'}`}>
+            <ol>
+                {
+                    sections.map((section) => {
+                        return (
+                            <li
+                                key={section.id}
+                                onClick={() => scrollToSection(section.id)}
+                            >
+                                {section.title}
+                            </li>
+                        );
+                    })
+                }
+            </ol>
         </div>
     );
 };

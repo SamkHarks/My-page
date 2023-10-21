@@ -117,11 +117,28 @@
   top: 0;
   right: 0;
   left:0;
+  z-index: 1;
+}
+
+.header-sections {
+  background-color: rgb(40, 47, 79, 0.7);
+  color: white;
+  position: fixed;
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .open {
-  background-color: rgb(40, 47, 79, 0.7);
-  color: white;
+  transform: translateY(0);
+  transition: transform 0.3s;
+}
+
+.closed {
+  transform: translateY(-150%);
+  transition: transform 0.3s;
 }
 
 /* The header is visible */

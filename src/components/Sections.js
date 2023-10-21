@@ -16,7 +16,7 @@ const components = {
     about: About,
     portfolio: Portfolio,
     contact: Contact
-}
+};
 
 const SectionWrapper = ({
     section,
@@ -41,7 +41,7 @@ const SectionWrapper = ({
             {children}
         </div>
     </div>
-)
+);
 
 export const Sections = ({ sectionRefs }) => {
     return (

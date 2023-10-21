@@ -26,4 +26,4 @@ export const useScroll = () => {
         };
     }, []);
     return isScrolledUp;
-}
+};

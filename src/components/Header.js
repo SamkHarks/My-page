@@ -50,7 +50,7 @@ export const Header = ({ sectionRefs }) => {
                                     >
                                         {section.title}
                                     </li>
-                                )
+                                );
                             })
                         }
                     </ol>

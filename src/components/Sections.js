@@ -33,7 +33,7 @@ const SectionWrapper = ({
             paddingLeft: 20,
             paddingRight: 20,
             backgroundColor: section.backgroundColor
-    }}>
+        }}>
         <header>{section.title}</header>
         <div style={{
             paddingTop: 20
@@ -43,23 +43,23 @@ const SectionWrapper = ({
     </div>
 )
 
-export const Sections = ({sectionRefs}) => {
+export const Sections = ({ sectionRefs }) => {
     return (
         <>
             {
                 sections.map((section) => {
-                const SectionComponent = components[section.id];
-                return (
-                    <SectionWrapper
-                        key={section.id}
-                        section={section}
-                        sectionRefs={sectionRefs}
-                    >
-                        <SectionComponent />
-                    </SectionWrapper>
-                )
+                    const SectionComponent = components[section.id];
+                    return (
+                        <SectionWrapper
+                            key={section.id}
+                            section={section}
+                            sectionRefs={sectionRefs}
+                        >
+                            <SectionComponent />
+                        </SectionWrapper>
+                    );
                 })
             }
         </>
-    )
-}
+    );
+};

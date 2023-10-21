@@ -3,11 +3,11 @@ import { sections } from '../components/Header';
 
 export const useRefs = () => {
     const refs = sections.reduce((acc, section) => {
-      acc[section.id] = createRef();
-      return acc;
+        acc[section.id] = createRef();
+        return acc;
     }, {});
-    return refs
-}
+    return refs;
+};
 
 export const useScroll = () => {
     const [isScrolledUp, setIsScrolledUp] = useState(true);

@@ -8,5 +8,5 @@ export const Welcome = () => {
         }}>
             <p>Hi My name is Sami and I luv developing!</p>
         </div>
-    )
-}
+    );
+};

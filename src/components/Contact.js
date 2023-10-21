@@ -6,5 +6,5 @@ export const Contact = () => {
         <div>
             <p>samikh90@gmail.com</p>
         </div>
-    )
-}
+    );
+};

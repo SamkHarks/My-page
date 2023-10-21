@@ -3,13 +3,13 @@ import '../App.css';
 import { useScroll } from '../hooks/hooks';
 
 export const sections = [
-    { id: 'welcome', title: 'Welcome', backgroundColor: "#282c34" },
+    { id: 'welcome', title: 'Welcome', backgroundColor: '#282c34' },
     { id: 'about', title: 'About Me', backgroundColor: 'red' },
     { id: 'portfolio', title: 'Portfolio', backgroundColor: 'green' },
     { id: 'contact', title: 'Contact', backgroundColor: 'blue' },
-  ];
+];
 
-export const Header = ({sectionRefs}) => {
+export const Header = ({ sectionRefs }) => {
     const [isOpen, setIsOpen] = useState(false);
     const isScrolledUp = useScroll();
 
@@ -24,15 +24,15 @@ export const Header = ({sectionRefs}) => {
         }
     };
     return (
-        <div className={`Sticky-header ${isScrolledUp || isOpen ? "visible" : "hidden"} ${isOpen && "open"}`}>
+        <div className={`Sticky-header ${isScrolledUp || isOpen ? 'visible' : 'hidden'} ${isOpen && 'open'}`}>
             <div style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 justifyContent: 'flex-end',
             }}>
-            <button onClick={onClick}>
-                {isOpen ? "Close Menu" : "Open Menu"}
-            </button>
+                <button onClick={onClick}>
+                    {isOpen ? 'Close Menu' : 'Open Menu'}
+                </button>
             </div>
             {isOpen &&
                 <div style={{
@@ -56,10 +56,7 @@ export const Header = ({sectionRefs}) => {
                     </ol>
                 </div>
             }
-           
-      
-            
         </div>
-    )
-}
+    );
+};
 

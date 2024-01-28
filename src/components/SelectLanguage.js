@@ -10,7 +10,7 @@ const SelectLanguage = () => {
     };
 
     return (
-        <div>
+        <div style={{ marginTop: -2 }}>
             <button type="button" onClick={() => changeLanguage('fi')}>
                 fi
             </button>

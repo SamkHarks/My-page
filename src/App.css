@@ -93,19 +93,19 @@
 }
 
 .button.is-button-open {
-  animation: scaleButton 1.5s ease-in-out forwards
+  animation: scaling 1.5s ease-in-out forwards
 }
 
 .button:hover {
   color: #61dafb;
 }
 
-@keyframes scaleButton {
+@keyframes scaling {
   0% {
-    transform: scale(1); /* Start with 0 opacity */
+    transform: scale(1);
   }
   50% {
-    transform: scale(1.2); /* End with 1 opacity */
+    transform: scale(1.2);
   }
   100% {
     transform: scale(1);
@@ -165,5 +165,27 @@
   transition: transform 0.3s;
 }
 
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 700px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
 
+.section-title {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  color: white;
+  transform: scale(2);
+  opacity: 0;
+  transition: opacity 0.5s, transform 1s;
+}
+
+.section-title.animate {
+  transform: scale(1);
+  opacity:1;
+}

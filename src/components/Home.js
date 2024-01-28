@@ -9,11 +9,6 @@ export const Home = () => {
     return (
         <div className="App">
             <Header sectionRefs={sectionRefs} />
-            <div style={{
-                height: 200,
-                backgroundColor: 'whitesmoke'
-            }}>
-            </div>
             <Sections sectionRefs={sectionRefs} />
         </div>
     );

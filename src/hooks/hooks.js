@@ -43,4 +43,32 @@ export const useUserScroll = () => {
     }, [isUserScroll]);
 
     return [isUserScroll, setIsUserScroll];
-}
+};
+
+export const useInterSectionObserver = (data) => {
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    entry.target.classList.toggle('animate', entry.isIntersecting);
+                });
+            },
+            {
+                threshold: 0.8, // Adjust the threshold as needed
+                rootMargin: '10px'
+            }
+        );
+
+        // Observe each section element
+        Object.values(data).forEach(item => {
+            observer.observe(item);
+        });
+        return () => {
+            // Disconnect the observer when the component unmounts
+            Object.values(data).forEach(item => {
+                observer.unobserve(item);
+            });
+        };
+    }, [data]);
+};

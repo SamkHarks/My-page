@@ -53,7 +53,6 @@ const HeaderToggle = ({
                     {isOpen ? 'Close Menu' : 'Open Menu'}
                 </button>
             </div>
-
         </div>
     );
 };

@@ -1,4 +1,7 @@
 {
-    "welcome": "Welcomee",
-    "title": "This is localization"
+    "title": "This is localization",
+    "about": "About me",
+    "welcome": "Welcome",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
 }

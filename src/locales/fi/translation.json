@@ -1,4 +1,7 @@
 {
     "welcome": "Tervetuloa",
-    "title": "Lokalisointi"
+    "title": "Lokalisointi",
+    "about": "Tietoa minusta",
+    "portfolio": "Portfolioni",
+    "contact": "Yhteystiedot"
 }

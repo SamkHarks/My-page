@@ -4,13 +4,9 @@ import { About } from '../components/About';
 import { Welcome } from './Welcome';
 import { Portfolio } from './Portfolio';
 import { Contact } from './Contact';
-/*
-{ id: 'welcome', title: 'Welcome', backgroundColor: "#282c34" },
-    { id: 'about', title: 'About Me', backgroundColor: 'red' },
-    { id: 'portfolio', title: 'Portfolio', backgroundColor: 'green' },
-    { id: 'contact', title: 'Contact', backgroundColor: 'blue' },
-  ];
-*/
+import '../App.css';
+import { useInterSectionObserver } from '../hooks/hooks';
+
 const components = {
     welcome: Welcome,
     about: About,
@@ -25,16 +21,10 @@ const SectionWrapper = ({
 }) => (
     <div
         ref={sectionRefs[section.id]}
-        style={{
-            height:1000,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            paddingLeft: 20,
-            paddingRight: 20,
-            backgroundColor: section.backgroundColor
-        }}>
-        <header>{section.title}</header>
+        className={'section'}
+        style={{ backgroundColor: section.backgroundColor }}
+    >
+        <header className={'section-title'}>{section.title}</header>
         <div style={{
             paddingTop: 20
         }}>
@@ -44,6 +34,8 @@ const SectionWrapper = ({
 );
 
 export const Sections = ({ sectionRefs }) => {
+    const data = document.querySelectorAll('.section-title');
+    useInterSectionObserver(data);
     return (
         <>
             {

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import '../App.css';
-import { useScroll } from '../hooks/hooks';
+import { useScroll, useUserScroll } from '../hooks/hooks';
 import { SelectLanguage } from './SelectLanguage';
+import { useTranslation } from 'react-i18next';
 
 export const sections = [
     { id: 'welcome', title: 'Welcome', backgroundColor: '#282c34' },
@@ -12,7 +13,7 @@ export const sections = [
 
 export const Header = ({ sectionRefs }) => {
     const [isOpen, setIsOpen] = useState(false);
-
+    const [isUserScroll, setIsUserScroll] = useUserScroll();
     const onClick = () => {
         setIsOpen(!isOpen);
     };
@@ -22,11 +23,13 @@ export const Header = ({ sectionRefs }) => {
             <HeaderToggle
                 onClick={onClick}
                 isOpen={isOpen}
+                isUserScroll={isUserScroll}
             />
             <HeaderSections
                 onClick={onClick}
                 sectionRefs={sectionRefs}
                 isOpen={isOpen}
+                setIsUserScroll={setIsUserScroll}
             />
         </>
     );
@@ -34,11 +37,12 @@ export const Header = ({ sectionRefs }) => {
 
 const HeaderToggle = ({
     isOpen,
-    onClick
+    onClick,
+    isUserScroll
 }) => {
-    const isScrolledUp = useScroll();
+    const isScrolledUp = useScroll(isUserScroll);
     return (
-        <div className={`Sticky-header ${isScrolledUp || isOpen ? 'visible' : 'hidden'}`}>
+        <div className={`Sticky-header ${(isScrolledUp && isUserScroll) || isOpen ? 'visible' : 'hidden'}`}>
             <div style={{
                 display: 'flex',
                 alignItems: 'flex-start',
@@ -57,13 +61,15 @@ const HeaderToggle = ({
 const HeaderSections = ({
     onClick,
     sectionRefs,
-    isOpen
+    isOpen,
+    setIsUserScroll
 }) => {
-
+    const { t } = useTranslation();
     const scrollToSection = (sectionId) => {
         const section = sectionRefs[sectionId];
         if (section) {
             onClick();
+            setIsUserScroll(false);
             section.current.scrollIntoView({ behavior: 'smooth' });
         }
     };
@@ -77,7 +83,7 @@ const HeaderSections = ({
                                 key={section.id}
                                 onClick={() => scrollToSection(section.id)}
                             >
-                                {section.title}
+                                {t(section.id)}
                             </li>
                         );
                     })

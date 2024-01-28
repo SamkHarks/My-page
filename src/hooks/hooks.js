@@ -9,13 +9,13 @@ export const useRefs = () => {
     return refs;
 };
 
-export const useScroll = () => {
+export const useScroll = (isUserScroll) => {
     const [isScrolledUp, setIsScrolledUp] = useState(true);
     useEffect(() => {
         let prevScrollPos = window.scrollY;
         const handleScroll = () => {
             const currentScrollPos = window.scrollY;
-            const isScrollingUp = currentScrollPos < prevScrollPos;
+            const isScrollingUp = currentScrollPos < prevScrollPos && isUserScroll;
             prevScrollPos = currentScrollPos;
             setIsScrolledUp(isScrollingUp);
         };
@@ -24,6 +24,23 @@ export const useScroll = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [isUserScroll]);
     return isScrolledUp;
 };
+
+export const useUserScroll = () => {
+    const [isUserScroll, setIsUserScroll] = useState(true);
+    useEffect(() => {
+        let timeoutId;
+        if (!isUserScroll) {
+            timeoutId = setTimeout(() => setIsUserScroll(true), 1000);
+        } else {
+            clearTimeout(timeoutId);
+        }
+        return () => {
+            clearTimeout(timeoutId);
+        };
+    }, [isUserScroll]);
+
+    return [isUserScroll, setIsUserScroll];
+}

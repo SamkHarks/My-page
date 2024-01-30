@@ -19,7 +19,7 @@ export const Header = ({ sectionRefs }) => {
     };
 
     return (
-        <>
+        <header>
             <HeaderToggle
                 onClick={onClick}
                 isOpen={isOpen}
@@ -31,7 +31,7 @@ export const Header = ({ sectionRefs }) => {
                 isOpen={isOpen}
                 setIsUserScroll={setIsUserScroll}
             />
-        </>
+        </header>
     );
 };
 
@@ -42,17 +42,13 @@ const HeaderToggle = ({
 }) => {
     const isScrolledUp = useScroll(isUserScroll);
     return (
-        <div className={`Sticky-header ${(isScrolledUp && isUserScroll) || isOpen ? 'visible' : 'hidden'}`}>
-            <div style={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                justifyContent: 'space-between',
-            }}>
-                <SelectLanguage />
-                <button onClick={onClick}>
-                    {isOpen ? 'Close Menu' : 'Open Menu'}
-                </button>
-            </div>
+        <div
+            className={`sticky-header ${(isScrolledUp && isUserScroll) || isOpen ? 'visible' : 'hidden'}`}
+        >
+            <SelectLanguage />
+            <button className={'header-button'} onClick={onClick}>
+                {isOpen ? 'Close Menu' : 'Open Menu'}
+            </button>
         </div>
     );
 };
@@ -74,12 +70,13 @@ const HeaderSections = ({
     };
     return (
         <div className={`header-sections ${isOpen ? 'open' : 'closed'}`}>
-            <ol>
+            <ul className={'no-bullets'}>
                 {
                     sections.map((section) => {
                         return (
                             <li
                                 key={section.id}
+                                className={'li-item'}
                                 onClick={() => scrollToSection(section.id)}
                             >
                                 {t(section.id)}
@@ -87,7 +84,7 @@ const HeaderSections = ({
                         );
                     })
                 }
-            </ol>
+            </ul>
         </div>
     );
 };

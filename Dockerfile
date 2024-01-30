@@ -1,5 +1,6 @@
-# Use the official Node.js image as a base image
-FROM node:14-alpine as build
+# Stage 1: Building the application
+# Use the official Node.js 20 image as a base image
+FROM node:20-alpine as build
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -7,7 +8,7 @@ WORKDIR /app
 # Copy package.json and package-lock.json (or yarn.lock) to the container
 COPY package*.json ./
 
-# Install dependencies
+# Install dependencies in a separate layer to leverage Docker cache
 RUN npm install
 
 # Copy the rest of the application code to the container
@@ -16,6 +17,7 @@ COPY . .
 # Build the React app
 RUN npm run build
 
+# Stage 2: Serving the application using Nginx
 # Use nginx as the web server
 FROM nginx:alpine
 

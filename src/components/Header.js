@@ -46,7 +46,7 @@ const HeaderToggle = ({
             className={`sticky-header ${(isScrolledUp && isUserScroll) || isOpen ? 'visible' : 'hidden'}`}
         >
             <SelectLanguage />
-            <button className={'header-button'} onClick={onClick}>
+            <button className={'header-button hover-color-effect'} onClick={onClick}>
                 {isOpen ? 'Close Menu' : 'Open Menu'}
             </button>
         </div>

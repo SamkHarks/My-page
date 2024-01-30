@@ -210,10 +210,6 @@
   transition: background-color 0.3s ease;
 }
 
-.small-button:hover {
-  background-color: darkcyan;
-}
-
 .no-bullets {
   list-style-type: none;
 }
@@ -257,4 +253,8 @@
   padding-left: 30px;
   padding-right: 30px;
   color: white;
+}
+
+.hover-color-effect:hover {
+  background-color: darkcyan;
 }

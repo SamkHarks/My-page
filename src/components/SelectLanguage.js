@@ -11,10 +11,18 @@ const SelectLanguage = () => {
 
     return (
         <div style={{ marginTop: -2, display: 'flex', gap: 2 }}>
-            <button className={'small-button'} type="button" onClick={() => changeLanguage('fi')}>
+            <button
+                className={'small-button hover-color-effect'}
+                type="button"
+                onClick={() => changeLanguage('fi')}
+            >
                 fi
             </button>
-            <button className={'small-button'} type="button" onClick={() => changeLanguage('en')}>
+            <button
+                className={'small-button hover-color-effect'}
+                type="button"
+                onClick={() => changeLanguage('en')}
+            >
                 en
             </button>
         </div>

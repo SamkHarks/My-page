@@ -207,6 +207,7 @@
   padding-top: 10px;
   padding-bottom: 10px;
   color: white;
+  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
@@ -219,6 +220,7 @@
   transition: color 0.3s ease;
   position: relative;
   padding-bottom: 4px;
+  cursor: pointer;
 }
 
 .li-item:hover {
@@ -253,6 +255,7 @@
   padding-left: 30px;
   padding-right: 30px;
   color: white;
+  cursor: pointer;
 }
 
 .hover-color-effect:hover {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { sections } from './Header';
 import { About } from '../components/About';
 import { Welcome } from './Welcome';
@@ -34,7 +34,11 @@ const SectionWrapper = ({
 );
 
 export const Sections = ({ sectionRefs }) => {
-    const data = document.querySelectorAll('.section-title');
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        const queryData = document.querySelectorAll('.section-title');
+        setData([...queryData]);
+    }, []);
     useInterSectionObserver(data);
     return (
         <>

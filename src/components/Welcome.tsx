@@ -6,7 +6,7 @@ export const Welcome = () => {
         <div style={{
             color: 'white'
         }}>
-            <p>Hi My name is Sami and I luv developing!</p>
+            <p>Hi, my name is Sami, and I build things for web and mobile apps.</p>
         </div>
     );
 };

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { sections } from './Header';
-import { About } from '../components/About';
-import { Welcome } from './Welcome';
-import { Portfolio } from './Portfolio';
-import { Contact } from './Contact';
+import { About } from '../components/About.tsx';
+import { Welcome } from './Welcome.tsx';
+import { Portfolio } from './Portfolio.tsx';
+import { Contact } from './Contact.tsx';
 import '../App.css';
 import { useInterSectionObserver } from '../hooks/hooks';
 

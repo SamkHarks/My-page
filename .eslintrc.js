@@ -6,8 +6,10 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
+    "parser": '@typescript-eslint/parser',
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -16,7 +18,7 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react", "jest", "import"
+        "react", "jest", "import","@typescript-eslint"
     ],
     "rules": {
         "indent": [

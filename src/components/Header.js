@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import '../App.css';
 import { useScroll, useUserScroll } from '../hooks/hooks';
-import { SelectLanguage } from './SelectLanguage';
 import { useTranslation } from 'react-i18next';
+import { LanguageSelector } from './LanguageSelector.tsx';
 
 export const sections = [
     { id: 'welcome', title: 'Welcome', backgroundColor: '#282c34' },
@@ -45,7 +45,7 @@ const HeaderToggle = ({
         <div
             className={`sticky-header ${(isScrolledUp && isUserScroll) || isOpen ? 'visible' : 'hidden'}`}
         >
-            <SelectLanguage />
+            <LanguageSelector />
             <button className={'header-button hover-color-effect'} onClick={onClick}>
                 {isOpen ? 'Close Menu' : 'Open Menu'}
             </button>

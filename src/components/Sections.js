@@ -5,7 +5,7 @@ import { Welcome } from './Welcome.tsx';
 import { Portfolio } from './Portfolio.tsx';
 import { Contact } from './Contact.tsx';
 import '../App.css';
-import { useInterSectionObserver } from '../hooks/hooks';
+import { useInterSectionObserver } from '../hooks/hooks.ts';
 
 const components = {
     welcome: Welcome,

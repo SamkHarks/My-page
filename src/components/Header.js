@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../App.css';
-import { useScroll, useUserScroll } from '../hooks/hooks';
+import { useScroll, useUserScroll } from '../hooks/hooks.ts';
 import { useTranslation } from 'react-i18next';
 import { LanguageSelector } from './LanguageSelector.tsx';
 

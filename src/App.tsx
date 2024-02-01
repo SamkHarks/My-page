@@ -1,10 +1,8 @@
 import React from 'react';
 import { Home } from './components/Home';
 
-function App() {
-    return (
-        <Home />
-    );
-}
+const App = () => (
+    <Home />
+);
 
 export default App;

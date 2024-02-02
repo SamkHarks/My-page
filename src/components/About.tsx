@@ -18,12 +18,12 @@ export const About = () => {
                     borderRadius: 12
                 }}
                 src={me}
-                onClick={() => console.log('Hello My Name is Sami')}
                 alt='picture of me'
             />
             <p>
-                testi
+                {"I have a master's degree in Computer Science and a bachelor's degree in Engineering Physics and Mathematics."}
             </p>
+
         </div>
     );
 };

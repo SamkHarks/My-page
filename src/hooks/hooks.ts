@@ -1,17 +1,18 @@
-import { createRef, useEffect, useState } from 'react';
+import React from 'react';
 import { sections } from '../components/Header';
+import { SectionRefs } from './types';
 
-export const useRefs = () => {
+export const useRefs = (): SectionRefs => {
     const refs = sections.reduce((acc, section) => {
-        acc[section.id] = createRef();
+        acc[section.id] = React.createRef<HTMLDivElement>();
         return acc;
-    }, {});
+    }, {} as SectionRefs);
     return refs;
 };
 
-export const useScroll = (isUserScroll) => {
-    const [isScrolledUp, setIsScrolledUp] = useState(true);
-    useEffect(() => {
+export const useScroll = (isUserScroll: boolean) => {
+    const [isScrolledUp, setIsScrolledUp] = React.useState(true);
+    React.useEffect(() => {
         let prevScrollPos = window.scrollY;
         const handleScroll = () => {
             const currentScrollPos = window.scrollY;
@@ -28,14 +29,12 @@ export const useScroll = (isUserScroll) => {
     return isScrolledUp;
 };
 
-export const useUserScroll = () => {
-    const [isUserScroll, setIsUserScroll] = useState(true);
-    useEffect(() => {
-        let timeoutId;
+export const useUserScroll = (): [boolean, (value: boolean) => void] => {
+    const [isUserScroll, setIsUserScroll] = React.useState(true);
+    React.useEffect(() => {
+        let timeoutId:ReturnType<typeof setTimeout>;
         if (!isUserScroll) {
             timeoutId = setTimeout(() => setIsUserScroll(true), 1000);
-        } else {
-            clearTimeout(timeoutId);
         }
         return () => {
             clearTimeout(timeoutId);
@@ -45,9 +44,8 @@ export const useUserScroll = () => {
     return [isUserScroll, setIsUserScroll];
 };
 
-export const useInterSectionObserver = (data) => {
-
-    useEffect(() => {
+export const useInterSectionObserver = (data: Element[]) => {
+    React.useEffect(() => {
         if (data.length > 0) {
             const observer = new IntersectionObserver(
                 (entries) => {

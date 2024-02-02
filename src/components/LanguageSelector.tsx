@@ -1,11 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import '../App.css';
+import { Languages } from '../i18n';
 
-const SelectLanguage = () => {
+const LanguageSelector = () => {
     const { i18n } = useTranslation('translation');
 
-    const changeLanguage = (lng) => {
+    const changeLanguage = (lng: Languages) => {
         i18n.changeLanguage(lng);
     };
 
@@ -29,4 +30,4 @@ const SelectLanguage = () => {
     );
 };
 
-export { SelectLanguage };
+export { LanguageSelector };

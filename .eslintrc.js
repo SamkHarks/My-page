@@ -6,8 +6,10 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
+    "parser": '@typescript-eslint/parser',
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -16,7 +18,7 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react", "jest", "import"
+        "react", "jest", "import","@typescript-eslint"
     ],
     "rules": {
         "indent": [
@@ -26,10 +28,6 @@ module.exports = {
         "linebreak-style": [
             "warn",
             "windows"
-        ],
-        "quotes": [
-            "warn",
-            "single"
         ],
         "semi": [
             "warn",
@@ -51,8 +49,19 @@ module.exports = {
         "import/namespace": "error"
     },
     "settings": {
+      "import/resolver": {
+        "node": {
+            "extensions": [".js", ".jsx", ".ts", ".tsx"],
+            "moduleDirectory": ["src", "node_modules"]
+          },
+          "typescript": {
+            "alwaysTryTypes": true,
+            "project": "./tsconfig.json"
+          }
+      },
       "react": {
         "version": "detect"
       }
     }
 }
+

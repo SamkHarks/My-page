@@ -6,7 +6,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import translationEn from './locales/en/translation.json';
 import translationFi from './locales/fi/translation.json';
 
-type Languages = 'en' | 'fi';
+export type Languages = 'en' | 'fi';
 type Resource = {
     [K in Languages]: {
         translation: typeof translationEn

@@ -1,11 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import '../App.css';
+import { Languages } from '../i18n';
 
 const LanguageSelector = () => {
     const { i18n } = useTranslation('translation');
 
-    const changeLanguage = (lng: string) => {
+    const changeLanguage = (lng: Languages) => {
         i18n.changeLanguage(lng);
     };
 

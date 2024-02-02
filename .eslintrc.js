@@ -49,8 +49,12 @@ module.exports = {
         "import/namespace": "error"
     },
     "settings": {
+      "import/resolver": {
+        "typescript": {}
+      },
       "react": {
         "version": "detect"
       }
     }
 }
+

@@ -1,11 +1,12 @@
 import React from 'react';
 import { sections } from '../components/Header';
+import { SectionRefs } from './types';
 
-export const useRefs = (): Record<string,React.RefObject<HTMLElement>> => {
+export const useRefs = (): SectionRefs => {
     const refs = sections.reduce((acc, section) => {
-        acc[section.id] = React.createRef<HTMLElement>();
+        acc[section.id] = React.createRef<HTMLDivElement>();
         return acc;
-    }, {} as Record<string,React.RefObject<HTMLElement>>);
+    }, {} as SectionRefs);
     return refs;
 };
 
@@ -28,7 +29,7 @@ export const useScroll = (isUserScroll: boolean) => {
     return isScrolledUp;
 };
 
-export const useUserScroll = () => {
+export const useUserScroll = (): [boolean, (value: boolean) => void] => {
     const [isUserScroll, setIsUserScroll] = React.useState(true);
     React.useEffect(() => {
         let timeoutId:ReturnType<typeof setTimeout>;

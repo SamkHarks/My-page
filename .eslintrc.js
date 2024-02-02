@@ -50,7 +50,14 @@ module.exports = {
     },
     "settings": {
       "import/resolver": {
-        "typescript": {}
+        "node": {
+            "extensions": [".js", ".jsx", ".ts", ".tsx"],
+            "moduleDirectory": ["src", "node_modules"]
+          },
+          "typescript": {
+            "alwaysTryTypes": true,
+            "project": "./tsconfig.json"
+          }
       },
       "react": {
         "version": "detect"

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import '../App.css';
-import { useScroll, useUserScroll } from '../hooks/hooks.ts';
+import { useScroll, useUserScroll } from '../hooks/hooks';
 import { useTranslation } from 'react-i18next';
-import { LanguageSelector } from './LanguageSelector.tsx';
+import { LanguageSelector } from './LanguageSelector';
+import { SectionRefs } from '../hooks/types';
 
 export const sections = [
     { id: 'welcome', title: 'Welcome', backgroundColor: '#282c34' },
@@ -10,8 +11,10 @@ export const sections = [
     { id: 'portfolio', title: 'Portfolio', backgroundColor: 'green' },
     { id: 'contact', title: 'Contact', backgroundColor: 'blue' },
 ];
-
-export const Header = ({ sectionRefs }) => {
+type HeaderProps = {
+    sectionRefs: SectionRefs
+}
+export const Header = ({ sectionRefs }: HeaderProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isUserScroll, setIsUserScroll] = useUserScroll();
     const onClick = () => {
@@ -35,11 +38,17 @@ export const Header = ({ sectionRefs }) => {
     );
 };
 
+type HeaderToggleProps = {
+    isOpen: boolean,
+    onClick: () => void,
+    isUserScroll: boolean
+}
+
 const HeaderToggle = ({
     isOpen,
     onClick,
     isUserScroll
-}) => {
+}: HeaderToggleProps) => {
     const isScrolledUp = useScroll(isUserScroll);
     return (
         <div
@@ -53,16 +62,21 @@ const HeaderToggle = ({
     );
 };
 
+type HeaderSectionProps =
+    HeaderProps & Omit<HeaderToggleProps, 'isUserScroll'> & {
+        setIsUserScroll: (value: boolean) => void
+    };
+
 const HeaderSections = ({
     onClick,
     sectionRefs,
     isOpen,
     setIsUserScroll
-}) => {
+}: HeaderSectionProps) => {
     const { t } = useTranslation();
-    const scrollToSection = (sectionId) => {
+    const scrollToSection = (sectionId: string) => {
         const section = sectionRefs[sectionId];
-        if (section) {
+        if (section.current) {
             onClick();
             setIsUserScroll(false);
             section.current.scrollIntoView({ behavior: 'smooth' });

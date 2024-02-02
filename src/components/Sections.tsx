@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { sections } from './Header';
-import { About } from '../components/About.tsx';
-import { Welcome } from './Welcome.tsx';
-import { Portfolio } from './Portfolio.tsx';
-import { Contact } from './Contact.tsx';
+import { About } from './About';
+import { Welcome } from './Welcome';
+import { Portfolio } from './Portfolio';
+import { Contact } from './Contact';
 import '../App.css';
-import { useInterSectionObserver } from '../hooks/hooks.ts';
+import { useInterSectionObserver } from '../hooks/hooks';
+import { SectionRefs } from '../hooks/types';
 
-const components = {
+const components: Record<string,React.ComponentType> = {
     welcome: Welcome,
     about: About,
     portfolio: Portfolio,
     contact: Contact
 };
 
+type Props = {
+    section: typeof sections[number],
+    sectionRefs: SectionRefs,
+    children: React.ReactNode;
+}
+
 const SectionWrapper = ({
     section,
     sectionRefs,
     children
-}) => (
+}: Props) => (
     <div
         ref={sectionRefs[section.id]}
         className={'section'}
@@ -33,8 +40,8 @@ const SectionWrapper = ({
     </div>
 );
 
-export const Sections = ({ sectionRefs }) => {
-    const [data, setData] = useState([]);
+export const Sections = ({ sectionRefs }: {sectionRefs: Props['sectionRefs']}) => {
+    const [data, setData] = useState<Element[]>([]);
     useEffect(() => {
         const queryData = document.querySelectorAll('.section-title');
         setData([...queryData]);

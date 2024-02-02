@@ -1,11 +1,11 @@
 import React from 'react';
 import { sections } from '../components/Header';
 
-export const useRefs = (): { [key: string]: React.RefObject<HTMLElement> } => {
+export const useRefs = (): Record<string,React.RefObject<HTMLElement>> => {
     const refs = sections.reduce((acc, section) => {
         acc[section.id] = React.createRef<HTMLElement>();
         return acc;
-    }, {} as { [key: string]: React.RefObject<HTMLElement> });
+    }, {} as Record<string,React.RefObject<HTMLElement>>);
     return refs;
 };
 

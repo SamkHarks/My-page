@@ -25,10 +25,7 @@ module.exports = {
             "warn",
             4
         ],
-        "linebreak-style": [
-            "warn",
-            "windows"
-        ],
+        "linebreak-style": "off",
         "semi": [
             "warn",
             "always"

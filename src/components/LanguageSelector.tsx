@@ -11,7 +11,7 @@ const LanguageSelector = () => {
     };
 
     return (
-        <div style={{ marginTop: -2, display: 'flex', gap: 2 }}>
+        <div style={{ display: 'flex', gap: 2 }}>
             <button
                 className={'small-button hover-color-effect'}
                 type="button"

@@ -16,7 +16,8 @@ export const useScroll = () => {
         const handleScroll = () => {
             const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
             const currentScroll = window.scrollY;
-            const progress = (currentScroll / totalScroll) * 100;
+            let progress = (currentScroll / totalScroll) * 100;
+            progress = Math.min(100, Math.max(0, progress));
             setScrollProgress(progress);
         };
         window.addEventListener('scroll', handleScroll);

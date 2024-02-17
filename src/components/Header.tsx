@@ -50,13 +50,15 @@ const HeaderToggle = ({
             className={`sticky-header ${isOpen ? 'visible' : 'visible'}`}
         >
             <LanguageSelector />
-            <div style={{ display: 'flex', height: 40, columnGap: 5 }}>
+            <div style={{ display: 'flex', columnGap: 5 }}>
                 <CircularProgress
                     viewBox={"0 0 100 100"}
                     cx={"50"}
                     cy={"50"}
                     stroke={"cyan"}
-                    radius={40} strokeWidth={20}
+                    radius={40}
+                    strokeWidth={20}
+                    height={40}
                     progress={scrollProgress}
                 />
                 <button className={'header-button hover-color-effect'} onClick={onClick}>

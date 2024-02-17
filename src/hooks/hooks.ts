@@ -10,38 +10,22 @@ export const useRefs = (): SectionRefs => {
     return refs;
 };
 
-export const useScroll = (isUserScroll: boolean) => {
-    const [isScrolledUp, setIsScrolledUp] = React.useState(true);
+export const useScroll = () => {
+    const [scrollProgress, setScrollProgress] = React.useState(0);
     React.useEffect(() => {
-        let prevScrollPos = window.scrollY;
         const handleScroll = () => {
-            const currentScrollPos = window.scrollY;
-            const isScrollingUp = currentScrollPos < prevScrollPos && isUserScroll;
-            prevScrollPos = currentScrollPos;
-            setIsScrolledUp(isScrollingUp);
+            const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const currentScroll = window.scrollY;
+            const progress = (currentScroll / totalScroll) * 100;
+            setScrollProgress(progress);
         };
         window.addEventListener('scroll', handleScroll);
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [isUserScroll]);
-    return isScrolledUp;
-};
-
-export const useUserScroll = (): [boolean, (value: boolean) => void] => {
-    const [isUserScroll, setIsUserScroll] = React.useState(true);
-    React.useEffect(() => {
-        let timeoutId:ReturnType<typeof setTimeout>;
-        if (!isUserScroll) {
-            timeoutId = setTimeout(() => setIsUserScroll(true), 1000);
-        }
-        return () => {
-            clearTimeout(timeoutId);
-        };
-    }, [isUserScroll]);
-
-    return [isUserScroll, setIsUserScroll];
+    }, []);
+    return scrollProgress;
 };
 
 export const useInterSectionObserver = (data: Element[]) => {

@@ -1,8 +1,10 @@
 import React from 'react';
 import me from '../images/Sami.jpeg';
+import { useTranslation } from 'react-i18next';
 
 
 export const About = () => {
+    const { t } = useTranslation('about');
     return (
         <div
             style={{
@@ -21,7 +23,7 @@ export const About = () => {
                 alt='picture of me'
             />
             <p>
-                {"I have a master's degree in Computer Science and a bachelor's degree in Engineering Physics and Mathematics."}
+                {t('description')}
             </p>
 
         </div>

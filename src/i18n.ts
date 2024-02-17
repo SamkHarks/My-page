@@ -3,22 +3,27 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 // Importing translation files
-import translationEn from './locales/en/translation.json';
-import translationFi from './locales/fi/translation.json';
+import sectionsEn from './locales/en/sections.json';
+import sectionsFi from './locales/fi/sections.json';
+import aboutEn from './locales/en/about.json';
+import aboutFi from './locales/fi/about.json';
 
 export type Languages = 'en' | 'fi';
 type Resource = {
     [K in Languages]: {
-        translation: typeof translationEn
+        sections: typeof sectionsEn,
+        about: typeof aboutEn,
     };
 };
 
 const resources: Resource = {
     en: {
-        translation: translationEn
+        sections: sectionsEn,
+        about: aboutEn,
     },
     fi: {
-        translation: translationFi
+        sections: sectionsFi,
+        about: aboutFi
     },
 };
 

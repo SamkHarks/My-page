@@ -4,7 +4,7 @@ import '../App.css';
 import { Languages } from '../i18n';
 
 const LanguageSelector = () => {
-    const { i18n } = useTranslation('translation');
+    const { i18n } = useTranslation();
 
     const changeLanguage = (lng: Languages) => {
         i18n.changeLanguage(lng);

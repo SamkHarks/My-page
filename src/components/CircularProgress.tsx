@@ -9,6 +9,8 @@ type Props = {
     cx: string;
     cy: string;
     stroke: string;
+    width?: number;
+    height?: number;
 }
 export const CircularProgress = ({
     radius,
@@ -17,13 +19,15 @@ export const CircularProgress = ({
     viewBox,
     cx,
     cy,
-    stroke
+    stroke,
+    height,
+    width
 }: Props) => {
     const circumference = 2 * Math.PI * radius;
     const toValue = circumference - (progress / 100) * circumference;
 
     return (
-        <svg viewBox={viewBox} xmlns="http://www.w3.org/2000/svg">
+        <svg width={width} height={height} viewBox={viewBox} xmlns="http://www.w3.org/2000/svg">
             <g transform="rotate(-90 50 50)">
                 <circle
                     cx={cx}
@@ -34,6 +38,7 @@ export const CircularProgress = ({
                     strokeWidth={strokeWidth}
                     strokeDasharray={circumference}
                     strokeDashoffset={toValue}
+
                 />
             </g>
         </svg>

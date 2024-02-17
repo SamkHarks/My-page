@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import '../App.css';
-import { useScroll, useUserScroll } from '../hooks/hooks';
+import { useScroll } from '../hooks/hooks';
 import { useTranslation } from 'react-i18next';
 import { LanguageSelector } from './LanguageSelector';
 import { SectionRefs } from '../hooks/types';
+import { CircularProgress } from './CircularProgress';
 
 export const sections = [
     { id: 'welcome', title: 'Welcome', backgroundColor: '#282c34' },
@@ -16,23 +17,19 @@ type HeaderProps = {
 }
 export const Header = ({ sectionRefs }: HeaderProps) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isUserScroll, setIsUserScroll] = useUserScroll();
     const onClick = () => {
         setIsOpen(!isOpen);
     };
-
     return (
         <header>
             <HeaderToggle
                 onClick={onClick}
                 isOpen={isOpen}
-                isUserScroll={isUserScroll}
             />
             <HeaderSections
                 onClick={onClick}
                 sectionRefs={sectionRefs}
                 isOpen={isOpen}
-                setIsUserScroll={setIsUserScroll}
             />
         </header>
     );
@@ -41,44 +38,47 @@ export const Header = ({ sectionRefs }: HeaderProps) => {
 type HeaderToggleProps = {
     isOpen: boolean,
     onClick: () => void,
-    isUserScroll: boolean
 }
 
 const HeaderToggle = ({
     isOpen,
     onClick,
-    isUserScroll
 }: HeaderToggleProps) => {
-    const isScrolledUp = useScroll(isUserScroll);
+    const scrollProgress = useScroll();
     return (
         <div
-            className={`sticky-header ${(isScrolledUp && isUserScroll) || isOpen ? 'visible' : 'hidden'}`}
+            className={`sticky-header ${isOpen ? 'visible' : 'visible'}`}
         >
             <LanguageSelector />
-            <button className={'header-button hover-color-effect'} onClick={onClick}>
-                {isOpen ? 'Close Menu' : 'Open Menu'}
-            </button>
+            <div style={{ display: 'flex', height: 40, columnGap: 5 }}>
+                <CircularProgress
+                    viewBox={"0 0 100 100"}
+                    cx={"50"}
+                    cy={"50"}
+                    stroke={"cyan"}
+                    radius={40} strokeWidth={20}
+                    progress={scrollProgress}
+                />
+                <button className={'header-button hover-color-effect'} onClick={onClick}>
+                    {isOpen ? 'Close Menu' : 'Open Menu'}
+                </button>
+            </div>
         </div>
     );
 };
 
-type HeaderSectionProps =
-    HeaderProps & Omit<HeaderToggleProps, 'isUserScroll'> & {
-        setIsUserScroll: (value: boolean) => void
-    };
+type HeaderSectionProps = HeaderProps & HeaderToggleProps;
 
 const HeaderSections = ({
     onClick,
     sectionRefs,
     isOpen,
-    setIsUserScroll
 }: HeaderSectionProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('sections');
     const scrollToSection = (sectionId: string) => {
         const section = sectionRefs[sectionId];
         if (section.current) {
             onClick();
-            setIsUserScroll(false);
             section.current.scrollIntoView({ behavior: 'smooth' });
         }
     };

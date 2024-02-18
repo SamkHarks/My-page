@@ -5,12 +5,13 @@ import { useTranslation } from 'react-i18next';
 import { LanguageSelector } from './LanguageSelector';
 import { SectionRefs } from '../hooks/types';
 import { CircularProgress } from './CircularProgress';
+import { DiamondProgress } from './DiamondProgress';
 
 export const sections = [
     { id: 'welcome', title: 'Welcome', backgroundColor: '#282c34' },
-    { id: 'about', title: 'About Me', backgroundColor: 'red' },
-    { id: 'portfolio', title: 'Portfolio', backgroundColor: 'green' },
-    { id: 'contact', title: 'Contact', backgroundColor: 'blue' },
+    { id: 'about', title: 'About Me', backgroundColor: '#282c34' },
+    { id: 'portfolio', title: 'Portfolio', backgroundColor: '#282c34' },
+    { id: 'contact', title: 'Contact', backgroundColor: '#282c34' },
 ];
 type HeaderProps = {
     sectionRefs: SectionRefs
@@ -49,7 +50,10 @@ const HeaderToggle = ({
         <div
             className={`sticky-header ${isOpen ? 'visible' : 'visible'}`}
         >
-            <LanguageSelector />
+            <div style={{ display: 'flex', columnGap: 5 }}>
+                <LanguageSelector />
+                <DiamondProgress progress={scrollProgress} text={"S.H"} size={40} />
+            </div>
             <div style={{ display: 'flex', columnGap: 5 }}>
                 <CircularProgress
                     viewBox={"0 0 100 100"}

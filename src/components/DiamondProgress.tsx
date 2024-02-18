@@ -1,13 +1,9 @@
 import React from "react";
-import '../App.css';
 
 type Props= {
     progress: number;
     text: string;
     size: number;
-}
-interface CustomStyle extends React.CSSProperties {
-    '--dynamic-dashoffset': string;
 }
 export const DiamondProgress = ({ progress, text, size }: Props) => {
     // Diamond's side width
@@ -18,18 +14,10 @@ export const DiamondProgress = ({ progress, text, size }: Props) => {
     const rotationTransform = `rotate(45 ${halfSize} ${0})`;
     // Animation for the stroke
     const strokeDasharray = sideWidth * 4; // Total length of the diamond's border
-    const strokeDashoffset = strokeDasharray - (progress / 100) * strokeDasharray;
+    //const strokeDashoffset = strokeDasharray - (progress / 100) * strokeDasharray;
     const reversedDashoffset = (progress * strokeDasharray) / 100;
-    // Inline styles to dynamically set CSS variables
-    const foregroundStyle: CustomStyle = {
-        '--dynamic-dashoffset': `${strokeDashoffset}`
-    };
-
-    const backgroundStyle: CustomStyle = {
-        '--dynamic-dashoffset': `${-reversedDashoffset}`
-    };
     return (
-        <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+        <svg width={`${size}px`} height={`${size}px`} viewBox={`0 0 ${size} ${size}`}>
 
 
             <defs>
@@ -43,7 +31,6 @@ export const DiamondProgress = ({ progress, text, size }: Props) => {
             </defs>
             {/* background rectangle */}
             <rect
-                className="animated-stroke"
                 x={halfSize}
                 y="0"
                 width={sideWidth}
@@ -53,11 +40,11 @@ export const DiamondProgress = ({ progress, text, size }: Props) => {
                 stroke="cyan"
                 strokeWidth="1.5"
                 strokeDasharray={strokeDasharray}
-                style={backgroundStyle}
+                strokeDashoffset={-reversedDashoffset}
             />
             {/* foreground rectangle */}
-            <rect
-                className="animated-stroke"
+
+            {/*             <rect
                 x={halfSize}
                 y="0"
                 width={sideWidth}
@@ -67,9 +54,8 @@ export const DiamondProgress = ({ progress, text, size }: Props) => {
                 stroke="orangered"
                 strokeWidth="1.5"
                 strokeDasharray={strokeDasharray}
-                style={foregroundStyle}
-            />
-            {/*  */}
+                strokeDashoffset={-reversedStrokeDashoffset}
+            /> */}
             {/* background text */}
             <text
                 x={halfSize}

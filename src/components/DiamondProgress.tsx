@@ -17,7 +17,7 @@ export const DiamondProgress = ({ progress, text, size }: Props) => {
     //const strokeDashoffset = strokeDasharray - (progress / 100) * strokeDasharray;
     const reversedDashoffset = (progress * strokeDasharray) / 100;
     return (
-        <svg width={`${size}px`} height={`${size}px`} viewBox={`0 0 ${size} ${size}`}>
+        <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
 
 
             <defs>
@@ -44,18 +44,6 @@ export const DiamondProgress = ({ progress, text, size }: Props) => {
             />
             {/* foreground rectangle */}
 
-            {/*             <rect
-                x={halfSize}
-                y="0"
-                width={sideWidth}
-                height={sideWidth}
-                transform={rotationTransform}
-                fill="none"
-                stroke="orangered"
-                strokeWidth="1.5"
-                strokeDasharray={strokeDasharray}
-                strokeDashoffset={-reversedStrokeDashoffset}
-            /> */}
             {/* background text */}
             <text
                 x={halfSize}
@@ -82,3 +70,17 @@ export const DiamondProgress = ({ progress, text, size }: Props) => {
         </svg>
     );
 };
+/*
+ <rect
+                x={halfSize}
+                y="0"
+                width={sideWidth}
+                height={sideWidth}
+                transform={rotationTransform}
+                fill="none"
+                stroke="orangered"
+                strokeWidth="1.5"
+                strokeDasharray={strokeDasharray}
+                strokeDashoffset={-reversedStrokeDashoffset}
+            /> 
+*/

@@ -52,7 +52,7 @@ const HeaderToggle = ({
         >
             <div style={{ display: 'flex', columnGap: 5 }}>
                 <LanguageSelector />
-                <DiamondProgress progress={scrollProgress} text={"S.H"} size={40} />
+                <DiamondProgress progress={scrollProgress} text={"S.H"} size={39} />
             </div>
             <div style={{ display: 'flex', columnGap: 5 }}>
                 <CircularProgress

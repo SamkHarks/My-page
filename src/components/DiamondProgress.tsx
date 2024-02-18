@@ -6,8 +6,7 @@ type Props= {
     size: number;
 }
 
-export const DiamondProgress = ({ progress, text }: Props) => {
-    const size = 40;
+export const DiamondProgress = ({ progress, text, size }: Props) => {
     // Diamond's side width
     const sideWidth = size / Math.sqrt(2);
     const halfSize = size / 2;
@@ -40,9 +39,9 @@ export const DiamondProgress = ({ progress, text }: Props) => {
                 transform={rotationTransform}
                 fill="none"
                 stroke="cyan"
-                strokeWidth="1"
+                strokeWidth="1.5"
                 strokeDasharray={strokeDasharray}
-                strokeDashoffset={-reversedDashoffset}
+                style={{ strokeDashoffset: -reversedDashoffset }}
             />
             {/* foreground rectangle */}
             <rect
@@ -53,11 +52,11 @@ export const DiamondProgress = ({ progress, text }: Props) => {
                 transform={rotationTransform}
                 fill="none"
                 stroke="orangered"
-                strokeWidth="1"
+                strokeWidth="1.5"
                 strokeDasharray={strokeDasharray}
-                strokeDashoffset={strokeDashoffset}
-                style={{ strokeLinecap: 'round' }}
+                style={{ strokeDashoffset: strokeDashoffset, strokeLinecap: 'round' }}
             />
+
             {/* background text */}
             <text
                 x={halfSize}

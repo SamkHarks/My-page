@@ -14,8 +14,9 @@ export const DiamondProgress = ({ progress, text, size }: Props) => {
     const rotationTransform = `rotate(45 ${halfSize} ${0})`;
     // Animation for the stroke
     const strokeDasharray = sideWidth * 4; // Total length of the diamond's border
-    //const strokeDashoffset = strokeDasharray - (progress / 100) * strokeDasharray;
-    const reversedDashoffset = (progress * strokeDasharray) / 100;
+    const strokeDashoffset = strokeDasharray - (progress / 100) * strokeDasharray;
+    //const reversedDashoffset = (progress * strokeDasharray) / 100;
+
     return (
         <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
 
@@ -39,11 +40,22 @@ export const DiamondProgress = ({ progress, text, size }: Props) => {
                 fill="none"
                 stroke="cyan"
                 strokeWidth="1.5"
-                strokeDasharray={strokeDasharray}
-                strokeDashoffset={-reversedDashoffset}
+                //strokeDasharray={strokeDasharray}
+                //strokeDashoffset={reversedDashoffset}
             />
             {/* foreground rectangle */}
-
+            <rect
+                x={halfSize}
+                y="0"
+                width={sideWidth}
+                height={sideWidth}
+                transform={rotationTransform}
+                fill="none"
+                stroke="red"
+                strokeWidth="1.5"
+                strokeDasharray={strokeDasharray}
+                strokeDashoffset={strokeDashoffset}
+            />
             {/* background text */}
             <text
                 x={halfSize}
@@ -70,17 +82,3 @@ export const DiamondProgress = ({ progress, text, size }: Props) => {
         </svg>
     );
 };
-/*
- <rect
-                x={halfSize}
-                y="0"
-                width={sideWidth}
-                height={sideWidth}
-                transform={rotationTransform}
-                fill="none"
-                stroke="orangered"
-                strokeWidth="1.5"
-                strokeDasharray={strokeDasharray}
-                strokeDashoffset={-reversedStrokeDashoffset}
-            /> 
-*/

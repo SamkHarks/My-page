@@ -8,6 +8,7 @@ type Props= {
 
 export const DiamondProgress = ({ progress, text }: Props) => {
     const size = 40;
+    // Diamond's side width
     const sideWidth = size / Math.sqrt(2);
     const halfSize = size / 2;
     const maskId = "text-id-2";
@@ -30,7 +31,7 @@ export const DiamondProgress = ({ progress, text }: Props) => {
                     <rect x="10" y="0" width={halfSize} height={size} fill={`url(#progress-gradient)`} />
                 </mask>
             </defs>
-
+            {/* background rectangle */}
             <rect
                 x={halfSize}
                 y="0"
@@ -43,6 +44,7 @@ export const DiamondProgress = ({ progress, text }: Props) => {
                 strokeDasharray={strokeDasharray}
                 strokeDashoffset={-reversedDashoffset}
             />
+            {/* foreground rectangle */}
             <rect
                 x={halfSize}
                 y="0"
@@ -56,6 +58,7 @@ export const DiamondProgress = ({ progress, text }: Props) => {
                 strokeDashoffset={strokeDashoffset}
                 style={{ strokeLinecap: 'round' }}
             />
+            {/* background text */}
             <text
                 x={halfSize}
                 y={halfSize}
@@ -66,6 +69,7 @@ export const DiamondProgress = ({ progress, text }: Props) => {
             >
                 {text}
             </text>
+            {/* foreground progress text */}
             <text
                 x={halfSize}
                 y={halfSize}

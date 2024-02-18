@@ -28,7 +28,7 @@ export const DiamondProgress = ({ progress, text }: Props) => {
                     <stop offset={`${progress}%`} stopColor="transparent" />
                 </linearGradient>
                 <mask id={maskId}>
-                    <rect x="10" y="0" width={halfSize} height={size} fill={`url(#progress-gradient)`} />
+                    <rect x="8" y="0" width={halfSize+2} height={size} fill={`url(#progress-gradient)`} />
                 </mask>
             </defs>
             {/* background rectangle */}

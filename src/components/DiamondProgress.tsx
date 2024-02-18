@@ -1,11 +1,14 @@
 import React from "react";
+import '../App.css';
 
 type Props= {
     progress: number;
     text: string;
     size: number;
 }
-
+interface CustomStyle extends React.CSSProperties {
+    '--dynamic-dashoffset': string;
+}
 export const DiamondProgress = ({ progress, text, size }: Props) => {
     // Diamond's side width
     const sideWidth = size / Math.sqrt(2);
@@ -17,6 +20,14 @@ export const DiamondProgress = ({ progress, text, size }: Props) => {
     const strokeDasharray = sideWidth * 4; // Total length of the diamond's border
     const strokeDashoffset = strokeDasharray - (progress / 100) * strokeDasharray;
     const reversedDashoffset = (progress * strokeDasharray) / 100;
+    // Inline styles to dynamically set CSS variables
+    const foregroundStyle: CustomStyle = {
+        '--dynamic-dashoffset': `${strokeDashoffset}`
+    };
+
+    const backgroundStyle: CustomStyle = {
+        '--dynamic-dashoffset': `${-reversedDashoffset}`
+    };
     return (
         <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
 
@@ -32,6 +43,7 @@ export const DiamondProgress = ({ progress, text, size }: Props) => {
             </defs>
             {/* background rectangle */}
             <rect
+                className="animated-stroke"
                 x={halfSize}
                 y="0"
                 width={sideWidth}
@@ -41,10 +53,11 @@ export const DiamondProgress = ({ progress, text, size }: Props) => {
                 stroke="cyan"
                 strokeWidth="1.5"
                 strokeDasharray={strokeDasharray}
-                style={{ strokeDashoffset: -reversedDashoffset }}
+                style={backgroundStyle}
             />
             {/* foreground rectangle */}
             <rect
+                className="animated-stroke"
                 x={halfSize}
                 y="0"
                 width={sideWidth}
@@ -54,9 +67,9 @@ export const DiamondProgress = ({ progress, text, size }: Props) => {
                 stroke="orangered"
                 strokeWidth="1.5"
                 strokeDasharray={strokeDasharray}
-                style={{ strokeDashoffset: strokeDashoffset, strokeLinecap: 'round' }}
+                style={foregroundStyle}
             />
-
+            {/*  */}
             {/* background text */}
             <text
                 x={halfSize}

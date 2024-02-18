@@ -268,3 +268,13 @@
     background-color: initial;
   }
 }
+
+@keyframes animateStroke {
+  to {
+      stroke-dashoffset: var(--dynamic-dashoffset);
+  }
+}
+
+.animated-stroke {
+  animation: animateStroke 2s linear forwards;
+}

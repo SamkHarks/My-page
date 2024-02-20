@@ -4,7 +4,6 @@ import { useScroll } from '../hooks/hooks';
 import { useTranslation } from 'react-i18next';
 import { LanguageSelector } from './LanguageSelector';
 import { SectionRefs } from '../hooks/types';
-import { CircularProgress } from './CircularProgress';
 import { RectangleProgress } from './RectangleProgress';
 
 export const sections = [

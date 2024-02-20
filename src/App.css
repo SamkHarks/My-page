@@ -128,10 +128,9 @@
   color: white;
   position: fixed;
   height: 20vh;
-  padding-top: 40px;
+  padding-top: 70px;
   padding-bottom: 20px;
   display: flex;
-  align-items: center;
   justify-content: center;
   width: 100%;
 }
@@ -204,8 +203,7 @@
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   width: 40px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  height: 30px;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -213,6 +211,34 @@
 
 .no-bullets {
   list-style-type: none;
+}
+
+.custom-colors {
+  list-style: none; /* Removes default numbering */
+  margin-right: 3%;
+  counter-reset: list-index; /* Creates a counter for the list */
+}
+
+.custom-colors li {
+  counter-increment: list-index; /* Increment the counter */
+}
+
+.custom-colors li::before {
+  content: counter(list-index) ". "; /* Display the counter with a period */
+  font-family:cursive;
+  color: orangered;
+}
+
+.custom-colors li:nth-child(1)::before {
+  color: rgb(10, 253, 249);
+}
+
+.custom-colors li:nth-child(2)::before {
+  color: rgb(88, 241, 88);
+}
+
+.custom-colors li:nth-child(3)::before {
+  color: orange;
 }
 
 .li-item {
@@ -250,10 +276,9 @@
   border-top-right-radius: 8px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
+  height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
   color: white;
   cursor: pointer;
 }

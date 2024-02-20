@@ -32,9 +32,8 @@ const SectionWrapper = ({
         <div
             ref={sectionRefs[section.id]}
             className={'section'}
-            style={{ backgroundColor: section.backgroundColor }}
         >
-            <header className={'section-title'}>{t(section.id)}</header>
+            <h1 className={'section-title'}>{t(section.id)}</h1>
             <div style={{
                 paddingTop: 20
             }}>

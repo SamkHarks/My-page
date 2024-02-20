@@ -22,7 +22,7 @@ export const About = () => {
                 src={me}
                 alt='picture of me'
             />
-            <p>
+            <p style={{ color: 'white' }}>
                 {t('description')}
             </p>
 

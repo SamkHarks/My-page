@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { LanguageSelector } from './LanguageSelector';
 import { SectionRefs } from '../hooks/types';
 import { CircularProgress } from './CircularProgress';
-import { DiamondProgress } from './DiamondProgress';
+import { RectangleProgress } from './RectangleProgress';
 
 export const sections = [
     { id: 'welcome', title: 'Welcome', backgroundColor: '#282c34' },
@@ -50,21 +50,11 @@ const HeaderToggle = ({
         <div
             className={`sticky-header ${isOpen ? 'visible' : 'visible'}`}
         >
-            <div style={{ display: 'flex', columnGap: 5 }}>
+            <div style={{ display: 'flex', columnGap: 4, alignItems: 'center', padding: 10 }}>
+                <RectangleProgress progress={scrollProgress} text={"S.H"} size={60} />
                 <LanguageSelector />
-                <DiamondProgress progress={scrollProgress} text={"S.H"} size={39} />
             </div>
-            <div style={{ display: 'flex', columnGap: 5 }}>
-                <CircularProgress
-                    viewBox={"0 0 100 100"}
-                    cx={"50"}
-                    cy={"50"}
-                    stroke={"cyan"}
-                    radius={40}
-                    strokeWidth={20}
-                    height={40}
-                    progress={scrollProgress}
-                />
+            <div style={{ display: 'flex', columnGap: 4, paddingTop: 20, paddingRight: 10, alignItems: 'center' }}>
                 <button className={'header-button hover-color-effect'} onClick={onClick}>
                     {isOpen ? 'Close Menu' : 'Open Menu'}
                 </button>
@@ -90,21 +80,20 @@ const HeaderSections = ({
     };
     return (
         <div className={`header-sections ${isOpen ? 'open' : 'closed'}`}>
-            <ul className={'no-bullets'}>
+            <ol className="custom-colors" style={{display: 'flex', flexDirection: 'column' }}>
                 {
                     sections.map((section) => {
                         return (
                             <li
                                 key={section.id}
                                 className={'li-item'}
-                                onClick={() => scrollToSection(section.id)}
-                            >
+                                onClick={() => scrollToSection(section.id)}>
                                 {t(section.id)}
                             </li>
                         );
                     })
                 }
-            </ul>
+            </ol>
         </div>
     );
 };

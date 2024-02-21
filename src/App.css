@@ -1,5 +1,6 @@
 .App {
   min-height: 100vh;
+  background-color: #1d2128;
 }
 
 .App-logo {
@@ -120,6 +121,7 @@
   right: 0;
   left:0;
   z-index: 2;
+  background-color: rgba(19, 19, 23);
 }
 
 .header-sections {
@@ -147,7 +149,7 @@
 }
 
 .closed {
-  transform: translateY(-68%);
+  transform: translateY(-150%);
   transition: transform 0.3s;
 }
 

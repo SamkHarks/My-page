@@ -3,115 +3,6 @@
   background-color: #1d2128;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-translate-spin infinite 10s linear;
-  }
-}
-
-.App-header {
-  text-align: center;
-  background-color: rgb(56, 60, 68);
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg) translateY(110vh);
-  }
-  to {
-    transform: rotate(360deg) translateY(0);
-  }
-}
-
-@keyframes App-logo-translate-spin {
-  0% {
-    transform: translateX(-50px) rotate(0deg);
-  }
-  50% {
-    transform: translateX(50px) rotate(360deg);
-  }
-  100% {
-    transform: translateX(-50px) rotate(720deg);
-  }
-}
-
-.fade-in-element {
-  opacity: 0; /* Start with 0 opacity */
-  animation: fadeIn 3s infinite forwards; /* Apply the fadeIn animation */
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0; /* Start with 0 opacity */
-  }
-  100% {
-    opacity: 1; /* End with 1 opacity */
-  }
-}
-
-.nav {
-  width: 250px;
-  height: 100%;
-  padding: 20px;
-  border-top: 1px solid #ccc;
-  position: 'relative'
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: 100%;
-  height: 100%;
-  transition: margin 1s;
-  margin: -200px 0 0 0;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.wrapper.is-nav-open {
-  margin-top: 0px;
-}
-
-.button {
-  border-radius: 20px;
-  border-width: 0px;
-  width: 100px;
-  cursor: pointer;
-  transition: color .4s;
-}
-
-.button.is-button-open {
-  animation: scaling 1.5s ease-in-out forwards
-}
-
-.button:hover {
-  color: #61dafb;
-}
-
-@keyframes scaling {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 .sticky-header {
   display: flex;
   align-items: flex-start;
@@ -185,6 +76,8 @@
   align-items: center;
   height: 700px;
   padding-top: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
   /*border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   border-top-left-radius: 20px;

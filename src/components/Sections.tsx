@@ -4,7 +4,6 @@ import { About } from './About';
 import { Welcome } from './Welcome';
 import { Portfolio } from './Portfolio';
 import { Contact } from './Contact';
-import '../App.css';
 import { useInterSectionObserver } from '../hooks/hooks';
 import { SectionRefs } from '../hooks/types';
 import { useTranslation } from 'react-i18next';

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../App.css';
 import { useScroll } from '../hooks/hooks';
 import { useTranslation } from 'react-i18next';
 import { LanguageSelector } from './LanguageSelector';
@@ -47,7 +46,7 @@ const HeaderToggle = ({
     const scrollProgress = useScroll();
     return (
         <div
-            className={`sticky-header ${isOpen ? 'visible' : 'visible'}`}
+            className={'sticky-header'}
         >
             <div style={{ display: 'flex', columnGap: 4, alignItems: 'center', padding: 10 }}>
                 <RectangleProgress progress={scrollProgress} text={"S.H"} size={60} />

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import '../App.css';
 import { Languages } from '../i18n';
 
 const LanguageSelector = () => {

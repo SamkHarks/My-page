@@ -116,12 +116,10 @@
   align-items: flex-start;
   justify-content: space-between;
   position: fixed;
-  width: 100vw;
   top: 0;
   right: 0;
   left:0;
   z-index: 2;
-  width: 100%
 }
 
 .header-sections {
@@ -132,7 +130,7 @@
   justify-content: center;
   padding-top: 80px;
   padding-bottom: 80px;
-  width: 100vw;
+  width: 100%;
   z-index: 1;
 }
 

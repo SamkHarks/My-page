@@ -1,5 +1,4 @@
 .App {
-  background-color: #1d2128;
   min-height: 100vh;
 }
 
@@ -121,17 +120,16 @@
   right: 0;
   left:0;
   z-index: 2;
-  background-color: rgba(19, 19, 23);
 }
 
 .header-sections {
   background-color: rgba(19, 19, 23);
   color: white;
   position: fixed;
-  padding-top: 70px;
-  padding-bottom: 20px;
   display: flex;
   justify-content: center;
+  padding-top: 80px;
+  padding-bottom: 80px;
   width: 100%;
   z-index: 1;
 }
@@ -142,31 +140,7 @@
 }
 
 .closed {
-  transform: translateY(-150%);
-  transition: transform 0.3s;
-}
-
-/* The header is visible */
-.visible {
-  opacity: 1;
-  transform: translateY(0); /*  No vertical transformation */
-  transition: opacity 0.3s, transform 0.3s; /* Smooth transition effect */
-}
-
-/* The header is hidden */
-.hidden {
-  opacity: 0; /* Fully transparent */
-  transform: translateY(-100%);  /*Move the header above the viewport */
-  transition: opacity 0.3s, transform 0.3s; /* Smooth transition effect */
-}
-
-.menu-items-visible {
-  transform: translateX(0px);
-  transition: transform 0.3s;
-}
-
-.menu-items-hidden {
-  transform: translateX(500px);
+  transform: translateY(-68%);
   transition: transform 0.3s;
 }
 
@@ -178,6 +152,14 @@
   padding-top: 80px;
   padding-left: 20px;
   padding-right: 20px;
+  /*border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-width: 2px;
+  border-color: cyan;
+  background-color: #202939;
+  margin: 20px;*/
 }
 
 

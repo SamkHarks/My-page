@@ -121,6 +121,7 @@
   right: 0;
   left:0;
   z-index: 2;
+  background-color: rgba(19, 19, 23);
 }
 
 .header-sections {
@@ -135,12 +136,12 @@
   z-index: 1;
 }
 
-/* Styles for screens smaller or equal to 400px */
+/* Styles for screens smaller or equal to 400px 
 @media screen and (max-width: 400px) {
   .sticky-header {
     background-color: rgba(19, 19, 23);
   }
-}
+}*/
 
 .open {
   transform: translateY(0);

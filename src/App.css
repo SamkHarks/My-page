@@ -213,6 +213,8 @@
 .custom-colors {
   list-style: none; /* Removes default numbering */
   margin-right: 3%;
+  margin-top: 0px;
+  margin-bottom: 0px;
   counter-reset: list-index; /* Creates a counter for the list */
 }
 

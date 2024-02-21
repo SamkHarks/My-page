@@ -142,7 +142,17 @@
   }
 }
 
-/* Styles for screens wider than 400px */
+.open {
+  transform: translateY(0);
+  transition: transform 0.3s;
+}
+
+.closed {
+  transform: translateY(-68%);
+  transition: transform 0.3s;
+}
+
+/* Styles for screens wider than 400px 
 @media screen and (min-width: 401px) {
   .open {
     transform: translateY(0);
@@ -155,7 +165,7 @@
   }
 }
 
-/* Styles for screens smaller or equal to 400px */
+/* Styles for screens smaller or equal to 400px 
 @media screen and (max-width: 400px) {
   .open {
     transform: translateX(0);
@@ -166,7 +176,7 @@
     transform: translateX(-100%);
     transition: transform 0.3s;
   }
-}
+}*/
 
 .section {
   display: flex;

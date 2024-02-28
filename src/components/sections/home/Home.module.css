@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.title {
+    font-size: var(--font-size-XL);
+    flex-wrap: wrap;
+    flex-direction: row;
+    flex-shrink: 1;
+}
+
+.sub_title {
+    margin-top: var(--spacing-XXXS);
+    margin-bottom: var(--spacing-XXS);
+}
+
+.text {
+    font-size: var(--font-size-M);
+}

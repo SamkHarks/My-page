@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
-import { useScroll } from '../hooks/hooks';
+import { useScroll } from '../../hooks/hooks';
 import { useTranslation } from 'react-i18next';
-import { LanguageSelector } from './LanguageSelector';
-import { SectionRefs } from '../hooks/types';
-import { RectangleProgress } from './RectangleProgress';
+import { LanguageSelector } from '../languageSelector/LanguageSelector';
+import { SectionRefs } from '../../hooks/types';
+import { RectangleProgress } from '../rectangleProgress/RectangleProgress';
+import styles from './Header.module.css';
+import { sections } from '../sections/Sections';
 
-export const sections = [
-    { id: 'home', title: 'Welcome', backgroundColor: '#282c34' },
-    { id: 'about', title: 'About Me', backgroundColor: '#282c34' },
-    { id: 'skills', title: 'My Skills', backgroundColor: '#282c34' },
-    { id: 'contact', title: 'Contact', backgroundColor: '#282c34' },
-];
 type HeaderProps = {
     sectionRefs: SectionRefs
 }
@@ -46,14 +42,14 @@ const HeaderToggle = ({
     const scrollProgress = useScroll();
     return (
         <div
-            className={'sticky-header'}
+            className={styles.sticky_header}
         >
-            <div style={{ display: 'flex', columnGap: 4, alignItems: 'center', padding: 10 }}>
+            <div className={styles.container_left}>
                 <RectangleProgress progress={scrollProgress} text={"S.H"} size={60} />
                 <LanguageSelector />
             </div>
-            <div style={{ display: 'flex', columnGap: 4, paddingTop: 20, paddingRight: 10, alignItems: 'center' }}>
-                <button className={'header-button hover-color-effect'} onClick={onClick}>
+            <div className={styles.container_right}>
+                <button className={`${styles.header_button} hover-color-effect`} onClick={onClick}>
                     {isOpen ? 'Close Menu' : 'Open Menu'}
                 </button>
             </div>
@@ -77,14 +73,14 @@ const HeaderSections = ({
         }
     };
     return (
-        <div className={`header-sections ${isOpen ? 'open' : 'closed'}`}>
-            <ol className="custom-colors" style={{display: 'flex', flexDirection: 'column' }}>
+        <div className={`${styles.header_sections} ${isOpen ? styles.open : styles.closed}`}>
+            <ol className={styles.custom_colors}>
                 {
                     sections.map((section) => {
                         return (
                             <li
                                 key={section.id}
-                                className={'li-item'}
+                                className={styles.li_item}
                                 onClick={() => scrollToSection(section.id)}>
                                 {t(section.id)}
                             </li>

@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { sections } from './Header';
-import { Home } from './Home';
-import { About } from './About';
-import { Skills } from './Skills';
-import { Contact } from './Contact';
-import { useInterSectionObserver } from '../hooks/hooks';
-import { SectionRefs } from '../hooks/types';
+import { Home } from './home/Home';
+import { About } from './about/About';
+import { Skills } from './skills/Skills';
+import { Contact } from './contact/Contact';
+import { useInterSectionObserver } from '../../hooks/hooks';
+import { SectionRefs } from '../../hooks/types';
 import { useTranslation } from 'react-i18next';
+import styles from './Sections.module.css';
+
+export const sections = [
+    { id: 'home', title: 'Welcome', backgroundColor: '#282c34' },
+    { id: 'about', title: 'About Me', backgroundColor: '#282c34' },
+    { id: 'skills', title: 'My Skills', backgroundColor: '#282c34' },
+    { id: 'contact', title: 'Contact', backgroundColor: '#282c34' },
+];
 
 const components: Record<string,React.ComponentType> = {
     home: Home,
@@ -30,10 +37,10 @@ const SectionWrapper = ({
     return (
         <div
             ref={sectionRefs[section.id]}
-            className={'section'}
+            className={styles.section}
         >
-            <h1 className={'section-title'}>{t(section.id)}</h1>
-            <div className={'section-content'}>
+            <h1 className={'section_title'}>{t(section.id)}</h1>
+            <div className={styles.section_content}>
                 {children}
             </div>
         </div>
@@ -43,7 +50,7 @@ const SectionWrapper = ({
 export const Sections = ({ sectionRefs }: {sectionRefs: Props['sectionRefs']}) => {
     const [data, setData] = useState<Element[]>([]);
     useEffect(() => {
-        const queryData = document.querySelectorAll('.section-title');
+        const queryData = document.querySelectorAll(`.section_title`);
         setData([...queryData]);
     }, []);
     useInterSectionObserver(data);

@@ -1,0 +1,47 @@
+:root {
+    /* Font families */ 
+    --font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    --font-family-secondary: 'Courier New', Courier, monospace;
+    
+    /* Font sizes */
+    --font-size-S: 14px;
+    --font-size-M: 16px;
+    --font-size-L: 20px;
+    --font-size-XL: 50px;
+
+    /* Font weights */
+    --font-weight-regular: 400;
+    --font-weight-semiBold: 600;
+    --font-weight-bold: 700;
+
+    /* Colors */
+    --color-cyan-secondary: cyan;
+    --color-darkCyan-secondary: darkCyan;
+    --color-orangeRed-secondary: orangeRed;
+    --color-red-secondary: red;
+    --color-dark-secondary: rgba(19, 19, 23);
+
+    /* Background colors */
+    --background-color-primary: #1d2128;
+    --background-color-secondary: #0c0f11;
+
+    /* Text colors */
+    --text-color-primary: white;
+    --text-color-cyan-secondary: cyan;
+    --text-color-lightCyan-secondary: rgb(10, 253, 249);
+    --text-color-orangeRed-secondary: orangeRed;
+    --text-color-orange-secondary: orange;
+    --text-color-lightGreen-secondary: rgb(88, 241, 88);
+
+    /* spacing */
+    --spacing-XXXS: 4px;
+    --spacing-XXS: 8px;
+    --spacing-XS: 10px;
+    --spacing-S: 12px;
+    --spacing-M: 16px;
+    --spacing-L: 20px;
+    --spacing-XL: 24px;
+  }
+  

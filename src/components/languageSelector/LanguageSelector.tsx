@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Languages } from '../i18n';
+import { Languages } from '../../i18n';
+import styles from './LanguageSelector.module.css';
 
 const LanguageSelector = () => {
     const { i18n } = useTranslation();
@@ -10,16 +11,16 @@ const LanguageSelector = () => {
     };
 
     return (
-        <div style={{ display: 'flex', gap: 2 }}>
+        <div className={styles.button_container}>
             <button
-                className={'small-button hover-color-effect'}
+                className={`${styles.small_button} hover-color-effect`}
                 type="button"
                 onClick={() => changeLanguage('fi')}
             >
                 fi
             </button>
             <button
-                className={'small-button hover-color-effect'}
+                className={`${styles.small_button} hover-color-effect`}
                 type="button"
                 onClick={() => changeLanguage('en')}
             >

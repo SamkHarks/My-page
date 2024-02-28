@@ -1,183 +1,25 @@
 .App {
   min-height: 100vh;
-  background-color: #1d2128;
+  background-color: var(--background-color-primary);
 }
 
-.sticky-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left:0;
-  z-index: 2;
-}
-
-.header-sections {
-  background-color: rgba(19, 19, 23);
-  color: white;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  padding-top: 80px;
-  padding-bottom: 80px;
-  width: 100%;
-  z-index: 1;
-}
-
-/* Styles for screens smaller or equal to 400px */
-@media screen and (max-width: 400px) {
-  .sticky-header {
-    background-color: rgba(19, 19, 23);
-  }
-}
-
-.open {
-  transform: translateY(0);
-  transition: transform 0.3s;
-}
-
-.closed {
-  transform: translateY(-68%);
-  transition: transform 0.3s;
-}
-
-
-.section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 500px;
-  padding-top: 80px;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-  /*border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-width: 2px;
-  border-color: cyan;
-  background-color: #202939;
-  margin: 20px;*/
-}
-
-
-.section-title {
+.section_title {
   font-family: 'Times New Roman', Times, serif;
-  font-size: 40px;
-  color: white;
-  transform: scale(0.5);
+  font-size: var(--font-size-XL);
+  transform: scale(2);
   opacity: 0;
   margin-bottom: 10px;
   margin-top: 10px;
   transition: opacity 0.5s, transform 1s;
 }
 
-.section-title.animate {
+.section_title.animate {
   transform: scale(1);
   opacity:1;
 }
 
-.section-content {
-  padding: 20px;
-  border-radius: 20px;
-  width: 100%;
-  display: flex;
-  background-color: #0f141b;
-}
-
-.small-button {
-  border-color: cyan;
-  background-color: transparent;
-  border-width: 2px;
-  border-top-right-radius: 8px;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  width: 40px;
-  height: 30px;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.custom-colors {
-  list-style: none; /* Removes default numbering */
-  margin-right: 3%;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  counter-reset: list-index; /* Creates a counter for the list */
-}
-
-.custom-colors li {
-  counter-increment: list-index; /* Increment the counter */
-}
-
-.custom-colors li::before {
-  content: counter(list-index) ". "; /* Display the counter with a period */
-  font-family:cursive;
-  color: orangered;
-}
-
-.custom-colors li:nth-child(1)::before {
-  color: rgb(10, 253, 249);
-}
-
-.custom-colors li:nth-child(2)::before {
-  color: rgb(88, 241, 88);
-}
-
-.custom-colors li:nth-child(3)::before {
-  color: orange;
-}
-
-.li-item {
-  color: white;
-  transition: color 0.3s ease;
-  position: relative;
-  padding-bottom: 4px;
-  cursor: pointer;
-}
-
-.li-item:hover {
-  color: cyan;
-}
-
-.li-item::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: darkcyan;
-  transition: width 0.3s ease;
-}
-
-.li-item:hover::after {
-  width: 100%;
-}
-
-.header-button {
-  border-color: cyan;
-  background-color: transparent;
-  border-width: 2px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  height: 40px;
-  padding-left: 10px;
-  padding-right: 10px;
-  color: white;
-  cursor: pointer;
-}
-
 .hover-color-effect:hover {
-  background-color: darkcyan;
+  background-color: var(--color-darkCyan-secondary);
 }
 
 /* Override for touch devices */
@@ -185,14 +27,4 @@
   .hover-color-effect:hover {
     background-color: initial;
   }
-}
-
-.profile-image {
-  border-radius: 50%; /* To ensure the image is round */
-  width: 200px; /* Adjust as necessary */
-  height: 200px; /* Adjust as necessary */
-  float: left;
-  shape-outside: circle(50%); /* Makes the text wrap around the image */
-   /* Adjust spacing between image and text */
-  margin-right: 10px
 }

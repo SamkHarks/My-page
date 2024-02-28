@@ -1,0 +1,41 @@
+.container {
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.profile_image {
+    border-radius: 50%; /* To ensure the image is round */
+    width: 200px; /* Adjust as necessary */
+    height: 200px; /* Adjust as necessary */
+    float: left;
+    shape-outside: circle(50%); /* Makes the text wrap around the image */
+    margin-right: 10px; /* Adjust spacing between image and text */
+}
+
+@media (max-width: 400px) {
+    .profile_image {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 270px) {
+    .profile_image {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 225px) {
+    .profile_image {
+        display: none; /* Hides the image on very small screens */
+    }
+}
+
+.text {
+    text-justify: justify;
+}
+
+.margin_top {
+    margin-top: 20px;
+}

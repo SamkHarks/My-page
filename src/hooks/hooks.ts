@@ -1,5 +1,5 @@
 import React from 'react';
-import { sections } from '../components/Header';
+import { sections } from '../components/sections/Sections';
 import { SectionRefs } from './types';
 
 export const useRefs = (): SectionRefs => {

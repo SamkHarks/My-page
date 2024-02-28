@@ -23,5 +23,5 @@
     border-radius: 20px;
     width: 100%;
     display: flex;
-    background-color: var(--color-dark-secondary)
+    background-color: var(--color-dark-secondary);
 }

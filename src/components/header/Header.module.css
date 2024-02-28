@@ -30,17 +30,19 @@
 
 .container_left {
     display: flex;
-    column-gap: 4px;
     align-items: center;
-    padding: 10px;
+    column-gap: var(--spacing-XXXS);
+    padding-top: var(--spacing-XS);
+    padding-bottom: var(--spacing-XS);
+    padding-right: var(--spacing-XS);
+    padding-left: var(--spacing-S);
 }
 
 .container_right {
     display: flex;
-    column-gap: 4px;
     align-items: center;
-    padding-top: 20px;
-    padding-right: 10px;
+    padding-top: var(--spacing-L);
+    padding-right: var(--spacing-S);
 }
 
 .header_button {
@@ -53,8 +55,8 @@
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     height: 40px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: var(--spacing-XS);
+    padding-right: var(--spacing-XS);
     cursor: pointer;
 }
 
@@ -103,7 +105,7 @@
 .li_item {
     transition: color 0.3s ease;
     position: relative;
-    padding-bottom: 4px;
+    padding-bottom: var(--spacing-XXXS);
     cursor: pointer;
 }
   

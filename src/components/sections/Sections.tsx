@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { sections } from '../header/Header';
 import { Home } from '../home/Home';
 import { About } from '../about/About';
-import { Skills } from '../Skills';
+import { Skills } from '../skills/Skills';
 import { Contact } from '../contact/Contact';
 import { useInterSectionObserver } from '../../hooks/hooks';
 import { SectionRefs } from '../../hooks/types';

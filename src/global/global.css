@@ -7,6 +7,7 @@ body {
     font-family: var(--font-family-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: var(--text-color-primary);
 }
   
 p,h1,h2 {

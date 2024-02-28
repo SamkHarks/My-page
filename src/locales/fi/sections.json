@@ -1,6 +1,6 @@
 {
-    "welcome": "Tervetuloa",
-    "about": "Tietoa minusta",
-    "portfolio": "Portfolioni",
+    "home": "Koti",
+    "about": "Tietoja",
+    "skills": "Taidot",
     "contact": "Yhteystiedot"
 }

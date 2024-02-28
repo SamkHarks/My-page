@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useScroll } from '../hooks/hooks';
+import { useScroll } from '../../hooks/hooks';
 import { useTranslation } from 'react-i18next';
-import { LanguageSelector } from './LanguageSelector';
-import { SectionRefs } from '../hooks/types';
-import { RectangleProgress } from './RectangleProgress';
+import { LanguageSelector } from '../LanguageSelector';
+import { SectionRefs } from '../../hooks/types';
+import { RectangleProgress } from '../RectangleProgress';
 
 export const sections = [
     { id: 'home', title: 'Welcome', backgroundColor: '#282c34' },

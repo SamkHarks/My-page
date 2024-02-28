@@ -90,13 +90,3 @@
     background-color: initial;
   }
 }
-
-.profile-image {
-  border-radius: 50%; /* To ensure the image is round */
-  width: 200px; /* Adjust as necessary */
-  height: 200px; /* Adjust as necessary */
-  float: left;
-  shape-outside: circle(50%); /* Makes the text wrap around the image */
-   /* Adjust spacing between image and text */
-  margin-right: 10px
-}

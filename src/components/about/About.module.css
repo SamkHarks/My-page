@@ -1,0 +1,16 @@
+.profile_image {
+    border-radius: 50%; /* To ensure the image is round */
+    width: 200px; /* Adjust as necessary */
+    height: 200px; /* Adjust as necessary */
+    float: left;
+    shape-outside: circle(50%); /* Makes the text wrap around the image */
+    margin-right: 10px; /* Adjust spacing between image and text */
+}
+
+p {
+    text-justify: justify;
+}
+
+.margin_top {
+    margin-top: 20px;
+}

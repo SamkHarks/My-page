@@ -7,6 +7,7 @@ import { Contact } from '../Contact';
 import { useInterSectionObserver } from '../../hooks/hooks';
 import { SectionRefs } from '../../hooks/types';
 import { useTranslation } from 'react-i18next';
+import styles from './Sections.module.css';
 
 const components: Record<string,React.ComponentType> = {
     home: Home,
@@ -30,10 +31,10 @@ const SectionWrapper = ({
     return (
         <div
             ref={sectionRefs[section.id]}
-            className={'section'}
+            className={styles.section}
         >
-            <h1 className={'section-title'}>{t(section.id)}</h1>
-            <div className={'section-content'}>
+            <h1 className={'section_title'}>{t(section.id)}</h1>
+            <div className={styles.section_content}>
                 {children}
             </div>
         </div>
@@ -43,7 +44,7 @@ const SectionWrapper = ({
 export const Sections = ({ sectionRefs }: {sectionRefs: Props['sectionRefs']}) => {
     const [data, setData] = useState<Element[]>([]);
     useEffect(() => {
-        const queryData = document.querySelectorAll('.section-title');
+        const queryData = document.querySelectorAll(`.section_title`);
         setData([...queryData]);
     }, []);
     useInterSectionObserver(data);

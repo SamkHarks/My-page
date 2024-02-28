@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { sections } from '../header/Header';
-import { Home } from '../Home';
+import { Home } from '../home/Home';
 import { About } from '../about/About';
 import { Skills } from '../Skills';
 import { Contact } from '../Contact';

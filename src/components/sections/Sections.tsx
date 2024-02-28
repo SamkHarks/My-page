@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { sections } from './header/Header';
-import { Home } from './Home';
-import { About } from './about/About';
-import { Skills } from './Skills';
-import { Contact } from './Contact';
-import { useInterSectionObserver } from '../hooks/hooks';
-import { SectionRefs } from '../hooks/types';
+import { sections } from '../header/Header';
+import { Home } from '../Home';
+import { About } from '../about/About';
+import { Skills } from '../Skills';
+import { Contact } from '../Contact';
+import { useInterSectionObserver } from '../../hooks/hooks';
+import { SectionRefs } from '../../hooks/types';
 import { useTranslation } from 'react-i18next';
 
 const components: Record<string,React.ComponentType> = {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useScroll } from '../../hooks/hooks';
 import { useTranslation } from 'react-i18next';
-import { LanguageSelector } from '../LanguageSelector';
+import { LanguageSelector } from '../languageSelector/LanguageSelector';
 import { SectionRefs } from '../../hooks/types';
 import { RectangleProgress } from '../RectangleProgress';
 import styles from './Header.module.css';

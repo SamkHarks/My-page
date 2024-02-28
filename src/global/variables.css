@@ -5,11 +5,16 @@
       sans-serif;
     --font-family-secondary: 'Courier New', Courier, monospace;
     
-    /* Font sizes */ 
-    --font-size-small: 0.8rem;
-    --font-size-normal: 1rem;
-    --font-size-large: 1.2rem;
-    --font-size-xlarge: 1.5rem;
+    /* Font sizes */
+    --font-size-S: 14px;
+    --font-size-M: 16px;
+    --font-size-L: 20px;
+    --font-size-XL: 50px;
+
+    /* Font weights */
+    --font-weight-regular: 400;
+    --font-weight-semiBold: 600;
+    --font-weight-bold: 700;
 
     /* Colors */
     --color-cyan-secondary: cyan;
@@ -29,6 +34,14 @@
     --text-color-orangeRed-secondary: orangeRed;
     --text-color-orange-secondary: orange;
     --text-color-lightGreen-secondary: rgb(88, 241, 88);
-   
+
+    /* spacing */
+    --spacing-XXXS: 4px;
+    --spacing-XXS: 8px;
+    --spacing-XS: 10px;
+    --spacing-S: 12px;
+    --spacing-M: 16px;
+    --spacing-L: 20px;
+    --spacing-XL: 24px;
   }
   

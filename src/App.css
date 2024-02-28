@@ -48,10 +48,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 700px;
+  height: 500px;
   padding-top: 80px;
   padding-left: 20px;
   padding-right: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
   /*border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   border-top-left-radius: 20px;
@@ -65,16 +67,26 @@
 
 .section-title {
   font-family: 'Times New Roman', Times, serif;
-  font-size: 20px;
+  font-size: 40px;
   color: white;
-  transform: scale(2);
+  transform: scale(0.5);
   opacity: 0;
+  margin-bottom: 10px;
+  margin-top: 10px;
   transition: opacity 0.5s, transform 1s;
 }
 
 .section-title.animate {
   transform: scale(1);
   opacity:1;
+}
+
+.section-content {
+  padding: 20px;
+  border-radius: 20px;
+  width: 100%;
+  display: flex;
+  background-color: #0f141b;
 }
 
 .small-button {
@@ -173,4 +185,14 @@
   .hover-color-effect:hover {
     background-color: initial;
   }
+}
+
+.profile-image {
+  border-radius: 50%; /* To ensure the image is round */
+  width: 200px; /* Adjust as necessary */
+  height: 200px; /* Adjust as necessary */
+  float: left;
+  shape-outside: circle(50%); /* Makes the text wrap around the image */
+   /* Adjust spacing between image and text */
+  margin-right: 10px
 }

@@ -8,24 +8,32 @@ export const About = () => {
     return (
         <div
             style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+                //alignItems: 'center',
+                minHeight: 200,
+                alignItems: 'flex-start'
             }}
         >
             <img
-                style={{
-                    height: 200,
-                    width: 200,
-                    borderRadius: 12
-                }}
+                className='profile-image'
                 src={me}
                 alt='picture of me'
             />
-            <p style={{ color: 'white' }}>
-                {t('description')}
+            <p style={{ color: 'white', textAlign: 'justify',  }}>
+                {t('introduction')}
             </p>
-
+            <p style={{ color: 'white', textAlign: 'justify', marginTop: 20 }}>
+                {t('main')}
+            </p>
         </div>
     );
 };
+/*
+{
+    border-radius: 50%; /* To ensure the image is round
+    width: 100px; /* Adjust as necessary
+    height: 100px; /* Adjust as necessary
+    float: left;
+    shape-outside: circle(50%); /* Makes the text wrap around the image
+    margin-right: 10px; /* Adjust spacing between image and text
+  }
+*/

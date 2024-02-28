@@ -12,7 +12,7 @@ const App = () => {
             <Sections sectionRefs={sectionRefs} />
         </div>
     );
-}
+};
 
 
 export default App;

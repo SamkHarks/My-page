@@ -6,9 +6,9 @@ import { SectionRefs } from '../hooks/types';
 import { RectangleProgress } from './RectangleProgress';
 
 export const sections = [
-    { id: 'welcome', title: 'Welcome', backgroundColor: '#282c34' },
+    { id: 'home', title: 'Welcome', backgroundColor: '#282c34' },
     { id: 'about', title: 'About Me', backgroundColor: '#282c34' },
-    { id: 'portfolio', title: 'Portfolio', backgroundColor: '#282c34' },
+    { id: 'skills', title: 'My Skills', backgroundColor: '#282c34' },
     { id: 'contact', title: 'Contact', backgroundColor: '#282c34' },
 ];
 type HeaderProps = {

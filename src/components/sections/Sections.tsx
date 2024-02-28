@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { sections } from '../header/Header';
 import { Home } from './home/Home';
 import { About } from './about/About';
 import { Skills } from './skills/Skills';
@@ -8,6 +7,13 @@ import { useInterSectionObserver } from '../../hooks/hooks';
 import { SectionRefs } from '../../hooks/types';
 import { useTranslation } from 'react-i18next';
 import styles from './Sections.module.css';
+
+export const sections = [
+    { id: 'home', title: 'Welcome', backgroundColor: '#282c34' },
+    { id: 'about', title: 'About Me', backgroundColor: '#282c34' },
+    { id: 'skills', title: 'My Skills', backgroundColor: '#282c34' },
+    { id: 'contact', title: 'Contact', backgroundColor: '#282c34' },
+];
 
 const components: Record<string,React.ComponentType> = {
     home: Home,

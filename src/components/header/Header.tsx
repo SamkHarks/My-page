@@ -5,13 +5,8 @@ import { LanguageSelector } from '../languageSelector/LanguageSelector';
 import { SectionRefs } from '../../hooks/types';
 import { RectangleProgress } from '../rectangleProgress/RectangleProgress';
 import styles from './Header.module.css';
+import { sections } from '../sections/Sections';
 
-export const sections = [
-    { id: 'home', title: 'Welcome', backgroundColor: '#282c34' },
-    { id: 'about', title: 'About Me', backgroundColor: '#282c34' },
-    { id: 'skills', title: 'My Skills', backgroundColor: '#282c34' },
-    { id: 'contact', title: 'Contact', backgroundColor: '#282c34' },
-];
 type HeaderProps = {
     sectionRefs: SectionRefs
 }

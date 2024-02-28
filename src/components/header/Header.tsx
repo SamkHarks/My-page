@@ -3,7 +3,7 @@ import { useScroll } from '../../hooks/hooks';
 import { useTranslation } from 'react-i18next';
 import { LanguageSelector } from '../languageSelector/LanguageSelector';
 import { SectionRefs } from '../../hooks/types';
-import { RectangleProgress } from '../RectangleProgress';
+import { RectangleProgress } from '../rectangleProgress/RectangleProgress';
 import styles from './Header.module.css';
 
 export const sections = [

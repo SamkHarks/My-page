@@ -16,6 +16,7 @@
     --color-darkCyan-secondary: darkCyan;
     --color-orangeRed-secondary: orangeRed;
     --color-red-secondary: red;
+    --color-dark-secondary: rgba(19, 19, 23);
 
     /* Background colors */
     --background-color-primary: #1d2128;
@@ -23,8 +24,11 @@
 
     /* Text colors */
     --text-color-primary: white;
-    --text-color-secondary: cyan;
-    --text-color-secondary: orangeRed;
+    --text-color-cyan-secondary: cyan;
+    --text-color-lightCyan-secondary: rgb(10, 253, 249);
+    --text-color-orangeRed-secondary: orangeRed;
+    --text-color-orange-secondary: orange;
+    --text-color-lightGreen-secondary: rgb(88, 241, 88);
    
   }
   

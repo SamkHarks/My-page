@@ -3,24 +3,6 @@
   background-color: var(--background-color-primary);
 }
 
-/* Styles for screens smaller or equal to 400px */
-@media screen and (max-width: 400px) {
-  .sticky-header {
-    background-color: rgba(19, 19, 23);
-  }
-}
-
-.open {
-  transform: translateY(0);
-  transition: transform 0.3s;
-}
-
-.closed {
-  transform: translateY(-68%);
-  transition: transform 0.3s;
-}
-
-
 .section {
   display: flex;
   flex-direction: column;

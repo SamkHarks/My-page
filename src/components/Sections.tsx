@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { sections } from './Header';
+import { Home } from './Home';
 import { About } from './About';
-import { Welcome } from './Welcome';
-import { Portfolio } from './Portfolio';
+import { Skills } from './Skills';
 import { Contact } from './Contact';
 import { useInterSectionObserver } from '../hooks/hooks';
 import { SectionRefs } from '../hooks/types';
 import { useTranslation } from 'react-i18next';
 
 const components: Record<string,React.ComponentType> = {
-    welcome: Welcome,
+    home: Home,
     about: About,
-    portfolio: Portfolio,
+    skills: Skills,
     contact: Contact
 };
 
@@ -33,9 +33,7 @@ const SectionWrapper = ({
             className={'section'}
         >
             <h1 className={'section-title'}>{t(section.id)}</h1>
-            <div style={{
-                paddingTop: 20
-            }}>
+            <div className={'section-content'}>
                 {children}
             </div>
         </div>

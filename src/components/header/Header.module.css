@@ -1,0 +1,120 @@
+.sticky_header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left:0;
+    z-index: 2;
+}
+
+.header_sections {
+    background-color: var(--color-dark-secondary);
+    color: var(--text-color-primary);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    width: 100%;
+    z-index: 1;
+}
+
+.container_left {
+    display: flex;
+    column-gap: 4px;
+    align-items: center;
+    padding: 10px;
+}
+
+.container_right {
+    display: flex;
+    column-gap: 4px;
+    align-items: center;
+    padding-top: 20px;
+    padding-right: 10px;
+}
+
+.header_button {
+    border-color: var(--color-cyan-secondary);
+    color: var(--text-color-primary);
+    background-color: transparent;
+    border-width: 2px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.open {
+    transform: translateY(0);
+    transition: transform 0.3s;
+}
+  
+.closed {
+    transform: translateY(-68%);
+    transition: transform 0.3s;
+}
+
+.custom_colors {
+    display: flex;
+    flex-direction: column;
+    list-style: none; /* Removes default numbering */
+    margin-right: 3%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    counter-reset: list-index; /* Creates a counter for the list */
+}
+
+.custom_colors li {
+    counter-increment: list-index; /* Increment the counter */
+}
+  
+.custom_colors li::before {
+    content: counter(list-index) ". "; /* Display the counter with a period */
+    font-family:cursive;
+    color: var(--text-color-orangeRed-secondary);
+}
+  
+.custom_colors li:nth-child(1)::before {
+    color: var(--text-color-lightCyan-secondary);
+}
+  
+.custom_colors li:nth-child(2)::before {
+    color: var(--text-color-lightGreen-secondary);
+}
+  
+.custom_colors li:nth-child(3)::before {
+    color: var(--text-color-orange-secondary);
+}
+  
+.li_item {
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 4px;
+    cursor: pointer;
+}
+  
+.li_item:hover {
+    color: var(--text-color-cyan-secondary);
+}
+  
+.li_item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-darkCyan-secondary);
+    transition: width 0.3s ease;
+}
+  
+.li_item:hover::after {
+    width: 100%;
+}

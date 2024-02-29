@@ -3,6 +3,10 @@
         {
             "category": "Front-end",
             "items": ["React", "React-Native", "HTML5", "CSS3", "svg"]
+        },
+        {
+            "category": "Back-end",
+            "items": ["GraphQL", "Node.js", "Express"]
         }
     ]
 }

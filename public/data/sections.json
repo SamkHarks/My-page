@@ -1,0 +1,17 @@
+{
+    "sections": [
+        {
+            "id": "home"
+        },
+        {
+            "id": "about"
+        },
+        {
+            "id": "skills"
+        },
+        {
+            "id": "contact"
+        }
+
+    ]
+}

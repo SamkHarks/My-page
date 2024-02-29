@@ -23,7 +23,8 @@ module.exports = {
     "rules": {
         "indent": [
             "warn",
-            4
+            4,
+            { "SwitchCase": 1 }
         ],
         "linebreak-style": "off",
         "semi": [

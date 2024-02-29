@@ -5,12 +5,13 @@ import { LanguageSelector } from '../languageSelector/LanguageSelector';
 import { SectionRefs } from '../../hooks/types';
 import { RectangleProgress } from '../rectangleProgress/RectangleProgress';
 import styles from './Header.module.css';
-import { sections } from '../sections/Sections';
+import { Section } from '../../App';
 
 type HeaderProps = {
     sectionRefs: SectionRefs
+    sections: Section[];
 }
-export const Header = ({ sectionRefs }: HeaderProps) => {
+export const Header = ({ sectionRefs, sections }: HeaderProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const onClick = () => {
         setIsOpen(!isOpen);
@@ -25,6 +26,7 @@ export const Header = ({ sectionRefs }: HeaderProps) => {
                 onClick={onClick}
                 sectionRefs={sectionRefs}
                 isOpen={isOpen}
+                sections={sections}
             />
         </header>
     );
@@ -63,9 +65,10 @@ const HeaderSections = ({
     onClick,
     sectionRefs,
     isOpen,
+    sections,
 }: HeaderSectionProps) => {
     const { t } = useTranslation('sections');
-    const scrollToSection = (sectionId: string) => {
+    const scrollToSection = (sectionId: Section['id']) => {
         const section = sectionRefs[sectionId];
         if (section.current) {
             onClick();

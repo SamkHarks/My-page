@@ -7,15 +7,9 @@ import { useInterSectionObserver } from '../../hooks/hooks';
 import { SectionRefs } from '../../hooks/types';
 import { useTranslation } from 'react-i18next';
 import styles from './Sections.module.css';
+import { Section } from '../../App';
 
-export const sections = [
-    { id: 'home', title: 'Welcome', backgroundColor: '#282c34' },
-    { id: 'about', title: 'About Me', backgroundColor: '#282c34' },
-    { id: 'skills', title: 'My Skills', backgroundColor: '#282c34' },
-    { id: 'contact', title: 'Contact', backgroundColor: '#282c34' },
-];
-
-const components: Record<string,React.ComponentType> = {
+const components: Record<Section['id'], React.ComponentType> = {
     home: Home,
     about: About,
     skills: Skills,
@@ -23,7 +17,7 @@ const components: Record<string,React.ComponentType> = {
 };
 
 type Props = {
-    section: typeof sections[number];
+    section: Section;
     sectionRefs: SectionRefs;
     children: React.ReactNode;
 }
@@ -47,7 +41,12 @@ const SectionWrapper = ({
     );
 };
 
-export const Sections = ({ sectionRefs }: {sectionRefs: Props['sectionRefs']}) => {
+type SectionProps = {
+    sections: Section[];
+    sectionRefs: SectionRefs;
+}
+
+export const Sections = ({ sectionRefs, sections }: SectionProps) => {
     const [data, setData] = useState<Element[]>([]);
     useEffect(() => {
         const queryData = document.querySelectorAll(`.section_title`);

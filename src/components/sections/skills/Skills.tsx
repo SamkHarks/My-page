@@ -16,21 +16,24 @@ const Renderer = (props: DataProps<SkillsResponse> ) => {
     return (
         <div className={styles.container}>
             <p>I have done this and that, and work over 2 years as a mobile developer at Veikkaus</p>
-            <div style={{ columnGap: 10, display: 'flex' }}>
+            <div className={styles.skills_container}>
                 {
                     skills.map((item) => {
                         return (
-                            <div key={item.category}>
-                                <p>{`${item.category}: `}</p>
-                                {
-                                    item.items.map((skill) => {
-                                        return (
-                                            <div key={skill}>
-                                                <p>{skill}</p>
-                                            </div>
-                                        );
-                                    })
-                                }
+                            <div key={item.category} className={styles.category_container}>
+                                <p>{`${item.category}:`}</p>
+                                <div className={styles.items_container}>
+                                    {
+                                        item.items.map((skill) => {
+                                            return (
+                                                <button className={styles.button} key={skill} onClick={() => console.log('Heello')}>
+                                                    <p>{skill}</p>
+                                                </button>
+                                            );
+                                        })
+
+                                    }
+                                </div>
                             </div>
                         );
                     })

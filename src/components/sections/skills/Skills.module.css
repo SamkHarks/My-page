@@ -1,4 +1,46 @@
 .container {
     overflow: hidden;
     word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+
+.skills_container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--spacing-XS);
+}
+
+.category_container {
+    width: 100%;
+    flex:1
+}
+
+.items_container {
+    display: flex;
+    gap: var(--spacing-XXXS);
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    padding: var(--spacing-XXS);
+    width: 100%;
+    min-width: 100px;
+    justify-content: center;
+    background-color: transparent;
+    color: var(--text-color-primary);
+    display: flex;
+    border-radius: 20px;
+    border-color: var(--color-cyan-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 5px var(--color-grey-secondary);
+    }
 }

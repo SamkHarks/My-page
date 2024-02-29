@@ -97,14 +97,14 @@ const getBaseUrl = () => '/data';
 
 export const useFetchData = <T>(path: string) => {
     const baseUrl = getBaseUrl();
-    const fetchSkills = React.useCallback(async () => {
+    const fetchData = React.useCallback(async () => {
         const response = await fetch(`${baseUrl}/${path}`);
         if (response.ok) {
             return response.json();
         }
         throw new Error(`Failed to fetch data from path: ${path}`);
     }, [path, baseUrl]);
-    const [service, callService] = useAcyncFunction<T>(fetchSkills);
+    const [service, callService] = useAcyncFunction<T>(fetchData);
 
     React.useEffect(() => {
         callService();

@@ -1,6 +1,6 @@
 import React from 'react';
 import { sections } from '../components/sections/Sections';
-import { SectionRefs } from './types';
+import { SectionRefs, Service } from './types';
 
 export const useRefs = (): SectionRefs => {
     const refs = sections.reduce((acc, section) => {
@@ -56,4 +56,39 @@ export const useInterSectionObserver = (data: Element[]) => {
             };
         }
     }, [data]);
+};
+
+export const useAcyncFunction = <T>(
+    asyncFunction: () => Promise<T>
+): [Service<T>, () => Promise<void>, () => void] => {
+    const [service, setService] = React.useState<Service<T>>({ state: 'IDLE' });
+    const isMounted = useIsMounted();
+    const clearService = React.useCallback(() => setService({ state: 'IDLE' }), []);
+    const callService = React.useCallback(async () => {
+        setService({ state: 'LOADING' });
+        try {
+            const data = await asyncFunction();
+            if (isMounted.current) {
+                setService({ state: 'SUCCESS', data });
+            }
+        } catch (error) {
+            if (isMounted.current) {
+                setService({ state: 'FAILURE', error: error instanceof Error ? error : new Error() });
+            }
+        }
+    }, [asyncFunction]);
+    return [service, callService, clearService];
+};
+
+const useIsMounted = () => {
+    const isMounted = React.useRef(true);
+
+    React.useEffect(() => {
+        isMounted.current = true;
+        return () => {
+            isMounted.current = false;
+        };
+    }, []);
+
+    return isMounted;
 };

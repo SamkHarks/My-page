@@ -22,6 +22,7 @@
     --color-orangeRed-secondary: orangeRed;
     --color-red-secondary: red;
     --color-dark-secondary: rgba(19, 19, 23);
+    --color-grey-secondary: rgb(163, 163, 163); 
 
     /* Background colors */
     --background-color-primary: #1d2128;

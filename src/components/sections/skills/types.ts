@@ -1,4 +1,8 @@
-export type Skills = {
+type SkillsData = {
     category: "Front-end";
     items: string[];
+}
+
+export type SkillsResponse = {
+    skills: SkillsData[]
 }

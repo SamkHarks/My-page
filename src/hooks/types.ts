@@ -1,6 +1,7 @@
 import React from "react";
+import { Section } from "../App";
 
-export type SectionRefs = Record<string,React.RefObject<HTMLDivElement>>;
+export type SectionRefs = Record<Section['id'],React.RefObject<HTMLDivElement>>;
 
 type Idle = { state: 'IDLE' };
 type Loading = { state: 'LOADING' };

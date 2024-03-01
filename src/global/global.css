@@ -4,6 +4,13 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--background-color-secondary);
+    /*background-color: var(--background-color-primary);*/
+    background: linear-gradient(to left, transparent, rgb(0, 0, 0)),
+    url('../images/space-1.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-position: center center;
     font-family: var(--font-family-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

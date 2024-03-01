@@ -7,12 +7,15 @@ import sectionsEn from './locales/en/sections.json';
 import sectionsFi from './locales/fi/sections.json';
 import aboutEn from './locales/en/about.json';
 import aboutFi from './locales/fi/about.json';
+import skillsEn from './locales/en/skills.json';
+import skillsFi from './locales/fi/skills.json';
 
 export type Languages = 'en' | 'fi';
 type Resource = {
     [K in Languages]: {
         sections: typeof sectionsEn,
         about: typeof aboutEn,
+        skills: typeof skillsEn
     };
 };
 
@@ -20,10 +23,12 @@ const resources: Resource = {
     en: {
         sections: sectionsEn,
         about: aboutEn,
+        skills: skillsEn,
     },
     fi: {
         sections: sectionsFi,
-        about: aboutFi
+        about: aboutFi,
+        skills: skillsFi
     },
 };
 

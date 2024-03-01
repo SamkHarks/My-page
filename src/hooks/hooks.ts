@@ -39,8 +39,7 @@ export const useInterSectionObserver = (data: Element[]) => {
                     });
                 },
                 {
-                    threshold: 0.8, // Adjust the threshold as needed
-                    rootMargin: '10px'
+                    rootMargin: '-5px'
                 }
             );
             // Observe each section element

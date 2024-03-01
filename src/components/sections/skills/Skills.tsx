@@ -3,6 +3,7 @@ import styles from './Skills.module.css';
 import { useFetchData } from '../../../hooks/hooks';
 import { SkillsResponse } from './types';
 import { DataProps, ServiceData } from '../../serviceData/ServiceData';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -14,31 +15,48 @@ export const Skills = () => {
 const Renderer = (props: DataProps<SkillsResponse> ) => {
     const { skills } = props.data;
     return (
-        <div className={styles.container}>
-            <p>I have done this and that, and work over 2 years as a mobile developer at Veikkaus</p>
-            <div className={styles.skills_container}>
-                {
-                    skills.map((item) => {
-                        return (
-                            <div key={item.category} className={styles.category_container}>
-                                <h3>{item.category}</h3>
-                                <div className={styles.items_container}>
-                                    {
-                                        item.items.map((skill) => {
-                                            return (
-                                                <button className={styles.button} key={skill} onClick={() => console.log('Heello')}>
-                                                    <p>{skill}</p>
-                                                </button>
-                                            );
-                                        })
+        <div className={styles.skills_container}>
+            {
+                skills.map((item) => {
+                    return (
+                        <div key={item.category} className={styles.category_container}>
+                            <h3>{item.category}</h3>
+                            <div className={styles.items_container}>
+                                {
+                                    item.items.map((skill) => {
+                                        return (
+                                            <Skill key={skill} skill={skill} category={item.category} />
+                                        );
+                                    })
 
-                                    }
-                                </div>
+                                }
                             </div>
-                        );
-                    })
-                }
-            </div>
+                        </div>
+                    );
+                })
+            }
         </div>
     );
 };
+
+type SkillProps = {
+    skill: string;
+    category: string;
+}
+const Skill = ({ skill, category }: SkillProps) => {
+    const [isExpanded, setIsExpanded] = React.useState(false);
+    const { t } = useTranslation('skills');
+    const onClick = () => {
+        setIsExpanded(!isExpanded);
+    };
+    return (
+        <button className={styles.button} key={skill} onClick={onClick}>
+            <p>{skill}</p>
+            {isExpanded &&
+                <div className={styles.expanded}>
+                    <p>{t(`${category}.${skill}`)}</p>
+                </div>
+            }
+        </button>
+    );
+} 

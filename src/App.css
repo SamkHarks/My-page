@@ -16,11 +16,13 @@
   transform: scale(0.5);
   margin-bottom: 10px;
   margin-top: 10px;
+  opacity: 0;
   transition: opacity 0.5s, transform 1s;
 }
 
 .section_title.animate {
   transform: scale(1);
+  opacity: 1;
 }
 
 .hover-color-effect:hover {

@@ -1,18 +1,13 @@
-.container {
-    overflow: hidden;
-    word-wrap: break-word;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 20px;
-}
 
 .skills_container {
     display: flex;
+    overflow: hidden;
+    word-wrap: break-word;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: var(--spacing-XS);
-
+    width: 100%;
+    
     .category_container {
         width: 100%;
         flex: 1;
@@ -53,10 +48,12 @@
                 padding: var(--spacing-XXS);
                 width: 100%;
                 min-width: 100px;
+                align-items: center;
                 justify-content: center;
                 background-color: transparent;
                 color: var(--text-color-primary);
                 display: flex;
+                flex-direction: column;
                 border-radius: 20px;
                 border-color: var(--color-cyan-secondary);
                 cursor: pointer;
@@ -65,6 +62,9 @@
                 &:hover {
                     transform: scale(1.05);
                     box-shadow: 0 0 5px var(--color-grey-secondary);
+                }
+                .expanded {
+                    padding: 2px;
                 }
             }
         }

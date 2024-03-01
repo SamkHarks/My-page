@@ -21,7 +21,7 @@ const Renderer = (props: DataProps<SkillsResponse> ) => {
                     skills.map((item) => {
                         return (
                             <div key={item.category} className={styles.category_container}>
-                                <p>{`${item.category}:`}</p>
+                                <h3>{item.category}</h3>
                                 <div className={styles.items_container}>
                                     {
                                         item.items.map((skill) => {

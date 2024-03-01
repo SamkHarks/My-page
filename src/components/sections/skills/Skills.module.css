@@ -12,35 +12,61 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: var(--spacing-XS);
-}
 
-.category_container {
-    width: 100%;
-    flex:1
-}
+    .category_container {
+        width: 100%;
+        flex: 1;
+        border: 2px solid var(--color-cyan-secondary);
+        border-radius: 20px;
+        padding: var(--spacing-M);
+        &:hover {
+            border: 2px solid var(--color-cyan-secondary);
+            box-shadow: 0 0 5px var(--color-grey-secondary);
+        }
 
-.items_container {
-    display: flex;
-    gap: var(--spacing-XXXS);
-    flex-direction: column;
-    align-items: center;
-}
+        h3::after {
+            content: ":";
+            color: var(--color-lightGreen-secondary);
+            margin-left: 0.05em;
+        }
 
-.button {
-    padding: var(--spacing-XXS);
-    width: 100%;
-    min-width: 100px;
-    justify-content: center;
-    background-color: transparent;
-    color: var(--text-color-primary);
-    display: flex;
-    border-radius: 20px;
-    border-color: var(--color-cyan-secondary);
-    cursor: pointer;
-    transition: all 0.3s ease;
+        &:nth-child(3) {
+            border: 2px solid var(--color-lightGreen-secondary);
+            /* Styles for odd .category_container elements */
+            h3::after {
+                content: ":";
+                color: var(--color-cyan-secondary);
+                margin-left: 0.05em;
+            }
+            &:hover {
+                border: 2px solid var(--color-cyan-secondary);
 
-    &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 5px var(--color-grey-secondary);
+            }
+        }
+        .items_container {
+            display: flex;
+            gap: var(--spacing-XXXS);
+            flex-direction: column;
+            align-items: center;
+
+            .button {
+                padding: var(--spacing-XXS);
+                width: 100%;
+                min-width: 100px;
+                justify-content: center;
+                background-color: transparent;
+                color: var(--text-color-primary);
+                display: flex;
+                border-radius: 20px;
+                border-color: var(--color-cyan-secondary);
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 0 5px var(--color-grey-secondary);
+                }
+            }
+        }
     }
 }

@@ -1,7 +1,13 @@
 .App {
   min-height: 100vh;
   width: 100%;
-  background-color: var(--background-color-primary);
+  /*background-color: var(--background-color-primary);*/
+  background: linear-gradient(to left, transparent, rgb(0, 0, 0)),
+  url('./images/space-3.jpg');
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-position: center center;
 }
 
 .section_title {

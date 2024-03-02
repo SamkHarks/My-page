@@ -6,7 +6,9 @@ body {
     /*background-color: var(--background-color-secondary);*/
     /*background-color: var(--background-color-primary);*/
     /*background: fixed, linear-gradient(to left, transparent, rgb(0, 0, 0)), url('../images/space-1.jpg'), center center / no-repeat;*/
-    background: linear-gradient(to left, transparent, rgb(0, 0, 0)),fixed url('../images/space-3.jpg') center no-repeat;
+    background: linear-gradient(to left, transparent, rgb(0, 0, 0)),
+        fixed url('../images/space-3.jpg') center no-repeat,
+        var(--background-color-secondary);
     background-size: cover;
     /*background-repeat: no-repeat;
     background-attachment: fixed; 

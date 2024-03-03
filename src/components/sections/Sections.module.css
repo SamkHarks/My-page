@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 500px;
     margin-left: 20px;
     margin-right: 20px;
     padding-top: 80px;
@@ -33,7 +32,7 @@
     }
 
     &:last-child {  
-       padding-bottom: 0px;
+      
         .section_content {
             justify-content: center;
             align-self: center;
@@ -45,11 +44,29 @@
 
 @media (max-width: 768px) {
     .section {
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 100%;
         &:nth-child(even) {
-            background: linear-gradient(to left, var(--background-color-primary) 5%, var(--color-darkCyan-secondary) 5%,var(--color-dark-secondary));
+            border-radius: 0px;
+            background: linear-gradient(to left, var(--color-darkCyan-secondary) ,var(--color-dark-secondary));
+            .section_content {
+                align-self: flex-end;
+                padding-right: 30px;
+                padding-left: 0px;
+            }
         }
         &:nth-child(odd) {
-            background: linear-gradient(to right, var(--background-color-primary) 5%, var(--color-darkCyan-secondary) 5%, var(--color-dark-secondary));
+            border-radius: 0px;
+            background: linear-gradient(to right, var(--color-darkCyan-secondary) , var(--color-dark-secondary));
+            .section_content {
+                align-self: flex-start;
+                padding-left: 30px;
+                padding-right: 0px;
+            }
         }
+    }
+    .section_content {
+        width: 100%;   
     }
 }

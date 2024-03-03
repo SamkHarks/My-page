@@ -15,10 +15,19 @@
         display: flex;
         padding: 20px;
         background-color: var(--color-dark-secondary);
-        border: 2px solid var(--color-cyan-secondary);
+        box-shadow: 0 0 5px var(--color-grey-secondary);
+        /*border: 2px solid var(--color-cyan-secondary);
         &:hover {
             box-shadow: 0 0 5px var(--color-grey-secondary);
            
+        }*/
+    }
+
+    &:nth-child(odd) {
+        .section_content {
+            background: fixed url('../../images/space-3.jpg') center no-repeat;
+            background-size: cover;
+            box-shadow: 0 0 5px var(--color-grey-secondary);
         }
     }
 

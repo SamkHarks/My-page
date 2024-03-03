@@ -3,13 +3,15 @@
 body {
     margin: 0;
     padding: 0;
-    /*background-color: var(--background-color-secondary);*/
     /*background-color: var(--background-color-primary);*/
+    /*background-color: var(--background-color-secondary);*/
+    /* linear-gradient(rgba(0, 0, 0,0.9), var(--background-color-primary) 8%,rgb(122, 40, 40),var(--background-color-primary) 92%, rgba(0,0,0,0.9));*/
+    background: linear-gradient(var(--background-color-primary) 15% ,rgb(122, 40, 40), rgb(31, 92, 70) ,rgb(92, 64, 31) 92%, rgba(0,0,0,0.9));
     /*background: fixed, linear-gradient(to left, transparent, rgb(0, 0, 0)), url('../images/space-1.jpg'), center center / no-repeat;*/
-    background: linear-gradient(to left, transparent, rgb(0, 0, 0)),
+    /*background: linear-gradient(to left, transparent, rgb(0, 0, 0)),
         fixed url('../images/space-3.jpg') center no-repeat,
         var(--background-color-secondary);
-    background-size: cover;
+    background-size: cover;*/
     /*background-repeat: no-repeat;
     background-attachment: fixed; 
     background-position: center center;*/

@@ -6,6 +6,7 @@
     --font-family-secondary: 'Courier New', Courier, monospace;
     
     /* Font sizes */
+    --font-size-XS: clamp(10px, 1.25vw, 12px); /* Adjusts between 10px and 14px */
     --font-size-S: clamp(12px, 1.5vw, 14px); /* Adjusts between 12px and 14px */
     --font-size-M: clamp(14px, 1.75vw, 16px); /* Adjusts between 14px and 16px */
     --font-size-L: clamp(18px, 2vw, 20px); /* Adjusts between 18px and 20px */

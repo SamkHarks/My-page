@@ -51,7 +51,7 @@ const Spinner = (props: Props) => {
                     dominantBaseline="central"
                     fontSize={fontSize}
                 >
-                    {t("loadindg")}
+                    {t("loading")}
                 </text>
             </svg>
         </div>

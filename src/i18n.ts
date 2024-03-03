@@ -9,6 +9,8 @@ import aboutEn from './locales/en/about.json';
 import aboutFi from './locales/fi/about.json';
 import skillsEn from './locales/en/skills.json';
 import skillsFi from './locales/fi/skills.json';
+import commonEn from './locales/en/common.json';
+import commonFi from './locales/fi/common.json';
 
 export type Languages = 'en' | 'fi';
 type Resource = {
@@ -16,6 +18,7 @@ type Resource = {
         sections: typeof sectionsEn,
         about: typeof aboutEn,
         skills: typeof skillsEn
+        common: typeof commonEn
     };
 };
 
@@ -24,11 +27,13 @@ const resources: Resource = {
         sections: sectionsEn,
         about: aboutEn,
         skills: skillsEn,
+        common: commonEn,
     },
     fi: {
         sections: sectionsFi,
         about: aboutFi,
-        skills: skillsFi
+        skills: skillsFi,
+        common: commonFi,
     },
 };
 
@@ -38,7 +43,7 @@ i18n
     .init({
         fallbackLng: 'en',
         resources,
-        debug: true,
+        debug: process.env.NODE_ENV === 'development',
         interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
         }

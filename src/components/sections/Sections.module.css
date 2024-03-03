@@ -2,44 +2,41 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
+    min-height: 500px;
     margin-left: 20px;
     margin-right: 20px;
     padding-top: 80px;
-    padding-bottom: -80px;
+    padding-bottom: 80px;
     justify-content: flex-start;
-
-    .section_content {
-        border-radius: 20px;
-        width: 90%;
-        display: flex;
-        padding: 20px;
-        background-color: var(--color-dark-secondary);
-        box-shadow: 0 0 5px var(--color-grey-secondary);
-        /*border: 2px solid var(--color-cyan-secondary);
-        &:hover {
-            box-shadow: 0 0 5px var(--color-grey-secondary);
-           
-        }*/
-    }
-
-    &:nth-child(odd) {
+    border-bottom: 2px solid;
+    &:nth-child(even) {
+        background: linear-gradient(to left, var(--background-color-primary) , var(--color-darkCyan-secondary) 50%, var(--color-dark-secondary));
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
         .section_content {
-            background: fixed url('../../images/space-3.jpg') center no-repeat;
-            background-size: cover;
-            box-shadow: 0 0 5px var(--color-grey-secondary);
+            padding-left: 30px;
+            align-self: flex-start;
         }
     }
-
-    &:last-child {
-        padding-top: -80px;
-        justify-content: center;
+    &:nth-child(odd) {
+        background: linear-gradient(to right, var(--background-color-primary), var(--color-darkCyan-secondary) 50%, var(--color-dark-secondary));
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
         .section_content {
-            min-height: 200px;
+            padding-right: 30px;
+            align-self: flex-end;
+        }
+    }
+    .section_content {
+        display: flex;
+        width: 80%;
+    }
+
+    &:last-child {  
+       padding-bottom: 0px;
+        .section_content {
             justify-content: center;
-            align-items: center;
-            
-        
+            align-self: center;
         }
     }
 

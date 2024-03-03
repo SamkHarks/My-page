@@ -1,0 +1,20 @@
+.spinner {
+    stroke-linecap: round;
+    transform-origin: 50% 50%;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.container {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100vh;
+}
+
+

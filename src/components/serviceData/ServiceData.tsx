@@ -1,5 +1,6 @@
 import React from 'react';
 import { Service } from '../../hooks/types';
+import { Spinner } from '../spinner/Spinner';
 
 export type DataProps<T> = {
     data: T
@@ -7,22 +8,20 @@ export type DataProps<T> = {
 
 type Props<T> = {
     service: Service<T>,
-    Renderer: React.ComponentType<DataProps<T>>
+    Renderer: React.ComponentType<DataProps<T>>,
+    spinnerSize?: 'small' | 'medium' | 'large'
 }
 
 //TODO add components for failure and idle/loading
 export const ServiceData = <T,>({
     service,
-    Renderer
+    Renderer,
+    spinnerSize = 'medium'
 }: Props<T>) => {
     switch (service.state) {
         case 'IDLE':
         case 'LOADING':
-            return (
-                <div>
-                    <p>loading</p>
-                </div>
-            );
+            return <Spinner size={spinnerSize} />;
         case "SUCCESS":
             return <Renderer data={service.data} />;
         case 'FAILURE':

@@ -42,3 +42,11 @@
 
 
 }
+
+@media (max-width: 400px) {
+    .section {
+        .section_content {
+            width: 70%
+        }
+    }
+}

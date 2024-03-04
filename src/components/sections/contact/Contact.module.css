@@ -1,4 +1,11 @@
 .container {
-    overflow: hidden;
-    word-wrap: break-word;
+    display: flex;
+    column-gap: var(--spacing-XS);
+    .icon {
+        color: var(--background-color-primary);
+        &:hover {
+            transform: scale(1.2);
+            color: aqua; /* Change the color of the icon */
+        }
+    }
 }

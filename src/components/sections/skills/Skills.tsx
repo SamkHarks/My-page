@@ -4,7 +4,8 @@ import { useFetchData } from '../../../hooks/hooks';
 import { SkillsResponse } from './types';
 import { DataProps, ServiceData } from '../../serviceData/ServiceData';
 import { useTranslation } from 'react-i18next';
-
+import { ICONS } from './utils';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 
 
 export const Skills = () => {
@@ -49,9 +50,16 @@ const Skill = ({ skill, category }: SkillProps) => {
     const onClick = () => {
         setIsExpanded(!isExpanded);
     };
+    const IconComponent = ICONS[skill];
     return (
         <button className={`${styles.button} ${isExpanded ? styles.selected : ''}`} key={skill} onClick={onClick}>
-            <p>{skill}</p>
+            <div className={styles.button_title_row}>
+                <div className={styles.button_title}>
+                    {IconComponent && <IconComponent size={30} />}
+                    <p>{skill}</p>
+                </div>
+                <MdKeyboardArrowDown className={`${isExpanded ? styles.rotate_down : styles.rotate_up}`} size={20} />
+            </div>
             {isExpanded &&
                 <div className={styles.expanded}>
                     <p className={styles.text}>{t(`${category}.${skill}`)}</p>

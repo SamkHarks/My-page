@@ -2,7 +2,6 @@ import { IconType } from 'react-icons';
 import {
     FaJsSquare,
     FaNodeJs,
-    FaExternalLinkAlt,
     FaDatabase
 } from 'react-icons/fa';
 import {
@@ -23,7 +22,6 @@ import {
     from 'react-icons/si';
 import { DiPython, DiReact, DiScrum, DiHtml5, DiGithubBadge, DiCss3, } from "react-icons/di";
 import { TbSql, TbApi } from 'react-icons/tb';
-import { FiGithub } from 'react-icons/fi';
 
 
 export const ICONS: { [key: string]: IconType } = {
@@ -43,8 +41,6 @@ export const ICONS: { [key: string]: IconType } = {
     Mongoose: SiMongodb,
     Scrum: DiScrum,
     CSS3: DiCss3,
-    Link: FaExternalLinkAlt,
-    GitHubLink: FiGithub,
     Docker: SiDocker,
     'OpenAI': SiOpenai,
     'REST APIs': TbApi,

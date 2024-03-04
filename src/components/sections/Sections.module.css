@@ -5,7 +5,7 @@
     padding-top: 80px;
     padding-bottom: 80px;
     justify-content: flex-start;
-    border-bottom: 2px solid;
+    border-bottom: 2px solid var(--background-color-primary);
     .section_content {
         display: flex;
         justify-content: center;

@@ -2,15 +2,15 @@
     "skills": [
         {
             "category": "Frontend",
-            "items": ["React", "React-Native", "HTML5", "CSS3", "SVG", "Redux", "Redux-saga", "Apollo GraphQL"]
+            "items": ["React", "React Native", "HTML5", "CSS3", "SVG", "Redux", "Redux-Saga", "Apollo GraphQL"]
         },
         {
             "category": "Backend",
-            "items": ["Rest APIs", "GraphQL", "Firebase", "Node.js", "Deno", "Express", "SQL", "NoSQL"]
+            "items": ["REST APIs", "GraphQL", "Firebase", "Node.js", "Deno", "Express", "SQL", "NoSQL"]
         },
         {
             "category": "Universal",
-            "items": ["Typescript", "Javascript", "C++", "Python", "Git", "Docker"]
+            "items": ["TypeScript", "JavaScript", "C++", "Python", "Git", "Docker"]
         }
     ]
 }

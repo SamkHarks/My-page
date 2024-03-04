@@ -21,7 +21,6 @@
 
         &:nth-child(3) {
             background-color: rgba(0,0,0,0.3);
-            backdrop-filter: blur(10px);
             h3::after {
                 content: ":";
                 color: var(--color-cyan-secondary);
@@ -35,7 +34,7 @@
             align-items: flex-start;
             .button {
                 padding: var(--spacing-XXS);
-                width: 80%;
+                width: 100%;
                 min-width: 150px;
                 background-color: transparent;
                 color: var(--text-color-primary);
@@ -44,10 +43,26 @@
                 border-radius: 20px;
                 border: none;
                 cursor: pointer;
-                transition: all 0.3s ease;
-                font-size: var(--font-size-M);
+                transition: all 0.3 ease;
+                font-size: var(--font-size-S);
+
+                .button_title_row {
+                    flex-direction: row;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding-left: var(--spacing-XXXS);
+                    width:100%
+                }
+                .button_title {
+                    column-gap: var(--spacing-XXXS);
+                    flex-direction: row;
+                    display: flex;
+                    align-items: center;
+                }
+
                 &:hover {
-                    transform: scale(1.05);
+                    transform: scale(1.04);
                     box-shadow: 0 0 5px var(--color-grey-secondary);
                 }
                 .expanded {
@@ -65,3 +80,30 @@
 .selected {
     box-shadow: 0 0 5px var(--color-grey-secondary);
 }
+
+.rotate_up {
+    animation: rotateTo0 0.2s linear forwards;
+}
+
+.rotate_down {
+    animation: rotateTo180 0.2s linear forwards;
+}
+
+@keyframes rotateTo180 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes rotateTo0 {
+    from {
+        transform: rotate(180deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+

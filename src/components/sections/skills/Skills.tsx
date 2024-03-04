@@ -50,11 +50,11 @@ const Skill = ({ skill, category }: SkillProps) => {
         setIsExpanded(!isExpanded);
     };
     return (
-        <button className={styles.button} key={skill} onClick={onClick}>
+        <button className={`${styles.button} ${isExpanded ? styles.selected : ''}`} key={skill} onClick={onClick}>
             <p>{skill}</p>
             {isExpanded &&
                 <div className={styles.expanded}>
-                    <p>{t(`${category}.${skill}`)}</p>
+                    <p className={styles.text}>{t(`${category}.${skill}`)}</p>
                 </div>
             }
         </button>

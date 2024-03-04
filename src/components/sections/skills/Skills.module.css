@@ -9,16 +9,10 @@
     width: 100%;
     
     .category_container {
-        width: 100%;
+        border: solid rgba(255,255,255,0.2);
         flex: 1;
-        border: 2px solid var(--color-cyan-secondary);
         border-radius: 20px;
         padding: var(--spacing-M);
-        &:hover {
-            border: 2px solid var(--color-cyan-secondary);
-            box-shadow: 0 0 5px var(--color-grey-secondary);
-        }
-
         h3::after {
             content: ":";
             color: var(--color-lightGreen-secondary);
@@ -26,47 +20,48 @@
         }
 
         &:nth-child(3) {
-            border: 2px solid var(--color-lightGreen-secondary);
-            /* Styles for odd .category_container elements */
+            background-color: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
             h3::after {
                 content: ":";
                 color: var(--color-cyan-secondary);
                 margin-left: 0.05em;
             }
-            &:hover {
-                border: 2px solid var(--color-cyan-secondary);
-
-            }
         }
         .items_container {
             display: flex;
-            gap: var(--spacing-XXXS);
+            gap: var(--spacing-XXS);
             flex-direction: column;
-            align-items: center;
-
+            align-items: flex-start;
             .button {
                 padding: var(--spacing-XXS);
-                width: 100%;
-                min-width: 100px;
-                align-items: center;
-                justify-content: center;
+                width: 80%;
+                min-width: 150px;
                 background-color: transparent;
                 color: var(--text-color-primary);
                 display: flex;
                 flex-direction: column;
                 border-radius: 20px;
-                border-color: var(--color-cyan-secondary);
+                border: none;
                 cursor: pointer;
                 transition: all 0.3s ease;
-
+                font-size: var(--font-size-M);
                 &:hover {
                     transform: scale(1.05);
                     box-shadow: 0 0 5px var(--color-grey-secondary);
                 }
                 .expanded {
                     padding: 2px;
+                    .text {
+                        text-align: left;
+                        font-size: var(--font-size-S);
+                    }
                 }
             }
         }
     }
+}
+
+.selected {
+    box-shadow: 0 0 5px var(--color-grey-secondary);
 }

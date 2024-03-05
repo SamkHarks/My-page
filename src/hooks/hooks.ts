@@ -35,7 +35,16 @@ export const useInterSectionObserver = (data: Element[]) => {
             const observer = new IntersectionObserver(
                 (entries) => {
                     entries.forEach(entry => {
-                        entry.target.classList.toggle('animate', entry.isIntersecting);
+                        if (entry.target instanceof HTMLElement) {
+                            const target = entry.target;
+                            if (entry.isIntersecting) {
+                                target.style.willChange = 'transform, opacity';
+                                target.classList.add('animate');
+                            } else {
+                                target.classList.remove('animate');
+                                target.style.willChange = '';
+                            }
+                        }
                     });
                 },
                 {

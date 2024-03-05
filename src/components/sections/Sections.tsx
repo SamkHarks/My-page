@@ -33,8 +33,8 @@ const SectionWrapper = ({
             ref={sectionRefs[section.id]}
             className={styles.section}
         >
-            <h1 className={'section_title'}>{t(section.id)}</h1>
-            <div className={styles.section_content}>
+            <h1 className={styles.section_title}>{t(section.id)}</h1>
+            <div className={'section_content'}>
                 {children}
             </div>
         </div>
@@ -49,7 +49,7 @@ type SectionProps = {
 export const Sections = ({ sectionRefs, sections }: SectionProps) => {
     const [data, setData] = useState<Element[]>([]);
     useEffect(() => {
-        const queryData = document.querySelectorAll(`.section_title`);
+        const queryData = document.querySelectorAll('.section_content');
         setData([...queryData]);
     }, []);
     useInterSectionObserver(data);

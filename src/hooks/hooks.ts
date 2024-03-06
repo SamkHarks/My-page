@@ -35,14 +35,18 @@ export const useInterSectionObserver = (data: Element[]) => {
             const observer = new IntersectionObserver(
                 (entries) => {
                     entries.forEach(entry => {
-                        if (entry.target instanceof HTMLElement) {
-                            const target = entry.target;
+                        const target = entry.target;
+                        if (target instanceof HTMLElement) {
                             if (entry.isIntersecting) {
+                                // Observe items only once
+                                target.addEventListener('transitionend', (event: TransitionEvent) => {
+                                    if (event.propertyName === 'opacity' || event.propertyName === 'transform') {
+                                        target.style.willChange = '';
+                                        observer.unobserve(target);
+                                    }
+                                }, { once: true });
                                 target.style.willChange = 'transform, opacity';
                                 target.classList.add('animate');
-                            } else {
-                                target.classList.remove('animate');
-                                target.style.willChange = '';
                             }
                         }
                     });

@@ -33,6 +33,7 @@
             flex-direction: column;
             align-items: flex-start;
             .button {
+                -webkit-tap-highlight-color: transparent;
                 padding: var(--spacing-XXS);
                 width: 100%;
                 min-width: 150px;
@@ -74,6 +75,11 @@
                 }
             }
         }
+    }
+}
+@media (hover: none) and (pointer: coarse) {
+    .skills_container .category_container .items_container .button:hover {
+        transform: none;
     }
 }
 

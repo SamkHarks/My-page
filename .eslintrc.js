@@ -7,7 +7,9 @@ module.exports = {
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "prettier",
+        "plugin:prettier/recommended"
     ],
     "parser": '@typescript-eslint/parser',
     "parserOptions": {
@@ -18,12 +20,12 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react", "jest", "import","@typescript-eslint"
+        "react", "jest", "import","@typescript-eslint", "prettier"
     ],
     "rules": {
         "indent": [
             "warn",
-            4,
+            2,
             { "SwitchCase": 1 }
         ],
         "linebreak-style": "off",
@@ -44,7 +46,8 @@ module.exports = {
         "import/no-unresolved": "error",
         "import/named": "error",
         "import/default": "error",
-        "import/namespace": "error"
+        "import/namespace": "error",
+        "prettier/prettier": "error"
     },
     "settings": {
       "import/resolver": {

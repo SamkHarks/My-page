@@ -1,8 +1,8 @@
 type SkillsData = {
-    category: "Front-end";
-    items: string[];
-}
+  category: "Front-end";
+  items: string[];
+};
 
 export type SkillsResponse = {
-    skills: SkillsData[]
-}
+  skills: SkillsData[];
+};

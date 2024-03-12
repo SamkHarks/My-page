@@ -16,8 +16,8 @@
         "Node.js":"Minulla on laaja kokemus Node.js:stä, hyödyntäen sen tehokasta suoritusympäristöä skaalautuvien ja tehokkaiden palvelinpuolen sovellusten rakentamiseen. Osaamiseeni kuuluu RESTful APIen kehittäminen, asynkronisten operaatioiden käsittely ja erilaisten palvelinpuolen toiminnallisuuksien toteuttaminen tukemaan moderneja verkkosovelluksia",
         "Deno": "Olen opiskellut Denon käyttöä, hyödyntäen sen moderneja ja turvallisia suoritusympäristöjä, sekä toteuttanut Oak-frameworkin avulla monisivuisen verkkosovelluksen (MPA)",
         "Express": "Minulla on käytännön kokemusta Expressistä, hyödyntäen sen vankkaa kehystä palvelinpuolen sovellusten ja RESTful APIen kehittämiseen Node.js:ssä",
-        "SQL": "Taitava SQL:ssä, olen suunnitellut koulussa relaatiotietokantoja sekä osaan luoda monimutkaisia kyselyitä. Olen käyttänyt mm. PostgresSQL:ää erilaisissa projekteissa",
-        "NoSQL": "Kokemusta NoSQL:stä: Taitava käyttämään MongoDB:tä epärelaatio-tietorakenteiden hallinnassa ja manipuloinnissa. Kyvykäs sopeutumaan NoSQL-ympäristöihin ja ymmärrän skeemattoman tietokantasuunnittelun hyödyt"
+        "SQL": "Taitava SQL:ssä, olen suunnitellut yliopistossa relaatiotietokantoja sekä osaan luoda monimutkaisia kyselyitä. Olen käyttänyt mm. PostgresSQL:ää erilaisissa projekteissa",
+        "NoSQL": "Kokemusta NoSQL:stä, taitava käyttämään MongoDB:tä epärelaatio-tietorakenteiden hallinnassa ja manipuloinnissa. Kyvykäs sopeutumaan NoSQL-ympäristöihin ja ymmärrän skeemattoman tietokantasuunnittelun hyödyt"
     },
     "Universal": {
         "TypeScript": "Taitava TypeScript:ssä, sillä käytän sitä päivittäin ammatillisessa ympäristössä. Kokemusta TypeScriptin vahvan tyypityksen ja edistyneiden ominaisuuksien hyödyntämisestä luodessani kestäviä ja skaalautuvia sovelluksia",

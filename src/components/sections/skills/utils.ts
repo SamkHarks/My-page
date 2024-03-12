@@ -41,7 +41,7 @@ export const ICONS: { [key: string]: IconType } = {
   NoSQL: FaDatabase,
   Mongoose: SiMongodb,
   Scrum: DiScrum,
-  CSS3: DiCss3,
+  CSS: DiCss3,
   Docker: SiDocker,
   OpenAI: SiOpenai,
   "REST APIs": TbApi,

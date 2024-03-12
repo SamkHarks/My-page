@@ -4,7 +4,7 @@ This repository contains the source code for the frontend of my personal portfol
 
 ## Deployment
 
-The portfolio is a work in progress (WIP) and is currently hosted live at [Samis Portfolio](https://samis-portfolio.onrender.com).
+The portfolio is a **work in progress (WIP)** and is currently hosted live at [Render](https://samis-portfolio.onrender.com).
 
 ## Features
 
@@ -15,7 +15,7 @@ The portfolio is a work in progress (WIP) and is currently hosted live at [Samis
 
 ## Tech Stack and CI/CD
 
-My portfolio website is built and maintained using a range of technologies and best practices, ensuring both high-quality code and efficient deployment:
+My website is built and maintained using a range of technologies and a simple CI/CD pipeline, ensuring a balance of quality and efficiency:
 
 - **Frontend Development**:
     - **React**: For building user interface components.
@@ -26,9 +26,9 @@ My portfolio website is built and maintained using a range of technologies and b
 - **Data Management**:
     - **Data Fetching**: Content is dynamically loaded from JSON files within the repository, using custom hooks for fetching data.
 
-- **CI/CD and Deployment**:
+- **CI/CD**:
     - **GitHub Actions**: Automates the integration and deployment process, running tests and linting on each push, ensuring code quality.
-    - **Render**: Used for hosting the website, with automatic deployments set up for continuous delivery.
+    - **Render**: The website is hosted on Render. Deployments are manually triggered through the CI/CD pipeline for greater control and precision in the update process.
 
 ## Layout and Animation
 

@@ -2,7 +2,7 @@
     "skills": [
         {
             "category": "Frontend",
-            "items": ["React", "React Native", "HTML5", "CSS3", "SVG", "Redux", "Redux-Saga", "Apollo GraphQL"]
+            "items": ["React", "React Native", "HTML5", "CSS", "SVG", "Redux", "Redux-Saga", "Apollo GraphQL"]
         },
         {
             "category": "Backend",
@@ -10,7 +10,7 @@
         },
         {
             "category": "Universal",
-            "items": ["TypeScript", "JavaScript", "C++", "Python", "Git", "Docker"]
+            "items": ["TypeScript", "JavaScript", "C++", "Python", "Git", "Docker", "CI/CD"]
         }
     ]
 }

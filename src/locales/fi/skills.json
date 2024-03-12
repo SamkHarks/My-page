@@ -1,7 +1,31 @@
 {
     "Frontend": {
-        "React": "Olen käyttänyt Reactia pitkään ja masteroinut sen käytön. Nämä sivut on tehty React:lla.",
-        "React Native": "Käytän React Nativea päivittäin töissä, mm. jatkuvasti uusien featureiden tekemiseen, joten sen käyttö sujuu mutkitta.",
-        "HTML5": "Taitava luomaan semanttisesti rakenteellisia verkkosivuja käyttäen HTML5"
+        "React":"Olen käyttänyt Reactia jo pitkän aikaa ja hallitsen sen monipuoliset käyttömahdollisuudet vahvasti. Tämä sivusto on yksi esimerkki osaamisestani, sillä se on toteutettu käyttäen Reactia",
+        "React Native": "Käytän React Nativea päivittäin ammatillisessa ympäristössä, kehittäen jatkuvasti uusia toimintoja ja ominaisuuksia. Tämä kokemus on antanut minulle syvällisen osaamisen ja sujuvuuden sen käytössä, mahdollistaen tehokkaan ja innovatiivisen sovelluskehityksen",
+        "HTML5": "Minulla on hyvä ymmärrys HTML5:stä, joka mahdollistaa tämän hyödyntämisen modernien ja tehokkaiden verkkoratkaisujen luomisessa",
+        "CSS": "Olen intohimoinen luomaan responsiivisia ja visuaalisesti vaikuttavia verkkosivuja CSS:llä", 
+        "SVG": "Perehtynyt yksinkertaisten, skaalautuvien vektrorigrafiikoiden luomiseen verkkosovelluksiin",
+        "Redux": "Minulla on laaja kokemus Reduxin käytöstä, sillä olen käyttänyt sitä pitkään sekä ammatillisesti että henkilökohtaisissa projekteissani. Reduxin tilanhallintamallien tuntemus parantaa React-sovellusteni tehokkuutta ja skaalautuvuutta",
+        "Redux-Saga": "Minulla on käytännön kokemusta Redux-Sagan käytöstä ammatillisessa ympäristössä, sillä olen hyödyntänyt sitä monimutkaisten asynkronisten toimintojen ja sivuvaikutusten käsittelyssä Redux-pohjaisessa sovelluksessa",
+        "Apollo GraphQL": "Olen käyttänyt Apollo GraphQL:ää töissä front-end-kehityksessä, tehokkaasti halliten ja kysellen tietoja GraphQL-palvelimilta dynaamisten, responsiivisten verkkosovellusten rakentamiseen"
+    },
+    "Backend": {
+        "REST APIs": "Minulla on kokemusta REST APIen parissa työskentelystä, kehittäen ja integroiden niitä helpottaakseni saumatonta viestintää asiakaspuolen ja palvelinpuolen komponenttien välillä verkkosovelluksissa",
+        "GraphQL": "Olen opiskellut GraphQL:n käyttöä backend-kehityksessä, keskittyen tehokkaiden ja joustavien tietojen kysely- ja manipulointimahdollisuuksien rakentamiseen. Olen mm. integroinut NoSQL-tietokannan GraphQL-palvelimen kanssa, missä NoSQL-tietokanta tallensi tiedot ja GraphQL käsitteli tiedon tallennuksen ja kyselyt frontendiltä",
+        "Firebase": "Olen käyttänyt Firebasetta laajalti mobiilisovelluskehityksessä, hyödyntäen sen mahdollisuuksia analytiikkatietojen keräämiseen, sovelluksen suorituskyvyn seurantaan ja kaatumisraporttien hallintaan. Tämä kokemus on auttanut minua varmistamaan mobiilisovellusten luotettavuuden ja tehokkuuden koko niiden elinkaaren ajan",
+        "Node.js":"Minulla on laaja kokemus Node.js:stä, hyödyntäen sen tehokasta suoritusympäristöä skaalautuvien ja tehokkaiden palvelinpuolen sovellusten rakentamiseen. Osaamiseeni kuuluu RESTful APIen kehittäminen, asynkronisten operaatioiden käsittely ja erilaisten palvelinpuolen toiminnallisuuksien toteuttaminen tukemaan moderneja verkkosovelluksia",
+        "Deno": "Olen opiskellut Denon käyttöä, hyödyntäen sen moderneja ja turvallisia suoritusympäristöjä, sekä toteuttanut Oak-frameworkin avulla monisivuisen verkkosovelluksen (MPA)",
+        "Express": "Minulla on käytännön kokemusta Expressistä, hyödyntäen sen vankkaa kehystä palvelinpuolen sovellusten ja RESTful APIen kehittämiseen Node.js:ssä",
+        "SQL": "Taitava SQL:ssä, olen suunnitellut yliopistossa relaatiotietokantoja sekä osaan luoda monimutkaisia kyselyitä. Olen käyttänyt mm. PostgresSQL:ää erilaisissa projekteissa",
+        "NoSQL": "Kokemusta NoSQL:stä, taitava käyttämään MongoDB:tä epärelaatio-tietorakenteiden hallinnassa ja manipuloinnissa. Kyvykäs sopeutumaan NoSQL-ympäristöihin ja ymmärrän skeemattoman tietokantasuunnittelun hyödyt"
+    },
+    "Universal": {
+        "TypeScript": "Taitava TypeScript:ssä, sillä käytän sitä päivittäin ammatillisessa ympäristössä. Kokemusta TypeScriptin vahvan tyypityksen ja edistyneiden ominaisuuksien hyödyntämisestä luodessani kestäviä ja skaalautuvia sovelluksia",
+        "JavaScript": "Paljon kokemusta JavaScriptista, olen käyttänyt JavaScriptiä laajasti erilaisissa projekteissa. Olen hyödyntänyt paljon erilaisia frontti ja bäkki JavaScript-kirjastoja verkkosovellusten kehityksessä",
+        "C++": "Olen melko hyvä C++:ssa, olen käyttänyt sitä mm. yksinkertaisten pelien kehittämiseen ja koodin optimointiin, hyödyntäen rinnakkaisohjelmointitekniikoita. Olen erittäin kiinnostunut pelikehityksestä, ja tulevaisuudessa voisikin olla houkuttelevaa tavoitella uraa pelikehittäjänä ja tutkia laajoja C++:n tarjoamia mahdollisuuksia",
+        "Python": "Olen pääasiassa käyttänyt Pythonia yliopisto-opintojeni aikana erilaisiin akateemisiin projekteihin, mukaan lukien Deep Learning sovelluksiin",
+        "Docker": "Olen käyttänyt Dockeria pääasiassa yliopisto-opintojeni aikana sovellusten kontittamiseen ja ympäristöjen johdonmukaisuuden varmistamiseen",
+        "CI/CD": "Kokemusta pipeline:jen luomisesta GitHub Action:ien avulla (olen mm. asettanut CI/CD-pipelinet tälle verkkosivustolle). Vaikka en ole itse asentanut pipeline:jä työssäni, olen tutustunut GitLabin CI/CD-prosesseihin (sekä Jenkinsiin, jota käytimme aiemmin). Lisäksi, olen tehnyt CodePush-julkaisuja AppCenterille päivittääkseni mobiilisovelluksia ammatillisessa ympäristössä",
+        "Git": "Käytän Gitiä päivittäin työssäni, osoittaen vahvat taidot versionhallinnassa, branchien hallinnassa ja yhteistyössä muiden kehittäjien kanssa samanaikaisessa työskentelyssä"
     }
 }

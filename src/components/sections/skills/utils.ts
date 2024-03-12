@@ -24,6 +24,7 @@ import {
   DiCss3,
 } from "react-icons/di";
 import { TbSql, TbApi } from "react-icons/tb";
+import { IoInfinite } from "react-icons/io5";
 
 export const ICONS: { [key: string]: IconType } = {
   React: DiReact,
@@ -52,4 +53,5 @@ export const ICONS: { [key: string]: IconType } = {
   SVG: SiSvg,
   "C++": SiCplusplus,
   Deno: SiDeno,
+  "CI/CD": IoInfinite,
 };

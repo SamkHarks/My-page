@@ -28,7 +28,7 @@ My website is built and maintained using a range of technologies and a simple CI
 
 - **CI/CD**:
     - **GitHub Actions**: Automates the integration and deployment process, running tests and linting on each push, ensuring code quality.
-    - **Render**: Used for hosting the website, with automatic deployments set up for continuous delivery.
+    - **Render**: The website is hosted on Render. Deployments are manually triggered through the CI/CD pipeline for greater control and precision in the update process.
 
 ## Layout and Animation
 

@@ -1,7 +1,31 @@
 {
     "Frontend": {
-        "React": "I have used and mastered React over the years. This website is created with React.",
-        "React Native": "I have strong skills in React Native which I have obtained from every day use in work.",
-        "HTML5": "Proficient in crafting semantically structured web pages using HTML5"
+        "React": "I have been using React for a long time and possess a thorough mastery of its diverse functionalities. This website is one example of my expertise, as it has been implemented using React",
+        "React Native": "I use React Native daily in a professional environment, constantly developing new functions and features. This experience has given me profound expertise and fluency in its use, enabling efficient and innovative application development",
+        "HTML5": "I have a good understanding of HTML5, which enables its utilization in creating modern and efficient web solutions",
+        "CSS": "I enjoy crafting responsive and visually engaging web interfaces with CSS",
+        "SVG": "Familiar with crafting simple, scalable vector graphics for web applications",
+        "Redux": "I have extensive experience with Redux, having used it for a long time both in professional settings and in personal projects. My familiarity with Redux's state management patterns enhances the efficiency and scalability of my React applications",
+        "Redux-Saga": "I have practical experience with Redux-Saga in a professional setting, utilizing it to handle complex asynchronous operations and side effects in Redux-based application",
+        "Apollo GraphQL": "In my professional work, I have focused on using Apollo GraphQL for front-end development, efficiently managing and querying data from GraphQL servers to build dynamic, responsive web applications"
+    },
+    "Backend": {
+        "REST APIs": "I have experience in working with REST APIs, developing and integrating them to facilitate seamless communication between client-side and server-side components in web applications",
+        "GraphQL": "I have studied the use of GraphQL in backend development, focusing on building efficient and flexible data querying and manipulation capabilities. For example, I have integrated a NoSQL database with a GraphQL server, where the NoSQL database stored the data and GraphQL handled data storing and queries from the frontend",
+        "Firebase": "I have utilized Firebase extensively in mobile application development, leveraging its capabilities for gathering analytics data, monitoring app performance, and managing crash reports. This experience has enabled me to ensure the reliability and efficiency of mobile applications throughout their lifecycle",
+        "Node.js": "I have extensive experience with Node.js, utilizing its powerful runtime environment to build scalable and efficient server-side applications. My proficiency includes developing RESTful APIs, handling asynchronous operations, and implementing various server-side functionalities to support modern web applications",
+        "Deno": "I have studied the use of Deno, leveraging its modern and secure runtime environment alongside the Oak framework to develop MPAs (multi-page web applications)",
+        "Express": "I have practical experience with Express, utilizing its robust framework to develop server-side applications and RESTful APIs in Node.js",
+        "SQL": "Skilled in SQL: Knowledgeable in designing relational databases and proficient in crafting complex queries. Familiar with using SQL in conjunction with PostgreSQL, understanding its unique features and capabilities",
+        "NoSQL": "Experienced in NoSQL: Proficient in using MongoDB for managing and manipulating non-relational data structures. Skilled in adapting to NoSQL environments and understanding the benefits of schema-less database design"
+    },
+    "Universal": {
+        "TypeScript": "Skilled in TypeScript as I utilize TypeScript daily in a professional setting. Experienced in leveraging TypeScript's strong typing and advanced features to build robust and scalable applications",
+        "JavaScript": "Experienced in JavaScript, I have utilized JavaScript extensively in different projects, proficient in creating dynamic and interactive web applications. Skilled in both front-end and back-end JavaScript frameworks and libraries",
+        "C++": "I am proficient in C++ and have used it for developing simple games and optimizing code for better performance by utilizing parallel computing techniques. With a keen interest in game development, it would be tempting to pursue a career as a game developer in the future and explore the vast possibilities with C++",
+        "Python": "Primarily used Python during my university studies for various academic projects, including deep learning applications",
+        "Docker": "Utilized Docker primarily during my university studies for containerizing applications and ensuring consistent environments",
+        "CI/CD": "I have some experience in creating CI/CD pipelines by using GitHub Actions (For example I have set up pipelines for this web site). While I haven't set up pipelines myself at work, I am familiar with GitLab's CI/CD processes (and Jenkins, as we used it before).  Additionally, I have deployed CodePush releases for AppCenter to update mobile applications in a professional environment",
+        "Git": "I use Git daily in my professional work, demonstrating strong skills in version control, branch management, and collaboration with other developers in concurrent workflows"
     }
 }

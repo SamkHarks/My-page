@@ -26,7 +26,7 @@ My website is built and maintained using a range of technologies and a simple CI
 - **Data Management**:
     - **Data Fetching**: Content is dynamically loaded from JSON files within the repository, using custom hooks for fetching data.
 
-- **CI/CD and Deployment**:
+- **CI/CD**:
     - **GitHub Actions**: Automates the integration and deployment process, running tests and linting on each push, ensuring code quality.
     - **Render**: Used for hosting the website, with automatic deployments set up for continuous delivery.
 

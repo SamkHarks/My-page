@@ -3,7 +3,7 @@
     --font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
-    --font-family-secondary: 'Courier New', Courier, monospace;
+    --font-family-secondary: 'Berkshire Swash', cursive;
     
     /* Font sizes */
     --font-size-XS: clamp(10px, 1.25vw, 12px); /* Adjusts between 10px and 14px */

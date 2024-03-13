@@ -1,4 +1,5 @@
 import React from "react";
+import { getStyle } from "../../utils/utils";
 
 type Props = {
   progress: number;
@@ -43,7 +44,7 @@ export const RectangleProgress = ({
         </linearGradient>
         <mask id={maskId}>
           <rect
-            x="14"
+            x={halfSize - 14}
             y="0"
             width={halfSize}
             height={size}
@@ -88,7 +89,7 @@ export const RectangleProgress = ({
         textAnchor="middle"
         fontSize="16"
         fill={textFill}
-        fontFamily="Georgia"
+        fontFamily={getStyle("--font-family-secondary")}
       >
         {text}
       </text>
@@ -100,7 +101,7 @@ export const RectangleProgress = ({
         textAnchor="middle"
         fontSize="16"
         fill={textProgressFill}
-        fontFamily="Georgia"
+        fontFamily={getStyle("--font-family-secondary")}
         mask={`url(#${maskId})`}
       >
         {text}

@@ -32,7 +32,7 @@ export const RectangleProgress = ({
   const startY = 0;
   const rotationTransform = `rotate(45 ${halfSize} ${startY})`;
   // Animation for the stroke
-  const strokeDasharray = sideWidth * 4; // Total length of the diamond's border
+  const strokeDasharray = sideWidth * 4;
   const strokeDashoffset = strokeDasharray - (progress / 100) * strokeDasharray;
   const maskId = "text-id-2";
   return (
@@ -46,7 +46,7 @@ export const RectangleProgress = ({
           <rect
             x={halfSize - 14}
             y="0"
-            width={halfSize}
+            width={halfSize + 1}
             height={size}
             fill={`url(#progress-gradient)`}
           />

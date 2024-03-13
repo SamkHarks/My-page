@@ -87,7 +87,7 @@
   
 .custom_colors li::before {
     content: counter(list-index) ". "; /* Display the counter with a period */
-    font-family:cursive;
+    font-family: var(--font-family-primary);
     color: var(--text-color-orangeRed-secondary);
 }
   
@@ -108,6 +108,7 @@
     position: relative;
     padding-bottom: var(--spacing-XXXS);
     cursor: pointer;
+    font-family: cursive;
 }
   
 .li_item:hover {

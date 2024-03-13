@@ -9,7 +9,6 @@
     z-index: 2;
 }
 
-/* Styles for screens smaller or equal to 400px */
 @media screen and (max-width: 400px) {
     .sticky_header {
       background-color: var(--color-dark-secondary);
@@ -74,19 +73,19 @@
 .custom_colors {
     display: flex;
     flex-direction: column;
-    list-style: none; /* Removes default numbering */
+    list-style: none;
     margin-right: 3%;
     margin-top: 0px;
     margin-bottom: 0px;
-    counter-reset: list-index; /* Creates a counter for the list */
+    counter-reset: list-index;
 }
 
 .custom_colors li {
-    counter-increment: list-index; /* Increment the counter */
+    counter-increment: list-index;
 }
   
 .custom_colors li::before {
-    content: counter(list-index) ". "; /* Display the counter with a period */
+    content: counter(list-index) ". ";
     font-family: var(--font-family-primary);
     color: var(--text-color-orangeRed-secondary);
 }

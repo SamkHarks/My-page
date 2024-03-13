@@ -34,23 +34,15 @@ export const RectangleProgress = ({
   // Animation for the stroke
   const strokeDasharray = sideWidth * 4;
   const strokeDashoffset = strokeDasharray - (progress / 100) * strokeDasharray;
-  const maskId = "text-id-2";
+  // clipPath definitions
+  const clipId = "text-id-2";
+  const clipWidth = ((progress + 0.01) / 100) * 28;
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
       <defs>
-        <linearGradient id="progress-gradient" x1="0" x2="1" y1="0" y2="0">
-          <stop offset={`${progress}%`} stopColor="white" />
-          <stop offset={`${progress}%`} stopColor="transparent" />
-        </linearGradient>
-        <mask id={maskId}>
-          <rect
-            x={halfSize - 14}
-            y="0"
-            width={halfSize + 1}
-            height={size}
-            fill={`url(#progress-gradient)`}
-          />
-        </mask>
+        <clipPath id={clipId}>
+          <rect x="17" y="0" width={clipWidth} height={size} />
+        </clipPath>
       </defs>
       {/* background rectangle */}
       <rect
@@ -102,7 +94,7 @@ export const RectangleProgress = ({
         fontSize="16"
         fill={textProgressFill}
         fontFamily={getStyle("--font-family-secondary")}
-        mask={`url(#${maskId})`}
+        clipPath={`url(#${clipId})`}
       >
         {text}
       </text>

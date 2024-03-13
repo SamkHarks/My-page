@@ -13,14 +13,14 @@ const LanguageSelector = () => {
   return (
     <div className={styles.button_container}>
       <button
-        className={`${styles.small_button} hover-color-effect`}
+        className={styles.small_button}
         type="button"
         onClick={() => changeLanguage("fi")}
       >
         fi
       </button>
       <button
-        className={`${styles.small_button} hover-color-effect`}
+        className={styles.small_button}
         type="button"
         onClick={() => changeLanguage("en")}
       >

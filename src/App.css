@@ -3,14 +3,3 @@
   width: 100%;
 }
 
-
-.hover-color-effect:hover {
-  background-color: var(--color-darkCyan-secondary);
-}
-
-/* Override for touch devices */
-@media (hover: none) and (pointer: coarse) {
-  .hover-color-effect:hover {
-    background-color: initial;
-  }
-}

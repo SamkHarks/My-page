@@ -1,8 +1,8 @@
 import React from "react";
+import { useScroll } from "../../hooks/hooks";
 import { getStyle } from "../../utils/utils";
 
 type Props = {
-  progress: number;
   text: string;
   size: number;
   strokeWidth?: number;
@@ -14,7 +14,6 @@ type Props = {
   ry?: number;
 };
 export const RectangleProgress = ({
-  progress,
   text,
   size,
   strokeWidth = 3,
@@ -25,6 +24,7 @@ export const RectangleProgress = ({
   textFill = "orangeRed",
   textProgressFill = "cyan",
 }: Props) => {
+  const progress = useScroll();
   // Rectangle's side width
   const sideWidth = size / Math.sqrt(2);
   const halfSize = size / 2;

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useScroll } from "../../hooks/hooks";
 import { useTranslation } from "react-i18next";
 import { LanguageSelector } from "../languageSelector/LanguageSelector";
 import { SectionRefs } from "../../hooks/types";
 import { RectangleProgress } from "../rectangleProgress/RectangleProgress";
 import styles from "./Header.module.css";
 import { Section } from "../../App";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 type HeaderProps = {
   sectionRefs: SectionRefs;
@@ -34,23 +34,42 @@ type HeaderToggleProps = {
   onClick: () => void;
 };
 
-const HeaderToggle = ({ isOpen, onClick }: HeaderToggleProps) => {
-  const scrollProgress = useScroll();
-  return (
-    <div className={styles.sticky_header}>
-      <div className={styles.container_left}>
-        <RectangleProgress progress={scrollProgress} text={"S.H"} size={60} />
-        <LanguageSelector />
-      </div>
-      <div className={styles.container_right}>
-        <button
-          className={`${styles.header_button} hover-color-effect`}
-          onClick={onClick}
-        >
-          {isOpen ? "Close Menu" : "Open Menu"}
-        </button>
-      </div>
+const HeaderToggle = (props: HeaderToggleProps) => (
+  <div className={styles.sticky_header}>
+    <div className={styles.container_left}>
+      <RectangleProgress text={"S.H"} size={60} />
+      <LanguageSelector />
     </div>
+    <div className={styles.container_right}>
+      <MenuButton {...props} />
+    </div>
+  </div>
+);
+
+const MenuButton = ({ isOpen, onClick }: HeaderToggleProps) => {
+  const [isPressed, setIsPressed] = React.useState(false);
+  const { t } = useTranslation("common");
+  const onClickAnimate = () => {
+    setIsPressed(true);
+    onClick();
+  };
+  React.useEffect(() => {
+    let timeout: NodeJS.Timeout | undefined;
+    if (isPressed) {
+      timeout = setTimeout(() => setIsPressed(false), 500);
+    }
+    return () => clearTimeout(timeout);
+  }, [isOpen]);
+
+  return (
+    <button className={styles.header_button} onClick={onClickAnimate}>
+      <RxHamburgerMenu
+        className={`${styles.hamburger_icon} ${isPressed ? styles.animate : ""}`}
+      />
+      <span className={styles.button_text}>
+        {isOpen ? t("close") : t("open")}
+      </span>
+    </button>
   );
 };
 

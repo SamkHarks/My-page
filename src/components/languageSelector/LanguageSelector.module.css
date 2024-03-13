@@ -4,16 +4,26 @@
 }
 
 .small_button {
-    border-color: var(--color-cyan-secondary);
     background-color: transparent;
-    border-width: 2px;
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border: 2px solid var(--color-cyan-secondary);
+    border-radius: 8px;
     width: 40px;
     height: 30px;
     color: var(--text-color-primary);
     cursor: pointer;
     transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: var(--color-darkCyan-secondary);
+    }
+}
+
+
+/* Override for touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .small_button {
+        &:hover {
+            background-color: initial;
+        }
+    }
 }

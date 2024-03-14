@@ -25,12 +25,19 @@
     }
 
     &:nth-child(even) {
-        background: linear-gradient(to left,var(--color-dark-secondary), var(--color-darkCyan-secondary)40%,rgb(41, 141, 148),var(--color-darkCyan-secondary)60%,var(--color-dark-secondary));
+        background: linear-gradient(to left, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.6)),var(--color-darkCyan-secondary);
     }
     &:nth-child(odd) {
-        background: linear-gradient(to right,var(--color-dark-secondary), var(--color-darkCyan-secondary)40%,rgb(57, 151, 158) , var(--color-darkCyan-secondary)60%,var(--color-dark-secondary));
+        background: linear-gradient(to left,rgba(0, 0, 0, 0.6) , rgba(255, 255, 255, 0.1)),var(--color-darkCyan-secondary);
     }
 
+    &:nth-child(2) {
+        background: radial-gradient(at 50% 10%, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.6)),var(--color-darkCyan-secondary);
+    }
+
+    &:last-child {  
+        background: radial-gradient(circle at center 70%, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.7)),var(--color-darkCyan-secondary);
+    }
     :global(.section_content.animate.animate) {
         transform: scale(1);
     }

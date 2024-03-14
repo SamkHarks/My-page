@@ -29,8 +29,10 @@
 
 .button_container {
     display: flex;
-    
     .button {
+        text-decoration: none;
+        text-align: center;
+        font-size: var(--font-size-M);
         -webkit-tap-highlight-color: transparent;
         margin-top: var(--spacing-L);
         padding: var(--spacing-XXS);
@@ -40,7 +42,5 @@
         border-radius: 20px;
         border: 3px solid rgba(255,255,255,0.8);
         cursor: pointer;
-        font-size: var(--font-size-S);
-        
     }
 }

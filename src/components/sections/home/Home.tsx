@@ -11,7 +11,13 @@ export const Home = () => {
       <p className={styles.text}>{t("shortIntro")}</p>
       <p className={styles.intro}>{t("intro")}</p>
       <div className={styles.button_container}>
-        <button className={styles.button}>{t("resume")}</button>
+        <a
+          className={styles.button}
+          href="/cv/cv-sami-e.pdf"
+          download="cv-sami-en.pdf"
+        >
+          {t("resume")}
+        </a>
       </div>
     </div>
   );

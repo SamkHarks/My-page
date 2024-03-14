@@ -22,6 +22,7 @@ My website is built and maintained using a range of technologies and a simple CI
     - **TypeScript**: Utilized for its strong typing system to enhance code quality and maintainability.
     - **CSS and SVG**: For styling, alongside the use of SVG components for enhanced visual appeal.
     - **React Hooks**: Employed for state management and side effects in functional components.
+    - **i18next**: Used for localizations, manages English & Finnish translations.
 
 - **Data Management**:
     - **Data Fetching**: Content is dynamically loaded from JSON files within the repository, using custom hooks for fetching data.

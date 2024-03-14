@@ -13,7 +13,7 @@ export const Home = () => {
       <div className={styles.button_container}>
         <a
           className={styles.button}
-          href="/cv/cv-sami-e.pdf"
+          href="/cv/cv-sami-en.pdf"
           download="cv-sami-en.pdf"
         >
           {t("resume")}

@@ -37,6 +37,8 @@
 
     &:last-child {  
         background: radial-gradient(circle at center 70%, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.7)),var(--color-darkCyan-secondary);
+        justify-content: center;
+        height: 500px;
     }
     :global(.section_content.animate.animate) {
         transform: scale(1);
@@ -74,7 +76,8 @@
                 transform: translateX(-100%);
             }
         }
-        &:last-child {  
+        &:last-child { 
+            border-bottom-right-radius: 0px;
             :global(.section_content) {
                 align-self: center;
                 justify-content: center;

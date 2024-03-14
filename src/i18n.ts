@@ -11,6 +11,8 @@ import skillsEn from "./locales/en/skills.json";
 import skillsFi from "./locales/fi/skills.json";
 import commonEn from "./locales/en/common.json";
 import commonFi from "./locales/fi/common.json";
+import homeEn from "./locales/en/home.json";
+import homeFi from "./locales/fi/home.json";
 
 export type Languages = "en" | "fi";
 type Resource = {
@@ -19,6 +21,7 @@ type Resource = {
     about: typeof aboutEn;
     skills: typeof skillsEn;
     common: typeof commonEn;
+    home: typeof homeEn;
   };
 };
 
@@ -28,12 +31,14 @@ const resources: Resource = {
     about: aboutEn,
     skills: skillsEn,
     common: commonEn,
+    home: homeEn,
   },
   fi: {
     sections: sectionsFi,
     about: aboutFi,
     skills: skillsFi,
     common: commonFi,
+    home: homeFi,
   },
 };
 

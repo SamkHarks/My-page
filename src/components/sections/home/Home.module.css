@@ -20,3 +20,31 @@
 .text {
     font-size: var(--font-size-M);
 }
+
+.intro {
+    margin-top: var(--spacing-M);
+    font-size: var(--font-size-M);
+    text-align: start;
+}
+
+.button_container {
+    display: flex;
+    .button {
+        text-decoration: none;
+        text-align: center;
+        font-size: var(--font-size-M);
+        -webkit-tap-highlight-color: transparent;
+        margin-top: var(--spacing-L);
+        padding: var(--spacing-XXS);
+        width: 100%;
+        background-color: transparent;
+        color: var(--text-color-primary);
+        border-radius: 20px;
+        border: 3px solid rgba(255,255,255,0.8);
+        cursor: pointer;
+
+        &:hover {
+            border-color: var(--color-cyan-secondary);
+        }
+    }
+}

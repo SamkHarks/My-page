@@ -36,6 +36,7 @@
 
 .text {
     text-justify: justify;
+    font-size: var(--font-size-M);
 }
 
 .margin_top {

@@ -37,7 +37,7 @@ type SectionProps = {
   sectionRefs: SectionRefs;
 };
 
-export const Sections = ({ sectionRefs, sections }: SectionProps) => {
+const Sections = ({ sectionRefs, sections }: SectionProps) => {
   const [data, setData] = useState<Element[]>([]);
   useEffect(() => {
     const queryData = document.querySelectorAll(".section_content");
@@ -61,3 +61,5 @@ export const Sections = ({ sectionRefs, sections }: SectionProps) => {
     </>
   );
 };
+
+export default Sections;

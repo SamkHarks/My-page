@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./App.css";
 import { useFetchData, useRefs } from "./hooks/hooks";
 import { Header } from "./components/header/Header";
-import { Sections } from "./components/sections/Sections";
 import { DataProps, ServiceData } from "./components/serviceData/ServiceData";
+import { Spinner } from "./components/spinner/Spinner";
+const Sections = React.lazy(() => import("./components/sections/Sections"));
 
 export type Section = {
   id: "home" | "about" | "skills" | "contact";
@@ -12,12 +13,6 @@ export type Section = {
 type SectionResponse = {
   sections: Section[];
 };
-
-export const SectionContext = React.createContext<{
-  sections: SectionResponse["sections"];
-}>({
-  sections: [],
-});
 
 const App = () => {
   const service = useFetchData<SectionResponse>("sections.json");
@@ -34,7 +29,9 @@ const Renderer = ({ data }: DataProps<SectionResponse>) => {
   return (
     <>
       <Header sectionRefs={sectionRefs} sections={sections} />
-      <Sections sectionRefs={sectionRefs} sections={sections} />
+      <Suspense fallback={<Spinner size={"medium"} />}>
+        <Sections sectionRefs={sectionRefs} sections={sections} />
+      </Suspense>
     </>
   );
 };

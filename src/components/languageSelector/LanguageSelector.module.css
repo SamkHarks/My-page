@@ -23,6 +23,7 @@
 /* Override for touch devices */
 @media (hover: none) and (pointer: coarse) {
     .small_button {
+        backdrop-filter: blur(10px);
         &:hover {
             background-color: initial;
         }

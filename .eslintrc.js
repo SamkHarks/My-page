@@ -8,8 +8,6 @@ module.exports = {
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
-        "prettier",
-        "plugin:prettier/recommended"
     ],
     "parser": '@typescript-eslint/parser',
     "parserOptions": {
@@ -20,7 +18,7 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react", "jest", "import","@typescript-eslint", "prettier"
+        "react", "jest", "import","@typescript-eslint"
     ],
     "rules": {
         "indent": [
@@ -47,7 +45,6 @@ module.exports = {
         "import/named": "error",
         "import/default": "error",
         "import/namespace": "error",
-        "prettier/prettier": "error"
     },
     "settings": {
       "import/resolver": {

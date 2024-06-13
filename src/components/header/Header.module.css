@@ -154,7 +154,7 @@
     position: relative;
     padding-bottom: var(--spacing-XXXS);
     cursor: pointer;
-    font-family: 'Comic Sans MS', 'Brush Script MT', var(--font-family-primary);
+    font-family: var(--font-family-secondary);
 }
   
 .li_item:hover {

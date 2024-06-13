@@ -137,3 +137,51 @@ export const useFetchData = <T>(path: string) => {
 
   return React.useMemo(() => service, [service]);
 };
+
+export const useHeaderObserver = (data: HTMLElement[], setTitle: (value: Section['id']) => void) => {
+  React.useEffect(() => {
+    if (data.length === 0) {
+      return;
+    }
+    const observers = data.map((element) => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const target = entry.target;
+            if (target instanceof HTMLElement) {
+              if (entry.isIntersecting) {
+                setTitle(entry.target.id as unknown as Section['id']);
+              }
+            }
+          });
+        },
+        {
+          threshold: calculateThreshold(element),
+        },
+      );
+      observer.observe(element);
+      return observer;
+    });
+
+    return () => {
+      // Unobserve all elements when the component unmounts
+      data.forEach((item, index) => {
+        observers[index]?.unobserve(item);
+      });
+      // Disconnect all observers when the component unmounts
+      observers.forEach((observer) => {
+        observer?.disconnect();
+      });
+    };
+  }, [data, setTitle]);
+
+};
+
+const calculateThreshold = (element: HTMLElement) => {
+  // Calculate the threshold as a ratio of the viewport height to the section height
+  const threshold = window.innerHeight > element.clientHeight
+    ? (element.clientHeight / window.innerHeight)
+    : (window.innerHeight / element.clientHeight);
+  // Ensure the threshold is between 0 and 1
+  return Math.max(0, Math.min(threshold * 0.5 , 1));
+};

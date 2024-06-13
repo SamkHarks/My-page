@@ -6,6 +6,8 @@ import { RectangleProgress } from "../rectangleProgress/RectangleProgress";
 import styles from "./Header.module.css";
 import { Section } from "../../App";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { getStyle } from "../../utils/utils";
+import { useHeaderObserver } from "../../hooks/hooks";
 
 type HeaderProps = {
   sectionRefs: SectionRefs;
@@ -18,7 +20,11 @@ export const Header = ({ sectionRefs, sections }: HeaderProps) => {
   };
   return (
     <header>
-      <HeaderToggle onClick={onClick} isOpen={isOpen} />
+      <HeaderToggle
+        onClick={onClick}
+        isOpen={isOpen}
+        sections={sections}
+      />
       <HeaderSections
         onClick={onClick}
         sectionRefs={sectionRefs}
@@ -32,7 +38,8 @@ export const Header = ({ sectionRefs, sections }: HeaderProps) => {
 type HeaderToggleProps = {
   isOpen: boolean;
   onClick: () => void;
-};
+  sections: Section[];
+}
 
 const HeaderToggle = (props: HeaderToggleProps) => (
   <div className={styles.sticky_header}>
@@ -40,11 +47,51 @@ const HeaderToggle = (props: HeaderToggleProps) => (
       <RectangleProgress text={"S.H"} size={60} />
       <LanguageSelector />
     </div>
+    <Title sections={props.sections} />
     <div className={styles.container_right}>
       <MenuButton {...props} />
     </div>
   </div>
 );
+
+const isTypeOfElementArray = (data: (HTMLElement| null)[]): data is HTMLElement[] => {
+  return data.every((element) => element && element instanceof HTMLElement);
+};
+
+
+const Title = ({ sections }: Pick<HeaderToggleProps, 'sections'>) => {
+  const [titleId, setTitle] = useState<Section['id']>(sections[0].id);
+  const [data, setData] = useState<HTMLElement[]>([]);
+  const { t } = useTranslation("sections");
+  // Get data from refs
+  React.useEffect(() => {
+    const getData = () => {
+      const elements = sections.map((section) => document.getElementById(section.id));
+      if (isTypeOfElementArray(elements)) {
+        setData(elements);
+      }
+      return;
+    };
+    if (data.length > 0) {
+      return;
+    }
+    const id = setInterval(getData, 1000);
+    return () => clearInterval(id);
+  }, [data, sections]);
+  useHeaderObserver(data, setTitle);
+
+  return (
+    <span
+      style={{
+        alignSelf: "center",
+        fontFamily: getStyle("--font-family-secondary"),
+        fontSize: "1.5rem",
+      }}
+    >
+      {t(titleId)}
+    </span>
+  );
+};
 
 const MenuButton = ({ isOpen, onClick }: HeaderToggleProps) => {
   const [isPressed, setIsPressed] = React.useState(false);

@@ -25,8 +25,8 @@ type Props = {
 const SectionWrapper = ({ section, sectionRefs, children }: Props) => {
   const { t } = useTranslation("sections");
   return (
-    <div ref={sectionRefs[section.id]} className={styles.section}>
-      <h1 className={styles.section_title}>{t(section.id)}</h1>
+    <div id={section.id} ref={sectionRefs[section.id]} className={styles.section}>
+      <h1 className={styles.section_title}>{`\u00B7${t(section.id)}\u00B7`}</h1>
       <div className={"section_content"}>{children}</div>
     </div>
   );

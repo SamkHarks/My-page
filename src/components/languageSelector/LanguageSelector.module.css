@@ -4,17 +4,18 @@
 }
 
 .small_button {
+    -webkit-tap-highlight-color: transparent;
     background-color: transparent;
-    border: 2px solid var(--color-cyan-secondary);
+    border: 2px solid var(--background-color-primary);
     border-radius: 8px;
     width: 40px;
     height: 30px;
     color: var(--text-color-primary);
     cursor: pointer;
     transition: background-color 0.3s ease;
-
+    font-family: var(--font-family-secondary);
     &:hover {
-        background-color: var(--color-darkCyan-secondary);
+        border-color: var(--color-cyan-secondary);
     }
 }
 

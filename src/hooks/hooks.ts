@@ -138,50 +138,46 @@ export const useFetchData = <T>(path: string) => {
   return React.useMemo(() => service, [service]);
 };
 
-export const useHeaderObserver = (data: HTMLElement[], setTitle: (value: Section['id']) => void) => {
+export const useHeaderObserver = (data: HTMLElement[], setTitle: React.Dispatch<React.SetStateAction<"home" | "about" | "skills" | "contact">>) => {
   React.useEffect(() => {
     if (data.length === 0) {
       return;
     }
-    const observers = data.map((element) => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            const target = entry.target;
-            if (target instanceof HTMLElement) {
-              if (entry.isIntersecting) {
-                setTitle(entry.target.id as unknown as Section['id']);
-              }
+    let maxEntry: IntersectionObserverEntry | null = null;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (!maxEntry || entry.intersectionRatio > maxEntry.intersectionRatio) {
+              maxEntry = entry;
+            } else if (maxEntry.target === entry.target) {
+              maxEntry = entry;
             }
-          });
-        },
-        {
-          threshold: calculateThreshold(element),
-        },
-      );
-      observer.observe(element);
-      return observer;
-    });
+          }
+        });
+        if (maxEntry) {
+          setTitle((prev) => {
+            if (maxEntry && prev !== maxEntry.target.id) {
+              return maxEntry.target.id as unknown as Section['id'];
+            }
+            return prev;
+          }
+          );
+        }
+      },
+      {
+        threshold: [0, 0.2, 0.4, 0.6, 0.8, 1],
+      }
+    );
+
+
+    data.forEach((element) => observer.observe(element));
 
     return () => {
       // Unobserve all elements when the component unmounts
-      data.forEach((item, index) => {
-        observers[index]?.unobserve(item);
-      });
-      // Disconnect all observers when the component unmounts
-      observers.forEach((observer) => {
-        observer?.disconnect();
-      });
+      data.forEach((element) => observer.unobserve(element));
+      // Disconnect the observer when the component unmounts
+      observer.disconnect();
     };
   }, [data, setTitle]);
-
-};
-
-const calculateThreshold = (element: HTMLElement) => {
-  // Calculate the threshold as a ratio of the viewport height to the section height
-  const threshold = window.innerHeight > element.clientHeight
-    ? (element.clientHeight / window.innerHeight)
-    : (window.innerHeight / element.clientHeight);
-  // Ensure the threshold is between 0 and 1
-  return Math.max(0, Math.min(threshold * 0.5 , 1));
 };

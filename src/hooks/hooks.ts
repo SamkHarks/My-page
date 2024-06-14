@@ -166,7 +166,7 @@ export const useHeaderObserver = (data: HTMLElement[], setTitle: React.Dispatch<
         }
       },
       {
-        threshold: [0, 0.2, 0.4, 0.6, 0.8, 1],
+        threshold: [0, 0.1, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
       }
     );
 

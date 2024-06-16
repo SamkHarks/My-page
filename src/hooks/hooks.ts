@@ -138,7 +138,7 @@ export const useFetchData = <T>(path: string) => {
   return React.useMemo(() => service, [service]);
 };
 
-export const useHeaderObserver = (data: HTMLElement[], setTitle: React.Dispatch<React.SetStateAction<"home" | "about" | "skills" | "contact">>) => {
+export const useHeaderObserver = (data: HTMLElement[], setTitleId: React.Dispatch<React.SetStateAction<"home" | "about" | "skills" | "contact">>) => {
   React.useEffect(() => {
     if (data.length === 0) {
       return;
@@ -156,7 +156,7 @@ export const useHeaderObserver = (data: HTMLElement[], setTitle: React.Dispatch<
           }
         });
         if (maxEntry) {
-          setTitle((prev) => {
+          setTitleId((prev) => {
             if (maxEntry && prev !== maxEntry.target.id) {
               return maxEntry.target.id as unknown as Section['id'];
             }
@@ -179,5 +179,5 @@ export const useHeaderObserver = (data: HTMLElement[], setTitle: React.Dispatch<
       // Disconnect the observer when the component unmounts
       observer.disconnect();
     };
-  }, [data, setTitle]);
+  }, [data, setTitleId]);
 };

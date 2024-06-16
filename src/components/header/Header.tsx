@@ -19,17 +19,19 @@ export const Header = ({ sectionRefs, sections }: HeaderProps) => {
   };
   return (
     <header>
-      <HeaderToggle
-        onClick={onClick}
-        isOpen={isOpen}
-        sections={sections}
-      />
-      <HeaderSections
-        onClick={onClick}
-        sectionRefs={sectionRefs}
-        isOpen={isOpen}
-        sections={sections}
-      />
+      <SectionIdWrapper>
+        <HeaderToggle
+          onClick={onClick}
+          isOpen={isOpen}
+          sections={sections}
+        />
+        <HeaderSections
+          onClick={onClick}
+          sectionRefs={sectionRefs}
+          isOpen={isOpen}
+          sections={sections}
+        />
+      </SectionIdWrapper>
     </header>
   );
 };
@@ -46,20 +48,32 @@ const HeaderToggle = (props: HeaderToggleProps) => (
       <RectangleProgress text={"S.H"} size={60} />
       <LanguageSelector />
     </div>
-    <Title sections={props.sections} />
+    <Title sections={props.sections} isOpen={props.isOpen} />
     <div className={styles.container_right}>
       <MenuButton {...props} />
     </div>
   </div>
 );
 
+type ContextProps = {titleId: Section['id'], setTitleId: React.Dispatch<React.SetStateAction<"home" | "about" | "skills" | "contact">>}
+const IdContext = React.createContext<ContextProps>({} as ContextProps);
+
+const SectionIdWrapper = ({ children }: { children: React.ReactNode }) => {
+  const [titleId, setTitleId] = useState<Section['id']>('home');
+  return (
+    <IdContext.Provider value={{ titleId, setTitleId }}>
+      {children}
+    </IdContext.Provider>
+  );
+};
+
 const isTypeOfElementArray = (data: (HTMLElement| null)[]): data is HTMLElement[] => {
   return data.every((element) => element && element instanceof HTMLElement);
 };
 
 
-const Title = ({ sections }: Pick<HeaderToggleProps, 'sections'>) => {
-  const [titleId, setTitle] = useState<Section['id']>(sections[0].id);
+const Title = ({ sections, isOpen }: Omit<HeaderToggleProps, 'onClick'>) => {
+  const { titleId, setTitleId } = React.useContext(IdContext);
   const [data, setData] = useState<HTMLElement[]>([]);
   const { t } = useTranslation("sections");
   // Get data from refs
@@ -77,10 +91,10 @@ const Title = ({ sections }: Pick<HeaderToggleProps, 'sections'>) => {
     const id = setInterval(getData, 1000);
     return () => clearInterval(id);
   }, [data, sections]);
-  useHeaderObserver(data, setTitle);
+  useHeaderObserver(data, setTitleId);
 
   return (
-    <span className={styles.header_title}>
+    <span style={isOpen ? { opacity: 0 } : {}} className={styles.header_title}>
       {t(titleId)}
     </span>
   );
@@ -122,6 +136,7 @@ const HeaderSections = ({
   sections,
 }: HeaderSectionProps) => {
   const { t } = useTranslation("sections");
+  const { titleId } = React.useContext(IdContext);
   const scrollToSection = (sectionId: Section["id"]) => {
     const section = sectionRefs[sectionId];
     if (section.current) {
@@ -138,6 +153,7 @@ const HeaderSections = ({
           return (
             <li
               key={section.id}
+              style={section.id === titleId ? { color: "var(--color-cyan-secondary)" } : {}}
               className={styles.li_item}
               onClick={() => scrollToSection(section.id)}
             >

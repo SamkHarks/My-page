@@ -6,7 +6,6 @@ import { RectangleProgress } from "../rectangleProgress/RectangleProgress";
 import styles from "./Header.module.css";
 import { Section } from "../../App";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { getStyle } from "../../utils/utils";
 import { useHeaderObserver } from "../../hooks/hooks";
 
 type HeaderProps = {
@@ -81,13 +80,7 @@ const Title = ({ sections }: Pick<HeaderToggleProps, 'sections'>) => {
   useHeaderObserver(data, setTitle);
 
   return (
-    <span
-      style={{
-        alignSelf: "center",
-        fontFamily: getStyle("--font-family-secondary"),
-        fontSize: "1.5rem",
-      }}
-    >
+    <span className={styles.header_title}>
       {t(titleId)}
     </span>
   );

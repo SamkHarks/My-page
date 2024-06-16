@@ -23,6 +23,15 @@
     border-bottom: 2px solid var(--color-beige-secondary);
 }
 
+.header_title {
+    align-self: center;
+    font-family: var(--font-family-secondary);
+    font-size: 1.5rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .container_left {
     display: flex;
     align-items: center;

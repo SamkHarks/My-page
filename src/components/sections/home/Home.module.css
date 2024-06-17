@@ -8,6 +8,7 @@
 
 .title {
     font-size: var(--font-size-XL);
+    font-family: var(--font-family-secondary);
     flex-wrap: wrap;
     flex-direction: row;
     flex-shrink: 1;

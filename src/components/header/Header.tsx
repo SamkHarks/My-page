@@ -76,7 +76,7 @@ const Title = ({ sections, isOpen }: Omit<HeaderToggleProps, 'onClick'>) => {
   const { titleId, setTitleId } = React.useContext(IdContext);
   const [data, setData] = useState<HTMLElement[]>([]);
   const { t } = useTranslation("sections");
-  // Get data from refs
+
   React.useEffect(() => {
     const getData = () => {
       const elements = sections.map((section) => document.getElementById(section.id));
@@ -121,7 +121,7 @@ const MenuButton = ({ isOpen, onClick }: HeaderToggleProps) => {
         className={`${styles.hamburger_icon} ${isPressed ? styles.animate : ""}`}
       />
       <span className={styles.button_text}>
-        {isOpen ? t("close") : t("open")}
+        {t(isOpen ? "close" : "menu")}
       </span>
     </button>
   );

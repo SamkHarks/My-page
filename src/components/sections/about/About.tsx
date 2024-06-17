@@ -1,5 +1,5 @@
 import React from "react";
-import me from "../../../images/Sami.jpeg";
+import me from "../../../images/varialheel.jpeg";
 import { useTranslation } from "react-i18next";
 import styles from "./About.module.css";
 

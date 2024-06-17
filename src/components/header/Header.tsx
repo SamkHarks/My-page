@@ -121,7 +121,7 @@ const MenuButton = ({ isOpen, onClick }: HeaderToggleProps) => {
         className={`${styles.hamburger_icon} ${isPressed ? styles.animate : ""}`}
       />
       <span className={styles.button_text}>
-        {t(isOpen ? "close" : "menu")}
+        {t(isOpen ? "close" : "open")}
       </span>
     </button>
   );

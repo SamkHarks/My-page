@@ -19,14 +19,16 @@ export const Home = () => {
       <h2 className={styles.sub_title}>{`${t("education")} & ${t("work")}`}</h2>
       <p className={styles.text}>{t("shortIntro")}</p>
       <span className={styles.divider} />
-      <p className={styles.intro}>
-        <img className={styles.sk8_image} src={sk8} alt="picture of me" />
-        {t("intro")}
-      </p>
-      <div className={styles.button_container}>
-        <a className={styles.button} href={link} download={download}>
-          {t("resume")}
-        </a>
+      <div>
+        <p className={styles.intro}>
+          <img className={styles.sk8_image} src={sk8} alt="picture of me" />
+          {t("intro")}
+        </p>
+        <div className={styles.button_container}>
+          <a className={styles.button} href={link} download={download}>
+            {t("resume")}
+          </a>
+        </div>
       </div>
     </div>
   );

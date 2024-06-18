@@ -53,7 +53,7 @@
         :global(.section_content) {
            width: 80%;
            opacity: 0;
-           transition: opacity 1s, transform 1s;
+           transition: opacity 2s, transform 2s ease;
         }
         &:nth-child(even) {
             background: linear-gradient(to left, var(--background-color-primary) 2%, var(--color-darkCyan-secondary) 35%,var(--color-dark-secondary));

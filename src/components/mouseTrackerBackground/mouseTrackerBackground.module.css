@@ -1,0 +1,43 @@
+.container {
+    overflow: hidden;
+    position: relative;
+    transition-duration: 700ms;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+}
+
+.container_inner {
+    pointer-events: none;
+}
+
+.gradient, .overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transition: opacity 1s;
+    background-repeat: no-repeat;
+}
+
+.gradient {
+    opacity: 1;
+}
+
+.container:hover .gradient {
+    opacity: 0.5;
+}
+
+.overlay {
+    opacity: 0;
+    mix-blend-mode: overlay;
+}
+
+.container:hover .overlay {
+    opacity: 1; 
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .container_inner {
+      display: none;
+    }
+}

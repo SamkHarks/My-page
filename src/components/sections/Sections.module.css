@@ -39,7 +39,6 @@
         background: radial-gradient(circle at center 70%, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.7)),var(--color-darkCyan-secondary);
         justify-content: center;
         height: 500px;
-        margin-bottom: -80px;
     }
     :global(.section_content.animate.animate) {
         transform: scale(1);

@@ -49,13 +49,14 @@
     .section {
         margin-left: var(--spacing-L);
         margin-right: var(--spacing-L);
+        border-bottom: 2px solid var(--background-color-secondary);
         :global(.section_content) {
            width: 80%;
            opacity: 0;
            transition: opacity 2s, transform 2s ease;
         }
         &:nth-child(even) {
-            background: linear-gradient(to left, var(--background-color-primary) 2%, var(--color-darkCyan-secondary) 35%,var(--color-dark-secondary));
+            background: linear-gradient(to left, var(--background-color-secondary), var(--color-darkestCyan-secondary));
             border-top-left-radius: 20px;
             border-bottom-left-radius: 20px;
             :global(.section_content) {
@@ -66,7 +67,7 @@
             }
         }
         &:nth-child(odd) {
-            background: linear-gradient(to right, var(--background-color-primary) 2%, var(--color-darkCyan-secondary) 35%, var(--color-dark-secondary));
+            background: linear-gradient(to right, var(--background-color-secondary), var(--color-darkestCyan-secondary));
             border-top-right-radius: 20px;
             border-bottom-right-radius: 20px;
             :global(.section_content) {

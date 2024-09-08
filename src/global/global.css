@@ -3,7 +3,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: var(--background-color-primary);
+    background-color: var(--background-color-secondary);
     font-family: var(--font-family-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

@@ -22,6 +22,7 @@
     /* Colors */
     --color-cyan-secondary: cyan;
     --color-darkCyan-secondary: darkCyan;
+    --color-darkestCyan-secondary: rgb(0, 91, 91);
     --color-orangeRed-secondary: orangeRed;
     --color-red-secondary: red;
     --color-dark-secondary: rgba(19, 19, 23);

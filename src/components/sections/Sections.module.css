@@ -12,6 +12,7 @@
         font-family: var(--font-family-secondary);
         margin-bottom: 10px;
         margin-top: 10px;
+        z-index: 1;
     }
 
     :global(.section_content) {
@@ -56,7 +57,7 @@
            transition: opacity 2s, transform 2s ease;
         }
         &:nth-child(even) {
-            background: linear-gradient(to left, var(--background-color-secondary), var(--color-darkestCyan-secondary));
+            background: linear-gradient(to left, var(--background-color-secondary), var(--color-lightDarkCyan-secondary));
             border-top-left-radius: 20px;
             border-bottom-left-radius: 20px;
             :global(.section_content) {
@@ -67,7 +68,7 @@
             }
         }
         &:nth-child(odd) {
-            background: linear-gradient(to right, var(--background-color-secondary), var(--color-darkestCyan-secondary));
+            background: linear-gradient(to right, var(--background-color-secondary), var(--color-lightDarkCyan-secondary));
             border-top-right-radius: 20px;
             border-bottom-right-radius: 20px;
             :global(.section_content) {

@@ -6,7 +6,7 @@
     top: 0;
     right: 0;
     left:0;
-    z-index: 2;
+    z-index: 3;
 }
 
 .header_sections {
@@ -19,7 +19,7 @@
     padding-top: 80px;
     padding-bottom: 80px;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
     border-bottom: 2px solid var(--color-beige-secondary);
 }
 

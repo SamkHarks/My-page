@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./mouseTrackerBackground.module.css";
 
-const GRADIENT_SIZE = 250;
+const GRADIENT_SIZE = 450;
 
 export const MouseTrackerBackground = ({ children }: React.PropsWithChildren) => {
   const [mouse, setMouse] = React.useState({ x: 0, y: 0 });
@@ -12,7 +12,7 @@ export const MouseTrackerBackground = ({ children }: React.PropsWithChildren) =>
     setMouse({ x: clientX - left, y: clientY - top });
   }
   // Generate the mask image style
-  const maskImage = `radial-gradient(${GRADIENT_SIZE}px at ${mouse.x}px ${mouse.y}px, rgba(255,255,255,0.7), transparent)`;
+  const maskImage = `radial-gradient(${GRADIENT_SIZE}px at ${mouse.x}px ${mouse.y}px, transparent, rgba(0,0,0,0.45) )`;
   const style = {
     backgroundImage: maskImage,
     WebkitMaskImage: maskImage, // For Safari compatibility

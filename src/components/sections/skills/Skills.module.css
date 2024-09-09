@@ -20,7 +20,6 @@
         }
 
         &:nth-child(3) {
-            background-color: rgba(0,0,0,0.3);
             h3::after {
                 content: ":";
                 color: var(--color-cyan-secondary);
@@ -65,6 +64,7 @@
                 &:hover {
                     transform: scale(1.04);
                     box-shadow: 0 0 5px var(--color-grey-secondary);
+                    background-color: rgba(0,0,0,0.09);
                 }
                 .expanded {
                     padding: 2px;
@@ -80,6 +80,7 @@
 @media (hover: none) and (pointer: coarse) {
     .skills_container .category_container .items_container .button:hover {
         transform: none;
+        background-color: transparent;
     }
 }
 

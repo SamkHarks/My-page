@@ -148,9 +148,11 @@ export const useHeaderObserver = (data: HTMLElement[], setTitleId: React.Dispatc
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            if (!maxEntry || entry.intersectionRatio >= maxEntry.intersectionRatio) {
+            if (!maxEntry || entry.intersectionRatio > maxEntry.intersectionRatio) {
               maxEntry = entry;
             } else if (maxEntry.target === entry.target) {
+              maxEntry = entry;
+            } else if (entries.find(e => e.target.id === maxEntry?.target.id && !e.isIntersecting)) {
               maxEntry = entry;
             }
           }

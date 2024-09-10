@@ -12,7 +12,7 @@ export const MouseTrackerBackground = ({ children }: React.PropsWithChildren) =>
     setMouse({ x: clientX - left, y: clientY - top });
   }
   // Generate the mask image style
-  const maskImage = `radial-gradient(${GRADIENT_SIZE}px at ${mouse.x}px ${mouse.y}px, transparent, rgba(0,0,0,0.45) )`;
+  const maskImage = `radial-gradient(${GRADIENT_SIZE}px at ${mouse.x}px ${mouse.y}px, rgba(0,0,80,0.3) , rgba(0,0,80,0.45) )`;
   const style = {
     backgroundImage: maskImage,
     WebkitMaskImage: maskImage, // For Safari compatibility

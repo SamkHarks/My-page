@@ -28,14 +28,14 @@ const Renderer = ({ data }: DataProps<SectionResponse>) => {
   const { sections } = data;
   const sectionRefs = useRefs(sections);
   return (
-    <MouseTrackerBackground>
-      <div>
-        <Header sectionRefs={sectionRefs} sections={sections} />
-        <Suspense fallback={<Spinner size={"medium"} />}>
+    <div>
+      <Header sectionRefs={sectionRefs} sections={sections} />
+      <Suspense fallback={<Spinner size={"medium"} />}>
+        <MouseTrackerBackground>
           <Sections sectionRefs={sectionRefs} sections={sections} />
-        </Suspense>
-      </div>
-    </MouseTrackerBackground>
+        </MouseTrackerBackground>
+      </Suspense>
+    </div>
   );
 };
 

@@ -183,3 +183,24 @@ export const useHeaderObserver = (data: HTMLElement[], setTitleId: React.Dispatc
     };
   }, [data, setTitleId]);
 };
+
+export const useTouchDevice = () => {
+  const [isTouchDevice, setIsTouchDevice] = React.useState(!!((navigator.maxTouchPoints || 'ontouchstart' in document.documentElement)));
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia("(pointer: coarse)");
+
+    const handleMediaChange = (event: MediaQueryListEvent) => {
+      setIsTouchDevice(event.matches);
+    };
+
+    setIsTouchDevice(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleMediaChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaChange);
+    };
+  }, []);
+
+  return isTouchDevice;
+};

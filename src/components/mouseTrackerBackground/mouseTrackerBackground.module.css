@@ -35,8 +35,3 @@
     opacity: 1;
 }
 
-@media (hover: none) and (pointer: coarse) {
-    .container_inner {
-      display: none;
-    }
-}

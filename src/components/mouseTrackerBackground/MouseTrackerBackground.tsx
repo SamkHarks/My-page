@@ -7,11 +7,11 @@ const GRADIENT_SIZE = 450;
 export const MouseTrackerBackground = ({ children }: React.PropsWithChildren) => {
   const [mouse, setMouse] = React.useState({ x: 0, y: 0 });
   const isTouchDevice = useTouchDevice();
-  function onMouseMove(event: React.MouseEvent<HTMLDivElement>) {
+  const onMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const { currentTarget, clientX, clientY } = event;
     const { left, top } = currentTarget.getBoundingClientRect();
     setMouse({ x: clientX - left, y: clientY - top });
-  }
+  };
   // Generate the mask image style
   const maskImage = isTouchDevice
     ? `linear-gradient(rgba(0,0,80,0.45), rgba(0,0,80,0.45))`

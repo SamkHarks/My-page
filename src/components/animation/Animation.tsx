@@ -123,7 +123,6 @@ const Animation = (props: Props) => {
 
   // Create WebGL context
   React.useEffect(() => {
-    console.log('effect', props.type);
     if (!canvasRef.current) return;
     const canvas = canvasRef.current;
     const gl = canvas.getContext("webgl2", { alpha: true });

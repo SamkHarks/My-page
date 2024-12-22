@@ -1,6 +1,6 @@
 import React from "react";
 import { Service } from "../../hooks/types";
-import { Spinner } from "../spinner/Spinner";
+import { Loader } from "../loader/Loader";
 
 export type DataProps<T> = {
   data: T;
@@ -21,7 +21,7 @@ export const ServiceData = <T,>({
   switch (service.state) {
     case "IDLE":
     case "LOADING":
-      return <Spinner size={spinnerSize} />;
+      return <Loader size={spinnerSize} />;
     case "SUCCESS":
       return <Renderer data={service.data} />;
     case "FAILURE":

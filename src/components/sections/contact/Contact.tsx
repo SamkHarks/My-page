@@ -3,10 +3,14 @@ import styles from "./Contact.module.css";
 import { AiOutlineMail } from "react-icons/ai";
 import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
+import { Animation } from "../../animation/Animation";
 
 export const Contact = () => {
   return (
     <div className={styles.container}>
+      <div className={styles.canvas}>
+        <Animation type={"zigzag"} numVertices={30} width={window.innerWidth} height={580} />
+      </div>
       <a href="mailto:samikh90@gmail.com" className={styles.icon}>
         <AiOutlineMail size={25} />
       </a>

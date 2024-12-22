@@ -8,7 +8,13 @@ import { Animation } from "../../animation/Animation";
 export const Contact = () => (
   <div>
     <div className={styles.canvas}>
-      <Animation type={"zigzag"} numVertices={30} width={Math.max(window.innerWidth, 1000)} height={580} />
+      <Animation
+        type={"zigzag"}
+        numVertices={30}
+        width={Math.max(window.innerWidth, 1000)}
+        height={580}
+        dynamicColor={true}
+      />
     </div>
     <div className={styles.container}>
       <a href="mailto:samikh90@gmail.com" className={styles.icon}>

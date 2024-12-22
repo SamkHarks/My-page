@@ -3,8 +3,8 @@ import "./App.css";
 import { useFetchData, useRefs } from "./hooks/hooks";
 import { Header } from "./components/header/Header";
 import { DataProps, ServiceData } from "./components/serviceData/ServiceData";
-import { Spinner } from "./components/spinner/Spinner";
 import { MouseTrackerBackground } from "./components/mouseTrackerBackground/MouseTrackerBackground";
+import { Loader } from "./components/loader/Loader";
 const Sections = React.lazy(() => import("./components/sections/Sections"));
 
 export type Section = {
@@ -30,7 +30,7 @@ const Renderer = ({ data }: DataProps<SectionResponse>) => {
   return (
     <div>
       <Header sectionRefs={sectionRefs} sections={sections} />
-      <Suspense fallback={<Spinner size={"medium"} />}>
+      <Suspense fallback={<Loader size={"medium"} />}>
         <MouseTrackerBackground>
           <Sections sectionRefs={sectionRefs} sections={sections} />
         </MouseTrackerBackground>

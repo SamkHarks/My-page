@@ -103,7 +103,6 @@ type Props = {
   numVertices?: number;
   width?: number;
   height?: number;
-  styles?: React.CSSProperties;
 }
 
 const Animation = (props: Props) => {
@@ -121,6 +120,7 @@ const Animation = (props: Props) => {
   const allowBorders = props.type === 'circle';
   const isBorderMode = React.useRef<boolean>(false);
 
+  const isDeleted = program.current === null || vShader.current === null || fShader.current === null || vBuffer.current === null || cBuffer.current === null;
   // Create WebGL context
   React.useEffect(() => {
     if (!canvasRef.current) return;
@@ -263,7 +263,9 @@ const Animation = (props: Props) => {
     // Draw the triangle
     const drawType = props.type === 'circle' ? gl.TRIANGLE_FAN : gl.LINE_STRIP;
     const verticesPerColumn = (vertices.length / 3) / COLUMNS;
+    let animationFrameId: number;
     const render = (time: number) => {
+      if (isDeleted) return; // Program has been deleted
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.useProgram(shaderProgram);
       gl.uniform1f(u_time, time * 0.001);
@@ -276,7 +278,7 @@ const Animation = (props: Props) => {
         }
       }
 
-      requestAnimationFrame(render);
+      animationFrameId = requestAnimationFrame(render);
     };
     requestAnimationFrame(render);
 
@@ -320,21 +322,39 @@ const Animation = (props: Props) => {
     return () => {
       if (!gl) return;
       // Cleanup
-      console.log('cleanup');
+      cancelAnimationFrame(animationFrameId);
+      // Unset the current program before deleting it
+      gl.useProgram(null);
+
       gl.clear(gl.COLOR_BUFFER_BIT);
-      /*if (vShader.current) gl.deleteShader(vShader.current);
-      if (fShader.current) gl.deleteShader(fShader.current);
-      if (program.current) gl.deleteProgram(program.current);
-      if (vBuffer.current) gl.deleteBuffer(vBuffer.current);
-      if (cBuffer.current) gl.deleteBuffer(cBuffer.current);
-      */
+      if (vShader.current) {
+
+        gl.deleteShader(vShader.current);
+        vShader.current = null;
+      }
+      if (fShader.current) {
+        gl.deleteShader(fShader.current);
+        fShader.current = null;
+      }
+      if (program.current) {
+        gl.deleteProgram(program.current);
+        program.current = null;
+      }
+      if (vBuffer.current) {
+        gl.deleteBuffer(vBuffer.current);
+        vBuffer.current = null;
+      }
+      if (cBuffer.current) {
+        gl.deleteBuffer(cBuffer.current);
+        cBuffer.current = null;
+      }
 
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('scrollend', handleScrollEnd);
     };
 
-  }, []);
+  }, [isDeleted, props.type, allowWierdMode, numberOfVertices, width, height]);
 
   return (
     <canvas

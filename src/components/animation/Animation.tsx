@@ -53,12 +53,9 @@ const fragmentShaderSource = `
           && xPos + 0.0013 > uv.x
           && xPos - 0.0013 < uv.x
         ) {
-          gl_FragColor =  v_Color; //vec4(0.0, 1.0, 1.0, 1.0);
+          gl_FragColor = v_Color;
           break;
-        }// else {
-        // gl_FragColor = vec4(1.0, 1.0, 1.0, 1);
-        // continue;
-        //} //transparent line 
+        }
       }
     
     // Circle, u_Type == 1

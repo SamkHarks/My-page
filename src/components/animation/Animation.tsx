@@ -21,6 +21,7 @@ const fragmentShaderSource = `
   uniform bool u_Border; // Border mode
   uniform int u_Type; // Type of shape, 0 = zigzag, 1 = circle
   uniform vec2 u_Resolution;
+  uniform bool u_Dynamic; // 0 = only one color, 1 = change color over time
   float borderSize = 0.05;
 
   vec3 getColors(float t) {
@@ -53,7 +54,7 @@ const fragmentShaderSource = `
           && xPos + 0.0013 > uv.x
           && xPos - 0.0013 < uv.x
         ) {
-          gl_FragColor = v_Color;
+          gl_FragColor = u_Dynamic ? v_Color : vec4(0.0, 0.8, 0.8, 1.0);
           break;
         }
       }
@@ -99,15 +100,16 @@ const fragmentShaderSource = `
 
 type Props = {
   type: 'circle' | 'zigzag';
+  width: number;
+  height: number;
   allowWierdMode?: boolean;
   numVertices?: number;
-  width?: number;
-  height?: number;
+  dynamicColor?: boolean;
 }
 
 const Animation = (props: Props) => {
-  const width = props.width || 200;
-  const height = props.height || 200;
+  const width = props.width;
+  const height = props.height;
   const numberOfVertices = props.numVertices || (props.type === 'circle' ? 50 : 20);
   const allowWierdMode = props.allowWierdMode || false;
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
@@ -119,6 +121,7 @@ const Animation = (props: Props) => {
   const cBuffer = React.useRef<WebGLBuffer | null>(null);
   const allowBorders = props.type === 'circle';
   const isBorderMode = React.useRef<boolean>(false);
+  const isDynamicColor = props.dynamicColor || false;
 
   const isDeleted = program.current === null || vShader.current === null || fShader.current === null || vBuffer.current === null || cBuffer.current === null;
   // Create WebGL context
@@ -250,6 +253,10 @@ const Animation = (props: Props) => {
     gl.useProgram(shaderProgram);
     gl.uniform1i(u_type, props.type === 'circle' ? 1 : 0);
 
+    const u_dynamic = gl.getUniformLocation(shaderProgram, 'u_Dynamic');
+    gl.useProgram(shaderProgram);
+    gl.uniform1i(u_dynamic, isDynamicColor ? 1 : 0);
+
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
     const a_Position = gl.getAttribLocation(shaderProgram, "a_Position");
     gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, 0, 0);
@@ -328,7 +335,6 @@ const Animation = (props: Props) => {
 
       gl.clear(gl.COLOR_BUFFER_BIT);
       if (vShader.current) {
-
         gl.deleteShader(vShader.current);
         vShader.current = null;
       }
@@ -354,7 +360,15 @@ const Animation = (props: Props) => {
       window.removeEventListener('scrollend', handleScrollEnd);
     };
 
-  }, [isDeleted, props.type, allowWierdMode, numberOfVertices, width, height]);
+  }, [
+    isDeleted,
+    props.type,
+    allowWierdMode,
+    numberOfVertices,
+    width,
+    height,
+    isDynamicColor
+  ]);
 
   return (
     <canvas

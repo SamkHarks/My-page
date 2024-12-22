@@ -5,12 +5,12 @@ import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
 import { Animation } from "../../animation/Animation";
 
-export const Contact = () => {
-  return (
+export const Contact = () => (
+  <div>
+    <div className={styles.canvas}>
+      <Animation type={"zigzag"} numVertices={30} width={Math.max(window.innerWidth, 1000)} height={580} />
+    </div>
     <div className={styles.container}>
-      <div className={styles.canvas}>
-        <Animation type={"zigzag"} numVertices={30} width={window.innerWidth} height={580} />
-      </div>
       <a href="mailto:samikh90@gmail.com" className={styles.icon}>
         <AiOutlineMail size={25} />
       </a>
@@ -29,5 +29,6 @@ export const Contact = () => {
         <FaLinkedin size={25} className={styles.icon} />
       </a>
     </div>
-  );
-};
+  </div>
+);
+

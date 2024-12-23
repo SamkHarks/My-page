@@ -22,7 +22,7 @@ const fragmentShaderSource = `
   uniform int u_Type; // Type of shape, 0 = zigzag, 1 = circle
   uniform vec2 u_Resolution;
   uniform bool u_Dynamic; // 0 = only one color, 1 = change color over time
-  float borderSize = 0.05;
+  uniform float u_Width;
 
   vec3 getColors(float t) {
     vec3 a = vec3(0.5);
@@ -62,15 +62,21 @@ const fragmentShaderSource = `
     // Circle, u_Type == 1
     } else {
       float d = length(uv);
-      if (u_Border && 0.45 < d && d < 0.8 ) {
+      float angle = atan(uv.y, uv.x);
+      // Convert the angle to degrees (0 to 360)
+      float degrees = degrees(angle);
+      if (degrees < 0.0) {
+        degrees += 360.0;
+      }
+      if (
+        u_Border && 
+        (u_Width > 768.0 && 0.45 < d && d < 0.8) ||
+        (u_Width <= 768.0 && u_Width > 400.0 && 0.7 < d && d < 0.85 && (degrees > 100.0)) ||
+        (u_Width <= 400.0 && (degrees < 90.0 || degrees > 225.0 || uv.y > -0.05 && uv.y < 0.05  || d < 0.9))
+      ) { 
         gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
         return; // transparent areas inside the circle
       }
-
-      //if (u_Border && 0.41 < d && d < 0.45 ) { //d > 0.96) {
-      //  gl_FragColor = vec4(1.0, 1.0, 1.0, 0.0); //vec4(1.0, 1.0, 1.0, 1.0);
-      //  return; white borders
-      //}
 
       if (!u_Wierd) {
         vec3 colors = getColors(u_Time * 0.15);
@@ -257,6 +263,10 @@ const Animation = (props: Props) => {
     gl.useProgram(shaderProgram);
     gl.uniform1i(u_dynamic, isDynamicColor ? 1 : 0);
 
+    const u_width = gl.getUniformLocation(shaderProgram, 'u_Width');
+    gl.useProgram(shaderProgram);
+    gl.uniform1f(u_width, window.innerWidth);
+
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
     const a_Position = gl.getAttribLocation(shaderProgram, "a_Position");
     gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, 0, 0);
@@ -306,16 +316,16 @@ const Animation = (props: Props) => {
 
     // Control border mode in resize event
     const handleResize = () => {
+      gl.useProgram(shaderProgram);
+      gl.uniform1f(u_width, window.innerWidth);
       if (!allowBorders) return;
       if (window.innerWidth <= 400) {
         if (isBorderMode.current) {
-          gl.useProgram(shaderProgram);
           gl.uniform1i(u_border, 0);
           isBorderMode.current = false;
         }
       } else if (window.innerWidth > 400) {
         if (!isBorderMode.current) {
-          gl.useProgram(shaderProgram);
           gl.uniform1i(u_border, 1);
           isBorderMode.current = true;
         }

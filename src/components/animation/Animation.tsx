@@ -17,15 +17,15 @@ const fragmentShaderSource = `
   precision mediump float;
   varying vec4 v_Color;
   uniform float u_Time;
-  uniform bool u_Wierd; // Wierd mode
-  uniform bool u_Border; // Border mode
+  uniform bool u_Wierd; // Wierd mode, create wierd patterns and color effects
+  uniform bool u_Animate; // Animate the shape
   uniform int u_Type; // Type of shape, 0 = zigzag, 1 = circle
   uniform vec2 u_Resolution;
   uniform bool u_Dynamic; // 0 = only one color, 1 = change color over time
   uniform float u_Width;
 
   vec3 getColors(float t) {
-    vec3 a = vec3(0.5);
+    vec3 a = vec3(0.3);
     vec3 b = vec3(0.2);
     vec3 c = vec3(1.0);
     vec3 d = vec3(0.263, 0.416, 0.557);
@@ -49,7 +49,7 @@ const fragmentShaderSource = `
         float xPos = random(vec2(stableTime, 0.0)) * 2.0 - 1.0;
         float yPosStart = random(vec2(stableTime, 1.0));
         float yPos = (fract(yPosStart + u_Time * speed) * 2.0 - 1.0) * -1.0;  // Subtract to move downwards
-        if (!u_Border && yPos + 0.2 > uv.y
+        if (yPos + 0.2 > uv.y
           && yPos - 0.2 < uv.y
           && xPos + 0.0013 > uv.x
           && xPos - 0.0013 < uv.x
@@ -62,43 +62,52 @@ const fragmentShaderSource = `
     // Circle, u_Type == 1
     } else {
       float d = length(uv);
-      float angle = atan(uv.y, uv.x);
-      // Convert the angle to degrees (0 to 360)
-      float degrees = degrees(angle);
-      if (degrees < 0.0) {
-        degrees += 360.0;
-      }
-      if (
-        u_Border && 
-        (u_Width > 768.0 && 0.45 < d && d < 0.8) ||
-        (u_Width <= 768.0 && u_Width > 400.0 && 0.7 < d && d < 0.85 && (degrees > 100.0)) ||
-        (u_Width <= 400.0 && (degrees < 90.0 || degrees > 225.0 || uv.y > -0.05 && uv.y < 0.05  || d < 0.9))
-      ) { 
-        gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
-        return; // transparent areas inside the circle
-      }
-
-      if (!u_Wierd) {
-        vec3 colors = getColors(u_Time * 0.15);
-        gl_FragColor = vec4(colors, 1);
-        return; // Normal mode, change color over time
-      }
-
-      // Wierd mode, create wierd patterns and color effects
-      vec2 uv0 = uv;
       vec3 finalColor = vec3(0.0);
 
-      for (int i = 0; i < 2; i++) {
-        uv = fract(uv * 1.5) - 0.5;
+      // Wierd mode, create wierd patterns and color effects
+      if (u_Wierd) {
+        vec2 uv0 = uv;
+        for (int i = 0; i < 2; i++) {
+          uv = fract(uv * 1.5) - 0.5;
+          float dist = length(uv);
+          vec3 colors = getColors(length(uv0) + u_Time * 0.3);
+          dist = sin(dist * 10.0 + u_Time) / 10.0;
+          dist = abs(dist);
+          dist = 0.02 / dist;
+          finalColor += colors * dist;
+        }
+        gl_FragColor = vec4(finalColor, 1.0);
 
-        float dist = length(uv);
-        vec3 colors = getColors(length(uv0) + u_Time * 0.3);
-        dist = sin(dist * 10.0 + u_Time) / 10.0;
-        dist = abs(dist);
-        dist = 0.02 / dist;
-        finalColor += colors * dist;
+      // Default mode
+      } else {
+        finalColor = vec3(0.2, 0.42, 0.7); // Default color
+        gl_FragColor = vec4(finalColor, 1);
       }
-      gl_FragColor = vec4(finalColor, 1.0);
+
+      // Add white borders and transparerent areas
+      if (u_Width > 768.0) {
+        gl_FragColor = mix(vec4(1.0,1.0,1.0,1.0), gl_FragColor, smoothstep(0.12, 0.15, abs(d - 0.6)));
+        gl_FragColor = mix(vec4(1.0,1.0,1.0,1.0), gl_FragColor, smoothstep(0.12, 0.15, abs(d - 0.55)));
+        gl_FragColor = mix(vec4(1.0,1.0,1.0,1.0), gl_FragColor, smoothstep(0.12, 0.15, abs(d - 1.06)));
+        gl_FragColor *= smoothstep(0.05, 0.07, abs(d - 0.6));
+
+        
+      } else if (u_Width <= 768.0 && u_Width > 400.0) {
+        gl_FragColor = mix(vec4(1.0,1.0,1.0,1.0), gl_FragColor, smoothstep(0.03, 0.05, abs(d - 0.98)));
+        gl_FragColor = mix(vec4(1.0,1.0,1.0,1.0), gl_FragColor, smoothstep(0.02, 0.04, abs(d - 0.75)));
+        gl_FragColor = mix(vec4(1.0,1.0,1.0,1.0), gl_FragColor, smoothstep(0.03, 0.05, abs(d - 0.65)));
+        gl_FragColor *= smoothstep(0.03, 0.05, abs(d - 0.7));
+          
+      } else if (u_Width <= 400.0) {
+        gl_FragColor = mix(vec4(1.0,1.0,1.0,1.0), gl_FragColor, smoothstep(0.02, 0.04, abs(d - 0.8)));
+        gl_FragColor *= smoothstep(0.02, 0.04, abs(d - 1.0));
+      }
+
+      // Animate the shape
+      if (u_Animate) {
+        gl_FragColor *= smoothstep(0.12, 0.15,sin(2.0 * d + 3.0*pow(sin(u_Time*0.5),2.0)) / 2.0);
+      }
+      return;
     }
     
   }
@@ -125,10 +134,8 @@ const Animation = (props: Props) => {
   const program = React.useRef<WebGLProgram | null>(null);
   const vBuffer = React.useRef<WebGLBuffer | null>(null);
   const cBuffer = React.useRef<WebGLBuffer | null>(null);
-  const allowBorders = props.type === 'circle';
-  const isBorderMode = React.useRef<boolean>(false);
   const isDynamicColor = props.dynamicColor || false;
-
+  const animate = React.useRef<boolean>(false);
   const isDeleted = program.current === null || vShader.current === null || fShader.current === null || vBuffer.current === null || cBuffer.current === null;
   // Create WebGL context
   React.useEffect(() => {
@@ -247,9 +254,9 @@ const Animation = (props: Props) => {
     gl.useProgram(shaderProgram);
     gl.uniform1i(u_wierd, 0);
 
-    const u_border = gl.getUniformLocation(shaderProgram, 'u_Border');
+    const u_animate = gl.getUniformLocation(shaderProgram, 'u_Animate');
     gl.useProgram(shaderProgram);
-    gl.uniform1i(u_border, allowBorders && window.innerWidth > 400 ? 1 : 0);
+    gl.uniform1i(u_animate, 0);
 
     const u_resolution = gl.getUniformLocation(shaderProgram, 'u_Resolution');
     gl.useProgram(shaderProgram);
@@ -278,15 +285,24 @@ const Animation = (props: Props) => {
     gl.enableVertexAttribArray(a_Color);
 
     // Draw the triangle
-    const drawType = props.type === 'circle' ? gl.TRIANGLE_FAN : gl.LINE_STRIP;
+    const isCircle = props.type === 'circle';
+    const drawType = isCircle ? gl.TRIANGLE_FAN : gl.LINE_STRIP;
     const verticesPerColumn = (vertices.length / 3) / COLUMNS;
     let animationFrameId: number;
+    let animationStartTime: DOMHighResTimeStamp | null = null;
+    let elapsedTime = 0;
     const render = (time: number) => {
       if (isDeleted) return; // Program has been deleted
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.useProgram(shaderProgram);
-      gl.uniform1f(u_time, time * 0.001);
-      if (props.type === 'circle') {
+      // Calculate the elapsed time based on the animation start time
+      const startNewTimer = (isCircle && (isWierdMode.current || animate.current));
+      if (startNewTimer && animationStartTime !== null) {
+        elapsedTime = (time - animationStartTime) * 0.001;
+      }
+      // Pass the calculated time to the shader
+      gl.uniform1f(u_time, startNewTimer ? elapsedTime + 0.8 : time * 0.001);
+      if (isCircle) {
         gl.drawArrays(drawType, 0, vertices.length / 3);
       } else {
         for (let j = 0; j < COLUMNS; j++) {
@@ -294,45 +310,55 @@ const Animation = (props: Props) => {
           gl.drawArrays(drawType, start, verticesPerColumn);  // Draw the zigzag column
         }
       }
-
       animationFrameId = requestAnimationFrame(render);
     };
     requestAnimationFrame(render);
-
-    // Control wierd mode in scroll events
-    const handleScroll = () => {
-      if (!allowWierdMode || isWierdMode.current || window.innerWidth <= 400) return; // Already set or not allowed
-      gl.useProgram(shaderProgram);
-      gl.uniform1i(u_wierd, 1);
-      isWierdMode.current = true;
-    };
-
-    const handleScrollEnd = () => {
-      if (!allowWierdMode || !isWierdMode.current) return; // Already set or not allowed
-      gl.useProgram(shaderProgram);
-      gl.uniform1i(u_wierd, 0);
-      isWierdMode.current = false;
-    };
 
     // Control border mode in resize event
     const handleResize = () => {
       gl.useProgram(shaderProgram);
       gl.uniform1f(u_width, window.innerWidth);
-      if (!allowBorders) return;
-      if (window.innerWidth <= 400) {
-        if (isBorderMode.current) {
-          gl.uniform1i(u_border, 0);
-          isBorderMode.current = false;
-        }
-      } else if (window.innerWidth > 400) {
-        if (!isBorderMode.current) {
-          gl.uniform1i(u_border, 1);
-          isBorderMode.current = true;
-        }
-      }
+    };
+
+    const setAnimation = (value: boolean) => {
+      if (animate.current === value) return; // Already in the same state
+      gl.useProgram(shaderProgram);
+      gl.uniform1i(u_animate, value ? 1 : 0);
+      animate.current = value;
+      animationStartTime = value ? performance.now() : null;
+    };
+
+    // Control wierd mode in scroll events
+    let isScrolling = false;
+    const handleScroll = () => {
+      setAnimation(true);
+      isScrolling = true;
+    };
+
+    const handleScrollEnd = () => {
+      setAnimation(isWierdMode.current);
+      isScrolling = false;
+    };
+
+    const handleMouseEnter = () => {
+      if (!allowWierdMode || isWierdMode.current || window.innerWidth <= 400) return; // Already set or not allowed
+      gl.useProgram(shaderProgram);
+      gl.uniform1i(u_wierd, 1);
+      isWierdMode.current = true;
+      setAnimation(true);
+    };
+
+    const handleMouseLeave = () => {
+      if (!allowWierdMode || !isWierdMode.current) return; // Already set or not allowed
+      gl.useProgram(shaderProgram);
+      gl.uniform1i(u_wierd, 0);
+      isWierdMode.current = false;
+      setAnimation(isScrolling);
     };
 
     window.addEventListener('resize', handleResize);
+    document.getElementById('animation-canvas')?.addEventListener('mouseenter', handleMouseEnter);
+    document.getElementById('animation-canvas')?.addEventListener('mouseleave', handleMouseLeave);
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('scrollend', handleScrollEnd);
 
@@ -368,6 +394,8 @@ const Animation = (props: Props) => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('scrollend', handleScrollEnd);
+      document.getElementById('animation-canvas')?.removeEventListener('mouseenter', handleMouseEnter);
+      document.getElementById('animation-canvas')?.removeEventListener('mouseleave', handleMouseLeave);
     };
 
   }, [
@@ -382,6 +410,7 @@ const Animation = (props: Props) => {
 
   return (
     <canvas
+      id={'animation-canvas'}
       ref={canvasRef}
       width={width}
       height={height}

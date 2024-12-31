@@ -29,7 +29,7 @@ const fragmentShaderSource = `
     vec3 b = vec3(0.2);
     vec3 c = vec3(1.0);
     vec3 d = vec3(0.263, 0.416, 0.557);
-    return a + b * cos(6.28318 * (c * t + d));
+    return a + b * cos(2.0 * 6.28318 * (c * t + d));
   }
 
   float random(vec2 st) {
@@ -126,9 +126,10 @@ const Animation = (props: Props) => {
   const width = props.width;
   const height = props.height;
   const numberOfVertices = props.numVertices || (props.type === 'circle' ? 50 : 20);
-  const allowWierdMode = props.allowWierdMode || false;
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const isWierdMode = React.useRef<boolean>(false);
+  const isSmallScreen = React.useRef<boolean>(window.innerWidth <= 400);
+  const allowWierdMode = React.useRef<boolean>(props.allowWierdMode || false);
   const vShader = React.useRef<WebGLShader | null>(null);
   const fShader = React.useRef<WebGLShader | null>(null);
   const program = React.useRef<WebGLProgram | null>(null);
@@ -284,13 +285,14 @@ const Animation = (props: Props) => {
     gl.vertexAttribPointer(a_Color, 4, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(a_Color);
 
-    // Draw the triangle
+    // Draw the scene
     const isCircle = props.type === 'circle';
     const drawType = isCircle ? gl.TRIANGLE_FAN : gl.LINE_STRIP;
     const verticesPerColumn = (vertices.length / 3) / COLUMNS;
     let animationFrameId: number;
     let animationStartTime: DOMHighResTimeStamp | null = null;
     let elapsedTime = 0;
+    const offsetTime = 0.8;
     const render = (time: number) => {
       if (isDeleted) return; // Program has been deleted
       gl.clear(gl.COLOR_BUFFER_BIT);
@@ -301,7 +303,7 @@ const Animation = (props: Props) => {
         elapsedTime = (time - animationStartTime) * 0.001;
       }
       // Pass the calculated time to the shader
-      gl.uniform1f(u_time, startNewTimer ? elapsedTime + 0.8 : time * 0.001);
+      gl.uniform1f(u_time, startNewTimer ? elapsedTime + offsetTime  : time * 0.001);
       if (isCircle) {
         gl.drawArrays(drawType, 0, vertices.length / 3);
       } else {
@@ -318,6 +320,19 @@ const Animation = (props: Props) => {
     const handleResize = () => {
       gl.useProgram(shaderProgram);
       gl.uniform1f(u_width, window.innerWidth);
+      if (window.innerWidth <= 400) {
+        if (isSmallScreen.current) return; // Already in small screen mode
+        if (isWierdMode.current) {
+          gl.uniform1i(u_wierd, 0);
+          isWierdMode.current = false;
+        }
+        allowWierdMode.current = false;
+        isSmallScreen.current = true;
+      } else if (window.innerWidth > 400) {
+        if (!isSmallScreen.current) return; // Already in large screen mode
+        allowWierdMode.current = true;
+        isSmallScreen.current = false;
+      }
     };
 
     const setAnimation = (value: boolean) => {
@@ -327,21 +342,29 @@ const Animation = (props: Props) => {
       animate.current = value;
       animationStartTime = value ? performance.now() : null;
     };
-
-    // Control wierd mode in scroll events
+    // Handle scroll events
     let isScrolling = false;
+    let timeout: NodeJS.Timeout;
+    const isScrollendSupported = 'onscrollend' in window;
     const handleScroll = () => {
+      if (isSmallScreen.current) return; // Ignore if the screen is too small
       setAnimation(true);
       isScrolling = true;
+      // Manually handle scrollend event if not supported by the browser
+      if (!isScrollendSupported) {
+        clearTimeout(timeout);
+        timeout = setTimeout(handleScrollEnd, 500);
+      }
     };
 
     const handleScrollEnd = () => {
+      if (isSmallScreen.current) return; // Ignore if the screen is too small
       setAnimation(isWierdMode.current);
       isScrolling = false;
     };
 
     const handleMouseEnter = () => {
-      if (!allowWierdMode || isWierdMode.current || window.innerWidth <= 400) return; // Already set or not allowed
+      if (!allowWierdMode.current || isWierdMode.current || isSmallScreen.current) return; // Already set or not allowed
       gl.useProgram(shaderProgram);
       gl.uniform1i(u_wierd, 1);
       isWierdMode.current = true;
@@ -349,7 +372,7 @@ const Animation = (props: Props) => {
     };
 
     const handleMouseLeave = () => {
-      if (!allowWierdMode || !isWierdMode.current) return; // Already set or not allowed
+      if (!allowWierdMode.current || !isWierdMode.current || isSmallScreen.current) return; // Already set or not allowed
       gl.useProgram(shaderProgram);
       gl.uniform1i(u_wierd, 0);
       isWierdMode.current = false;
@@ -357,10 +380,12 @@ const Animation = (props: Props) => {
     };
 
     window.addEventListener('resize', handleResize);
-    document.getElementById('animation-canvas')?.addEventListener('mouseenter', handleMouseEnter);
-    document.getElementById('animation-canvas')?.addEventListener('mouseleave', handleMouseLeave);
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('scrollend', handleScrollEnd);
+    if (isCircle) {
+      document.getElementById('about')?.addEventListener('mouseenter', handleMouseEnter);
+      document.getElementById('about')?.addEventListener('mouseleave', handleMouseLeave);
+      window.addEventListener('scroll', handleScroll);
+      window.addEventListener('scrollend', handleScrollEnd);
+    }
 
     return () => {
       if (!gl) return;
@@ -392,20 +417,17 @@ const Animation = (props: Props) => {
       }
 
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('scrollend', handleScrollEnd);
-      document.getElementById('animation-canvas')?.removeEventListener('mouseenter', handleMouseEnter);
-      document.getElementById('animation-canvas')?.removeEventListener('mouseleave', handleMouseLeave);
+      if (isCircle) {
+        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('scrollend', handleScrollEnd);
+        document.getElementById('about')?.removeEventListener('mouseenter', handleMouseEnter);
+        document.getElementById('about')?.removeEventListener('mouseleave', handleMouseLeave);
+        clearTimeout(timeout);
+      }
     };
 
   }, [
-    isDeleted,
-    props.type,
-    allowWierdMode,
-    numberOfVertices,
-    width,
-    height,
-    isDynamicColor
+    isDeleted
   ]);
 
   return (

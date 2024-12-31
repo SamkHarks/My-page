@@ -347,7 +347,6 @@ const Animation = (props: Props) => {
     let timeout: NodeJS.Timeout;
     const isScrollendSupported = 'onscrollend' in window;
     const handleScroll = () => {
-      if (isSmallScreen.current) return; // Ignore if the screen is too small
       setAnimation(true);
       isScrolling = true;
       // Manually handle scrollend event if not supported by the browser
@@ -358,7 +357,6 @@ const Animation = (props: Props) => {
     };
 
     const handleScrollEnd = () => {
-      if (isSmallScreen.current) return; // Ignore if the screen is too small
       setAnimation(isWierdMode.current);
       isScrolling = false;
     };

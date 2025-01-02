@@ -8,6 +8,7 @@ import { SectionRefs } from "../../hooks/types";
 import { useTranslation } from "react-i18next";
 import styles from "./Sections.module.css";
 import { Section } from "../../App";
+import { Animation } from "../animation/Animation";
 
 const components: Record<Section["id"], React.ComponentType> = {
   home: Home,
@@ -26,6 +27,15 @@ const SectionWrapper = ({ section, sectionRefs, children }: Props) => {
   const { t } = useTranslation("sections");
   return (
     <div id={section.id} ref={sectionRefs[section.id]} className={styles.section}>
+      {section.id === "skills" &&
+        <div className={styles.canvas}>
+          <Animation
+            type={'shockwave'}
+            width={window.innerWidth < 768 ? window.innerWidth : window.innerWidth - 100}
+            height={ window.innerWidth >= 900 ? 100 : 75}
+          />
+        </div>
+      }
       {section.id !== "home" && <h1 className={styles.section_title}>{`\u00B7${t(section.id)}\u00B7`}</h1>}
       <div className={"section_content"}>{children}</div>
     </div>

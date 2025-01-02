@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Animation.module.css";
-import { COLUMNS, generateCircleVertices, generateZigZagVertices } from "./utils";
+import { COLUMNS, getType, getVertices } from "./utils";
 
 const vertexShaderSource = `
   attribute vec3 a_Position;
@@ -60,7 +60,7 @@ const fragmentShaderSource = `
       }
     
     // Circle, u_Type == 1
-    } else {
+    } else if (u_Type == 1) {
       float d = length(uv);
       vec3 finalColor = vec3(0.0);
 
@@ -108,13 +108,27 @@ const fragmentShaderSource = `
         gl_FragColor *= smoothstep(0.12, 0.15,sin(2.0 * d + 3.0*pow(sin(u_Time*0.5),2.0)) / 2.0);
       }
       return;
+    } else {
+      // Shockwave, u_Type == 2
+      if (u_Width < 320.0 && (-0.32 < uv.x && uv.x < 0.32)) {
+        return;
+      }
+      float xPos = fract(u_Time * 0.3) * 2.0 - 1.0;
+      if (xPos < 0.0 && xPos + 0.02 > uv.x && xPos - 0.2 < uv.x) {
+        gl_FragColor = vec4(getColors(u_Time * 0.4), 1) + v_Color;
+        return;
+      } else if (xPos > 0.0 && xPos + 0.2 > uv.x && xPos - 0.02 < uv.x) {
+        gl_FragColor = vec4(getColors(u_Time * 0.4), 1) + v_Color;
+        return;
+      }
+      return;
     }
     
   }
 `;
 
 type Props = {
-  type: 'circle' | 'zigzag';
+  type: 'circle' | 'zigzag' | 'shockwave';
   width: number;
   height: number;
   allowWierdMode?: boolean;
@@ -210,10 +224,7 @@ const Animation = (props: Props) => {
     // Define triangle vertices
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
 
-    //generateCircleVertices(0,0,1,50);
-    const vertices = props.type === 'circle'
-      ? generateCircleVertices(0,0,1,numberOfVertices)
-      : generateZigZagVertices(numberOfVertices);
+    const vertices = getVertices(props.type, numberOfVertices);
     gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 
     // Get attribute location
@@ -265,7 +276,7 @@ const Animation = (props: Props) => {
 
     const u_type = gl.getUniformLocation(shaderProgram, 'u_Type');
     gl.useProgram(shaderProgram);
-    gl.uniform1i(u_type, props.type === 'circle' ? 1 : 0);
+    gl.uniform1i(u_type, getType(props.type));
 
     const u_dynamic = gl.getUniformLocation(shaderProgram, 'u_Dynamic');
     gl.useProgram(shaderProgram);
@@ -306,11 +317,14 @@ const Animation = (props: Props) => {
       gl.uniform1f(u_time, startNewTimer ? elapsedTime + offsetTime  : time * 0.001);
       if (isCircle) {
         gl.drawArrays(drawType, 0, vertices.length / 3);
-      } else {
+      } else if (props.type === 'zigzag') {
         for (let j = 0; j < COLUMNS; j++) {
           const start = j * verticesPerColumn;  // Starting index for this column
           gl.drawArrays(drawType, start, verticesPerColumn);  // Draw the zigzag column
         }
+      } else {
+        gl.drawArrays(drawType, 0, 9);
+        gl.drawArrays(drawType, 9, 9);
       }
       animationFrameId = requestAnimationFrame(render);
     };
@@ -320,6 +334,19 @@ const Animation = (props: Props) => {
     const handleResize = () => {
       gl.useProgram(shaderProgram);
       gl.uniform1f(u_width, window.innerWidth);
+
+      if (props.type === 'shockwave') {
+        canvas.width = window.innerWidth < 768 ? window.innerWidth : window.innerWidth - 100;
+        canvas.height = window.innerWidth >= 900 ? 100 : 75;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        gl.uniform2f(u_resolution, canvas.width, canvas.height);
+      } else if (props.type === 'zigzag') {
+        canvas.width = Math.max(window.innerWidth, 1000);
+        canvas.height = 580;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        gl.uniform2f(u_resolution, canvas.width, canvas.height);
+      }
+
       if (window.innerWidth <= 400) {
         if (isSmallScreen.current) return; // Already in small screen mode
         if (isWierdMode.current) {

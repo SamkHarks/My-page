@@ -38,3 +38,50 @@ export const generateCircleVertices = (centerX: number, centerY: number, radius:
   }
   return new Float32Array(vertices);
 };
+
+export const generateShockWaveVertices = (): Float32Array => {
+  return new Float32Array([
+    // first shockwave
+    -1, 0, 0,
+    -0.55, 0, 0,
+    -0.5, 0.4, 0,
+    -0.45, -0.4, 0,
+    -0.4, 0.4, 0,
+    -0.35, -0.4, 0,
+    -0.3, 0.4, 0,
+    -0.25, -0.4, 0,
+    -0.2, 0, 0,
+
+    // second shockwave
+    0.2, 0, 0,
+    0.25, -0.4, 0,
+    0.3, 0.4, 0,
+    0.35, -0.4, 0,
+    0.4, 0.4, 0,
+    0.45, -0.4, 0,
+    0.5, 0.4, 0,
+    0.55, 0, 0,
+    1, 0, 0
+  ]);
+};
+
+export const getType = (type: 'circle' | 'zigzag' | 'shockwave'): number => {
+  switch (type) {
+    case 'zigzag':
+      return 0;
+    case 'circle':
+      return 1;
+    case 'shockwave':
+      return 2;
+  }
+};
+
+export const getVertices = (type: 'circle' | 'zigzag' | 'shockwave', numberOfVertices: number): Float32Array => {
+  if (type === 'circle') {
+    return generateCircleVertices(0,0,1,numberOfVertices);
+  } else if (type === 'zigzag') {
+    return generateZigZagVertices(numberOfVertices);
+  } else {
+    return generateShockWaveVertices();
+  }
+};

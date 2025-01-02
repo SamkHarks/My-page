@@ -91,3 +91,15 @@
         transform: translateX(0);
     }
 }
+
+.canvas {
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+}
+
+@media (max-width: 215px) {
+    .canvas {
+        display: none;
+    }
+}

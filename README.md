@@ -23,6 +23,7 @@ My website is built and maintained using a range of technologies and a simple CI
     - **CSS and SVG**: For styling, alongside the use of SVG components for enhanced visual appeal.
     - **React Hooks**: Employed for state management and side effects in functional components.
     - **i18next**: Used for localizations, manages English & Finnish translations.
+    - **WebGL**: Used to create 2D graphics by utilizing the GPU within the browser, enabling high-performance visuals and smooth animations.
 
 - **Data Management**:
     - **Data Fetching**: Content is dynamically loaded from JSON files within the repository, using custom hooks for fetching data.

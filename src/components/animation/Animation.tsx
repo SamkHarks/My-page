@@ -156,7 +156,7 @@ const Animation = (props: Props) => {
   React.useEffect(() => {
     if (!canvasRef.current) return;
     const canvas = canvasRef.current;
-    const gl = canvas.getContext("webgl2", { alpha: true });
+    const gl = canvas.getContext("webgl2", { alpha: true, antialias: props.type === 'shockwave' });
     if (!gl) {
       console.error("WebGL not supported");
       return;

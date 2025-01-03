@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Animation.module.css";
-import { COLUMNS, getType, getVertices } from "./utils";
+import { COLUMNS, getDrawType, getType, getVertices } from "./utils";
 
 const vertexShaderSource = `
   attribute vec3 a_Position;
@@ -298,7 +298,7 @@ const Animation = (props: Props) => {
 
     // Draw the scene
     const isCircle = props.type === 'circle';
-    const drawType = isCircle ? gl.TRIANGLE_FAN : gl.LINE_STRIP;
+    const drawType = getDrawType(props.type, gl);
     const verticesPerColumn = (vertices.length / 3) / COLUMNS;
     let animationFrameId: number;
     let animationStartTime: DOMHighResTimeStamp | null = null;

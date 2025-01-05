@@ -1,6 +1,14 @@
 import React from "react";
 import styles from "./Animation.module.css";
-import { COLUMNS, getDrawType, getType, getVertices } from "./utils";
+import {
+  COLUMNS,
+  getDrawType,
+  getUniformType,
+  getVertices,
+  getNumberOfVertices,
+  getVerticesCount,
+  setCanvasDimensions
+} from "./utils";
 
 const vertexShaderSource = `
   attribute vec3 a_Position;
@@ -19,7 +27,7 @@ const fragmentShaderSource = `
   uniform float u_Time;
   uniform bool u_Wierd; // Wierd mode, create wierd patterns and color effects
   uniform bool u_Animate; // Animate the shape
-  uniform int u_Type; // Type of shape, 0 = zigzag, 1 = circle
+  uniform int u_Type; // Type of shape, 0 = zigzag, 1 = circle, 2 = shockwave
   uniform vec2 u_Resolution;
   uniform bool u_Dynamic; // 0 = only one color, 1 = change color over time
   uniform float u_Width;
@@ -87,16 +95,17 @@ const fragmentShaderSource = `
       // Add white borders and transparerent areas
       if (u_Width > 768.0) {
         gl_FragColor = mix(vec4(1.0,1.0,1.0,1.0), gl_FragColor, smoothstep(0.12, 0.15, abs(d - 0.6)));
-        gl_FragColor = mix(vec4(1.0,1.0,1.0,1.0), gl_FragColor, smoothstep(0.12, 0.15, abs(d - 0.55)));
+        gl_FragColor = mix(vec4(1.0,1.0,1.0,1.0), gl_FragColor, smoothstep(0.12, 0.15, abs(d - 0.56)));
         gl_FragColor = mix(vec4(1.0,1.0,1.0,1.0), gl_FragColor, smoothstep(0.12, 0.15, abs(d - 1.06)));
         gl_FragColor *= smoothstep(0.05, 0.07, abs(d - 0.6));
-
+        gl_FragColor *= smoothstep(0.05, 0.07, abs(d - 1.05));
         
       } else if (u_Width <= 768.0 && u_Width > 400.0) {
         gl_FragColor = mix(vec4(1.0,1.0,1.0,1.0), gl_FragColor, smoothstep(0.03, 0.05, abs(d - 0.98)));
         gl_FragColor = mix(vec4(1.0,1.0,1.0,1.0), gl_FragColor, smoothstep(0.02, 0.04, abs(d - 0.75)));
         gl_FragColor = mix(vec4(1.0,1.0,1.0,1.0), gl_FragColor, smoothstep(0.03, 0.05, abs(d - 0.65)));
         gl_FragColor *= smoothstep(0.03, 0.05, abs(d - 0.7));
+        gl_FragColor *= smoothstep(0.05, 0.07, abs(d - 1.05));
           
       } else if (u_Width <= 400.0) {
         gl_FragColor = mix(vec4(1.0,1.0,1.0,1.0), gl_FragColor, smoothstep(0.02, 0.04, abs(d - 0.8)));
@@ -113,12 +122,13 @@ const fragmentShaderSource = `
       if (u_Width < 320.0 && (-0.32 < uv.x && uv.x < 0.32)) {
         return;
       }
+      float d = length(uv);
       float xPos = fract(u_Time * 0.3) * 2.0 - 1.0;
-      if (xPos < 0.0 && xPos + 0.02 > uv.x && xPos - 0.2 < uv.x) {
-        gl_FragColor = vec4(getColors(u_Time * 0.4), 1) + v_Color;
+      if (xPos < 0.0 && xPos + 0.01 > uv.x && xPos - 0.2 < uv.x) {
+        gl_FragColor = mix(vec4(1), vec4(vec3(0.2, 0.4, 0.6), 1) + vec4(getColors(u_Time * 0.4), 1) ,smoothstep(0.09, 0.11, abs(1.0 - d - fract(u_Time*0.3))));
         return;
-      } else if (xPos > 0.0 && xPos + 0.2 > uv.x && xPos - 0.02 < uv.x) {
-        gl_FragColor = vec4(getColors(u_Time * 0.4), 1) + v_Color;
+      } else if (xPos > 0.0 && xPos + 0.2 > uv.x && xPos - 0.01 < uv.x) {
+        gl_FragColor = mix(vec4(1), vec4(vec3(0.2, 0.4, 0.6), 1) + vec4(getColors(u_Time * 0.4), 1) ,smoothstep(0.09 , 0.11, abs(d - fract(u_Time*0.3))));
         return;
       }
       return;
@@ -139,7 +149,7 @@ type Props = {
 const Animation = (props: Props) => {
   const width = props.width;
   const height = props.height;
-  const numberOfVertices = props.numVertices || (props.type === 'circle' ? 50 : 20);
+  const numberOfVertices = getNumberOfVertices(props.type, props.numVertices);
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const isWierdMode = React.useRef<boolean>(false);
   const isSmallScreen = React.useRef<boolean>(window.innerWidth <= 400);
@@ -276,7 +286,7 @@ const Animation = (props: Props) => {
 
     const u_type = gl.getUniformLocation(shaderProgram, 'u_Type');
     gl.useProgram(shaderProgram);
-    gl.uniform1i(u_type, getType(props.type));
+    gl.uniform1i(u_type, getUniformType(props.type));
 
     const u_dynamic = gl.getUniformLocation(shaderProgram, 'u_Dynamic');
     gl.useProgram(shaderProgram);
@@ -299,11 +309,11 @@ const Animation = (props: Props) => {
     // Draw the scene
     const isCircle = props.type === 'circle';
     const drawType = getDrawType(props.type, gl);
-    const verticesPerColumn = (vertices.length / 3) / COLUMNS;
     let animationFrameId: number;
     let animationStartTime: DOMHighResTimeStamp | null = null;
     let elapsedTime = 0;
     const offsetTime = 0.8;
+    const verticesCount = getVerticesCount(props.type, vertices);
     const render = (time: number) => {
       if (isDeleted) return; // Program has been deleted
       gl.clear(gl.COLOR_BUFFER_BIT);
@@ -316,15 +326,15 @@ const Animation = (props: Props) => {
       // Pass the calculated time to the shader
       gl.uniform1f(u_time, startNewTimer ? elapsedTime + offsetTime  : time * 0.001);
       if (isCircle) {
-        gl.drawArrays(drawType, 0, vertices.length / 3);
+        gl.drawArrays(drawType, 0, verticesCount);
       } else if (props.type === 'zigzag') {
         for (let j = 0; j < COLUMNS; j++) {
-          const start = j * verticesPerColumn;  // Starting index for this column
-          gl.drawArrays(drawType, start, verticesPerColumn);  // Draw the zigzag column
+          const start = j * verticesCount;  // Starting index for this column
+          gl.drawArrays(drawType, start, verticesCount);  // Draw the zigzag column
         }
       } else {
-        gl.drawArrays(drawType, 0, 9);
-        gl.drawArrays(drawType, 9, 9);
+        gl.drawArrays(drawType, 0, verticesCount);
+        gl.drawArrays(drawType, verticesCount, verticesCount);
       }
       animationFrameId = requestAnimationFrame(render);
     };
@@ -335,14 +345,8 @@ const Animation = (props: Props) => {
       gl.useProgram(shaderProgram);
       gl.uniform1f(u_width, window.innerWidth);
 
-      if (props.type === 'shockwave') {
-        canvas.width = window.innerWidth < 768 ? window.innerWidth : window.innerWidth - 100;
-        canvas.height = window.innerWidth >= 900 ? 100 : 75;
-        gl.viewport(0, 0, canvas.width, canvas.height);
-        gl.uniform2f(u_resolution, canvas.width, canvas.height);
-      } else if (props.type === 'zigzag') {
-        canvas.width = Math.max(window.innerWidth, 1000);
-        canvas.height = 580;
+      const isChanged = setCanvasDimensions(canvas, props.type);
+      if (isChanged) {
         gl.viewport(0, 0, canvas.width, canvas.height);
         gl.uniform2f(u_resolution, canvas.width, canvas.height);
       }

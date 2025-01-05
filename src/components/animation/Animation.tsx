@@ -119,7 +119,7 @@ const fragmentShaderSource = `
       return;
     } else {
       // Shockwave, u_Type == 2
-      if (u_Width < 320.0 && (-0.32 < uv.x && uv.x < 0.32)) {
+      if (u_Width < 352.0 && (-0.28 < uv.x && uv.x < 0.28)) {
         return;
       }
       float d = length(uv);

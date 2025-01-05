@@ -98,7 +98,7 @@
     z-index: 1;
 }
 
-@media (max-width: 215px) {
+@media (max-width: 270px) {
     .canvas {
         display: none;
     }

@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import styles from "./Sections.module.css";
 import { Section } from "../../App";
 import { Animation } from "../animation/Animation";
+import { getCanvasDimensions } from "../animation/utils";
 
 const components: Record<Section["id"], React.ComponentType> = {
   home: Home,
@@ -25,14 +26,16 @@ type Props = {
 
 const SectionWrapper = ({ section, sectionRefs, children }: Props) => {
   const { t } = useTranslation("sections");
+  const isSkills = section.id === "skills";
+  const dim = isSkills ? getCanvasDimensions('shockwave') : null;
   return (
     <div id={section.id} ref={sectionRefs[section.id]} className={styles.section}>
-      {section.id === "skills" &&
+      {isSkills &&
         <div className={styles.canvas}>
           <Animation
             type={'shockwave'}
-            width={window.innerWidth < 768 ? window.innerWidth : window.innerWidth - 100}
-            height={ window.innerWidth >= 900 ? 100 : 75}
+            width={dim?.width ?? window.innerWidth}
+            height={dim?.height ?? 100}
           />
         </div>
       }

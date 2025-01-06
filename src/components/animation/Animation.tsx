@@ -173,7 +173,6 @@ const Animation = (props: Props) => {
     gl.lineWidth(1);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
-
     // Create shaders
     const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
     const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
@@ -185,13 +184,6 @@ const Animation = (props: Props) => {
     const shaderProgram = createProgram(gl, vertexShader, fragmentShader);
     if (shaderProgram === null) return;
     program.current = shaderProgram;
-
-    if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-      console.error("Failed to link program");
-      alert(gl.getProgramInfoLog(shaderProgram));
-      gl.deleteProgram(shaderProgram);
-      return;
-    }
 
     // Setup buffers
     const vertices = getVertices(props.type, props.numVertices);

@@ -68,8 +68,8 @@ const generateShockWaveVertices = (numberOfVerticesPerShockWave: number) => {
   const xStartPositions = [-1, 0.2]; // xStart for the first and second shockwave
   const xEndPositions = [-0.2, 1];   // xEnd for the first and second shockwave
 
-  const xHorizontalLineLength = 0.2; // Length of horizontal lines
-  const verticalSpace = 0.5; // Space between horizontal lines for verticals (-0.8 to -0.2 for first wave, 0.4 to 1 for second)
+  const xHorizontalLineLength = 0.15; // Length of horizontal lines
+  const verticalSpace = 0.5; // Space between horizontal lines for vertical lines
 
   for (let waveIndex = 0; waveIndex < 2; waveIndex++) {
     const xStart = xStartPositions[waveIndex];
@@ -89,7 +89,7 @@ const generateShockWaveVertices = (numberOfVerticesPerShockWave: number) => {
     }
 
     // Second horizontal line (y = 0)
-    vertices.push(xEnd - xHorizontalLineLength + 0.1, 0, 0); // Start of the second horizontal line
+    vertices.push(xEnd - xHorizontalLineLength, 0, 0); // Start of the second horizontal line
     vertices.push(xEnd, 0, 0); // End of the second horizontal line
   }
 
@@ -104,21 +104,6 @@ export const getUniformType = (type: Type): number => {
       return UniformTypes.CIRCLE;
     case 'shockwave':
       return UniformTypes.SHOCKWAVE;
-  }
-};
-
-
-export const getNumberOfVertices = (type: Type, nOfVertices?: number): number => {
-  if (nOfVertices) {
-    return nOfVertices;
-  }
-  switch (type) {
-    case 'circle':
-      return 50;
-    case 'zigzag':
-      return 20;
-    case 'shockwave':
-      return 100;
   }
 };
 
@@ -200,4 +185,64 @@ export const setCanvasDimensions = (canvas: HTMLCanvasElement, type: Type): bool
   canvas.width = dim.width;
   canvas.height = dim.height;
   return true;
+};
+
+export const getRandomColorVertices = (length: number) => {
+  const colors = new Float32Array(length);
+  for (let i = 0; i < colors.length; i += 4) {
+    colors[i] = Math.random();
+    colors[i + 1] = Math.random();
+    colors[i + 2] = Math.random();
+    colors[i + 3] = 1.0;
+  }
+  return colors;
+};
+
+export const updateBuffers = (
+  newVertices: Float32Array,
+  gl: WebGL2RenderingContext,
+  vBuffer: WebGLBuffer,
+  cBuffer: WebGLBuffer,
+  shaderProgram: WebGLProgram
+) => {
+  // Update vertex buffer
+  gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, newVertices, gl.STATIC_DRAW);
+
+  // Update vertex attribute for position
+  const a_Position = gl.getAttribLocation(shaderProgram, "a_Position");
+  gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(a_Position);
+
+  // Update color buffer
+  const newColors = getRandomColorVertices(newVertices.length / 3 * 4);
+  gl.bindBuffer(gl.ARRAY_BUFFER, cBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, newColors, gl.STATIC_DRAW);
+
+  // Update vertex attribute for color
+  const a_Color = gl.getAttribLocation(shaderProgram, "a_Color");
+  gl.vertexAttribPointer(a_Color, 4, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(a_Color);
+};
+
+export const updateWierdMode = (
+  gl: WebGL2RenderingContext,
+  u_wierd: WebGLUniformLocation | null,
+  isSmallScreen: React.MutableRefObject<boolean>,
+  isWierdMode: React.MutableRefObject<boolean>,
+  allowWierdMode: React.MutableRefObject<boolean>
+) => {
+  if (window.innerWidth <= 400) {
+    if (isSmallScreen.current) return; // Already in small screen mode
+    if (isWierdMode.current) {
+      gl.uniform1i(u_wierd, 0);
+      isWierdMode.current = false;
+    }
+    allowWierdMode.current = false;
+    isSmallScreen.current = true;
+  } else if (window.innerWidth > 400) {
+    if (!isSmallScreen.current) return; // Already in large screen mode
+    allowWierdMode.current = true;
+    isSmallScreen.current = false;
+  }
 };

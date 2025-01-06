@@ -5,9 +5,11 @@ import {
   getDrawType,
   getUniformType,
   getVertices,
-  getNumberOfVertices,
   getVerticesCount,
-  setCanvasDimensions
+  setCanvasDimensions,
+  getRandomColorVertices,
+  updateBuffers,
+  updateWierdMode
 } from "./utils";
 
 const vertexShaderSource = `
@@ -119,7 +121,7 @@ const fragmentShaderSource = `
       return;
     } else {
       // Shockwave, u_Type == 2
-      if (u_Width < 352.0 && (-0.28 < uv.x && uv.x < 0.28)) {
+      if (u_Width < 405.0 && (-0.28 < uv.x && uv.x < 0.28)) {
         return;
       }
       float d = length(uv);
@@ -141,19 +143,19 @@ type Props = {
   type: 'circle' | 'zigzag' | 'shockwave';
   width: number;
   height: number;
+  numVertices: number;
   allowWierdMode?: boolean;
-  numVertices?: number;
   dynamicColor?: boolean;
 }
 
 const Animation = (props: Props) => {
   const width = props.width;
   const height = props.height;
-  const numberOfVertices = getNumberOfVertices(props.type, props.numVertices);
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const isWierdMode = React.useRef<boolean>(false);
   const isSmallScreen = React.useRef<boolean>(window.innerWidth <= 400);
   const allowWierdMode = React.useRef<boolean>(props.allowWierdMode || false);
+  const currentNumVertices = React.useRef<number>(props.numVertices);
   const vShader = React.useRef<WebGLShader | null>(null);
   const fShader = React.useRef<WebGLShader | null>(null);
   const program = React.useRef<WebGLProgram | null>(null);
@@ -234,7 +236,7 @@ const Animation = (props: Props) => {
     // Define triangle vertices
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
 
-    const vertices = getVertices(props.type, numberOfVertices);
+    const vertices = getVertices(props.type, props.numVertices);
     gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 
     // Get attribute location
@@ -248,13 +250,7 @@ const Animation = (props: Props) => {
     gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
 
     // Generate colors for the vertices
-    const colors = new Float32Array(vertices.length / 3 * 4);
-    for (let i = 0; i < colors.length; i += 4) {
-      colors[i] = Math.random();
-      colors[i + 1] = Math.random();
-      colors[i + 2] = Math.random();
-      colors[i + 3] = 1.0;
-    }
+    const colors = getRandomColorVertices(vertices.length / 3 * 4);
     gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
 
     const matrix = new Float32Array([
@@ -312,8 +308,8 @@ const Animation = (props: Props) => {
     let animationFrameId: number;
     let animationStartTime: DOMHighResTimeStamp | null = null;
     let elapsedTime = 0;
+    let verticesCount = getVerticesCount(props.type, vertices);
     const offsetTime = 0.8;
-    const verticesCount = getVerticesCount(props.type, vertices);
     const render = (time: number) => {
       if (isDeleted) return; // Program has been deleted
       gl.clear(gl.COLOR_BUFFER_BIT);
@@ -341,6 +337,7 @@ const Animation = (props: Props) => {
     requestAnimationFrame(render);
 
     // Control border mode in resize event
+    let newNumVertices = currentNumVertices.current;
     const handleResize = () => {
       gl.useProgram(shaderProgram);
       gl.uniform1f(u_width, window.innerWidth);
@@ -351,19 +348,23 @@ const Animation = (props: Props) => {
         gl.uniform2f(u_resolution, canvas.width, canvas.height);
       }
 
-      if (window.innerWidth <= 400) {
-        if (isSmallScreen.current) return; // Already in small screen mode
-        if (isWierdMode.current) {
-          gl.uniform1i(u_wierd, 0);
-          isWierdMode.current = false;
-        }
-        allowWierdMode.current = false;
-        isSmallScreen.current = true;
-      } else if (window.innerWidth > 400) {
-        if (!isSmallScreen.current) return; // Already in large screen mode
-        allowWierdMode.current = true;
-        isSmallScreen.current = false;
+      updateWierdMode(gl, u_wierd, isSmallScreen, isWierdMode, allowWierdMode);
+
+      // update buffer data if the number of vertices has changed
+      if (props.type !== 'shockwave') return; // Only for shockwave
+
+      if (window.innerWidth <= 600) {
+        newNumVertices = 50;
+      } else if (window.innerWidth > 600) {
+        newNumVertices = 100;
       }
+
+      if (newNumVertices === currentNumVertices.current) return; // No change in vertices count
+      if (vBuffer.current === null || cBuffer.current === null) return; // Buffers not created
+      const newVertices = getVertices(props.type, newNumVertices);
+      updateBuffers(newVertices, gl, vBuffer.current, cBuffer.current, shaderProgram);
+      verticesCount = getVerticesCount(props.type, newVertices); // vertices count represenst the number of data points to draw
+      currentNumVertices.current = newNumVertices;
     };
 
     const setAnimation = (value: boolean) => {

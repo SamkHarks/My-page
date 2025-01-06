@@ -36,6 +36,7 @@ const SectionWrapper = ({ section, sectionRefs, children }: Props) => {
             type={'shockwave'}
             width={dim?.width ?? window.innerWidth}
             height={dim?.height ?? 100}
+            numVertices={window.innerWidth > 600 ? 100 : 50}
           />
         </div>
       }

@@ -3,14 +3,15 @@ import styles from "./Animation.module.css";
 import {
   COLUMNS,
   getDrawType,
-  getUniformType,
   getVertices,
   getVerticesCount,
   setCanvasDimensions,
   getRandomColorVertices,
   updateBuffers,
-  updateWierdMode
+  updateWierdMode,
+  setupUniforms
 } from "./utils";
+import { Props } from "./types";
 
 const vertexShaderSource = `
   attribute vec3 a_Position;
@@ -139,14 +140,7 @@ const fragmentShaderSource = `
   }
 `;
 
-type Props = {
-  type: 'circle' | 'zigzag' | 'shockwave';
-  width: number;
-  height: number;
-  numVertices: number;
-  allowWierdMode?: boolean;
-  dynamicColor?: boolean;
-}
+
 
 const Animation = (props: Props) => {
   const width = props.width;
@@ -253,44 +247,8 @@ const Animation = (props: Props) => {
     const colors = getRandomColorVertices(vertices.length / 3 * 4);
     gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
 
-    const matrix = new Float32Array([
-      1, 0, 0, 0,
-      0, 1, 0, 0,
-      0, 0, 1, 0,
-      0, 0, 0, 1
-    ]);
-
-    const m = gl.getUniformLocation(shaderProgram, 'trans');
-    gl.useProgram(shaderProgram);
-    gl.uniformMatrix4fv(m, false, matrix);
-
-    const u_time = gl.getUniformLocation(shaderProgram, 'u_Time');
-    gl.useProgram(shaderProgram);
-    gl.uniform1f(u_time, 0);
-
-    const u_wierd = gl.getUniformLocation(shaderProgram, 'u_Wierd');
-    gl.useProgram(shaderProgram);
-    gl.uniform1i(u_wierd, 0);
-
-    const u_animate = gl.getUniformLocation(shaderProgram, 'u_Animate');
-    gl.useProgram(shaderProgram);
-    gl.uniform1i(u_animate, 0);
-
-    const u_resolution = gl.getUniformLocation(shaderProgram, 'u_Resolution');
-    gl.useProgram(shaderProgram);
-    gl.uniform2f(u_resolution, width, height);
-
-    const u_type = gl.getUniformLocation(shaderProgram, 'u_Type');
-    gl.useProgram(shaderProgram);
-    gl.uniform1i(u_type, getUniformType(props.type));
-
-    const u_dynamic = gl.getUniformLocation(shaderProgram, 'u_Dynamic');
-    gl.useProgram(shaderProgram);
-    gl.uniform1i(u_dynamic, isDynamicColor ? 1 : 0);
-
-    const u_width = gl.getUniformLocation(shaderProgram, 'u_Width');
-    gl.useProgram(shaderProgram);
-    gl.uniform1f(u_width, window.innerWidth);
+    const uniforms = setupUniforms(gl, shaderProgram, props, isDynamicColor);
+    const { u_time, u_wierd, u_animate, u_resolution, u_width } = uniforms;
 
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
     const a_Position = gl.getAttribLocation(shaderProgram, "a_Position");

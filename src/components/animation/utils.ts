@@ -1,5 +1,5 @@
 import { assert } from "../../utils/utils";
-import { Type, UniformTypes } from "./types";
+import { Props, Type, UniformTypes } from "./types";
 
 export const createRotationMatrix = (angle: number): Float32Array => {
   const cosA = Math.cos(angle);
@@ -245,4 +245,40 @@ export const updateWierdMode = (
     allowWierdMode.current = true;
     isSmallScreen.current = false;
   }
+};
+
+export const setupUniforms = (
+  gl: WebGL2RenderingContext,
+  shaderProgram: WebGLProgram,
+  props: Props,
+  isDynamicColor: boolean
+) => {
+  const { width, height, type } = props;
+  const matrix = new Float32Array([
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+  ]);
+
+  const m = gl.getUniformLocation(shaderProgram, 'trans');
+  const u_time = gl.getUniformLocation(shaderProgram, 'u_Time');
+  const u_wierd = gl.getUniformLocation(shaderProgram, 'u_Wierd');
+  const u_animate = gl.getUniformLocation(shaderProgram, 'u_Animate');
+  const u_resolution = gl.getUniformLocation(shaderProgram, 'u_Resolution');
+  const u_type = gl.getUniformLocation(shaderProgram, 'u_Type');
+  const u_dynamic = gl.getUniformLocation(shaderProgram, 'u_Dynamic');
+  const u_width = gl.getUniformLocation(shaderProgram, 'u_Width');
+
+  gl.useProgram(shaderProgram);
+  gl.uniformMatrix4fv(m, false, matrix);
+  gl.uniform1f(u_time, 0);
+  gl.uniform1i(u_wierd, 0);
+  gl.uniform1i(u_animate, 0);
+  gl.uniform2f(u_resolution, width, height);
+  gl.uniform1i(u_type, getUniformType(type));
+  gl.uniform1i(u_dynamic, isDynamicColor ? 1 : 0);
+  gl.uniform1f(u_width, window.innerWidth);
+
+  return { u_time, u_wierd, u_animate, u_resolution, u_type, u_dynamic, u_width };
 };

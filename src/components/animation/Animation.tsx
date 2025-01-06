@@ -318,26 +318,17 @@ const Animation = (props: Props) => {
       gl.useProgram(null);
 
       gl.clear(gl.COLOR_BUFFER_BIT);
-      if (vShader.current) {
-        gl.deleteShader(vShader.current);
-        vShader.current = null;
-      }
-      if (fShader.current) {
-        gl.deleteShader(fShader.current);
-        fShader.current = null;
-      }
-      if (program.current) {
-        gl.deleteProgram(program.current);
-        program.current = null;
-      }
-      if (vBuffer.current) {
-        gl.deleteBuffer(vBuffer.current);
-        vBuffer.current = null;
-      }
-      if (cBuffer.current) {
-        gl.deleteBuffer(cBuffer.current);
-        cBuffer.current = null;
-      }
+      if (vShader.current) gl.deleteShader(vShader.current);
+      if (fShader.current) gl.deleteShader(fShader.current);
+      if (program.current) gl.deleteProgram(program.current);
+      if (vBuffer.current) gl.deleteBuffer(vBuffer.current);
+      if (cBuffer.current) gl.deleteBuffer(cBuffer.current);
+
+      vShader.current = null;
+      fShader.current = null;
+      program.current = null;
+      vBuffer.current = null;
+      cBuffer.current = null;
 
       window.removeEventListener('resize', handleResize);
       if (isCircle) {

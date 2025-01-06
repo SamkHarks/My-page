@@ -10,7 +10,9 @@ import {
   updateBuffers,
   updateWierdMode,
   setupUniforms,
-  setupBuffers
+  setupBuffers,
+  createShader,
+  createProgram
 } from "./utils";
 import { Props } from "./types";
 
@@ -172,46 +174,16 @@ const Animation = (props: Props) => {
     gl.clear(gl.COLOR_BUFFER_BIT);
 
 
-    const vertexShader = gl.createShader(gl.VERTEX_SHADER);
-    if (!vertexShader) {
-      console.error("Failed to create vertex shader");
-      return;
-    }
-
-    const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-    if (!fragmentShader) {
-      console.error("Failed to create fragment shader");
-      return;
-    }
-
-    gl.shaderSource(vertexShader, vertexShaderSource);
-    gl.compileShader(vertexShader);
-    if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS) ) {
-      alert(gl.getShaderInfoLog(vertexShader));
-      gl.deleteShader(vertexShader);
-      return;
-    }
+    // Create shaders
+    const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+    const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+    if (vertexShader === null || fragmentShader === null) return;
     vShader.current = vertexShader;
-
-    gl.shaderSource(fragmentShader, fragmentShaderSource);
-    gl.compileShader(fragmentShader);
-    if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
-      alert(gl.getShaderInfoLog(fragmentShader));
-      gl.deleteShader(fragmentShader);
-      return;
-    }
     fShader.current = fragmentShader;
 
-    // Create shader program
-    const shaderProgram = gl.createProgram();
-    if (shaderProgram === null) {
-      console.error("Failed to create shader program");
-      return;
-    }
-    gl.attachShader(shaderProgram, vertexShader);
-    gl.attachShader(shaderProgram, fragmentShader);
-    gl.linkProgram(shaderProgram);
-
+    // Create program
+    const shaderProgram = createProgram(gl, vertexShader, fragmentShader);
+    if (shaderProgram === null) return;
     program.current = shaderProgram;
 
     if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
@@ -229,7 +201,7 @@ const Animation = (props: Props) => {
     cBuffer.current = colorBuffer;
 
     const uniforms = setupUniforms(gl, shaderProgram, props, isDynamicColor);
-    const { u_time, u_wierd, u_animate, u_resolution, u_width } = uniforms; 
+    const { u_time, u_wierd, u_animate, u_resolution, u_width } = uniforms;
 
     // Draw the scene
     const isCircle = props.type === 'circle';

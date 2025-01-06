@@ -282,3 +282,34 @@ export const setupUniforms = (
 
   return { u_time, u_wierd, u_animate, u_resolution, u_type, u_dynamic, u_width };
 };
+
+export const setupBuffers = (
+  gl: WebGL2RenderingContext,
+  program: WebGLProgram,
+  vertices: Float32Array,
+  colors: Float32Array
+) => {
+  // Setup Vertex Buffer
+  const vertexBuffer = gl.createBuffer();
+  if (!vertexBuffer) {
+    throw new Error("Failed to create vertex buffer");
+  }
+  gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+  const a_Position = gl.getAttribLocation(program, "a_Position");
+  gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(a_Position);
+
+  // Setup Color Buffer
+  const colorBuffer = gl.createBuffer();
+  if (!colorBuffer) {
+    throw new Error("Failed to create color buffer");
+  }
+  gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
+  const a_Color = gl.getAttribLocation(program, "a_Color");
+  gl.vertexAttribPointer(a_Color, 4, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(a_Color);
+
+  return { vertexBuffer, colorBuffer };
+};

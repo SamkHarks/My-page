@@ -9,7 +9,8 @@ import {
   getRandomColorVertices,
   updateBuffers,
   updateWierdMode,
-  setupUniforms
+  setupUniforms,
+  setupBuffers
 } from "./utils";
 import { Props } from "./types";
 
@@ -220,45 +221,15 @@ const Animation = (props: Props) => {
       return;
     }
 
-    // Create buffer
-    const vertexBuffer = gl.createBuffer();
-    if (!vertexBuffer) {
-      console.error("Failed to create buffer");
-      return;
-    }
-    vBuffer.current = vertexBuffer;
-    // Define triangle vertices
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-
+    // Setup buffers
     const vertices = getVertices(props.type, props.numVertices);
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
-
-    // Get attribute location
-    const colorBuffer = gl.createBuffer();
-    if (!colorBuffer) {
-      console.error("Failed to create color buffer");
-      return;
-    }
-    cBuffer.current = colorBuffer;
-    // Define triangle colors
-    gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
-
-    // Generate colors for the vertices
     const colors = getRandomColorVertices(vertices.length / 3 * 4);
-    gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
+    const { vertexBuffer, colorBuffer } = setupBuffers(gl,shaderProgram, vertices, colors);
+    vBuffer.current = vertexBuffer;
+    cBuffer.current = colorBuffer;
 
     const uniforms = setupUniforms(gl, shaderProgram, props, isDynamicColor);
-    const { u_time, u_wierd, u_animate, u_resolution, u_width } = uniforms;
-
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-    const a_Position = gl.getAttribLocation(shaderProgram, "a_Position");
-    gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, 0, 0);
-    gl.enableVertexAttribArray(a_Position);
-
-    gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
-    const a_Color = gl.getAttribLocation(shaderProgram, "a_Color");
-    gl.vertexAttribPointer(a_Color, 4, gl.FLOAT, false, 0, 0);
-    gl.enableVertexAttribArray(a_Color);
+    const { u_time, u_wierd, u_animate, u_resolution, u_width } = uniforms; 
 
     // Draw the scene
     const isCircle = props.type === 'circle';

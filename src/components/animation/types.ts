@@ -11,6 +11,5 @@ export type Props = {
   width: number;
   height: number;
   numVertices: number;
-  allowWierdMode?: boolean;
-  dynamicColor?: boolean;
+  allowDynamic: boolean;
 }

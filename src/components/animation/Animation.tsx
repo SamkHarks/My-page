@@ -8,7 +8,7 @@ import {
   setCanvasDimensions,
   getRandomColorVertices,
   updateBuffers,
-  updateWierdMode,
+  updateDynamicMode,
   setupUniforms,
   setupBuffers,
   createShader,
@@ -31,11 +31,10 @@ const fragmentShaderSource = `
   precision mediump float;
   varying vec4 v_Color;
   uniform float u_Time;
-  uniform bool u_Wierd; // Wierd mode, create wierd patterns and color effects
   uniform bool u_Animate; // Animate the shape
   uniform int u_Type; // Type of shape, 0 = zigzag, 1 = circle, 2 = shockwave
   uniform vec2 u_Resolution;
-  uniform bool u_Dynamic; // 0 = only one color, 1 = change color over time
+  uniform bool u_Dynamic; // 0 = only one color, 1 = dynamic colors
   uniform float u_Width;
 
   vec3 getColors(float t) {
@@ -79,7 +78,7 @@ const fragmentShaderSource = `
       vec3 finalColor = vec3(0.0);
 
       // Wierd mode, create wierd patterns and color effects
-      if (u_Wierd) {
+      if (u_Dynamic) {
         vec2 uv0 = uv;
         for (int i = 0; i < 2; i++) {
           uv = fract(uv * 1.5) - 0.5;
@@ -149,16 +148,14 @@ const Animation = (props: Props) => {
   const width = props.width;
   const height = props.height;
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
-  const isWierdMode = React.useRef<boolean>(false);
+  const isDynamicMode = React.useRef<boolean>(props.allowDynamic && props.type === 'zigzag'); // initial dynamic mode
   const isSmallScreen = React.useRef<boolean>(window.innerWidth <= 400);
-  const allowWierdMode = React.useRef<boolean>(props.allowWierdMode || false);
   const currentNumVertices = React.useRef<number>(props.numVertices);
   const vShader = React.useRef<WebGLShader | null>(null);
   const fShader = React.useRef<WebGLShader | null>(null);
   const program = React.useRef<WebGLProgram | null>(null);
   const vBuffer = React.useRef<WebGLBuffer | null>(null);
   const cBuffer = React.useRef<WebGLBuffer | null>(null);
-  const isDynamicColor = props.dynamicColor || false;
   const animate = React.useRef<boolean>(false);
   const isDeleted = program.current === null || vShader.current === null || fShader.current === null || vBuffer.current === null || cBuffer.current === null;
   // Create WebGL context
@@ -192,8 +189,8 @@ const Animation = (props: Props) => {
     vBuffer.current = vertexBuffer;
     cBuffer.current = colorBuffer;
 
-    const uniforms = setupUniforms(gl, shaderProgram, props, isDynamicColor);
-    const { u_time, u_wierd, u_animate, u_resolution, u_width } = uniforms;
+    const uniforms = setupUniforms(gl, shaderProgram, props, isDynamicMode.current);
+    const { u_time, u_animate, u_resolution, u_width, u_dynamic } = uniforms;
 
     // Draw the scene
     const isCircle = props.type === 'circle';
@@ -208,7 +205,7 @@ const Animation = (props: Props) => {
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.useProgram(shaderProgram);
       // Calculate the elapsed time based on the animation start time
-      const startNewTimer = (isCircle && (isWierdMode.current || animate.current));
+      const startNewTimer = (isCircle && (isDynamicMode.current || animate.current));
       if (startNewTimer && animationStartTime !== null) {
         elapsedTime = (time - animationStartTime) * 0.001;
       }
@@ -241,8 +238,11 @@ const Animation = (props: Props) => {
         gl.uniform2f(u_resolution, canvas.width, canvas.height);
       }
 
-      updateWierdMode(gl, u_wierd, isSmallScreen, isWierdMode, allowWierdMode);
-
+      // Dynamic mode can only be updated for circle type
+      if (props.type === 'circle') {
+        updateDynamicMode(gl, u_dynamic, isSmallScreen, isDynamicMode);
+        return;
+      }
       // update buffer data if the number of vertices has changed
       if (props.type !== 'shockwave') return; // Only for shockwave
 
@@ -282,23 +282,23 @@ const Animation = (props: Props) => {
     };
 
     const handleScrollEnd = () => {
-      setAnimation(isWierdMode.current);
+      setAnimation(isDynamicMode.current);
       isScrolling = false;
     };
 
     const handleMouseEnter = () => {
-      if (!allowWierdMode.current || isWierdMode.current || isSmallScreen.current) return; // Already set or not allowed
+      if (isDynamicMode.current || isSmallScreen.current) return; // Already set or not allowed
       gl.useProgram(shaderProgram);
-      gl.uniform1i(u_wierd, 1);
-      isWierdMode.current = true;
+      gl.uniform1i(u_dynamic, 1);
+      isDynamicMode.current = true;
       setAnimation(true);
     };
 
     const handleMouseLeave = () => {
-      if (!allowWierdMode.current || !isWierdMode.current || isSmallScreen.current) return; // Already set or not allowed
+      if (!isDynamicMode.current || isSmallScreen.current) return; // Already set or not allowed
       gl.useProgram(shaderProgram);
-      gl.uniform1i(u_wierd, 0);
-      isWierdMode.current = false;
+      gl.uniform1i(u_dynamic, 0);
+      isDynamicMode.current = false;
       setAnimation(isScrolling);
     };
 

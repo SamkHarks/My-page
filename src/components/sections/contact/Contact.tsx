@@ -13,7 +13,7 @@ export const Contact = () => (
         numVertices={30}
         width={Math.max(window.innerWidth, 1000)}
         height={580}
-        dynamicColor={true}
+        allowDynamic={true}
       />
     </div>
     <div className={styles.container}>

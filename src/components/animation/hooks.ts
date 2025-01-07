@@ -1,13 +1,23 @@
-import { useEffect } from 'react';
-import { Props, WebGLContext } from './types';
+import { useEffect, useRef } from 'react';
+import { AnimationContext, Props, WebGLContext } from './types';
 import { COLUMNS, createProgram, createShader, getDrawType, getFragmentShaderSource, getRandomColorVertices, getVertices, getVerticesCount, setCanvasDimensions, setupBuffers, setupUniforms, updateBuffers, updateDynamicMode } from './utils';
 import { vertexShaderSource } from './shaders';
 
 const useWebGLContext = (
   props: Props,
-  webGLContext: WebGLContext
-) => {
-  const { canvasRef, glRef, vShader, fShader, program, vBuffer, cBuffer, isDynamicMode, uniformsRef, animate, animationStartTime, verticesCount } = webGLContext;
+  canvasRef: React.RefObject<HTMLCanvasElement>
+): {isDeleted: boolean, webGLContext: WebGLContext, animationContext: AnimationContext } => {
+  const isDynamicMode = useRef<boolean>(props.allowDynamic && props.type === 'zigzag');
+  const vShader = useRef<WebGLShader | null>(null);
+  const fShader = useRef<WebGLShader | null>(null);
+  const program = useRef<WebGLProgram | null>(null);
+  const vBuffer = useRef<WebGLBuffer | null>(null);
+  const cBuffer = useRef<WebGLBuffer | null>(null);
+  const glRef = useRef<WebGL2RenderingContext | null>(null);
+  const uniformsRef = useRef<Record<string, WebGLUniformLocation | null>>({});
+  const animate = useRef<boolean>(false);
+  const animationStartTime = useRef<DOMHighResTimeStamp | null>(null);
+  const verticesCount = useRef<number>(0);
   const isDeleted = program.current === null || vShader.current === null || fShader.current === null || vBuffer.current === null || cBuffer.current === null;
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -95,16 +105,24 @@ const useWebGLContext = (
       program.current = null;
       vBuffer.current = null;
       cBuffer.current = null;
+      glRef.current = null;
     };
 
   }, [
     isDeleted
   ]);
-  return isDeleted;
+  return {
+    isDeleted,
+    webGLContext: { canvasRef, glRef, program, uniformsRef, vBuffer, cBuffer, vShader, fShader },
+    animationContext: { animate, isDynamicMode, verticesCount, animationStartTime }
+  };
 };
 
-const useEvents = (props: Props, isDeleted: boolean, webGLContext: WebGLContext) => {
-  const { canvasRef, glRef, program, uniformsRef, animate, isDynamicMode, verticesCount, vBuffer, cBuffer, animationStartTime, currentNumVertices, isSmallScreen } = webGLContext;
+const useEvents = (props: Props, isDeleted: boolean, webGLContext: WebGLContext, animationContext: AnimationContext) => {
+  const isSmallScreen = useRef<boolean>(window.innerWidth <= 400);
+  const currentNumVertices = useRef<number>(props.numVertices);
+  const { canvasRef, glRef, program, uniformsRef, vBuffer, cBuffer } = webGLContext;
+  const { animate, isDynamicMode, verticesCount, animationStartTime } = animationContext;
   useEffect(() => {
     if (!canvasRef.current || !glRef.current || !program.current) return;
     const canvas = canvasRef.current;

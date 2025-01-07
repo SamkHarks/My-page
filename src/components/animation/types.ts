@@ -22,11 +22,12 @@ export type WebGLContext = {
   program: React.MutableRefObject<WebGLProgram | null>,
   vBuffer: React.MutableRefObject<WebGLBuffer | null>,
   cBuffer: React.MutableRefObject<WebGLBuffer | null>,
-  isDynamicMode: React.MutableRefObject<boolean>,
   uniformsRef: React.MutableRefObject<Record<string, WebGLUniformLocation | null>>,
+};
+
+export type AnimationContext = {
   animate: React.MutableRefObject<boolean>,
   animationStartTime: React.MutableRefObject<DOMHighResTimeStamp | null>,
+  isDynamicMode: React.MutableRefObject<boolean>,
   verticesCount: React.MutableRefObject<number>,
-  currentNumVertices: React.MutableRefObject<number>,
-  isSmallScreen: React.MutableRefObject<boolean>,
-};
+}

@@ -1,4 +1,5 @@
 import { assert } from "../../utils/utils";
+import { circleFragmentShaderSource, shockwaveFragmentShaderSource, zigzagFragmentShaderSource } from "./shaders";
 import { Props, Type, UniformTypes } from "./types";
 
 export const createRotationMatrix = (angle: number): Float32Array => {
@@ -248,7 +249,7 @@ export const setupUniforms = (
   gl: WebGL2RenderingContext,
   shaderProgram: WebGLProgram,
   props: Props,
-  isDynamicMode: boolean
+  isDynamicMode: boolean,
 ) => {
   const { width, height, type } = props;
   const matrix = new Float32Array([
@@ -261,22 +262,31 @@ export const setupUniforms = (
   const m = gl.getUniformLocation(shaderProgram, 'trans');
   const u_time = gl.getUniformLocation(shaderProgram, 'u_Time');
   const u_resolution = gl.getUniformLocation(shaderProgram, 'u_Resolution');
-  const u_animate = gl.getUniformLocation(shaderProgram, 'u_Animate');
 
-  const u_type = gl.getUniformLocation(shaderProgram, 'u_Type');
-  const u_dynamic = gl.getUniformLocation(shaderProgram, 'u_Dynamic');
-  const u_width = gl.getUniformLocation(shaderProgram, 'u_Width');
+  let u_animate = null;
+  let u_dynamic = null;
+  let u_width = null;
+  if (type === 'circle') {
+    u_animate = gl.getUniformLocation(shaderProgram, 'u_Animate');
+    u_dynamic = gl.getUniformLocation(shaderProgram, 'u_Dynamic');
+    u_width = gl.getUniformLocation(shaderProgram, 'u_Width');
+  } else if (type === 'zigzag') {
+    u_dynamic = gl.getUniformLocation(shaderProgram, 'u_Dynamic');
+  } else {
+    u_width = gl.getUniformLocation(shaderProgram, 'u_Width');
+  }
+
 
   gl.useProgram(shaderProgram);
   gl.uniformMatrix4fv(m, false, matrix);
-  gl.uniform1f(u_time, 0);
-  gl.uniform1i(u_animate, 0);
   gl.uniform2f(u_resolution, width, height);
-  gl.uniform1i(u_type, getUniformType(type));
-  gl.uniform1i(u_dynamic, isDynamicMode ? 1 : 0);
-  gl.uniform1f(u_width, window.innerWidth);
+  gl.uniform1f(u_time, 0);
 
-  return { u_time, u_animate, u_resolution, u_type, u_dynamic, u_width };
+  if (u_animate !== null) gl.uniform1i(u_animate, 0);
+  if (u_dynamic !== null) gl.uniform1i(u_dynamic, isDynamicMode ? 1 : 0);
+  if (u_width !== null) gl.uniform1f(u_width, window.innerWidth);
+
+  return { u_time, u_animate, u_resolution, u_dynamic, u_width };
 };
 
 export const setupBuffers = (
@@ -335,4 +345,14 @@ export const createProgram = (gl: WebGL2RenderingContext, vertexShader: WebGLSha
     return null;
   }
   return program;
+};
+
+export const getFragmentShaderSource = (type: Type): string => {
+  if (type === 'circle') {
+    return circleFragmentShaderSource;
+  } else if (type === 'zigzag') {
+    return zigzagFragmentShaderSource;
+  } else {
+    return shockwaveFragmentShaderSource;
+  }
 };

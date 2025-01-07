@@ -27,4 +27,6 @@ export type WebGLContext = {
   animate: React.MutableRefObject<boolean>,
   animationStartTime: React.MutableRefObject<DOMHighResTimeStamp | null>,
   verticesCount: React.MutableRefObject<number>,
+  currentNumVertices: React.MutableRefObject<number>,
+  isSmallScreen: React.MutableRefObject<boolean>,
 };

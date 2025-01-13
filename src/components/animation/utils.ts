@@ -1,5 +1,6 @@
 import { assert } from "../../utils/utils";
-import { Type, UniformTypes } from "./types";
+import { circleFragmentShaderSource, shockwaveFragmentShaderSource, zigzagFragmentShaderSource } from "./shaders";
+import { Props, Type, UniformTypes } from "./types";
 
 export const createRotationMatrix = (angle: number): Float32Array => {
   const cosA = Math.cos(angle);
@@ -225,24 +226,133 @@ export const updateBuffers = (
   gl.enableVertexAttribArray(a_Color);
 };
 
-export const updateWierdMode = (
+export const updateDynamicMode = (
   gl: WebGL2RenderingContext,
-  u_wierd: WebGLUniformLocation | null,
+  u_dynamic: WebGLUniformLocation | null,
   isSmallScreen: React.MutableRefObject<boolean>,
-  isWierdMode: React.MutableRefObject<boolean>,
-  allowWierdMode: React.MutableRefObject<boolean>
+  isDynamicMode: React.MutableRefObject<boolean>,
 ) => {
   if (window.innerWidth <= 400) {
     if (isSmallScreen.current) return; // Already in small screen mode
-    if (isWierdMode.current) {
-      gl.uniform1i(u_wierd, 0);
-      isWierdMode.current = false;
+    if (isDynamicMode.current) {
+      gl.uniform1i(u_dynamic, 0);
+      isDynamicMode.current = false;
     }
-    allowWierdMode.current = false;
     isSmallScreen.current = true;
   } else if (window.innerWidth > 400) {
     if (!isSmallScreen.current) return; // Already in large screen mode
-    allowWierdMode.current = true;
     isSmallScreen.current = false;
+  }
+};
+
+export const setupUniforms = (
+  gl: WebGL2RenderingContext,
+  shaderProgram: WebGLProgram,
+  props: Props,
+  isDynamicMode: boolean,
+) => {
+  const { width, height, type } = props;
+  const matrix = new Float32Array([
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+  ]);
+
+  const m = gl.getUniformLocation(shaderProgram, 'trans');
+  const u_time = gl.getUniformLocation(shaderProgram, 'u_Time');
+  const u_resolution = gl.getUniformLocation(shaderProgram, 'u_Resolution');
+
+  let u_animate = null;
+  let u_dynamic = null;
+  let u_width = null;
+  if (type === 'circle') {
+    u_animate = gl.getUniformLocation(shaderProgram, 'u_Animate');
+    u_dynamic = gl.getUniformLocation(shaderProgram, 'u_Dynamic');
+    u_width = gl.getUniformLocation(shaderProgram, 'u_Width');
+  } else if (type === 'zigzag') {
+    u_dynamic = gl.getUniformLocation(shaderProgram, 'u_Dynamic');
+  } else {
+    u_width = gl.getUniformLocation(shaderProgram, 'u_Width');
+  }
+
+
+  gl.useProgram(shaderProgram);
+  gl.uniformMatrix4fv(m, false, matrix);
+  gl.uniform2f(u_resolution, width, height);
+  gl.uniform1f(u_time, 0);
+
+  if (u_animate !== null) gl.uniform1i(u_animate, 0);
+  if (u_dynamic !== null) gl.uniform1i(u_dynamic, isDynamicMode ? 1 : 0);
+  if (u_width !== null) gl.uniform1f(u_width, window.innerWidth);
+
+  return { u_time, u_animate, u_resolution, u_dynamic, u_width };
+};
+
+export const setupBuffers = (
+  gl: WebGL2RenderingContext,
+  program: WebGLProgram,
+  vertices: Float32Array,
+  colors: Float32Array
+) => {
+  // Setup Vertex Buffer
+  const vertexBuffer = gl.createBuffer();
+  if (!vertexBuffer) {
+    throw new Error("Failed to create vertex buffer");
+  }
+  gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+  const a_Position = gl.getAttribLocation(program, "a_Position");
+  gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(a_Position);
+
+  // Setup Color Buffer
+  const colorBuffer = gl.createBuffer();
+  if (!colorBuffer) {
+    throw new Error("Failed to create color buffer");
+  }
+  gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
+  const a_Color = gl.getAttribLocation(program, "a_Color");
+  gl.vertexAttribPointer(a_Color, 4, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(a_Color);
+
+  return { vertexBuffer, colorBuffer };
+};
+
+export const createShader = (gl: WebGL2RenderingContext, type: GLenum, source: string): WebGLShader | null => {
+  const shader = gl.createShader(type);
+  if (!shader) return null;
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    alert(gl.getShaderInfoLog(shader));
+    gl.deleteShader(shader);
+    return null;
+  }
+  return shader;
+};
+
+export const createProgram = (gl: WebGL2RenderingContext, vertexShader: WebGLShader, fragmentShader: WebGLShader): WebGLProgram | null => {
+  const program = gl.createProgram();
+  if (!program) return null;
+  gl.attachShader(program, vertexShader);
+  gl.attachShader(program, fragmentShader);
+  gl.linkProgram(program);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    alert(gl.getProgramInfoLog(program));
+    gl.deleteProgram(program);
+    return null;
+  }
+  return program;
+};
+
+export const getFragmentShaderSource = (type: Type): string => {
+  if (type === 'circle') {
+    return circleFragmentShaderSource;
+  } else if (type === 'zigzag') {
+    return zigzagFragmentShaderSource;
+  } else {
+    return shockwaveFragmentShaderSource;
   }
 };

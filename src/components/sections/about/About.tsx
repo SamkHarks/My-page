@@ -11,10 +11,10 @@ export const About = () => {
       <div className={styles.canvas}>
         <Animation
           type={"circle"}
-          allowWierdMode={true}
           numVertices={100}
           width={150}
           height={150}
+          allowDynamic={true}
         />
       </div>
       <img className={styles.profile_image} src={me} alt="picture of me" />

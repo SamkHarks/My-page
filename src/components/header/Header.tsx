@@ -113,6 +113,11 @@ const MenuButton = ({ isOpen, onClick }: HeaderToggleProps) => {
       timeout = setTimeout(() => setIsPressed(false), 500);
     }
     return () => clearTimeout(timeout);
+    /**
+     * This effect should only run when the isOpen state changes
+     * TODO: check if there is better way to do this
+     */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   return (

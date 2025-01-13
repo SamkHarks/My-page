@@ -14,6 +14,7 @@ export const Loader = ({ size }: Props) => (
       numVertices={30}
       width={window.innerWidth}
       height={window.innerHeight}
+      allowDynamic={false}
     />
     <Spinner size={size} />
   </div>

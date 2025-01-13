@@ -18,7 +18,7 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react", "jest", "import","@typescript-eslint"
+        "react", "jest", "import","@typescript-eslint", "react-hooks"
     ],
     "rules": {
         "indent": [
@@ -45,6 +45,8 @@ module.exports = {
         "import/named": "error",
         "import/default": "error",
         "import/namespace": "error",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
     },
     "settings": {
       "import/resolver": {

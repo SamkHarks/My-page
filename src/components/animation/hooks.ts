@@ -108,9 +108,7 @@ const useWebGLContext = (
       glRef.current = null;
     };
 
-  }, [
-    isDeleted
-  ]);
+  }, [canvasRef, isDeleted, props]);
   return {
     isDeleted,
     webGLContext: { canvasRef, glRef, program, uniformsRef, vBuffer, cBuffer, vShader, fShader },
@@ -221,6 +219,12 @@ const useEvents = (props: Props, isDeleted: boolean, webGLContext: WebGLContext,
         clearTimeout(timeout);
       }
     };
+  /**
+   * 'react-hooks/exhaustive-deps' rule is disabled currently,
+   * as we don't want to add/remove event listeners unnecessarily.
+   * TODO: check if there is a better way to handle this
+   */
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDeleted]);
 };
 

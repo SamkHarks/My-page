@@ -6,7 +6,7 @@ import { vertexShaderSource } from './shaders';
 const useWebGLContext = (
   props: Props,
   canvasRef: React.RefObject<HTMLCanvasElement>
-): {isDeleted: boolean, webGLContext: WebGLContext, animationContext: AnimationContext } => {
+): {webGLContext: WebGLContext, animationContext: AnimationContext } => {
   const isDynamicMode = useRef<boolean>(props.allowDynamic && props.type === 'zigzag');
   const vShader = useRef<WebGLShader | null>(null);
   const fShader = useRef<WebGLShader | null>(null);
@@ -99,7 +99,6 @@ const useWebGLContext = (
       if (program.current) gl.deleteProgram(program.current);
       if (vBuffer.current) gl.deleteBuffer(vBuffer.current);
       if (cBuffer.current) gl.deleteBuffer(cBuffer.current);
-
       vShader.current = null;
       fShader.current = null;
       program.current = null;
@@ -108,15 +107,19 @@ const useWebGLContext = (
       glRef.current = null;
     };
 
-  }, [canvasRef, isDeleted, props]);
+    /**
+     * 'react-hooks/exhaustive-deps' rule is disabled because refs are not needed in the dependency array.
+     * canvasRef is stable and will not change during the component lifecycle.
+     */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDeleted, props]);
   return {
-    isDeleted,
     webGLContext: { canvasRef, glRef, program, uniformsRef, vBuffer, cBuffer, vShader, fShader },
     animationContext: { animate, isDynamicMode, verticesCount, animationStartTime }
   };
 };
 
-const useEvents = (props: Props, isDeleted: boolean, webGLContext: WebGLContext, animationContext: AnimationContext) => {
+const useEvents = (props: Props, webGLContext: WebGLContext, animationContext: AnimationContext) => {
   const isSmallScreen = useRef<boolean>(window.innerWidth <= 400);
   const currentNumVertices = useRef<number>(props.numVertices);
   const { canvasRef, glRef, program, uniformsRef, vBuffer, cBuffer } = webGLContext;
@@ -221,11 +224,19 @@ const useEvents = (props: Props, isDeleted: boolean, webGLContext: WebGLContext,
     };
   /**
    * 'react-hooks/exhaustive-deps' rule is disabled currently,
-   * as we don't want to add/remove event listeners unnecessarily.
-   * TODO: check if there is a better way to handle this
+   * refs are stable and will not change during the component lifecycle.
+   * canvasRef, glRef, program, uniformsRef, vBuffer, cBuffer, animate, isDynamicMode, verticesCount, animationStartTime
+   * are all refs thus not needed in the dependency array.
    */
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDeleted]);
+  }, [props]);
 };
 
-export { useWebGLContext, useEvents };
+const useWebGL = (props: Props, canvasRef: React.RefObject<HTMLCanvasElement>) => {
+  // Create the WebGL context 
+  const { webGLContext, animationContext } = useWebGLContext(props, canvasRef);
+  // Add event listeners
+  useEvents(props, webGLContext, animationContext);
+};
+
+export { useWebGL };

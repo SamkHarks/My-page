@@ -1,15 +1,12 @@
 import React from "react";
 import styles from "./Animation.module.css";
 import { Props } from "./types";
-import { useWebGLContext, useEvents } from "./hooks";
+import { useWebGL } from "./hooks";
 
 
 const Animation = (props: Props) => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
-  // Create the WebGL context
-  const { isDeleted, webGLContext, animationContext } = useWebGLContext(props, canvasRef);
-  // Add event listeners
-  useEvents(props, isDeleted, webGLContext, animationContext);
+  useWebGL(props, canvasRef);
   return (
     <canvas
       ref={canvasRef}

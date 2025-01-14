@@ -6,7 +6,7 @@ import { vertexShaderSource } from './shaders';
 const useWebGLContext = (
   props: Props,
   canvasRef: React.RefObject<HTMLCanvasElement>
-): {webGLContext: WebGLContext, animationContext: AnimationContext } => {
+): {isDeleted: boolean, webGLContext: WebGLContext, animationContext: AnimationContext } => {
   const isDynamicMode = useRef<boolean>(props.allowDynamic && props.type === 'zigzag');
   const vShader = useRef<WebGLShader | null>(null);
   const fShader = useRef<WebGLShader | null>(null);
@@ -114,18 +114,19 @@ const useWebGLContext = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDeleted, props]);
   return {
+    isDeleted,
     webGLContext: { canvasRef, glRef, program, uniformsRef, vBuffer, cBuffer, vShader, fShader },
     animationContext: { animate, isDynamicMode, verticesCount, animationStartTime }
   };
 };
 
-const useEvents = (props: Props, webGLContext: WebGLContext, animationContext: AnimationContext) => {
+const useEvents = (props: Props, isDeleted: boolean, webGLContext: WebGLContext, animationContext: AnimationContext) => {
   const isSmallScreen = useRef<boolean>(window.innerWidth <= 400);
   const currentNumVertices = useRef<number>(props.numVertices);
   const { canvasRef, glRef, program, uniformsRef, vBuffer, cBuffer } = webGLContext;
   const { animate, isDynamicMode, verticesCount, animationStartTime } = animationContext;
   useEffect(() => {
-    if (!canvasRef.current || !glRef.current || !program.current) return;
+    if (!canvasRef.current || !glRef.current || !program.current || isDeleted) return;
     const canvas = canvasRef.current;
     const gl = glRef.current;
     const { u_animate, u_dynamic, u_width, u_resolution } = uniformsRef.current;
@@ -229,14 +230,14 @@ const useEvents = (props: Props, webGLContext: WebGLContext, animationContext: A
    * are all refs thus not needed in the dependency array.
    */
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props]);
+  }, [props, isDeleted]);
 };
 
 const useWebGL = (props: Props, canvasRef: React.RefObject<HTMLCanvasElement>) => {
-  // Create the WebGL context 
-  const { webGLContext, animationContext } = useWebGLContext(props, canvasRef);
+  // Create the WebGL context
+  const { webGLContext, animationContext, isDeleted } = useWebGLContext(props, canvasRef);
   // Add event listeners
-  useEvents(props, webGLContext, animationContext);
+  useEvents(props, isDeleted, webGLContext, animationContext);
 };
 
 export { useWebGL };

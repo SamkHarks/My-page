@@ -108,8 +108,9 @@ const useWebGLContext = (
     };
 
     /**
-     * 'react-hooks/exhaustive-deps' rule is disabled because refs are not needed in the dependency array.
-     * canvasRef is stable and will not change during the component lifecycle.
+     * Disabling 'react-hooks/exhaustive-deps' rule for this effect because refs are not needed in the dependency array.
+     * canvasRef is stable (.current value doesn't trigger re-render).
+     * Adding only non-ref dependencies to ensure the effect runs when the relevant state or props change.
      */
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDeleted, props]);
@@ -224,11 +225,16 @@ const useEvents = (props: Props, isDeleted: boolean, webGLContext: WebGLContext,
       }
     };
   /**
-   * 'react-hooks/exhaustive-deps' rule is disabled currently,
-   * refs are stable and will not change during the component lifecycle.
-   * canvasRef, glRef, program, uniformsRef, vBuffer, cBuffer, animate, isDynamicMode, verticesCount, animationStartTime
-   * are all refs thus not needed in the dependency array.
-   */
+  * Disabling 'react-hooks/exhaustive-deps' for this effect because
+  * the following variables are refs: canvasRef, glRef, program, uniformsRef,
+  * vBuffer, cBuffer, animate, isDynamicMode, verticesCount, animationStartTime.
+  *
+  * Since refs are stable (their .current value changes don't trigger re-renders),
+  * they don't need to be included in the dependency array.
+  *
+  * We only add non-ref dependencies to ensure the effect
+  * runs when the relevant state or props change.
+  */
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props, isDeleted]);
 };

@@ -1,13 +1,12 @@
-import React from "react";
-import { getSpinnerSize } from "./utils";
-import styles from "./Spinner.module.css";
+import { getSpinnerSize } from "src/components/spinner/utils";
+import * as styles from "src/components/spinner/Spinner.module.css";
 import { useTranslation } from "react-i18next";
 
 type Props = {
   size: "small" | "medium" | "large";
 };
 
-const Spinner = (props: Props) => {
+export const Spinner = (props: Props): React.JSX.Element => {
   const { t } = useTranslation("common");
   const { size, strokeWidth, fontSize } = getSpinnerSize(props.size);
   const halfSize = size / 2;
@@ -19,21 +18,21 @@ const Spinner = (props: Props) => {
         width={size}
         height={size}
         viewBox={`0 0 ${size} ${size}`}
-        xmlns="http://www.w3.org/2000/svg"
+        xmlns={"http://www.w3.org/2000/svg"}
       >
         <circle
           cx={halfSize}
           cy={halfSize}
           r={radius}
-          fill="none"
-          stroke="rgb(162, 162, 162)"
+          fill={"none"}
+          stroke={"rgb(162, 162, 162)"}
           strokeWidth={strokeWidth}
         />
         <defs>
-          <linearGradient id="fade" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style={{ stopColor: "cyan", stopOpacity: "1" }} />
+          <linearGradient id={"fade"} x1={"0%"} y1={"0%"} x2={"100%"} y2={"0%"}>
+            <stop offset={"0%"} style={{ stopColor: "cyan", stopOpacity: "1" }} />
             <stop
-              offset="100%"
+              offset={"100%"}
               style={{ stopColor: "cyan", stopOpacity: "0" }}
             />
           </linearGradient>
@@ -43,8 +42,8 @@ const Spinner = (props: Props) => {
             cx={halfSize}
             cy={halfSize}
             r={radius}
-            fill="none"
-            stroke="url(#fade)"
+            fill={"none"}
+            stroke={"url(#fade)"}
             strokeWidth={strokeWidth}
             strokeDasharray={circumference}
             strokeDashoffset={circumference / 2}
@@ -54,9 +53,9 @@ const Spinner = (props: Props) => {
         <text
           x={halfSize}
           y={halfSize}
-          fill="rgb(162, 162, 162)"
-          textAnchor="middle"
-          dominantBaseline="central"
+          fill={"rgb(162, 162, 162)"}
+          textAnchor={"middle"}
+          dominantBaseline={"central"}
           fontSize={fontSize}
         >
           {t("loading")}
@@ -65,5 +64,3 @@ const Spinner = (props: Props) => {
     </div>
   );
 };
-
-export { Spinner };

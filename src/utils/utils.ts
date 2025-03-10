@@ -1,10 +1,10 @@
 const root = document.documentElement;
 
-export const getStyle = (variable: string) =>
+export const getStyle = (variable: string): string =>
   getComputedStyle(root).getPropertyValue(variable);
 
-export const assert = (condition: boolean, message: string) => {
+export const assert = (condition: boolean, message: string): void => {
   if (!condition) {
-    console.error(message);
+    throw new Error(message);
   }
 };

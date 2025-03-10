@@ -1,18 +1,18 @@
-import React from "react";
-import { SectionRefs, Service } from "./types";
-import { Section } from "../App";
+import { SectionRefs, Service } from "src/hooks/types";
+import { Section } from "src/App";
+import { createRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 export const useRefs = (sections: Section[]): SectionRefs => {
   const refs = sections.reduce((acc, section) => {
-    acc[section.id] = React.createRef<HTMLDivElement>();
+    acc[section.id] = createRef<HTMLDivElement>();
     return acc;
   }, {} as SectionRefs);
   return refs;
 };
 
-export const useScroll = () => {
-  const [scrollProgress, setScrollProgress] = React.useState(0);
-  React.useEffect(() => {
+export const useScroll = (): number => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+  useEffect(() => {
     const handleScroll = () => {
       const totalScroll =
         document.documentElement.scrollHeight - window.innerHeight;
@@ -30,8 +30,8 @@ export const useScroll = () => {
   return scrollProgress;
 };
 
-export const useInterSectionObserver = (data: Element[]) => {
-  React.useEffect(() => {
+export const useInterSectionObserver = (data: Element[]): void => {
+  useEffect(() => {
     if (data.length === 0) {
       return;
     }
@@ -80,13 +80,13 @@ export const useInterSectionObserver = (data: Element[]) => {
 export const useAcyncFunction = <T>(
   asyncFunction: () => Promise<T>,
 ): [Service<T>, () => Promise<void>, () => void] => {
-  const [service, setService] = React.useState<Service<T>>({ state: "IDLE" });
+  const [service, setService] = useState<Service<T>>({ state: "IDLE" });
   const isMounted = useIsMounted();
-  const clearService = React.useCallback(
+  const clearService = useCallback(
     () => setService({ state: "IDLE" }),
     [],
   );
-  const callService = React.useCallback(async () => {
+  const callService = useCallback(async () => {
     setService({ state: "LOADING" });
     try {
       const data = await asyncFunction();
@@ -106,9 +106,9 @@ export const useAcyncFunction = <T>(
 };
 
 const useIsMounted = () => {
-  const isMounted = React.useRef(true);
+  const isMounted = useRef(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     isMounted.current = true;
     return () => {
       isMounted.current = false;
@@ -120,9 +120,9 @@ const useIsMounted = () => {
 
 const getBaseUrl = () => "/data";
 
-export const useFetchData = <T>(path: string) => {
+export const useFetchData = <T>(path: string): Service<T> => {
   const baseUrl = getBaseUrl();
-  const fetchData = React.useCallback(async () => {
+  const fetchData = useCallback(async () => {
     const response = await fetch(`${baseUrl}/${path}`);
     if (response.ok) {
       return response.json();
@@ -131,15 +131,17 @@ export const useFetchData = <T>(path: string) => {
   }, [path, baseUrl]);
   const [service, callService] = useAcyncFunction<T>(fetchData);
 
-  React.useEffect(() => {
+  useEffect(() => {
     callService();
   }, [callService]);
 
-  return React.useMemo(() => service, [service]);
+  return useMemo(() => service, [service]);
 };
 
-export const useHeaderObserver = (data: HTMLElement[], setTitleId: React.Dispatch<React.SetStateAction<"home" | "about" | "skills" | "contact">>) => {
-  React.useEffect(() => {
+export const useHeaderObserver = (
+  data: HTMLElement[], setTitleId: React.Dispatch<React.SetStateAction<"home" | "about" | "skills" | "contact">>
+): void => {
+  useEffect(() => {
     if (data.length === 0) {
       return;
     }
@@ -184,10 +186,10 @@ export const useHeaderObserver = (data: HTMLElement[], setTitleId: React.Dispatc
   }, [data, setTitleId]);
 };
 
-export const useTouchDevice = () => {
-  const [isTouchDevice, setIsTouchDevice] = React.useState(!!((navigator.maxTouchPoints || 'ontouchstart' in document.documentElement)));
+export const useTouchDevice = (): boolean => {
+  const [isTouchDevice, setIsTouchDevice] = useState(!!((navigator.maxTouchPoints || 'ontouchstart' in document.documentElement)));
 
-  React.useEffect(() => {
+  useEffect(() => {
     const mediaQuery = window.matchMedia("(pointer: coarse)");
 
     const handleMediaChange = (event: MediaQueryListEvent) => {

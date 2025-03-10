@@ -1,13 +1,12 @@
-import React from "react";
-import { Spinner } from "../spinner/Spinner";
-import { Animation } from "../animation/Animation";
-import styles from "./Loader.module.css";
+import { Spinner } from "src/components/spinner/Spinner";
+import { Animation } from "src/components/animation/Animation";
+import * as styles from "src/components/loader/Loader.module.css";
 
 type Props = {
     size: "small" | "medium" | "large";
 };
 
-export const Loader = ({ size }: Props) => (
+export const Loader = ({ size }: Props): React.JSX.Element => (
   <div className={styles.container}>
     <Animation
       type={"zigzag"}

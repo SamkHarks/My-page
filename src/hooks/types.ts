@@ -1,5 +1,4 @@
-import React from "react";
-import { Section } from "../App";
+import { Section } from "src/App";
 
 export type SectionRefs = Record<
   Section["id"],

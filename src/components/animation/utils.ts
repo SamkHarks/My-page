@@ -1,6 +1,6 @@
-import { assert } from "../../utils/utils";
-import { circleFragmentShaderSource, shockwaveFragmentShaderSource, zigzagFragmentShaderSource } from "./shaders";
-import { Props, Type, UniformTypes } from "./types";
+import { assert } from "src/utils/utils";
+import { circleFragmentShaderSource, shockwaveFragmentShaderSource, zigzagFragmentShaderSource } from "src/components/animation/shaders";
+import { Props, Type, UniformTypes } from "src/components/animation/types";
 
 export const createRotationMatrix = (angle: number): Float32Array => {
   const cosA = Math.cos(angle);
@@ -146,7 +146,7 @@ export const getVerticesCount = (type: Type, vertices: Float32Array): number => 
 };
 
 
-export const getCanvasDimensions = (type: Type) => {
+export const getCanvasDimensions = (type: Type): { width: number; height: number} | null => {
   if (type === 'circle') return null; // No need to change canvas dimensions for circle
   if (type === 'zigzag') {
     return { width: Math.max(window.innerWidth, 1000), height: 580 };
@@ -188,7 +188,7 @@ export const setCanvasDimensions = (canvas: HTMLCanvasElement, type: Type): bool
   return true;
 };
 
-export const getRandomColorVertices = (length: number) => {
+export const getRandomColorVertices = (length: number): Float32Array<ArrayBuffer> => {
   const colors = new Float32Array(length);
   for (let i = 0; i < colors.length; i += 4) {
     colors[i] = Math.random();
@@ -205,7 +205,7 @@ export const updateBuffers = (
   vBuffer: WebGLBuffer,
   cBuffer: WebGLBuffer,
   shaderProgram: WebGLProgram
-) => {
+): void => {
   // Update vertex buffer
   gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, newVertices, gl.STATIC_DRAW);
@@ -231,7 +231,7 @@ export const updateDynamicMode = (
   u_dynamic: WebGLUniformLocation | null,
   isSmallScreen: React.MutableRefObject<boolean>,
   isDynamicMode: React.MutableRefObject<boolean>,
-) => {
+): void => {
   if (window.innerWidth <= 400) {
     if (isSmallScreen.current) return; // Already in small screen mode
     if (isDynamicMode.current) {
@@ -250,7 +250,13 @@ export const setupUniforms = (
   shaderProgram: WebGLProgram,
   props: Props,
   isDynamicMode: boolean,
-) => {
+): {
+  u_time: WebGLUniformLocation | null;
+  u_animate: WebGLUniformLocation | null;
+  u_resolution: WebGLUniformLocation | null;
+  u_dynamic: WebGLUniformLocation | null;
+  u_width: WebGLUniformLocation | null;
+} => {
   const { width, height, type } = props;
   const matrix = new Float32Array([
     1, 0, 0, 0,
@@ -294,7 +300,10 @@ export const setupBuffers = (
   program: WebGLProgram,
   vertices: Float32Array,
   colors: Float32Array
-) => {
+): {
+  vertexBuffer: WebGLBuffer;
+  colorBuffer: WebGLBuffer;
+} => {
   // Setup Vertex Buffer
   const vertexBuffer = gl.createBuffer();
   if (!vertexBuffer) {

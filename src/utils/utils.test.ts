@@ -1,4 +1,4 @@
-import { getStyle } from "./utils";
+import { getStyle } from "src/utils/utils";
 
 test("Should return 10px", () => {
   document.documentElement.style.setProperty("--spacing-XS", "10px");

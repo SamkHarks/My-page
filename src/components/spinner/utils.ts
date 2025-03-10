@@ -1,10 +1,12 @@
-import { getStyle } from "../../utils/utils";
+import { getStyle } from "src/utils/utils";
 
 const SMALL = 75;
 const MEDIUM = 100;
 const LARGE = 125;
 
-export const getSpinnerSize = (size: "small" | "medium" | "large") => {
+export const getSpinnerSize = (
+  size: "small" | "medium" | "large"
+): { size: number; strokeWidth: number; fontSize: string; } => {
   if (size === "small") {
     return {
       size: SMALL,

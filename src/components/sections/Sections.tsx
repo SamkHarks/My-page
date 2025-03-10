@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Home } from "./home/Home";
-import { About } from "./about/About";
-import { Skills } from "./skills/Skills";
-import { Contact } from "./contact/Contact";
-import { useInterSectionObserver } from "../../hooks/hooks";
-import { SectionRefs } from "../../hooks/types";
-import { useTranslation } from "react-i18next";
-import styles from "./Sections.module.css";
-import { Section } from "../../App";
-import { Animation } from "../animation/Animation";
-import { getCanvasDimensions } from "../animation/utils";
+import { useEffect, useState } from "react";
+import { Home } from "src/components/sections/home/Home";
+import { About } from "src/components/sections/about/About";
+import { Skills } from "src/components/sections/skills/Skills";
+import { Contact } from "src/components/sections/contact/Contact";
+import { useInterSectionObserver } from "src/hooks/hooks";
+import { SectionRefs } from "src/hooks/types";
+import { Section } from "src/App";
+import { SectionWrapper } from "src/components/sections/SectionWrapper";
 
 const components: Record<Section["id"], React.ComponentType> = {
   home: Home,
@@ -18,41 +15,12 @@ const components: Record<Section["id"], React.ComponentType> = {
   contact: Contact,
 };
 
-type Props = {
-  section: Section;
-  sectionRefs: SectionRefs;
-  children: React.ReactNode;
-};
-
-const SectionWrapper = ({ section, sectionRefs, children }: Props) => {
-  const { t } = useTranslation("sections");
-  const isSkills = section.id === "skills";
-  const dim = isSkills ? getCanvasDimensions('shockwave') : null;
-  return (
-    <div id={section.id} ref={sectionRefs[section.id]} className={styles.section}>
-      {isSkills &&
-        <div className={styles.canvas}>
-          <Animation
-            type={'shockwave'}
-            width={dim?.width ?? window.innerWidth}
-            height={dim?.height ?? 100}
-            numVertices={window.innerWidth > 600 ? 100 : 50}
-            allowDynamic={false}
-          />
-        </div>
-      }
-      {section.id !== "home" && <h1 className={styles.section_title}>{`\u00B7${t(section.id)}\u00B7`}</h1>}
-      <div className={"section_content"}>{children}</div>
-    </div>
-  );
-};
-
 type SectionProps = {
   sections: Section[];
   sectionRefs: SectionRefs;
 };
 
-const Sections = ({ sectionRefs, sections }: SectionProps) => {
+const Sections = ({ sectionRefs, sections }: SectionProps): React.JSX.Element => {
   const [data, setData] = useState<Element[]>([]);
   useEffect(() => {
     const queryData = document.querySelectorAll(".section_content");

@@ -1,9 +1,8 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
-import styles from "./Home.module.css";
-import sk8 from "../../../images/Sami.jpeg";
+import * as styles from "src/components/sections/home/Home.module.css";
+import sk8 from "src/images/Sami.jpeg";
 
-export const Home = () => {
+export const Home = (): React.JSX.Element => {
   const { t, i18n } = useTranslation("home");
 
   let link = "/cv/cv-sami-en.pdf";
@@ -21,7 +20,7 @@ export const Home = () => {
       <span className={styles.divider} />
       <div>
         <p className={styles.intro}>
-          <img className={styles.sk8_image} src={sk8} alt="picture of me" />
+          <img className={styles.sk8_image} src={sk8} alt={"picture of me"} />
           {t("intro")}
         </p>
         <div className={styles.button_container}>

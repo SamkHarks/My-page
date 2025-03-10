@@ -1,4 +1,4 @@
-import "src/App.css";
+import "src/components/app/App.css";
 import { useFetchData } from "src/hooks/hooks";
 import { ServiceData } from "src/components/serviceData/ServiceData";
 import { SectionResponse } from "src/components/app/types";

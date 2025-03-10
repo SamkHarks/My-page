@@ -5,7 +5,7 @@ import { Skills } from "src/components/sections/skills/Skills";
 import { Contact } from "src/components/sections/contact/Contact";
 import { useInterSectionObserver } from "src/hooks/hooks";
 import { SectionRefs } from "src/hooks/types";
-import { Section } from "src/App";
+import { Section } from "src/components/app/types";
 import { SectionWrapper } from "src/components/sections/SectionWrapper";
 
 const components: Record<Section["id"], React.ComponentType> = {

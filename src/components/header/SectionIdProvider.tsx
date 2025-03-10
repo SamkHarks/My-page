@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { Section } from "src/App";
+import { Section } from "src/components/app/types";
 
 
 type SectionTitleIdContext = {titleId: Section['id'], setTitleId: React.Dispatch<React.SetStateAction<"home" | "about" | "skills" | "contact">>}

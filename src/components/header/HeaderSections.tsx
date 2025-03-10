@@ -1,6 +1,6 @@
 import { HeaderSectionProps } from "src/components/header/types";
 import { useSectionTitleIdContext } from "src/components/header/SectionIdProvider";
-import { Section } from "src/App";
+import { Section } from "src/components/app/types";
 import { useTranslation } from "react-i18next";
 import * as styles from "src/components/header/Header.module.css";
 

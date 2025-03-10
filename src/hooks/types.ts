@@ -1,4 +1,4 @@
-import { Section } from "src/App";
+import { Section } from "src/components/app/types";
 
 export type SectionRefs = Record<
   Section["id"],

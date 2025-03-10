@@ -1,5 +1,5 @@
 import { SectionRefs, Service } from "src/hooks/types";
-import { Section } from "src/App";
+import { Section } from "src/components/app/types";
 import { createRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 export const useRefs = (sections: Section[]): SectionRefs => {

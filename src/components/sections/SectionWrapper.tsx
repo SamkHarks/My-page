@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Section } from "src/App";
+import { Section } from "src/components/app/types";
 import { getCanvasDimensions } from "src/components/animation/utils";
 import { SectionRefs } from "src/hooks/types";
 import { Animation } from "src/components/animation/Animation";

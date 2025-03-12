@@ -1,7 +1,21 @@
 import { useEffect, useRef } from 'react';
-import { AnimationContext, Props, WebGLContext } from './types';
-import { COLUMNS, createProgram, createShader, getDrawType, getFragmentShaderSource, getRandomColorVertices, getVertices, getVerticesCount, setCanvasDimensions, setupBuffers, setupUniforms, updateBuffers, updateDynamicMode } from './utils';
-import { vertexShaderSource } from './shaders';
+import { AnimationContext, Props, WebGLContext } from 'src/components/animation/types';
+import {
+  COLUMNS,
+  createProgram,
+  createShader,
+  getDrawType,
+  getFragmentShaderSource,
+  getRandomColorVertices,
+  getVertices,
+  getVerticesCount,
+  setCanvasDimensions,
+  setupBuffers,
+  setupUniforms,
+  updateBuffers,
+  updateDynamicMode
+} from 'src/components/animation/utils';
+import { vertexShaderSource } from 'src/components/animation/shaders';
 
 const useWebGLContext = (
   props: Props,
@@ -24,8 +38,7 @@ const useWebGLContext = (
     const canvas = canvasRef.current;
     const gl = canvas.getContext("webgl2", { alpha: true, antialias: props.type === 'shockwave' });
     if (!gl) {
-      console.error("WebGL not supported");
-      return;
+      return; // WebGL not supported
     }
     glRef.current = gl;
     gl.lineWidth(1);
@@ -239,7 +252,7 @@ const useEvents = (props: Props, isDeleted: boolean, webGLContext: WebGLContext,
   }, [props, isDeleted]);
 };
 
-const useWebGL = (props: Props, canvasRef: React.RefObject<HTMLCanvasElement>) => {
+const useWebGL = (props: Props, canvasRef: React.RefObject<HTMLCanvasElement>): void => {
   // Create the WebGL context
   const { webGLContext, animationContext, isDeleted } = useWebGLContext(props, canvasRef);
   // Add event listeners

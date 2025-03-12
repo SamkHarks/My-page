@@ -1,6 +1,5 @@
-import React from "react";
-import { Service } from "../../hooks/types";
-import { Loader } from "../loader/Loader";
+import { Service } from "src/hooks/types";
+import { Loader } from "src/components/loader/Loader";
 
 export type DataProps<T> = {
   data: T;
@@ -17,7 +16,7 @@ export const ServiceData = <T,>({
   service,
   Renderer,
   spinnerSize = "medium",
-}: Props<T>) => {
+}: Props<T>): React.JSX.Element | null => {
   switch (service.state) {
     case "IDLE":
     case "LOADING":

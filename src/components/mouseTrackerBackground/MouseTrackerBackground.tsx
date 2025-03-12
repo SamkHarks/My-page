@@ -1,11 +1,11 @@
-import React from "react";
-import styles from "./mouseTrackerBackground.module.css";
-import { useTouchDevice } from "../../hooks/hooks";
+import { useState } from "react";
+import * as styles from "src/components/mouseTrackerBackground/mouseTrackerBackground.module.css";
+import { useTouchDevice } from "src/hooks/hooks";
 
 const GRADIENT_SIZE = 450;
 
-export const MouseTrackerBackground = ({ children }: React.PropsWithChildren) => {
-  const [mouse, setMouse] = React.useState({ x: 0, y: 0 });
+export const MouseTrackerBackground = ({ children }: React.PropsWithChildren): React.JSX.Element => {
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const isTouchDevice = useTouchDevice();
   const onMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const { currentTarget, clientX, clientY } = event;

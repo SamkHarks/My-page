@@ -1,6 +1,5 @@
-import React from "react";
-import { useScroll } from "../../hooks/hooks";
-import { getStyle } from "../../utils/utils";
+import { useScroll } from "src/hooks/hooks";
+import { getStyle } from "src/utils/utils";
 
 type Props = {
   text: string;
@@ -23,7 +22,7 @@ export const RectangleProgress = ({
   foregroundStroke = "white",
   textFill = "white",
   textProgressFill = "cyan",
-}: Props) => {
+}: Props): React.JSX.Element => {
   const progress = useScroll();
   // Rectangle's side width
   const sideWidth = size / Math.sqrt(2);
@@ -41,7 +40,7 @@ export const RectangleProgress = ({
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
       <defs>
         <clipPath id={clipId}>
-          <rect x="17" y="0" width={clipWidth} height={size} />
+          <rect x={"17"} y={"0"} width={clipWidth} height={size} />
         </clipPath>
       </defs>
       {/* background rectangle */}
@@ -51,7 +50,7 @@ export const RectangleProgress = ({
         width={sideWidth}
         height={sideWidth}
         transform={rotationTransform}
-        fill="none"
+        fill={"none"}
         stroke={backgroundStroke}
         strokeWidth={strokeWidth}
         rx={rx}
@@ -64,7 +63,7 @@ export const RectangleProgress = ({
         width={sideWidth}
         height={sideWidth}
         transform={rotationTransform}
-        fill="none"
+        fill={"none"}
         stroke={foregroundStroke}
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
@@ -77,9 +76,9 @@ export const RectangleProgress = ({
       <text
         x={halfSize}
         y={halfSize}
-        dominantBaseline="central"
-        textAnchor="middle"
-        fontSize="16"
+        dominantBaseline={"central"}
+        textAnchor={"middle"}
+        fontSize={"16"}
         fill={textFill}
         fontFamily={getStyle("--font-family-secondary")}
       >
@@ -89,9 +88,9 @@ export const RectangleProgress = ({
       <text
         x={halfSize}
         y={halfSize}
-        dominantBaseline="central"
-        textAnchor="middle"
-        fontSize="16"
+        dominantBaseline={"central"}
+        textAnchor={"middle"}
+        fontSize={"16"}
         fill={textProgressFill}
         fontFamily={getStyle("--font-family-secondary")}
         clipPath={`url(#${clipId})`}

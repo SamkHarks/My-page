@@ -1,10 +1,9 @@
-import React from "react";
-import me from "../../../images/varialheel.jpeg";
+import me from "src/images/varialheel.jpeg";
 import { useTranslation } from "react-i18next";
-import styles from "./About.module.css";
-import { Animation } from "../../animation/Animation";
+import * as styles from "src/components/sections/about/About.module.css";
+import { Animation } from "src/components/animation/Animation";
 
-export const About = () => {
+export const About = (): React.JSX.Element => {
   const { t } = useTranslation("about");
   return (
     <div className={styles.container}>
@@ -17,7 +16,7 @@ export const About = () => {
           allowDynamic={true}
         />
       </div>
-      <img className={styles.profile_image} src={me} alt="picture of me" />
+      <img className={styles.profile_image} src={me} alt={"picture of me"} />
       <p className={styles.text}>{t("introduction")}</p>
       <p className={`${styles.text} ${styles.margin_top}`}>{t("main")}</p>
       <p className={`${styles.text} ${styles.margin_top}`}>{t("end")}</p>

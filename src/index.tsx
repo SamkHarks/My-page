@@ -1,16 +1,16 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-import "./global/global.css";
-import App from "./App";
+import "src/global/global.css";
+import App from "src/components/app/App";
 
 // import i18n (needs to be bundled ;))
-import "./i18n";
+import "src/i18n";
+import { StrictMode } from "react";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <App />
-  </React.StrictMode>,
+  </StrictMode>,
 );

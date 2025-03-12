@@ -26,7 +26,7 @@ import {
 import { TbSql, TbApi } from "react-icons/tb";
 import { IoInfinite } from "react-icons/io5";
 
-export const ICONS: { [key: string]: IconType } = {
+export const ICONS: Record<string, IconType>  = {
   React: DiReact,
   JavaScript: FaJsSquare,
   TypeScript: SiTypescript,

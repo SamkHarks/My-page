@@ -1,4 +1,4 @@
-import { getSpinnerSize } from "./utils";
+import { getSpinnerSize } from "src/components/spinner/utils";
 
 test("Should return corretc size and stroke width with small", () => {
   const obj = getSpinnerSize("small");

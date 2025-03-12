@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Configuration",
+  "type": "object",
+  "properties": {
+    "baseUrls": {
+      "description": "Base URLs for the application",
+      "type": "object",
+      "properties": {
+        "root": {
+          "description": "Root URL for the application",
+          "type": "string"
+        },
+        "firebase": {
+          "description": "Firebase URL for the application, used for assets",
+          "type": "string"
+        }
+      }
+    },
+    "paths": {
+      "description": "Paths for the application",
+      "type": "object",
+      "properties": {
+        "images": {
+          "description": "Path for images",
+          "type": "string"
+        },
+        "cv": {
+          "description": "Path for CV",
+          "type": "string"
+        },
+        "data": {
+          "description": "Path for data",
+          "type": "string"
+        }
+      },
+      "required": [
+        "images",
+        "cv",
+        "data"
+      ]
+    }
+  },
+  "required": [
+    "baseUrls",
+    "paths"
+  ]
+}

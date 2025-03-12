@@ -1,6 +1,7 @@
 import { SectionRefs, Service } from "src/hooks/types";
 import { Section } from "src/components/app/types";
 import { createRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createUrl, getBaseUrl, getPath } from "src/utils/utils";
 
 export const useRefs = (sections: Section[]): SectionRefs => {
   const refs = sections.reduce((acc, section) => {
@@ -118,17 +119,19 @@ const useIsMounted = () => {
   return isMounted;
 };
 
-const getBaseUrl = () => "/data";
 
 export const useFetchData = <T>(path: string): Service<T> => {
-  const baseUrl = getBaseUrl();
+  const url = createUrl(
+    getBaseUrl("root"),
+    getPath("data", path)
+  );
   const fetchData = useCallback(async () => {
-    const response = await fetch(`${baseUrl}/${path}`);
+    const response = await fetch(url);
     if (response.ok) {
       return response.json();
     }
-    throw new Error(`Failed to fetch data from path: ${path}`);
-  }, [path, baseUrl]);
+    throw new Error(`Failed to fetch data from ${url}`);
+  }, [url]);
   const [service, callService] = useAcyncFunction<T>(fetchData);
 
   useEffect(() => {

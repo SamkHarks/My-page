@@ -1,0 +1,12 @@
+{
+  "$schema": "./configuration.schema.json",
+  "baseUrls": {
+    "root": "",
+    "firebase": "https://samkharks-portfolio.web.app"
+  },
+  "paths": {
+    "images": "/images/{{fileName}}",
+    "cv": "/cv/{{fileName}}",
+    "data": "/data/{{fileName}}"
+  }
+}

@@ -19,3 +19,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# assets
+/firebase
+
+# Ignore Firebase CLI cache and metadata
+.firebase/

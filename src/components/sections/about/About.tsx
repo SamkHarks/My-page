@@ -1,7 +1,7 @@
-import me from "src/images/varialheel.jpeg";
 import { useTranslation } from "react-i18next";
 import * as styles from "src/components/sections/about/About.module.css";
 import { Animation } from "src/components/animation/Animation";
+import { getImageUrl } from "src/utils/utils";
 
 export const About = (): React.JSX.Element => {
   const { t } = useTranslation("about");
@@ -16,7 +16,7 @@ export const About = (): React.JSX.Element => {
           allowDynamic={true}
         />
       </div>
-      <img className={styles.profile_image} src={me} alt={"picture of me"} />
+      <img className={styles.profile_image} src={getImageUrl("varialheel.jpeg")} alt={"picture of me"} />
       <p className={styles.text}>{t("introduction")}</p>
       <p className={`${styles.text} ${styles.margin_top}`}>{t("main")}</p>
       <p className={`${styles.text} ${styles.margin_top}`}>{t("end")}</p>

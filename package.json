@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "i18next": "^23.6.0",
-    "i18next-browser-languagedetector": "^7.1.0",
+    "i18next-resources-to-backend": "^1.2.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-i18next": "^13.3.1",
@@ -13,6 +13,7 @@
   "scripts": {
     "start": "webpack serve --config webpack.dev.cjs --open",
     "build": "webpack --config webpack.prod.cjs",
+    "analyze-build": "webpack --config webpack.analyze.cjs",
     "serve-build": "serve -s build",
     "lint": "eslint .",
     "test": "jest"
@@ -63,6 +64,7 @@
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.24.0",
     "webpack": "^5.97.1",
+    "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0",
     "webpack-merge": "^6.0.1"

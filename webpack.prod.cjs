@@ -44,6 +44,7 @@ module.exports = merge(common, {
   ],
   optimization: {
     minimize: true,
+    usedExports: true, // Tree-shaking for JavaScript
     minimizer: [
       new TerserPlugin(), // Minifies JavaScript
       new CssMinimizerPlugin(), // Minifies CSS

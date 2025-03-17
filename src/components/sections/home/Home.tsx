@@ -1,12 +1,24 @@
+import { lazy, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import * as styles from "src/components/sections/home/Home.module.css";
 import { getCVUrlFromLanguage } from "src/components/sections/home/utils";
+import { useModalStore } from "src/stores/useModalStore";
 import { getImageUrl } from "src/utils/utils";
 
+const Content = lazy(() => import("src/components/cv/Cv"));
+
 export const Home = (): React.JSX.Element => {
+  const openModal = useModalStore((state) => state.openModal);
   const { t, i18n } = useTranslation("home");
   const link = getCVUrlFromLanguage(i18n.language);
   const imageUrl = getImageUrl("Sami.jpeg");
+
+  const onPress = useCallback(() => {
+    openModal({
+      content: <Content link={link} />,
+    });
+  }, [link, openModal]);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Sami Härkönen</h1>
@@ -19,13 +31,12 @@ export const Home = (): React.JSX.Element => {
           {t("intro")}
         </p>
         <div className={styles.button_container}>
-          <a className={styles.button}
-            href={link}
-            target={"_blank"}
-            rel={"noopener noreferrer"}
+          <button
+            className={styles.button}
+            onClick={onPress}
           >
             {t("resume")}
-          </a>
+          </button>
         </div>
       </div>
     </div>

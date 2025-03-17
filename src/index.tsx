@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import "src/global/global.css";
 import App from "src/components/app/App";
+import { Modal } from "src/components/modal/Modal";
 
 // import i18n (needs to be bundled ;))
 import "src/i18n";
@@ -12,5 +13,6 @@ const root = createRoot(
 root.render(
   <StrictMode>
     <App />
+    <Modal />
   </StrictMode>,
 );

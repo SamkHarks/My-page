@@ -5,7 +5,7 @@ import * as styles from 'src/components/modal/Modal.module.css';
 import { IoCloseOutline } from "react-icons/io5";
 
 export const Modal = (): React.JSX.Element | null => {
-  const { isOpen, content, onClose, onPress, buttonTitle, closeModal } = useModalStore();
+  const { isOpen, content, onClose, closeModal, title, IconButton, iconButtonProps  } = useModalStore();
   const [isVisible, setIsVisible] = useState(false);
 
   const documentRef = useRef(document);
@@ -46,13 +46,18 @@ export const Modal = (): React.JSX.Element | null => {
         className={`${styles.content_container} ${isVisible ? styles.active : ''}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={styles.button_container}>
-          {onPress ? <button className={styles.icon} onClick={onPress}>{buttonTitle}</button> : <div />}
-          <IoCloseOutline
-            className={styles.icon}
-            size={25}
-            onClick={handleClose}
-          />
+        <div className={styles.header_container}>
+          {title ? <h5>{title}</h5> : <div />}
+          <div className={styles.button_container}>
+            <Suspense fallback={<Spinner size={25} />}>
+              {IconButton && <IconButton className={styles.icon} {...iconButtonProps} />}
+            </Suspense>
+            <IoCloseOutline
+              className={styles.icon}
+              size={25}
+              onClick={handleClose}
+            />
+          </div>
         </div>
         <Suspense fallback={
           <div className={styles.loading_container}>

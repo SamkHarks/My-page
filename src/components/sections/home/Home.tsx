@@ -6,6 +6,7 @@ import { useModalStore } from "src/stores/useModalStore";
 import { getImageUrl } from "src/utils/utils";
 
 const Content = lazy(() => import("src/components/cv/Cv"));
+const GoLinkExternal = lazy(() => import("react-icons/go").then((module) => ({ default: module.GoLinkExternal })));
 
 export const Home = (): React.JSX.Element => {
   const openModal = useModalStore((state) => state.openModal);
@@ -13,11 +14,22 @@ export const Home = (): React.JSX.Element => {
   const link = getCVUrlFromLanguage(i18n.language);
   const imageUrl = getImageUrl("Sami.jpeg");
 
+  const onClick = useCallback(() => {
+    window.open(link, "_blank");
+  }
+  , [link]);
+
   const onPress = useCallback(() => {
     openModal({
       content: <Content link={link} />,
+      title: t("resume"),
+      IconButton: GoLinkExternal,
+      iconButtonProps: {
+        size: 20,
+        onClick,
+      }
     });
-  }, [link, openModal]);
+  }, [link, openModal, t, onClick]);
 
   return (
     <div className={styles.container}>

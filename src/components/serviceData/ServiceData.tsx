@@ -8,6 +8,7 @@ export type DataProps<T> = {
 type Props<T> = {
   service: Service<T>;
   Renderer: React.ComponentType<DataProps<T>>;
+  LoadingFallback?: React.JSX.Element;
   spinnerSize?: "small" | "medium" | "large";
 };
 
@@ -15,12 +16,13 @@ type Props<T> = {
 export const ServiceData = <T,>({
   service,
   Renderer,
+  LoadingFallback,
   spinnerSize = "medium",
 }: Props<T>): React.JSX.Element | null => {
   switch (service.state) {
     case "IDLE":
     case "LOADING":
-      return <Loader size={spinnerSize} />;
+      return LoadingFallback ?? <Loader size={spinnerSize} />;
     case "SUCCESS":
       return <Renderer data={service.data} />;
     case "FAILURE":

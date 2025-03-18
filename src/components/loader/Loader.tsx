@@ -15,6 +15,8 @@ export const Loader = ({ size }: Props): React.JSX.Element => (
       height={window.innerHeight}
       allowDynamic={false}
     />
-    <Spinner size={size} />
+    <div className={styles.spinner_container}>
+      <Spinner size={size} />
+    </div>
   </div>
 );

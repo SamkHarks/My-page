@@ -3,10 +3,21 @@ import { useFetchData } from "src/hooks/hooks";
 import { SkillsResponse } from "src/components/sections/skills/types";
 import { DataProps, ServiceData } from "src/components/serviceData/ServiceData";
 import { Skill } from "src/components/sections/skills/Skill";
+import { Spinner } from "src/components/spinner/Spinner";
 
 export const Skills = (): React.JSX.Element => {
   const service = useFetchData<SkillsResponse>("skills.json");
-  return <ServiceData service={service} Renderer={Renderer} />;
+  return (
+    <ServiceData
+      service={service}
+      LoadingFallback={
+        <div className={styles.loading_container}>
+          <Spinner size={'medium'} />
+        </div>
+      }
+      Renderer={Renderer}
+    />
+  );
 };
 
 // eslint-disable-next-line react/no-multi-comp

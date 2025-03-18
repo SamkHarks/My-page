@@ -3,17 +3,17 @@ import * as styles from "src/components/spinner/Spinner.module.css";
 import { useTranslation } from "react-i18next";
 
 type Props = {
-  size: "small" | "medium" | "large";
+  size: "small" | "medium" | "large" | number;
+  strokeWidth?: number;
 };
 
 export const Spinner = (props: Props): React.JSX.Element => {
   const { t } = useTranslation("common");
-  const { size, strokeWidth, fontSize } = getSpinnerSize(props.size);
+  const { size, strokeWidth, fontSize } = getSpinnerSize(props.size, props.strokeWidth);
   const halfSize = size / 2;
   const radius = halfSize - strokeWidth / 2;
   const circumference = 2 * Math.PI * radius;
   return (
-    <div className={styles.container}>
       <svg
         width={size}
         height={size}
@@ -50,7 +50,7 @@ export const Spinner = (props: Props): React.JSX.Element => {
             className={styles.spinner}
           />
         </g>
-        <text
+        {!!fontSize && <text
           x={halfSize}
           y={halfSize}
           fill={"rgb(162, 162, 162)"}
@@ -59,8 +59,7 @@ export const Spinner = (props: Props): React.JSX.Element => {
           fontSize={fontSize}
         >
           {t("loading")}
-        </text>
+        </text>}
       </svg>
-    </div>
   );
 };

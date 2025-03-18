@@ -5,8 +5,13 @@ const MEDIUM = 100;
 const LARGE = 125;
 
 export const getSpinnerSize = (
-  size: "small" | "medium" | "large"
-): { size: number; strokeWidth: number; fontSize: string; } => {
+  size: "small" | "medium" | "large" | number,
+  strokeWidth?: number
+): { size: number; strokeWidth: number; fontSize: string | undefined; }  => {
+  if (typeof size === "number") {
+    return { size, strokeWidth: strokeWidth ?? 1 , fontSize: undefined };
+  }
+
   if (size === "small") {
     return {
       size: SMALL,

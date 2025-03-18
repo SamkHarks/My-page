@@ -1,27 +1,27 @@
 import { create } from 'zustand';
+import { IconBaseProps } from 'react-icons';
 
 // Define the base modal configuration
 type BaseModalConfig = {
   isOpen: boolean;
   content: React.ReactNode | null;
   onClose?: () => void;
+  title?: string;
 };
 
-// Define a type for modals WITH a button
-type ModalWithButton = BaseModalConfig & {
-  onPress: () => void;
-  buttonTitle: string;
+type ModalWithIconButton = BaseModalConfig & {
+  IconButton: React.ComponentType<IconBaseProps>;
+  iconButtonProps: IconBaseProps;
 };
 
-// Define a type for modals WITHOUT a button
-type ModalWithoutButton = BaseModalConfig & {
-  onPress?: never;
-  buttonTitle?: never;
+type ModalWithoutIconButton = BaseModalConfig & {
+  IconButton: undefined;
+  iconButtonProps: undefined;
 };
 
 // Create a union type for the modal store
-type ModalStore = (ModalWithButton | ModalWithoutButton) & {
-  openModal: (config: Omit<ModalWithButton, 'isOpen'> | Omit<ModalWithoutButton, 'isOpen'>) => void;
+type ModalStore = (ModalWithIconButton | ModalWithoutIconButton) & {
+  openModal: (config: Omit<ModalWithIconButton, 'isOpen'> | Omit<ModalWithoutIconButton, 'isOpen'>) => void;
   closeModal: () => void;
 };
 
@@ -29,15 +29,16 @@ export const useModalStore = create<ModalStore>((set) => ({
   isOpen: false,
   content: null,
   onClose: undefined,
-  onPress: undefined,
-  buttonTitle: undefined,
+  IconButton: undefined,
+  iconButtonProps: undefined,
+  title: undefined,
   openModal: (config) => set({ isOpen: true, ...config }),
   closeModal: () =>
     set({
       isOpen: false,
       content: null,
       onClose: undefined,
-      onPress: undefined,
-      buttonTitle: undefined,
+      IconButton: undefined,
+      title: undefined,
     }),
 }));

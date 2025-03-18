@@ -5,11 +5,13 @@ import resourcesToBackend from "i18next-resources-to-backend";
 // Supported languages
 const languages = ["en", "fi"] as const;
 
+export type Languages = typeof languages[number];
+
 // Supported namespaces
 const namespaces = ["common", "home", "about", "skills", "sections"] as const;
 
 i18n
-  .use(resourcesToBackend((language: typeof languages[number], namespace: typeof namespaces[number]) => import(`./locales/${language}/${namespace}.json`))) // Lazy-load translations
+  .use(resourcesToBackend((language: Languages, namespace: typeof namespaces[number]) => import(`./locales/${language}/${namespace}.json`))) // Lazy-load translations
   .use(initReactI18next) // Initialize react-i18next
   .init({
     fallbackLng: "en", // Fallback language

@@ -49,9 +49,7 @@ export const Modal = (): React.JSX.Element | null => {
         <div className={styles.header_container}>
           {title ? <h5>{title}</h5> : <div />}
           <div className={styles.button_container}>
-            <Suspense fallback={<Spinner size={25} />}>
-              {IconButton && <IconButton className={styles.icon} {...iconButtonProps} />}
-            </Suspense>
+            {IconButton && <IconButton className={styles.icon} {...iconButtonProps} />}
             <IoCloseOutline
               className={styles.icon}
               size={25}

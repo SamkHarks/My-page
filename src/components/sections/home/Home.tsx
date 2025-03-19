@@ -4,9 +4,9 @@ import * as styles from "src/components/sections/home/Home.module.css";
 import { getCVUrlFromLanguage } from "src/components/sections/home/utils";
 import { useModalStore } from "src/stores/useModalStore";
 import { getImageUrl } from "src/utils/utils";
+import { GoLinkExternal } from "react-icons/go";
 
 const Content = lazy(() => import("src/components/cv/Cv"));
-const GoLinkExternal = lazy(() => import("react-icons/go").then((module) => ({ default: module.GoLinkExternal })));
 
 export const Home = (): React.JSX.Element => {
   const openModal = useModalStore((state) => state.openModal);

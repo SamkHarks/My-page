@@ -12,6 +12,7 @@ export const DefaultFallback = (props: Props): React.JSX.Element => (
       onResetError={props.onResetError}
       variant={'default'}
       message={props.message}
+      size={32}
     />
   </div>
 );

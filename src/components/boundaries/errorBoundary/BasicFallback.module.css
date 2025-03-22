@@ -5,11 +5,13 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  gap: var(--spacing-XS)
+  gap: var(--spacing-S);
 }
 
 p {
   font-weight: bold;
+  font-size: var(--font-size-L);
+  text-align: center;
 }
 
 .button {

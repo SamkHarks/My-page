@@ -1,9 +1,10 @@
 import * as styles from "src/components/boundaries/errorBoundary/DefaultFallback.module.css";
 import { BasicFallback } from "src/components/boundaries/errorBoundary/BasicFallback";
+import { HandledError } from "src/components/boundaries/errorBoundary/HandledError";
 
 type Props = {
   onResetError: () => void;
-  message?: string;
+  error?: HandledError;
 }
 
 export const DefaultFallback = (props: Props): React.JSX.Element => (
@@ -11,7 +12,7 @@ export const DefaultFallback = (props: Props): React.JSX.Element => (
     <BasicFallback
       onResetError={props.onResetError}
       variant={'default'}
-      message={props.message}
+      error={props.error}
       size={32}
     />
   </div>

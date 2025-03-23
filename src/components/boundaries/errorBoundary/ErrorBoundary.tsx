@@ -37,13 +37,13 @@ export class ErrorBoundary extends Component<Props, State> {
   render(): React.ReactNode {
     if (this.state.hasError) {
       const FallBackComponent = this.props.Fallback ?? DefaultFallback;
-      const errorMessage = this.state.error instanceof HandledError
-        ? this.state.error.message
+      const error = this.state.error instanceof HandledError
+        ? this.state.error
         : undefined;
       return (
         <FallBackComponent
           onResetError={() => this.resetError()}
-          message={errorMessage}
+          error={error}
         />
       );
     }

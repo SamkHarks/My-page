@@ -6,7 +6,7 @@ import { useModalStore } from "src/stores/useModalStore";
 import { getImageUrl } from "src/utils/utils";
 import { GoLinkExternal } from "react-icons/go";
 
-const Content = lazy(() => import("src/components/cv/Cv"));
+const Content = lazy(() => import("src/components/documentViewer/DocumentViewer"));
 
 export const Home = (): React.JSX.Element => {
   const openModal = useModalStore((state) => state.openModal);
@@ -21,7 +21,7 @@ export const Home = (): React.JSX.Element => {
 
   const onPress = useCallback(() => {
     openModal({
-      content: <Content link={link} />,
+      content: <Content src={link} />,
       title: t("resume"),
       IconButton: GoLinkExternal,
       iconButtonProps: {

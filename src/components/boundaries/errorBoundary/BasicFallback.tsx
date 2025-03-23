@@ -16,7 +16,13 @@ export const BasicFallback = (props: Props): React.JSX.Element => {
   if (props.variant === 'default') {
     return (
       <div className={styles.container}>
-        <p style={{color: props.color, fontSize: props.size}}>{props.message ?? t('error')}</p>
+        <p
+          className={styles.text}
+          style={{
+            color: props.color,
+            fontSize: props.size
+            }}>{props.message ?? t('error')}
+        </p>
         <button
           className={styles.button}
           onClick={props.onResetError}
@@ -31,7 +37,7 @@ export const BasicFallback = (props: Props): React.JSX.Element => {
   return (
     <div className={styles.container}>
       {props.variant === 'text'
-      ? <p style={{fontSize: props.size, color: props.color}}>{props.message ?? t('error')}</p>
+      ? <p className={styles.text} style={{fontSize: props.size, color: props.color}}>{props.message ?? t('error')}</p>
       : <IoReload
           size={props.size}
           onClick={props.onResetError}

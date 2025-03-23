@@ -8,7 +8,7 @@
   gap: var(--spacing-S);
 }
 
-p {
+.text {
   font-weight: bold;
   font-size: var(--font-size-L);
   text-align: center;

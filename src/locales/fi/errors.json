@@ -1,0 +1,12 @@
+{
+  "400": "400 Hups! Virheellinen pyyntö",
+  "404": "404 Hups! Sivua ei löytynyt",
+  "500": "500 Hups! Sisäinen palvelinvirhe, yritä myöhemmin uudelleen.",
+  "501": "501 Hups! Ei toteutettu, yritä myöhemmin uudelleen.",
+  "502": "502 Hups! Huono yhdyskäytävä, yritä myöhemmin uudelleen.",
+  "503": "503 Hups! Palvelu ei ole käytettävissä, yritä myöhemmin uudelleen.",
+  "504": "504 Hups! Yhdyskäytävän aikakatkaisu, yritä myöhemmin uudelleen.",
+  "505": "505 Hups! HTTP-versiota ei tueta.",
+  "otherStatus": "{{status}} Hups! Odottamaton virhe tapahtui, yritä myöhemmin uudelleen.",
+  "error": "Odottamaton virhe tapahtui, yritä myöhemmin uudelleen."
+}

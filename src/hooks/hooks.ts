@@ -1,7 +1,8 @@
 import { SectionRefs, Service } from "src/hooks/types";
 import { Section } from "src/components/app/types";
 import { createRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { createUrl, getBaseUrl, getPath } from "src/utils/utils";
+import { createUrl, getBaseUrl, getPath, handleNetworkError } from "src/utils/utils";
+import { HandledError } from "src/components/boundaries/errorBoundary/HandledError";
 
 export const useRefs = (sections: Section[]): SectionRefs => {
   const refs = sections.reduce((acc, section) => {
@@ -120,7 +121,10 @@ const useIsMounted = () => {
 };
 
 
-export const useFetchData = <T>(path: string): Service<T> => {
+export const useFetchData = <T>(path: string): {
+  service: Service<T>;
+  refetch: () => Promise<void>;
+} => {
   const url = createUrl(
     getBaseUrl("root"),
     getPath("data", path)
@@ -130,7 +134,8 @@ export const useFetchData = <T>(path: string): Service<T> => {
     if (response.ok) {
       return response.json();
     }
-    throw new Error(`Failed to fetch data from ${url}`);
+    const errorArgs = handleNetworkError(response.status);
+    throw new HandledError(errorArgs.key, errorArgs.args);
   }, [url]);
   const [service, callService] = useAcyncFunction<T>(fetchData);
 
@@ -138,7 +143,7 @@ export const useFetchData = <T>(path: string): Service<T> => {
     callService();
   }, [callService]);
 
-  return useMemo(() => service, [service]);
+  return useMemo(() => ({service, refetch: callService}), [service, callService]);
 };
 
 export const useHeaderObserver = (

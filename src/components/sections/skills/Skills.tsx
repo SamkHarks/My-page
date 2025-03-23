@@ -6,10 +6,10 @@ import { Skill } from "src/components/sections/skills/Skill";
 import { Spinner } from "src/components/spinner/Spinner";
 
 export const Skills = (): React.JSX.Element => {
-  const service = useFetchData<SkillsResponse>("skills.json");
+  const skills = useFetchData<SkillsResponse>("skills.json");
   return (
     <ServiceData
-      service={service}
+      service={skills.service}
       LoadingFallback={
         <div className={styles.loading_container}>
           <Spinner size={'medium'} />

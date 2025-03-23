@@ -1,0 +1,12 @@
+{
+  "400": "400 Ooops! Bad request",
+  "404": "404 Ooops! Page not found",
+  "500": "500 Ooops! Internal server error, try again later.",
+  "501": "501 Ooops! Not implemented, try again later.",
+  "502": "502 Ooops! Bad gateway, try again later.",
+  "503": "503 Ooops! Service unavailable, try again later.",
+  "504": "504 Ooops! Gateway timeout, try again later.",
+  "505": "505 Ooops! HTTP version not supported.",
+  "otherStatus": "{{status}} Ooops! An unexpected error occurred, try again later.",
+  "error": "An unexpected error occurred, try again later."
+}

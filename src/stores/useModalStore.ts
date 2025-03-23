@@ -11,12 +11,12 @@ type BaseModalConfig = {
 
 type ModalWithIconButton = BaseModalConfig & {
   IconButton: React.ComponentType<IconBaseProps>;
-  iconButtonProps: IconBaseProps;
+  iconButtonProps?: IconBaseProps;
 };
 
 type ModalWithoutIconButton = BaseModalConfig & {
-  IconButton: undefined;
-  iconButtonProps: undefined;
+  IconButton?: never;
+  iconButtonProps?: never;
 };
 
 // Create a union type for the modal store

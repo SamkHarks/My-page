@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  gap: var(--spacing-S);
+}
+
+.text {
+  font-weight: bold;
+  font-size: var(--font-size-L);
+  text-align: center;
+}
+
+.button {
+  padding: var(--spacing-XXS) var(--spacing-XS);
+  border-radius: 8px;
+  background-color: transparent;
+  border: 2px solid var(--background-color-primary);
+  color: var(--background-color-primary);
+  font-size: var(--font-size-M);
+  cursor: pointer;
+  &:hover {
+    border-color: var(--color-cyan-secondary);
+  }
+}

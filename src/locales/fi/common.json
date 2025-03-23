@@ -1,5 +1,6 @@
 {
     "loading": "lataa...",
     "open": "Avaa Valikko",
-    "close": "Sulje Valikko"
+    "close": "Sulje Valikko",
+    "reload": "Lataa uudelleen"
 }

@@ -36,3 +36,25 @@ export const getImageUrl = (fileName: string): string => {
 export const getCVUrl = (fileName: string): string => {
   return getFirebaseUrl("cv", fileName);
 };
+
+/*
+* Common function for handling network errors.
+* Returns an object with a key and optional arguments for translation
+*/
+export const handleNetworkError = (status: number): {
+  key: string;
+  args?: Record<string, number | string>;
+} => {
+  switch (status) {
+    case 400:
+    case 404:
+    case 500:
+    case 502:
+    case 503:
+    case 504:
+    case 505:
+      return { key: `${status}` };
+    default:
+      return { key: 'otherStatus', args: { status } };
+  }
+}

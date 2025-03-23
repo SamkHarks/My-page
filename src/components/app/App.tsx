@@ -1,18 +1,12 @@
-import "src/components/app/App.css";
-import { useFetchData } from "src/hooks/hooks";
-import { ServiceData } from "src/components/serviceData/ServiceData";
-import { SectionResponse } from "src/components/app/types";
-import { AppContent } from "src/components/app/AppContent";
+import { AppLoader } from "src/components/app/AppLoader";
+import { Modal } from "src/components/modal/Modal";
 
 
-
-const App = (): React.JSX.Element => {
-  const service = useFetchData<SectionResponse>("sections.json");
-  return (
-    <div className={"App"}>
-      <ServiceData service={service} Renderer={AppContent} />
-    </div>
-  );
-};
+const App = (): React.JSX.Element => (
+  <>
+    <AppLoader />
+    <Modal />
+  </>
+);
 
 export default App;

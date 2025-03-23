@@ -1,5 +1,6 @@
 {
     "loading": "loading...",
     "open": "Open Menu",
-    "close": "Close Menu"
+    "close": "Close Menu",
+    "reload": "Reload"
 }

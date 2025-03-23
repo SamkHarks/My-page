@@ -1,8 +1,9 @@
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useModalStore } from 'src/stores/useModalStore';
-import { Spinner } from 'src/components/spinner/Spinner';
 import * as styles from 'src/components/modal/Modal.module.css';
 import { IoCloseOutline } from "react-icons/io5";
+import { Boundaries } from 'src/components/boundaries/Boundaries';
+import { BasicFallback } from 'src/components/boundaries/errorBoundary/BasicFallback';
 
 export const Modal = (): React.JSX.Element | null => {
   const { isOpen, content, onClose, closeModal, title, IconButton, iconButtonProps  } = useModalStore();
@@ -57,13 +58,19 @@ export const Modal = (): React.JSX.Element | null => {
             />
           </div>
         </div>
-        <Suspense fallback={
-          <div className={styles.loading_container}>
-            <Spinner size={"medium"}/>
-          </ div>
-        }>
+        <Boundaries
+          ErrorFallback={
+            (props) => (
+              <BasicFallback
+                variant={'default'}
+                size={24}
+                color={'black'}
+                {...props} 
+              />
+          )}
+        >
           {content}
-        </Suspense>
+        </Boundaries>
       </div>
     </div>
 

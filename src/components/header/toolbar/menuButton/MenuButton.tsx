@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { HeaderToggleProps } from "src/components/header/types";
-import * as styles from "src/components/header/Header.module.css";
+import { HeaderToolbarProps } from "src/components/header/types";
+import * as styles from "src/components/header/toolbar/menuButton/MenuButton.module.css";
 
 
-export const MenuButton = ({ isOpen, onClick }: HeaderToggleProps): React.JSX.Element => {
+export const MenuButton = ({ isOpen, onClick }: HeaderToolbarProps): React.JSX.Element => {
   const [isPressed, setIsPressed] = useState(false);
   const { t } = useTranslation("common");
   const onClickAnimate = () => {

@@ -1,0 +1,27 @@
+.sticky_header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left:0;
+    z-index: 3;
+}
+
+.container_left {
+    display: flex;
+    align-items: center;
+    column-gap: var(--spacing-XXXS);
+    padding-top: var(--spacing-XS);
+    padding-bottom: var(--spacing-XS);
+    padding-right: var(--spacing-XS);
+    padding-left: var(--spacing-S);
+}
+
+.container_right {
+    display: flex;
+    align-items: center;
+    padding-top: var(--spacing-L);
+    padding-right: var(--spacing-S);
+}

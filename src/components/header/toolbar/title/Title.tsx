@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSectionTitleIdContext } from "src/components/header/SectionIdProvider";
-import { HeaderToggleProps } from "src/components/header/types";
+import { HeaderToolbarProps } from "src/components/header/types";
 import { isTypeOfElementArray } from "src/components/header/utils";
 import { useHeaderObserver } from "src/hooks/hooks";
-import * as styles from "src/components/header/Header.module.css";
+import * as styles from "src/components/header/toolbar/title/Title.module.css";
 
 
 
-export const Title = ({ sections, isOpen }: Omit<HeaderToggleProps, 'onClick'>): React.JSX.Element => {
+export const Title = ({ sections, isOpen }: Omit<HeaderToolbarProps, 'onClick'>): React.JSX.Element => {
   const { titleId, setTitleId } = useSectionTitleIdContext();
   const [data, setData] = useState<HTMLElement[]>([]);
   const { t } = useTranslation("sections");
@@ -30,7 +30,7 @@ export const Title = ({ sections, isOpen }: Omit<HeaderToggleProps, 'onClick'>):
   useHeaderObserver(data, setTitleId);
 
   return (
-    <span style={isOpen ? { opacity: 0 } : {}} className={styles.header_title}>
+    <span style={isOpen ? { opacity: 0 } : {}} className={styles.title}>
       {t(titleId)}
     </span>
   );

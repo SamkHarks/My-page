@@ -7,10 +7,10 @@ export type HeaderProps = {
   sections: Section[];
 };
 
-export type HeaderToggleProps = {
+export type HeaderToolbarProps = {
   isOpen: boolean;
   onClick: () => void;
   sections: Section[];
 }
 
-export type HeaderSectionProps = HeaderProps & HeaderToggleProps;
+export type HeaderSectionProps = HeaderProps & HeaderToolbarProps;

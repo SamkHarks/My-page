@@ -1,0 +1,8 @@
+.title {
+  align-self: center;
+  font-family: var(--font-family-secondary);
+  font-size: 1.5rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { HeaderToggle } from "src/components/header/HeaderToggle";
+import { HeaderToolbar } from "src/components/header/toolbar/HeaderToolbar";
 import { HeaderProps } from "src/components/header/types";
 import { SectionIdProvider } from "src/components/header/SectionIdProvider";
-import { HeaderSections } from "src/components/header/HeaderSections";
+import { HeaderSections } from "src/components/header/sections/HeaderSections";
 
 export const Header = ({ sectionRefs, sections }: HeaderProps): React.JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +12,7 @@ export const Header = ({ sectionRefs, sections }: HeaderProps): React.JSX.Elemen
   return (
     <header>
       <SectionIdProvider>
-        <HeaderToggle
+        <HeaderToolbar
           onClick={onClick}
           isOpen={isOpen}
           sections={sections}

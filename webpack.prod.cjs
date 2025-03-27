@@ -24,6 +24,7 @@ module.exports = merge(common, {
               modules: true,
             },
           },
+          'postcss-loader',
         ],
       },
       // For Regular CSS (Non-Modules)
@@ -33,6 +34,7 @@ module.exports = merge(common, {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
+          'postcss-loader',
         ],
       },
     ],

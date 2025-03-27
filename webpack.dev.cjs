@@ -18,15 +18,17 @@ module.exports = merge(common, {
           {
             loader: 'css-loader',
             options: {
-              modules: true
+              modules: true,
+              importLoaders: 1,
             }
-          }
+          },
+          'postcss-loader',
         ],
       },
       {
         test: /\.css$/,
         exclude: /\.module\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ]
   },

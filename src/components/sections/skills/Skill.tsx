@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ICONS } from "src/components/sections/skills/utils";
-import * as styles from "src/components/sections/skills/Skills.module.css";
+import * as styles from "src/components/sections/skills/Skill.module.css";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 

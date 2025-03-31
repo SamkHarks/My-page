@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-XXXS);
+  width: 100%;
+  color: var(--text-color-primary);
+}
+
+.row_container {
+  display: flex;
+  gap: var(--spacing-XS);
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.field_container {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.label {
+  font: var(--font-size-L) var(--font-family-primary);
+  font-weight: bold;
+  text-transform: capitalize;
+}

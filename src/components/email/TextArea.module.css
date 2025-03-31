@@ -1,0 +1,52 @@
+.text_area {
+  flex:1;
+  min-width: 0px;
+  /*width: 100%;*/
+  padding: var(--spacing-M);
+  border-radius: 8px;
+  border: 3px solid rgba(255,255,255,0.8);
+  background-color: transparent;
+  color: var(--text-color-primary);
+  font-size: 16px !important;
+  resize: none;
+}
+
+.text_area:focus {
+  outline: none; /* Remove the default browser outline */
+  box-shadow: 0 0 4px rgba(255,255,255,0.8);
+}
+
+.clear_button {
+  background-color: transparent;
+  color: var(--text-color-primary);
+  cursor: pointer;
+  font-size: var(--font-size-M);
+  padding: var(--spacing-XS);
+  border-radius: 8px;
+  height: 100%;
+  border: 3px solid rgba(255,255,255,0.8);
+  transition: transform 0.2s ease-in-out; 
+}
+
+.clear_button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 4px rgba(255,255,255,0.8); /* Add a subtle glow effect */
+}
+
+
+.inner_clear_button {
+  position: absolute;
+  right: 0;
+  top: 12.5%;
+  transform: translateY(-50%);
+  color: var(--text-color-primary);
+  cursor: pointer;
+  z-index: 1;
+  transition: transform 0.2s ease-in-out; 
+  padding: var(--spacing-M);
+  box-sizing: content-box;  
+  &:hover {
+    transform: translateY(-50%) scale(1.3);
+  }
+
+}

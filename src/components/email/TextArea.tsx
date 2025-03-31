@@ -1,0 +1,67 @@
+import * as styles from 'src/components/email/TextArea.module.css';
+import * as commonStyles from 'src/components/email/Common.module.css';
+import { useRef, useState } from 'react';
+import { IoCloseOutline } from 'react-icons/io5';
+
+type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+  label: string;
+};
+
+export const TextArea = (props: Props): React.JSX.Element => {
+  const [value, setValue] = useState<string>('');
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(event.target.value);
+  }
+
+  const clearInput = (e: React.MouseEvent) => {
+    e.preventDefault();
+    textAreaRef.current?.focus();
+    setValue('');
+  }
+
+  const closeInput = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setValue('');
+  }
+
+  const handleFocus = (newFocus: boolean) => {
+    return () => setIsFocused(newFocus);
+  }
+
+  const showButton = value.length > 0;
+
+  return (
+    <div className={commonStyles.container}>
+      <label className={commonStyles.label} htmlFor={props.label}>{props.label}</label>
+      <div className={commonStyles.row_container}>
+        <div className={commonStyles.field_container}>
+          <textarea
+            ref={textAreaRef}
+            className={styles.text_area}
+            id={props.label}
+            placeholder={props.placeholder} 
+            rows={props.rows}
+            required={props.required}
+            onChange={handleChange}
+            onFocus={handleFocus(true)}
+            onBlur={handleFocus(false)}
+            value={value}
+          />
+          {showButton && isFocused &&
+            <IoCloseOutline
+              className={styles.inner_clear_button}
+              onClick={clearInput}
+              onMouseDown={(e) => e.preventDefault()}
+              onTouchStart={(e) => e.preventDefault()}
+              size={25}
+            />
+          }
+        </div>
+        {showButton && <button className={styles.clear_button} onClick={closeInput}>Kumoa</button>}
+      </div>
+    </div>
+  )
+}

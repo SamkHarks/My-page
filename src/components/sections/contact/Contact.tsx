@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import * as styles from "src/components/sections/contact/Contact.module.css";
 import { AiOutlineMail } from "react-icons/ai";
 import { SiGithub } from "react-icons/si";
@@ -18,7 +17,6 @@ export const Contact = (): React.JSX.Element => {
   }, [])
 
   const onPress = useCallback(() => {
-    console.log('--opening modal--')
     openModal({
       content: <Email />,
       title: 'Test',

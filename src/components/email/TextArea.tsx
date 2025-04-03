@@ -68,7 +68,7 @@ export const TextArea = (props: Props): React.JSX.Element => {
         </div>
         {showButton && <button className={styles.clear_button} onClick={closeInput}>Kumoa</button>}
       </div>
-       {displayError && textAreaRef.current?.validationMessage && <p>{textAreaRef.current.validationMessage}</p>}
+       {displayError && textAreaRef.current?.validationMessage && <p className={commonStyles.error_message}>{textAreaRef.current.validationMessage}</p>}
     </div>
   )
 }

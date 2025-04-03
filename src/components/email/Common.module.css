@@ -25,3 +25,8 @@
   font-weight: bold;
   text-transform: capitalize;
 }
+
+.error_message {
+  font-size: 16px;
+  margin-bottom: calc(-1 * var(--spacing-XXXS));
+}

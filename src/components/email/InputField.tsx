@@ -104,7 +104,7 @@ export const InputField = (props: Props): React.JSX.Element => {
         </div>
         {showButton && <button className={styles.clear_button} onClick={closeInput}>Cancel</button>}
       </div>
-      {displayError && inputRef.current?.validationMessage && <p>{inputRef.current.validationMessage}</p>}
+      {displayError && inputRef.current?.validationMessage && <p className={commonStyles.error_message}>{inputRef.current.validationMessage}</p>}
     </div>
   )
 }

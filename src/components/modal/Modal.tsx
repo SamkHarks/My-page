@@ -41,14 +41,17 @@ export const Modal = (): React.JSX.Element | null => {
   return (
     <div
       className={styles.background_container}
+      role={'dialog'}
+      aria-modal={true}
+      aria-labelledby={'modal-title'}
       onClick={handleClose}
     >
       <div
         className={`${styles.content_container} ${isVisible ? styles.active : ''}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={styles.header_container}>
-          {title ? <h5>{title}</h5> : <div />}
+        <header className={styles.header_container}>
+          {title ? <h2 id={'modal-title'} className={styles.header_title}>{title}</h2> : <div />}
           <div className={styles.button_container}>
             {IconButton && <IconButton className={styles.icon} {...iconButtonProps} />}
             <IoCloseOutline
@@ -57,7 +60,7 @@ export const Modal = (): React.JSX.Element | null => {
               onClick={handleClose}
             />
           </div>
-        </div>
+        </header>
         <Boundaries
           ErrorFallback={
             (props) => (

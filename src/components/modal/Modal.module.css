@@ -46,17 +46,17 @@
   padding-right: var(--spacing-S);
 }
 
+.header_title {
+  color: var(--background-color-secondary);
+  font-size: var(--font-size-M);
+  font-weight: bold;
+}
+
 .icon {
   color: var(--background-color-secondary);
   &:hover {
       transform: scale(1.2);
   }
-}
-
-h5 {
-  color: var(--background-color-secondary);
-  margin: 0px;
-  font-size: var(--font-size-M);
 }
 
 .loading_container {

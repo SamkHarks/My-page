@@ -20,12 +20,14 @@
   padding-right: var(--spacing-L);
   scrollbar-width: none;
   overflow-y: scroll;
+  padding-top: var(--spacing-L);
+  padding-bottom: var(--spacing-L);
 }
 
 
-@media (pointer: coarse) {
+@media (max-width: 768px) {
   .form_container {
+    justify-content: flex-start;
     padding-bottom: 80px;
-    padding-top: 80px;
   }
 }

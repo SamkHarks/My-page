@@ -7,6 +7,7 @@ type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label: string;
 };
 
+// TODO: Handle error messages, currently uses browser default messages
 export const TextArea = (props: Props): React.JSX.Element => {
   const [value, setValue] = useState<string>('');
   const [isFocused, setIsFocused] = useState<boolean>(false);

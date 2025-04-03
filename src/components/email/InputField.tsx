@@ -42,6 +42,7 @@ const validateText = (input: string, inputRef: React.RefObject<HTMLInputElement>
   }
 };*/
 
+// TODO: Handle error messages, currently uses browser default messages
 export const InputField = (props: Props): React.JSX.Element => {
   const [value, setValue] = useState<string>('');
   const [isFocused, setIsFocused] = useState<boolean>(false);

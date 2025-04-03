@@ -10,10 +10,14 @@ type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 export const TextArea = (props: Props): React.JSX.Element => {
   const [value, setValue] = useState<string>('');
   const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [displayError, setDisplayError] = useState<boolean>(false);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(event.target.value);
+    if (displayError) {
+      setDisplayError(false);
+    }
   }
 
   const clearInput = (e: React.MouseEvent) => {
@@ -25,6 +29,7 @@ export const TextArea = (props: Props): React.JSX.Element => {
   const closeInput = (e: React.MouseEvent) => {
     e.preventDefault();
     setValue('');
+    setDisplayError(false);
   }
 
   const handleFocus = (newFocus: boolean) => {
@@ -40,7 +45,7 @@ export const TextArea = (props: Props): React.JSX.Element => {
         <div className={commonStyles.field_container}>
           <textarea
             ref={textAreaRef}
-            className={styles.text_area}
+            className={`${styles.text_area} ${displayError ? styles.error : ''}`}
             id={props.label}
             placeholder={props.placeholder} 
             rows={props.rows}
@@ -48,6 +53,7 @@ export const TextArea = (props: Props): React.JSX.Element => {
             onChange={handleChange}
             onFocus={handleFocus(true)}
             onBlur={handleFocus(false)}
+            onInvalid={() => {setDisplayError(true)}}
             value={value}
           />
           {showButton && isFocused &&
@@ -62,6 +68,7 @@ export const TextArea = (props: Props): React.JSX.Element => {
         </div>
         {showButton && <button className={styles.clear_button} onClick={closeInput}>Kumoa</button>}
       </div>
+       {displayError && textAreaRef.current?.validationMessage && <p>{textAreaRef.current.validationMessage}</p>}
     </div>
   )
 }

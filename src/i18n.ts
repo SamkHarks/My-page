@@ -8,7 +8,7 @@ const languages = ["en", "fi"] as const;
 export type Languages = typeof languages[number];
 
 // Supported namespaces
-const namespaces = ["common", "home", "about", "skills", "sections", "errors"] as const;
+const namespaces = ["common", "home", "about", "skills", "sections", "errors", "contact"] as const;
 
 i18n
   .use(resourcesToBackend((language: Languages, namespace: typeof namespaces[number]) => import(`./locales/${language}/${namespace}.json`))) // Lazy-load translations

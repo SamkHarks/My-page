@@ -19,6 +19,7 @@ export const Email = (): React.JSX.Element => {
         noValidate={true}
         onSubmit={handleSubmit}
       >
+        <p className={styles.header}>Ready to build something great? <br />Want to discuss tech, opportunities, or why <span style={{color: 'blue'}}>NaN === NaN</span> is <span style={{color: 'blue'}}>false?</span> <br />Fill out the form below—I will get back ASAP!</p>
         <InputField
           label={'name'}
           placeholder={'Your Name'}
@@ -38,7 +39,12 @@ export const Email = (): React.JSX.Element => {
           required={true}
           rows={10}
         />
-        <button type={'submit'}>Send</button>
+        <button
+          className={styles.submit_button}
+          type={'submit'}
+        >
+          Submit
+        </button>
       </form>
     </div>
   )

@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import * as styles from "src/components/email/InputField.module.css";
 import * as commonStyles from "src/components/email/Common.module.css";
+import { useTranslation } from "react-i18next";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string;
@@ -44,6 +45,7 @@ const validateText = (input: string, inputRef: React.RefObject<HTMLInputElement>
 
 // TODO: Handle error messages, currently uses browser default messages
 export const InputField = (props: Props): React.JSX.Element => {
+  const { t } = useTranslation('contact');
   const [value, setValue] = useState<string>('');
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [displayError, setDisplayError] = useState<boolean>(false);
@@ -76,7 +78,7 @@ export const InputField = (props: Props): React.JSX.Element => {
 
   return (
     <div className={commonStyles.container}>     
-      <label className={commonStyles.label} htmlFor={props.label}>{props.label}</label>
+      <label className={commonStyles.label} htmlFor={props.id}>{props.label}</label>
       <div className={commonStyles.row_container}>
         <div className={commonStyles.field_container}>
           <input
@@ -84,7 +86,7 @@ export const InputField = (props: Props): React.JSX.Element => {
             className={`${styles.input} ${displayError ? styles.error : ''}`}
             onFocus={handleFocus(true)}
             onBlur={handleFocus(false)}
-            id={props.label}
+            id={props.id}
             type={props.type}
             placeholder={props.placeholder}
             required={props.required}
@@ -103,7 +105,7 @@ export const InputField = (props: Props): React.JSX.Element => {
             />
           }
         </div>
-        {showButton && <button className={styles.clear_button} onClick={closeInput}>Cancel</button>}
+        {showButton && <button className={styles.clear_button} onClick={closeInput}>{t('form.cancel')}</button>}
       </div>
       {displayError && inputRef.current?.validationMessage && <p className={commonStyles.error_message}>{inputRef.current.validationMessage}</p>}
     </div>

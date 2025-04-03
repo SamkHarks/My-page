@@ -2,6 +2,7 @@ import * as styles from 'src/components/email/TextArea.module.css';
 import * as commonStyles from 'src/components/email/Common.module.css';
 import { useRef, useState } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
+import { useTranslation } from 'react-i18next';
 
 type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label: string;
@@ -9,6 +10,7 @@ type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 
 // TODO: Handle error messages, currently uses browser default messages
 export const TextArea = (props: Props): React.JSX.Element => {
+  const {t} = useTranslation('contact');
   const [value, setValue] = useState<string>('');
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [displayError, setDisplayError] = useState<boolean>(false);
@@ -41,13 +43,13 @@ export const TextArea = (props: Props): React.JSX.Element => {
 
   return (
     <div className={commonStyles.container}>
-      <label className={commonStyles.label} htmlFor={props.label}>{props.label}</label>
+      <label className={commonStyles.label} htmlFor={props.id}>{props.label}</label>
       <div className={commonStyles.row_container}>
         <div className={commonStyles.field_container}>
           <textarea
             ref={textAreaRef}
             className={`${styles.text_area} ${displayError ? styles.error : ''}`}
-            id={props.label}
+            id={props.id}
             placeholder={props.placeholder} 
             rows={props.rows}
             required={props.required}
@@ -67,7 +69,7 @@ export const TextArea = (props: Props): React.JSX.Element => {
             />
           }
         </div>
-        {showButton && <button className={styles.clear_button} onClick={closeInput}>Kumoa</button>}
+        {showButton && <button className={styles.clear_button} onClick={closeInput}>{t('form.cancel')}</button>}
       </div>
        {displayError && textAreaRef.current?.validationMessage && <p className={commonStyles.error_message}>{textAreaRef.current.validationMessage}</p>}
     </div>

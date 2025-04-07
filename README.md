@@ -4,7 +4,10 @@ This repository contains the source code for the frontend of my personal portfol
 
 ## Deployment
 
-The portfolio is a **work in progress (WIP)** and is currently hosted live at [Render](https://samis-portfolio.onrender.com).
+The portfolio is now live and accessible at:
+🌐 [samkharks.dev](https://samkharks.dev)
+
+**Hosting:** Deployed via [Render](https://render.com/)
 
 ## Features
 

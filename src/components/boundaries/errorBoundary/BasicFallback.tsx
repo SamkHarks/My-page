@@ -12,7 +12,7 @@ type Props = {
  }
 
 export const BasicFallback = (props: Props): React.JSX.Element => {
-  const { t } = useTranslation(['error', 'common']);
+  const { t } = useTranslation(['errors', 'common']);
   const message = props.error
     ? t(`errors:${props.error.key}`, props.error.args)
     : t('errors:error');

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo } from "react";
-import { useAcyncFunction } from "src/hooks/hooks";
+import { useAsyncFunction } from "src/hooks/hooks";
 import { Service } from "src/hooks/types";
 import { HandledError } from "src/components/boundaries/errorBoundary/HandledError";
 import { handleNetworkError } from "src/utils/utils";
@@ -19,7 +19,7 @@ export const useCheckLink = (link: string): {
     throw new HandledError(errorArgs.key, errorArgs.args);
   }, [link]);
 
-  const [service, callService] = useAcyncFunction<string>(checkLink);
+  const [service, callService] = useAsyncFunction<string>(checkLink);
   
   useEffect(() => {
     callService();

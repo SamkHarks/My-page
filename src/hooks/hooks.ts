@@ -79,7 +79,7 @@ export const useInterSectionObserver = (data: Element[]): void => {
   }, [data]);
 };
 
-export const useAcyncFunction = <T>(
+export const useAsyncFunction = <T>(
   asyncFunction: () => Promise<T>,
 ): [Service<T>, () => Promise<void>, () => void] => {
   const [service, setService] = useState<Service<T>>({ state: "IDLE" });
@@ -137,7 +137,7 @@ export const useFetchData = <T>(path: string): {
     const errorArgs = handleNetworkError(response.status);
     throw new HandledError(errorArgs.key, errorArgs.args);
   }, [url]);
-  const [service, callService] = useAcyncFunction<T>(fetchData);
+  const [service, callService] = useAsyncFunction<T>(fetchData);
 
   useEffect(() => {
     callService();

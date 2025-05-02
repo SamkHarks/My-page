@@ -21,8 +21,6 @@
   align-items: center;
   text-align: center;
   column-gap: var(--spacing-XXS);
-  white-space: nowrap;
-  word-break: break-word;
 }
 
 .notification.success {
@@ -49,5 +47,12 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@media (min-width: 300px) {
+  .notification {
+    white-space: nowrap;
+    word-break: break-word;
   }
 }

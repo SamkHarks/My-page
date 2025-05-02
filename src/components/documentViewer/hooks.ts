@@ -1,29 +1,22 @@
-import { useCallback, useEffect, useMemo } from "react";
-import { useAsyncFunction } from "src/hooks/hooks";
+import { useCallback } from "react";
+import { useMemo } from "react";
+import { useService } from "src/hooks/hooks";
 import { Service } from "src/hooks/types";
-import { HandledError } from "src/components/boundaries/errorBoundary/HandledError";
-import { handleNetworkError } from "src/utils/utils";
-
-
 
 export const useCheckLink = (link: string): {
   service: Service<string>;
-  refetch: () => Promise<void>;
+  callService: () => void;
 } => {
-  const checkLink = useCallback(async () => {
-    const response = await fetch(link, { method: 'HEAD' });
-    if (response.ok) {
-      return link;
-    }
-    const errorArgs = handleNetworkError(response.status);
-    throw new HandledError(errorArgs.key, errorArgs.args);
-  }, [link]);
+  const transformResponse = useCallback(async (_res: Response) => { return link; }, [link]);
+  const serviceOptions = { transformResponse };
+  const requestOptions = useMemo(() => ({ method: 'HEAD' } as const), []);
+  const urlOptions = { path: link };
 
-  const [service, callService] = useAsyncFunction<string>(checkLink);
-  
-  useEffect(() => {
-    callService();
-  }, [callService]);
+  const service = useService<string>({
+    urlOptions,
+    requestOptions,
+    serviceOptions,
+  });
 
-  return useMemo(() => ({service, refetch: callService}), [service, callService]);
+  return service;
 }

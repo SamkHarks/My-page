@@ -1,7 +1,7 @@
 import { SectionRefs, Service } from "src/hooks/types";
 import { Section } from "src/components/app/types";
 import { createRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { createUrl, getBaseUrl, getPath, handleNetworkError } from "src/utils/utils";
+import { createUrl, handleNetworkError } from "src/utils/utils";
 import { HandledError } from "src/components/boundaries/errorBoundary/HandledError";
 import configuration from "src/config/configuration.json";
 
@@ -121,32 +121,6 @@ const useIsMounted = () => {
   return isMounted;
 };
 
-
-export const useFetchData = <T>(path: string): {
-  service: Service<T>;
-  refetch: () => Promise<void>;
-} => {
-  const url = createUrl(
-    getBaseUrl("root"),
-    getPath("data", path)
-  );
-  const fetchData = useCallback(async () => {
-    const response = await fetch(url);
-    if (response.ok) {
-      return response.json();
-    }
-    const errorArgs = handleNetworkError(response.status);
-    throw new HandledError(errorArgs.key, errorArgs.args);
-  }, [url]);
-  const [service, callService] = useAsyncFunction<T>(fetchData);
-
-  useEffect(() => {
-    callService();
-  }, [callService]);
-
-  return useMemo(() => ({service, refetch: callService}), [service, callService]);
-};
-
 export const useConfiguration = (): {
   baseUrls: Omit<typeof configuration["baseUrls"], 'dev' | 'prod'> & { baseUrl: string };
   paths: typeof configuration["paths"];
@@ -156,6 +130,79 @@ export const useConfiguration = (): {
   const baseUrls = {...restBaseUrls, baseUrl: env === 'production' ? prod : dev};
   const paths = configuration.paths;
   return { baseUrls, paths };
+}
+
+type RequestOptions = {
+  method: 'GET' | 'POST' | 'HEAD';
+  headers?: Record<string, string>;
+  body?: Record<string, unknown>;
+};
+
+type ServiceOptions<T> = {
+  immediate?: boolean; // Whether to call the service immediately
+  transformResponse?: (response: Response) => Promise<T>; // Transform the response
+};
+
+type UrlOptions = {
+  baseUrl?: string
+  path: string;
+  //queryParams?: Record<string, string>; Add later if needed
+}
+
+const getRequestOptions = (requestOptions: RequestOptions = { method: 'GET' }): RequestInit => {
+  const { body, method, ...rest } = requestOptions;
+  const defaultHeaders =  method !== 'HEAD' ? { 'Content-Type': 'application/json' } : undefined;
+  const headers = {
+    ...defaultHeaders,
+    ...rest.headers,
+  };
+
+  return {
+    method,
+    headers,
+    ...(body && method === 'POST' && { body: JSON.stringify(body) }),
+  };
+};
+
+type ServiceParams<T> = {
+  urlOptions: UrlOptions;
+  requestOptions?: RequestOptions;
+  serviceOptions?: ServiceOptions<T>;
+}
+
+export const useService = <T>({
+  urlOptions,
+  requestOptions,
+  serviceOptions
+}: ServiceParams<T>): {
+  service: Service<T>;
+  callService: () => Promise<void>;
+} => {
+  const { baseUrl, path } = urlOptions;
+  const { transformResponse, immediate = true } = serviceOptions ?? {};
+
+  const asyncFunction = useCallback(async () => {
+    const url = createUrl(path, baseUrl);
+    const options: RequestInit = getRequestOptions(requestOptions);
+    const response = await fetch(url, options);
+    if (response.ok) {
+      return transformResponse
+        ? transformResponse(response)
+        : response.json();
+    }
+    const errorArgs = handleNetworkError(response.status);
+    throw new HandledError(errorArgs.key, errorArgs.args);
+  }, [baseUrl, path, requestOptions, transformResponse]);
+
+  const [service, callService] = useAsyncFunction<T>(asyncFunction);
+
+  useEffect(() => {
+    if (immediate) {
+      callService();
+    }
+  }, [callService, immediate]);
+
+  return useMemo(() => ({ service, callService }), [service, callService]);
 }
 
 export const useHeaderObserver = (

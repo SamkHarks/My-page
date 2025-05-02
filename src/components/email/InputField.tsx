@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import * as styles from "src/components/email/InputField.module.css";
 import * as commonStyles from "src/components/email/Common.module.css";
@@ -8,41 +8,6 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string;
 };
 
-/*
-const sanitizeText = (input: string): string => {
-  return input.replace(/[^a-zA-Z\s'-]/g, '');
-};
-
-const sanitizeEmailCharacters = (input: string): string => {
-  return input.replace(/[^a-zA-Z0-9!#$%&'*+/=?^_`{|}~@.-]/g, '');
-};
-
-const validateEmail = (input: string, inputRef: React.RefObject<HTMLInputElement>) => {
-  if (inputRef.current) {
-    const sanitizedValue = sanitizeEmailCharacters(input);
-
-    if (sanitizedValue !== input) {
-      inputRef.current.setCustomValidity('Invalid characters detected in email.');
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input)) {
-      inputRef.current.setCustomValidity('Please enter a valid email address.');
-    } else {
-      inputRef.current.setCustomValidity(''); // Clear the error
-    }
-  }
-};
-
-const validateText = (input: string, inputRef: React.RefObject<HTMLInputElement>) => {
-  if (inputRef.current) {
-    const sanitizedValue = sanitizeText(input);
-
-    if (sanitizedValue !== input) {
-      inputRef.current.setCustomValidity('Invalid characters detected in name.');
-    } else {
-      inputRef.current.setCustomValidity(''); // Clear the error
-    }
-  }
-};*/
-
 // TODO: Handle error messages, currently uses browser default messages
 export const InputField = (props: Props): React.JSX.Element => {
   const { t } = useTranslation('contact');
@@ -50,6 +15,12 @@ export const InputField = (props: Props): React.JSX.Element => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [displayError, setDisplayError] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (props.disabled) {
+      setValue('');
+    }
+  }, [props.disabled]);
   
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
    setValue(event.target.value);
@@ -94,6 +65,7 @@ export const InputField = (props: Props): React.JSX.Element => {
             value={value}
             onInvalid={() => {setDisplayError(true)}}
             onChange={handleChange}
+            disabled={props.disabled}
           />
           {showButton && isFocused && 
             <IoCloseOutline

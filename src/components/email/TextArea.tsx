@@ -1,6 +1,6 @@
 import * as styles from 'src/components/email/TextArea.module.css';
 import * as commonStyles from 'src/components/email/Common.module.css';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useTranslation } from 'react-i18next';
 
@@ -15,6 +15,12 @@ export const TextArea = (props: Props): React.JSX.Element => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [displayError, setDisplayError] = useState<boolean>(false);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (props.disabled) {
+      setValue('');
+    }
+  }, [props.disabled]);
   
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(event.target.value);
@@ -58,6 +64,7 @@ export const TextArea = (props: Props): React.JSX.Element => {
             onBlur={handleFocus(false)}
             onInvalid={() => {setDisplayError(true)}}
             value={value}
+            disabled={props.disabled}
           />
           {showButton && isFocused &&
             <IoCloseOutline

@@ -21,6 +21,12 @@
   box-shadow: none;
 }
 
+.text_area:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  box-shadow: none;
+}
+
 .text_area::placeholder {
   font-size: 16px;
 }

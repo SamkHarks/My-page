@@ -1,5 +1,6 @@
 {
   "form": {
+    "title": "Yhteydenottolomake",
     "name": "Nimi",
     "email": "Sähköposti",
     "message": "Viesti",

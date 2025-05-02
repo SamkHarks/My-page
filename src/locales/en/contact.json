@@ -1,5 +1,6 @@
 {
   "form": {
+    "title": "Contact Form",
     "name": "Name",
     "email": "Email",
     "message": "Message",

@@ -6,7 +6,7 @@ import { Boundaries } from 'src/components/boundaries/Boundaries';
 import { BasicFallback } from 'src/components/boundaries/errorBoundary/BasicFallback';
 
 export const Modal = (): React.JSX.Element | null => {
-  const { isOpen, content, onClose, closeModal, title, IconButton, iconButtonProps  } = useModalStore();
+  const { isOpen, content, onClose, closeModal, title, IconButton, iconButtonProps, isLoading  } = useModalStore();
   const [isVisible, setIsVisible] = useState(false);
 
   const documentRef = useRef(document);
@@ -29,6 +29,7 @@ export const Modal = (): React.JSX.Element | null => {
   }
 
   const handleClose = () => {
+    if (isLoading) return;
     setIsVisible(false);
     setTimeout(() => {
       if (onClose) {

@@ -3,6 +3,7 @@ import { Section } from "src/components/app/types";
 import { createRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createUrl, getBaseUrl, getPath, handleNetworkError } from "src/utils/utils";
 import { HandledError } from "src/components/boundaries/errorBoundary/HandledError";
+import configuration from "src/config/configuration.json";
 
 export const useRefs = (sections: Section[]): SectionRefs => {
   const refs = sections.reduce((acc, section) => {
@@ -145,6 +146,17 @@ export const useFetchData = <T>(path: string): {
 
   return useMemo(() => ({service, refetch: callService}), [service, callService]);
 };
+
+export const useConfiguration = (): {
+  baseUrls: Omit<typeof configuration["baseUrls"], 'dev' | 'prod'> & { baseUrl: string };
+  paths: typeof configuration["paths"];
+} => {
+  const {dev, prod, ...restBaseUrls} = configuration.baseUrls;
+  const env = (process.env.NODE_ENV ?? 'production');
+  const baseUrls = {...restBaseUrls, baseUrl: env === 'production' ? prod : dev};
+  const paths = configuration.paths;
+  return { baseUrls, paths };
+}
 
 export const useHeaderObserver = (
   data: HTMLElement[], setTitleId: React.Dispatch<React.SetStateAction<"home" | "about" | "skills" | "contact">>

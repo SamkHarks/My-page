@@ -1,12 +1,25 @@
 declare const configuration: {
   baseUrls: {
-    root: string;
     firebase: string;
+    dev: string;
+    prod: string;
   };
   paths: {
-    images: string;
-    cv: string;
-    data: string;
+    images: {
+      me: string;
+      skate: string;
+    };
+    cv: {
+      en: string;
+      fi: string;
+    };
+    data: {
+      skills: string;
+      sections: string;
+    };
+    email: {
+      contact: string;
+    };
   };
 };
 

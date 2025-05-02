@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Email configuration",
+  "description": "Api for sending emails",
+  "type": "object",
+  "properties": {
+    "contact": {
+      "description": "Path for posting email",
+      "type": "string"
+    }
+  },
+  "required": [
+    "contact"
+  ]
+}

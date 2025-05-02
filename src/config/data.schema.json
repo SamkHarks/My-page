@@ -1,15 +1,15 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "title": "Local Data",
-  "description": "Path for local data",
+  "title": "Local data",
+  "description": "Api for local data",
   "type": "object",
   "properties": {
     "skills": {
-      "description": "Path for skills data",
+      "description": "path for fetching skills data",
       "type": "string"
     },
     "sections": {
-      "description": "Path for sections data",
+      "description": "Path for fetching sections data",
       "type": "string"
     }
   },

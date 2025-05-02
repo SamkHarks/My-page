@@ -1,15 +1,15 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "title": "CVs",
-  "description": "Path to CVs",
+  "description": "Api for CVs",
   "type": "object",
   "properties": {
     "en": {
-      "description": "Path for English CV",
+      "description": "Path for fetching English CV",
       "type": "string"
     },
     "fi": {
-      "description": "Path for Finnish CV",
+      "description": "Path for fetching Finnish CV",
       "type": "string"
     }
   },

@@ -10,7 +10,7 @@ on:
 
 jobs:
     deployment_pipeline:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
@@ -31,7 +31,7 @@ jobs:
     tag_release:
         needs: [deployment_pipeline]
         if: ${{ github.event_name == 'push' }}
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
         steps:
             - uses: actions/checkout@v4
               with:

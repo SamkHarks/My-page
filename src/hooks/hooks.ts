@@ -177,6 +177,7 @@ export const useService = <T>({
 }: ServiceParams<T>): {
   service: Service<T>;
   callService: () => Promise<void>;
+  clearService: () => void;
 } => {
   const { baseUrl, path } = urlOptions;
   const { transformResponse, immediate = true } = serviceOptions ?? {};
@@ -194,7 +195,7 @@ export const useService = <T>({
     throw new HandledError(errorArgs.key, errorArgs.args);
   }, [baseUrl, path, requestOptions, transformResponse]);
 
-  const [service, callService] = useAsyncFunction<T>(asyncFunction);
+  const [service, callService, clearService] = useAsyncFunction<T>(asyncFunction);
 
   useEffect(() => {
     if (immediate) {
@@ -202,7 +203,7 @@ export const useService = <T>({
     }
   }, [callService, immediate]);
 
-  return useMemo(() => ({ service, callService }), [service, callService]);
+  return useMemo(() => ({ service, callService, clearService }), [service, callService, clearService]);
 }
 
 export const useHeaderObserver = (

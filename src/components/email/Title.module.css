@@ -1,0 +1,15 @@
+.header {
+  font-size: var(--font-size-L);
+  font-weight: bold;
+  width: 100%;
+  color: var(--background-color-primary);
+  text-align: center;
+  padding: var(--spacing-XS);
+}
+
+.line {
+  color: var(--text-color-cyan-secondary);
+  white-space: nowrap;
+  word-break: break-word;
+  display: inline-block;
+}

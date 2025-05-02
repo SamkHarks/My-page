@@ -14,7 +14,7 @@ const DocumentViewer = (props: Props): React.JSX.Element => {
       Renderer={Content}
       service={services.service}
       LoadingFallback={<LoadingFallback />}
-      refetch={services.refetch}
+      refetch={services.callService}
     />
   );
 };

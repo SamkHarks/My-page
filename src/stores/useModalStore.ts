@@ -5,6 +5,7 @@ import { IconBaseProps } from 'react-icons';
 type BaseModalConfig = {
   isOpen: boolean;
   content: React.ReactNode | null;
+  isLoading: boolean;
   onClose?: () => void;
   title?: string;
 };
@@ -21,8 +22,9 @@ type ModalWithoutIconButton = BaseModalConfig & {
 
 // Create a union type for the modal store
 type ModalStore = (ModalWithIconButton | ModalWithoutIconButton) & {
-  openModal: (config: Omit<ModalWithIconButton, 'isOpen'> | Omit<ModalWithoutIconButton, 'isOpen'>) => void;
+  openModal: (config: Omit<ModalWithIconButton, 'isOpen' | 'isLoading'> | Omit<ModalWithoutIconButton, 'isOpen' | 'isLoading'>) => void;
   closeModal: () => void;
+  setLoading: (loading: boolean) => void;
 };
 
 export const useModalStore = create<ModalStore>((set) => ({
@@ -32,6 +34,7 @@ export const useModalStore = create<ModalStore>((set) => ({
   IconButton: undefined,
   iconButtonProps: undefined,
   title: undefined,
+  isLoading: false,
   openModal: (config) => set({ isOpen: true, ...config }),
   closeModal: () =>
     set({
@@ -40,5 +43,12 @@ export const useModalStore = create<ModalStore>((set) => ({
       onClose: undefined,
       IconButton: undefined,
       title: undefined,
+      isLoading: false,
+    }),
+    setLoading: (loading) => set((state) => {
+      if (state.isLoading !== loading) {
+        return { isLoading: loading };
+      }
+      return state;
     }),
 }));

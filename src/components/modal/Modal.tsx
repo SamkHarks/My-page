@@ -6,7 +6,7 @@ import { Boundaries } from 'src/components/boundaries/Boundaries';
 import { BasicFallback } from 'src/components/boundaries/errorBoundary/BasicFallback';
 
 export const Modal = (): React.JSX.Element | null => {
-  const { isOpen, content, onClose, closeModal, title, IconButton, iconButtonProps  } = useModalStore();
+  const { isOpen, content, onClose, closeModal, title, IconButton, iconButtonProps, isLoading  } = useModalStore();
   const [isVisible, setIsVisible] = useState(false);
 
   const documentRef = useRef(document);
@@ -29,6 +29,7 @@ export const Modal = (): React.JSX.Element | null => {
   }
 
   const handleClose = () => {
+    if (isLoading) return;
     setIsVisible(false);
     setTimeout(() => {
       if (onClose) {
@@ -41,14 +42,17 @@ export const Modal = (): React.JSX.Element | null => {
   return (
     <div
       className={styles.background_container}
+      role={'dialog'}
+      aria-modal={true}
+      aria-labelledby={'modal-title'}
       onClick={handleClose}
     >
       <div
         className={`${styles.content_container} ${isVisible ? styles.active : ''}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={styles.header_container}>
-          {title ? <h5>{title}</h5> : <div />}
+        <header className={styles.header_container}>
+          {title ? <h2 id={'modal-title'} className={styles.header_title}>{title}</h2> : <div />}
           <div className={styles.button_container}>
             {IconButton && <IconButton className={styles.icon} {...iconButtonProps} />}
             <IoCloseOutline
@@ -57,7 +61,7 @@ export const Modal = (): React.JSX.Element | null => {
               onClick={handleClose}
             />
           </div>
-        </div>
+        </header>
         <Boundaries
           ErrorFallback={
             (props) => (

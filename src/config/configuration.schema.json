@@ -7,8 +7,12 @@
       "description": "Base URLs for the application",
       "type": "object",
       "properties": {
-        "root": {
-          "description": "Root URL for the application",
+        "dev": {
+          "description": "Development URL for the application",
+          "type": "string"
+        },
+        "prod": {
+          "description": "Production URL for the application",
           "type": "string"
         },
         "firebase": {
@@ -22,22 +26,23 @@
       "type": "object",
       "properties": {
         "images": {
-          "description": "Path for images",
-          "type": "string"
+          "$ref": "./images.schema.json"
         },
         "cv": {
-          "description": "Path for CV",
-          "type": "string"
+          "$ref": "./cv.schema.json"
         },
         "data": {
-          "description": "Path for data",
-          "type": "string"
+          "$ref": "./data.schema.json"
+        },
+        "email": {
+          "$ref": "./email.schema.json"
         }
       },
       "required": [
         "images",
         "cv",
-        "data"
+        "data",
+        "email"
       ]
     }
   },

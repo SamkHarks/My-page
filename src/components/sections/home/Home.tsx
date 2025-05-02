@@ -1,18 +1,19 @@
 import { lazy, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import * as styles from "src/components/sections/home/Home.module.css";
-import { getCVUrlFromLanguage } from "src/components/sections/home/utils";
 import { useModalStore } from "src/stores/useModalStore";
-import { getImageUrl } from "src/utils/utils";
 import { GoLinkExternal } from "react-icons/go";
+import { useConfiguration } from "src/hooks/hooks";
+import { createUrl } from "src/utils/utils";
 
 const Content = lazy(() => import("src/components/documentViewer/DocumentViewer"));
 
 export const Home = (): React.JSX.Element => {
   const openModal = useModalStore((state) => state.openModal);
   const { t, i18n } = useTranslation("home");
-  const link = getCVUrlFromLanguage(i18n.language);
-  const imageUrl = getImageUrl("Sami.jpeg");
+  const {baseUrls, paths} = useConfiguration();
+  const link = createUrl(i18n.language === "fi" ? paths.cv.fi : paths.cv.en, baseUrls.firebase);
+  const imageUrl = createUrl(paths.images.me, baseUrls.firebase);
 
   const onClick = useCallback(() => {
     window.open(link, "_blank");

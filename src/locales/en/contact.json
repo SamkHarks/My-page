@@ -1,0 +1,30 @@
+{
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "intro": {
+      "line1": "Ready to build something great?",
+      "line2_pre": "Want to discuss tech, opportunities, or why ",
+      "nan_equals": "NaN === NaN",
+      "line2_mid": " is ",
+      "false_text": "false?",
+      "line3": "Fill out the form below—I will get back ASAP!"
+    },
+    "success": {
+      "line1": "Thank you for contacting me! I will respond soon.",
+      "message": "Email sent successfully!"
+    },
+    "failure": {
+      "line1": "Oops, something went wrong! Please try again.",
+      "message": "Failed to send email."
+    },
+    "placeholder": {
+      "name": "Your name",
+      "email": "Your.email@example.com",
+      "message": "Your message..."
+    }
+  }
+}

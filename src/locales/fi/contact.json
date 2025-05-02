@@ -1,0 +1,30 @@
+{
+  "form": {
+    "name": "Nimi",
+    "email": "Sähköposti",
+    "message": "Viesti",
+    "submit": "Lähetä",
+    "cancel": "Kumoa",
+    "intro": {
+      "line1": "Valmis kehittämään jotain mahtavaa?",
+      "line2_pre": "Vai tuumailla tekniikasta, mahdollisuuksista tai miksi ",
+      "nan_equals": "NaN === NaN",
+      "line2_mid": " on ",
+      "false_text": "false?",
+      "line3": "Täytä lomake alla, niin palainen asiaan asappina!"
+    },
+    "success": {
+      "line1": "Kiitos yhteydenotosta! Vastaan pian.",
+      "message": "Sähköposti lähetetty onnistuneesti!"
+    },
+    "failure": {
+      "line1": "Hups, jotain meni pieleen! Yritä uudelleen.",
+      "message": "Sähköpostin lähetys epäonnistui."
+    },
+    "placeholder": {
+      "name": "Syötä nimesi",
+      "email": "Syötä.sähköposti@esimerkki.com",
+      "message": "Syötä viestisi tähän..."
+    }
+  }
+}

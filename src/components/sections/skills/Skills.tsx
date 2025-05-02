@@ -1,12 +1,14 @@
 import * as styles from "src/components/sections/skills/Skills.module.css";
-import { useFetchData } from "src/hooks/hooks";
+import { useConfiguration, useService } from "src/hooks/hooks";
 import { SkillsResponse } from "src/components/sections/skills/types";
 import { DataProps, ServiceData } from "src/components/serviceData/ServiceData";
 import { Skill } from "src/components/sections/skills/Skill";
 import { Spinner } from "src/components/spinner/Spinner";
 
 export const Skills = (): React.JSX.Element => {
-  const skills = useFetchData<SkillsResponse>("skills.json");
+  const paths = useConfiguration().paths;
+  const urlOptions = { path: paths.data.skills };
+  const skills = useService<SkillsResponse>({urlOptions})//useFetchData<SkillsResponse>(paths.data.skills);
   return (
     <ServiceData
       service={skills.service}

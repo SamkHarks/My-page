@@ -1,12 +1,25 @@
 {
   "$schema": "./configuration.schema.json",
   "baseUrls": {
-    "root": "",
-    "firebase": "https://samkharks-portfolio.web.app"
+    "firebase": "https://samkharks-portfolio.web.app",
+    "dev": "http://localhost:3001",
+    "prod": "https://my-page-backend.onrender.com"
   },
   "paths": {
-    "images": "/images/{{fileName}}",
-    "cv": "/cv/{{fileName}}",
-    "data": "/data/{{fileName}}"
+    "images": {
+      "me": "/images/Sami.jpeg",
+      "skate": "/images/varialheel.jpeg"
+    },
+    "cv": {
+      "en": "/cv/cv-sami-en.pdf",
+      "fi": "/cv/cv-sami-fi.pdf"
+    },
+    "data": {
+      "skills": "/data/skills.json",
+      "sections": "/data/sections.json"
+    },
+    "email": {
+      "contact": "/api/contact"
+    }
   }
 }

@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Images",
+  "description": "Api for images",
+  "type": "object",
+  "properties": {
+    "me": {
+      "description": "Path for fetching my image",
+      "type": "string"
+    },
+    "skate": {
+      "description": "Path for fetching skate image",
+      "type": "string"
+    }
+  },
+  "required": [
+    "me",
+    "skate"
+  ]
+}

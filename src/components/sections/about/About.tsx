@@ -1,9 +1,12 @@
 import { useTranslation } from "react-i18next";
 import * as styles from "src/components/sections/about/About.module.css";
 import { Animation } from "src/components/animation/Animation";
-import { getImageUrl } from "src/utils/utils";
+import { useConfiguration } from "src/hooks/hooks";
+import { createUrl } from "src/utils/utils";
 
 export const About = (): React.JSX.Element => {
+  const {paths, baseUrls} = useConfiguration();
+  const imageUrl = createUrl(paths.images.skate, baseUrls.firebase);
   const { t } = useTranslation("about");
   return (
     <div className={styles.container}>
@@ -16,7 +19,7 @@ export const About = (): React.JSX.Element => {
           allowDynamic={true}
         />
       </div>
-      <img className={styles.profile_image} src={getImageUrl("varialheel.jpeg")} alt={"picture of me"} />
+      <img className={styles.profile_image} src={imageUrl} alt={"skate image"} />
       <p className={styles.text}>{t("introduction")}</p>
       <p className={`${styles.text} ${styles.margin_top}`}>{t("main")}</p>
       <p className={`${styles.text} ${styles.margin_top}`}>{t("end")}</p>

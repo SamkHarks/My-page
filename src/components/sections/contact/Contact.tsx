@@ -6,11 +6,13 @@ import { Animation } from "src/components/animation/Animation";
 import { useModalStore } from "src/stores/useModalStore";
 import { lazy, useCallback } from "react";
 import { GoLinkExternal } from "react-icons/go";
+import { useTranslation } from "react-i18next";
 
 const Email = lazy(() => import('src/components/email/Email').then((module) => ({ default: module.Email })));
 
 export const Contact = (): React.JSX.Element => {
   const openModal = useModalStore((state) => state.openModal);
+  const {t} = useTranslation('contact');
 
   const onClick = useCallback(() => {
     window.open('mailto:samikh90@gmail.com', '_blank');
@@ -19,7 +21,7 @@ export const Contact = (): React.JSX.Element => {
   const onPress = useCallback(() => {
     openModal({
       content: <Email />,
-      title: 'Test',
+      title: t('form.title'),
       IconButton: GoLinkExternal,
       iconButtonProps: {
         size: 20,
@@ -27,7 +29,7 @@ export const Contact = (): React.JSX.Element => {
       }
 
     });
-  }, [openModal, onClick]);
+  }, [openModal, onClick, t]);
 
   return (
     <div>

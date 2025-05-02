@@ -18,7 +18,7 @@ export const useEmailService = (formData: FormData | null): {
   const setLoading = useModalStore(state => state.setLoading);
   const {baseUrls, paths} = useConfiguration();
 
-  const urlOptions = { baseUrl: baseUrls.baseUrl, path: paths.email.contact + 'dasda' };
+  const urlOptions = { baseUrl: baseUrls.baseUrl, path: paths.email.contact };
   const serviceOptions = useMemo(() => ({ immediate: false }), []);
   const requestOptions = useMemo(() => ({
     method: 'POST',

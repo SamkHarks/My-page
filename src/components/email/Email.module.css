@@ -46,23 +46,24 @@
   transform: scale(1);
 }
 
+.submit_button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  transform: scale(1);
+  box-shadow: none;
+}
+
+.submit_button:disabled:hover {
+  transform: scale(1);
+  box-shadow: none;
+}
+
 .submit_button:hover {
   transform: scale(1.05);
   box-shadow: 0 0 4px rgba(255,255,255,0.8);
 }
 
-.header {
-  font-size: var(--font-size-L);
-  font-weight: bold;
-  width: 100%;
-  color: var(--background-color-primary);
-  text-align: center;
-  padding: var(--spacing-XS);
-}
-
-.line {
-  color: var(--text-color-cyan-secondary);
-  white-space: nowrap;
-  word-break: break-word;
-  display: inline-block;
+.spinner {
+  justify-content: center;
+  align-items: center;
 }

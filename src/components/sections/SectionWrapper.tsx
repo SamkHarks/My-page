@@ -16,7 +16,7 @@ export const SectionWrapper = ({ section, sectionRefs, children }: Props): React
   const isSkills = section.id === "skills";
   const dim = isSkills ? getCanvasDimensions('shockwave') : null;
   return (
-    <div id={section.id} ref={sectionRefs[section.id]} className={styles.section}>
+    <section id={section.id} ref={sectionRefs[section.id]} className={styles.section}>
       {isSkills &&
         <div className={styles.canvas}>
           <Animation
@@ -28,8 +28,8 @@ export const SectionWrapper = ({ section, sectionRefs, children }: Props): React
           />
         </div>
       }
-      {section.id !== "home" && <h1 className={styles.section_title}>{`\u00B7${t(section.id)}\u00B7`}</h1>}
+      {section.id !== "home" && <h2 className={styles.section_title}>{`\u00B7${t(section.id)}\u00B7`}</h2>}
       <div className={"section_content"}>{children}</div>
-    </div>
+    </section>
   );
 };

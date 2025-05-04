@@ -22,12 +22,12 @@ export const MouseTrackerBackground = ({ children }: React.PropsWithChildren): R
   };
 
   return (
-    <div onMouseMove={onMouseMove} className={styles.container}>
+    <main onMouseMove={onMouseMove} className={styles.container}>
       <div className={styles.container_inner}>
         <div className={styles.gradient} style={style} />
         <div className={styles.overlay} style={style} />
       </div>
       {children}
-    </div>
+    </main>
   );
 };

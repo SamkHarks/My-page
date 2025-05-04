@@ -17,6 +17,8 @@
 .sub_title {
     margin-top: var(--spacing-XXXS);
     margin-bottom: var(--spacing-XXS);
+    font-size: var(--font-size-L);
+    font-weight: bold;
 }
 
 .text {

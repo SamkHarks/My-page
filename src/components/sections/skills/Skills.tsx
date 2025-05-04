@@ -29,7 +29,7 @@ const Renderer = (props: DataProps<SkillsResponse>) => {
     <div className={styles.skills_container}>
       {skills.map((item) => {
         return (
-          <div key={item.category} className={styles.category_container}>
+          <section key={item.category} className={styles.category_container}>
             <h3>{item.category}</h3>
             <div className={styles.items_container}>
               {item.items.map((skill) => {
@@ -38,7 +38,7 @@ const Renderer = (props: DataProps<SkillsResponse>) => {
                 );
               })}
             </div>
-          </div>
+          </section>
         );
       })}
     </div>

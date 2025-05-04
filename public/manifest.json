@@ -1,6 +1,7 @@
 {
-  "short_name": "Portfolio",
-  "name": "SamkHarks Portfolio",
+  "short_name": "Sami Härkönen",
+  "name": "Sami Härkönen - Software Engineer",
+  "description": "Portfolio of Sami Härkönen, a software engineer specializing in web and mobile development.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -11,5 +12,7 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "categories": ["development", "portfolio", "technology"]
 }

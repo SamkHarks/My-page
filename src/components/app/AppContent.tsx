@@ -13,7 +13,7 @@ export const AppContent = ({ data }: DataProps<SectionResponse>): React.JSX.Elem
   const { sections } = data;
   const sectionRefs = useRefs(sections);
   return (
-    <div>
+    <>
       <Header sectionRefs={sectionRefs} sections={sections} />
       <Boundaries
         LoadingFallback={<Loader size={"medium"} />}
@@ -22,6 +22,6 @@ export const AppContent = ({ data }: DataProps<SectionResponse>): React.JSX.Elem
           <Sections sectionRefs={sectionRefs} sections={sections} />
         </MouseTrackerBackground>
       </Boundaries>
-    </div>
+    </>
   );
 };

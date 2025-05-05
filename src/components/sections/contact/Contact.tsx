@@ -3,10 +3,11 @@ import { AiOutlineMail } from "react-icons/ai";
 import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
 import { Animation } from "src/components/animation/Animation";
-import { useModalStore } from "src/stores/useModalStore";
-import { lazy, useCallback } from "react";
+import { lazy, useCallback,useMemo } from "react";
 import { GoLinkExternal } from "react-icons/go";
 import { useTranslation } from "react-i18next";
+import { Spinner } from "src/components/spinner/Spinner";
+import { usePreloadModalContent } from "src/hooks/hooks";
 
 const Email = Object.assign(
   lazy(() => import('src/components/email/Email').then((module) => ({ default: module.Email }))),
@@ -16,29 +17,27 @@ const Email = Object.assign(
 );
 
 export const Contact = (): React.JSX.Element => {
-  const openModal = useModalStore((state) => state.openModal);
+  const {handlePress, isLoading} = usePreloadModalContent();
   const {t} = useTranslation('contact');
 
   const onClick = useCallback(() => {
     window.open('mailto:samikh90@gmail.com', '_blank');
   }, [])
 
-  const onPress = useCallback(() => {
-    openModal({
-      content: <Email />,
-      title: t('form.title'),
-      IconButton: GoLinkExternal,
-      iconButtonProps: {
-        size: 20,
-        onClick
-      }
+  const modalConfig = useMemo(() => ({
+    content: <Email />,
+    title: t('form.title'),
+    IconButton: GoLinkExternal,
+    iconButtonProps: {
+      size: 20,
+      onClick
+    }
+  }), [onClick, t]);
 
-    });
-  }, [openModal, onClick, t]);
+  const onPress = () => {
+    handlePress(Email.preload, modalConfig);
+  } 
 
-  const handlePreload = useCallback(() => {
-    Email.preload();
-  }, []);
 
   return (
     <div>
@@ -52,14 +51,16 @@ export const Contact = (): React.JSX.Element => {
         />
       </div>
       <div className={styles.container}>
-        <span
-          className={styles.icon}
-          onClick={onPress}
-          onMouseEnter={handlePreload}
-          onTouchStart={handlePreload}
-        >
-          <AiOutlineMail size={25} />
-        </span>
+        {isLoading ? (
+          <Spinner size={25} />
+        ) : (
+          <span
+            className={styles.icon}
+            onClick={onPress}
+          >
+            <AiOutlineMail size={25} />
+          </span>
+        )}
         <a
           href={"https://github.com/SamkHarks"}
           target={"_blank"}

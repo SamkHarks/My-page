@@ -23,12 +23,15 @@
   aspect-ratio: 4/3;
   height: 90%;
   gap: var(--spacing-XS);
-  opacity: 0;
   transition: opacity 0.5s ease-in-out;
 }
 
-.content_container.active {
+.active {
   opacity: 1;
+}
+
+.inactive {
+  opacity: 0;
 }
 
 .button_container {
@@ -78,12 +81,15 @@
     max-width: 100%;
     max-height: 90%;
     transition: transform 0.5s ease-in-out;
-    transform: translateY(100%);
     opacity: 1;
   }
 
-  .content_container.active {
+  .active {
     transform: translateY(0);
+  }
+
+  .inactive {
+    transform: translateY(100%);
   }
 
 }

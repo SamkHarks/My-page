@@ -4,6 +4,8 @@ import { createRef, useCallback, useEffect, useMemo, useRef, useState } from "re
 import { createUrl, handleNetworkError } from "src/utils/utils";
 import { HandledError } from "src/components/boundaries/errorBoundary/HandledError";
 import configuration from "src/config/configuration.json";
+import { useNotificationStore } from "src/stores/useNotificationStore";
+import { OpenModalConfig, useModalStore } from "src/stores/useModalStore";
 
 export const useRefs = (sections: Section[]): SectionRefs => {
   const refs = sections.reduce((acc, section) => {
@@ -274,3 +276,42 @@ export const useTouchDevice = (): boolean => {
 
   return isTouchDevice;
 };
+
+
+export const usePreloadModalContent = (): {
+  handlePress: (preloadFn: () => Promise<unknown>, modalConfig: OpenModalConfig) => Promise<void>;
+  isLoading: boolean;
+} => {
+  const [isLoading, setLoading] = useState(false);
+  const [isPreloaded, setIsPreloaded] = useState(false);
+  const addNotification = useNotificationStore((state) => state.addNotification);
+
+  const openModal = useModalStore((state) => state.openModal);
+
+  const handleOpenModal = useCallback(
+    (modalConfig: OpenModalConfig) => {
+      openModal(modalConfig);
+    }
+    , [openModal]);
+
+  const handlePress = useCallback(
+    async (preloadFn: () => Promise<unknown>, modalConfig: OpenModalConfig) => {
+      if (isPreloaded) {
+        handleOpenModal(modalConfig);
+        return;
+      }
+      setLoading(true);
+      preloadFn().then(() => {
+        setIsPreloaded(true);
+        setLoading(false);
+        handleOpenModal(modalConfig);
+      }).catch((_err) => {
+        setLoading(false);
+        addNotification('Failed to load content. Please try again', 'error');
+      });
+    },
+    [handleOpenModal, isPreloaded, addNotification]
+  );
+
+  return {handlePress, isLoading};
+}

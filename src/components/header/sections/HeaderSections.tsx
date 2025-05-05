@@ -20,10 +20,14 @@ export const HeaderSections = ({
     }
   };
   return (
-    <div
+    <nav
       className={`${styles.header_sections} ${isOpen ? styles.open : styles.closed}`}
     >
-      <ol className={styles.custom_colors}>
+      <ol
+        className={`${styles.custom_colors} ${
+          isOpen ? styles.visible : styles.hidden
+        }`}
+      >
         {sections.map((section) => {
           return (
             <li
@@ -37,6 +41,6 @@ export const HeaderSections = ({
           );
         })}
       </ol>
-    </div>
+    </nav>
   );
 };

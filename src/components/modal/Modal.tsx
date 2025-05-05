@@ -48,7 +48,7 @@ export const Modal = (): React.JSX.Element | null => {
       onClick={handleClose}
     >
       <div
-        className={`${styles.content_container} ${isVisible ? styles.active : ''}`}
+        className={`${styles.content_container} ${isVisible ? styles.active : styles.inactive}`}
         onClick={(e) => e.stopPropagation()}
       >
         <header className={styles.header_container}>

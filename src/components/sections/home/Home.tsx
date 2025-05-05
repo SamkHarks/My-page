@@ -6,7 +6,12 @@ import { GoLinkExternal } from "react-icons/go";
 import { useConfiguration } from "src/hooks/hooks";
 import { createUrl } from "src/utils/utils";
 
-const Content = lazy(() => import("src/components/documentViewer/DocumentViewer"));
+const Content = Object.assign(
+  lazy(() => import("src/components/documentViewer/DocumentViewer")),
+  {
+    preload: () => import("src/components/documentViewer/DocumentViewer"),
+  }
+);
 
 export const Home = (): React.JSX.Element => {
   const openModal = useModalStore((state) => state.openModal);
@@ -19,6 +24,10 @@ export const Home = (): React.JSX.Element => {
     window.open(link, "_blank");
   }
   , [link]);
+
+  const handlePreload = useCallback(() => {
+    Content.preload();
+  }, []);
 
   const onPress = useCallback(() => {
     openModal({
@@ -47,6 +56,8 @@ export const Home = (): React.JSX.Element => {
           <button
             className={styles.button}
             onClick={onPress}
+            onMouseEnter={handlePreload}
+            onTouchStart={handlePreload}
           >
             {t("resume")}
           </button>

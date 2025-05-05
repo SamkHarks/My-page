@@ -8,7 +8,12 @@ import { lazy, useCallback } from "react";
 import { GoLinkExternal } from "react-icons/go";
 import { useTranslation } from "react-i18next";
 
-const Email = lazy(() => import('src/components/email/Email').then((module) => ({ default: module.Email })));
+const Email = Object.assign(
+  lazy(() => import('src/components/email/Email').then((module) => ({ default: module.Email }))),
+  {
+    preload: () => import("src/components/email/Email"),
+  }
+);
 
 export const Contact = (): React.JSX.Element => {
   const openModal = useModalStore((state) => state.openModal);
@@ -31,6 +36,10 @@ export const Contact = (): React.JSX.Element => {
     });
   }, [openModal, onClick, t]);
 
+  const handlePreload = useCallback(() => {
+    Email.preload();
+  }, []);
+
   return (
     <div>
       <div className={styles.canvas}>
@@ -43,7 +52,12 @@ export const Contact = (): React.JSX.Element => {
         />
       </div>
       <div className={styles.container}>
-        <span onClick={onPress} className={styles.icon}>
+        <span
+          className={styles.icon}
+          onClick={onPress}
+          onMouseEnter={handlePreload}
+          onTouchStart={handlePreload}
+        >
           <AiOutlineMail size={25} />
         </span>
         <a

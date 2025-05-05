@@ -30,7 +30,7 @@ export const Title = ({ sections, isOpen }: Omit<HeaderToolbarProps, 'onClick'>)
   useHeaderObserver(data, setTitleId);
 
   return (
-    <span style={isOpen ? { opacity: 0 } : {}} className={styles.title}>
+    <span className={`${styles.title} ${isOpen ? styles.hidden : styles.visible}`}>
       {t(titleId)}
     </span>
   );

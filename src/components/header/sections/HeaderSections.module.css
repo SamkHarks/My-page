@@ -10,16 +10,24 @@
   width: 100%;
   z-index: 2;
   border-bottom: 2px solid var(--color-beige-secondary);
+  transition: transform 0.4s ease-in-out;
 }
 
 .open {
   transform: translateY(0);
-  transition: transform 0.3s;
 }
 
 .closed {
   transform: translateY(-68%);
-  transition: transform 0.3s;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .custom_colors {
@@ -30,6 +38,7 @@
   margin-top: 0px;
   margin-bottom: 0px;
   counter-reset: list-index;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .custom_colors li {

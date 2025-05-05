@@ -303,8 +303,8 @@ export const usePreloadModalContent = (): {
       setLoading(true);
       preloadFn().then(() => {
         setIsPreloaded(true);
-        setLoading(false);
         handleOpenModal(modalConfig);
+        setLoading(false);
       }).catch((_err) => {
         setLoading(false);
         addNotification('Failed to load content. Please try again', 'error');

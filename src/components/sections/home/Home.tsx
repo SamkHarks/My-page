@@ -1,10 +1,11 @@
-import { lazy, useCallback } from "react";
+import { lazy, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import * as styles from "src/components/sections/home/Home.module.css";
-import { useModalStore } from "src/stores/useModalStore";
+import { OpenModalConfig } from "src/stores/useModalStore";
 import { GoLinkExternal } from "react-icons/go";
-import { useConfiguration } from "src/hooks/hooks";
+import { useConfiguration, usePreloadModalContent } from "src/hooks/hooks";
 import { createUrl } from "src/utils/utils";
+import { Spinner } from "src/components/spinner/Spinner";
 
 const Content = Object.assign(
   lazy(() => import("src/components/documentViewer/DocumentViewer")),
@@ -14,7 +15,7 @@ const Content = Object.assign(
 );
 
 export const Home = (): React.JSX.Element => {
-  const openModal = useModalStore((state) => state.openModal);
+  const {handlePress, isLoading} = usePreloadModalContent();
   const { t, i18n } = useTranslation("home");
   const {baseUrls, paths} = useConfiguration();
   const link = createUrl(i18n.language === "fi" ? paths.cv.fi : paths.cv.en, baseUrls.firebase);
@@ -25,21 +26,20 @@ export const Home = (): React.JSX.Element => {
   }
   , [link]);
 
-  const handlePreload = useCallback(() => {
-    Content.preload();
-  }, []);
-
-  const onPress = useCallback(() => {
-    openModal({
-      content: <Content src={link} />,
+  const modalConfig: OpenModalConfig = useMemo(() => ({
+    content: <Content src={link} />,
       title: t("resume"),
       IconButton: GoLinkExternal,
       iconButtonProps: {
         size: 20,
         onClick,
       }
-    });
-  }, [link, openModal, t, onClick]);
+  })
+  , [link, t, onClick]);
+
+  const onPress = () => {
+    handlePress(Content.preload, modalConfig);
+  }
 
   return (
     <div className={styles.container}>
@@ -56,10 +56,8 @@ export const Home = (): React.JSX.Element => {
           <button
             className={styles.button}
             onClick={onPress}
-            onMouseEnter={handlePreload}
-            onTouchStart={handlePreload}
           >
-            {t("resume")}
+            {isLoading ? <Spinner size={16} /> : t("resume")}
           </button>
         </div>
       </div>

@@ -19,9 +19,9 @@ export const Modal = (): React.JSX.Element | null => {
   }, [isOpen]);
 
   useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => setIsVisible(true), 0);
-    }
+    if (!isOpen) return
+    const id = setTimeout(() => setIsVisible(true), 0);
+    return () => clearTimeout(id);
   }, [isOpen]);
 
   if (!isOpen) {

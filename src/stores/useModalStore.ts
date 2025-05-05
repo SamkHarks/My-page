@@ -20,9 +20,11 @@ type ModalWithoutIconButton = BaseModalConfig & {
   iconButtonProps?: never;
 };
 
+export type OpenModalConfig = Omit<ModalWithIconButton, 'isOpen' | 'isLoading'> | Omit<ModalWithoutIconButton, 'isOpen' | 'isLoading'>;
+
 // Create a union type for the modal store
 type ModalStore = (ModalWithIconButton | ModalWithoutIconButton) & {
-  openModal: (config: Omit<ModalWithIconButton, 'isOpen' | 'isLoading'> | Omit<ModalWithoutIconButton, 'isOpen' | 'isLoading'>) => void;
+  openModal: (config: OpenModalConfig) => void;
   closeModal: () => void;
   setLoading: (loading: boolean) => void;
 };

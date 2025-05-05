@@ -30,22 +30,18 @@ export const IconButton = (): React.JSX.Element => {
     }
   }), [onClick, t]);
   
-  const onPress = () => {
+  const onPress = useCallback(() => {
     handlePress(Email.preload, modalConfig);
-  }
+  }, [handlePress, modalConfig]);
 
   return (
     <>
-      {isLoading ? (
-        <Spinner size={25} />
-      ) : (
-        <span
-          className={styles.icon}
-          onClick={onPress}
-        >
-          <AiOutlineMail size={25} />
-        </span>
-      )}
+      <span
+        className={styles.icon}
+        onClick={onPress}
+      >
+        {isLoading ? <Spinner size={25} /> : <AiOutlineMail size={25} />}
+      </span>
     </>
   )
 }

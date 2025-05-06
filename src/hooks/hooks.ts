@@ -4,7 +4,6 @@ import { createRef, useCallback, useEffect, useMemo, useRef, useState } from "re
 import { createUrl, handleNetworkError } from "src/utils/utils";
 import { HandledError } from "src/components/boundaries/errorBoundary/HandledError";
 import configuration from "src/config/configuration.json";
-import { useNotificationStore } from "src/stores/useNotificationStore";
 import { OpenModalConfig, useModalStore } from "src/stores/useModalStore";
 
 export const useRefs = (sections: Section[]): SectionRefs => {
@@ -278,40 +277,16 @@ export const useTouchDevice = (): boolean => {
 };
 
 
-export const usePreloadModalContent = (): {
-  handlePress: (preloadFn: () => Promise<unknown>, modalConfig: OpenModalConfig) => Promise<void>;
-  isLoading: boolean;
-} => {
-  const [isLoading, setLoading] = useState(false);
+export const usePreloadModalContent = (): (modalConfig: OpenModalConfig) => void => {
   const [isPreloaded, setIsPreloaded] = useState(false);
-  const addNotification = useNotificationStore((state) => state.addNotification);
 
   const openModal = useModalStore((state) => state.openModal);
+  const setPreloading = useModalStore((state) => state.setPreloading);
 
-  const handleOpenModal = useCallback(
+  return useCallback(
     (modalConfig: OpenModalConfig) => {
+      setPreloading(!isPreloaded);
       openModal(modalConfig);
-    }
-    , [openModal]);
-
-  const handlePress = useCallback(
-    async (preloadFn: () => Promise<unknown>, modalConfig: OpenModalConfig) => {
-      if (isPreloaded) {
-        handleOpenModal(modalConfig);
-        return;
-      }
-      setLoading(true);
-      preloadFn().then(() => {
-        setIsPreloaded(true);
-        handleOpenModal(modalConfig);
-        setLoading(false);
-      }).catch((_err) => {
-        setLoading(false);
-        addNotification('Failed to load content. Please try again', 'error');
-      });
-    },
-    [handleOpenModal, isPreloaded, addNotification]
-  );
-
-  return {handlePress, isLoading};
+      setIsPreloaded(true);
+  }, [openModal, setPreloading, isPreloaded]);
 }

@@ -5,7 +5,6 @@
 
 .icon {
     color: var(--background-color-primary);
-    min-width: 25px;
     &:hover {
         transform: scale(1.2);
         color: aqua; /* Change the color of the icon */

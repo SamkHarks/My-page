@@ -39,7 +39,7 @@ export const Button = (): React.JSX.Element => {
         className={styles.button}
         onClick={onPress}
       >
-        {t("resume")}
+        {t("resumeLong")}
       </button>
     </div>
   )

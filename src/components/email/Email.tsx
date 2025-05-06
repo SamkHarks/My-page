@@ -50,6 +50,7 @@ export const Email = (): React.JSX.Element => {
           type={'text'}
           required={true}
           disabled={isSuccess}
+          autoComplete={'name'}
         />
         <InputField
           label={t('form.email')}
@@ -59,6 +60,7 @@ export const Email = (): React.JSX.Element => {
           required={true}
           spellCheck={false}
           disabled={isSuccess}
+          autoComplete={'email'}
         />
         <TextArea
           label={t('form.message')}

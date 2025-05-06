@@ -66,6 +66,7 @@ export const InputField = (props: Props): React.JSX.Element => {
             onInvalid={() => {setDisplayError(true)}}
             onChange={handleChange}
             disabled={props.disabled}
+            autoComplete={props.autoComplete}
           />
           {showButton && isFocused && 
             <IoCloseOutline

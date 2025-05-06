@@ -2,20 +2,14 @@ import { lazy, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { GoLinkExternal } from "react-icons/go";
 import * as styles from "src/components/sections/home/Button.module.css";
-import { Spinner } from "src/components/spinner/Spinner";
 import { useConfiguration, usePreloadModalContent } from "src/hooks/hooks";
 import { OpenModalConfig } from "src/stores/useModalStore";
 import { createUrl } from "src/utils/utils";
 
-const Content = Object.assign(
-  lazy(() => import("src/components/documentViewer/DocumentViewer")),
-  {
-    preload: () => import("src/components/documentViewer/DocumentViewer"),
-  }
-);
+const Content = lazy(() => import("src/components/documentViewer/DocumentViewer"));
 
 export const Button = (): React.JSX.Element => {
-  const {handlePress, isLoading} = usePreloadModalContent();
+  const handlePress = usePreloadModalContent();
   const { t, i18n } = useTranslation("home");
   const {baseUrls, paths} = useConfiguration();
   const link = createUrl(i18n.language === "fi" ? paths.cv.fi : paths.cv.en, baseUrls.firebase);
@@ -36,7 +30,7 @@ export const Button = (): React.JSX.Element => {
   , [link, t, onClick]);
 
   const onPress = () => {
-    handlePress(Content.preload, modalConfig);
+    handlePress(modalConfig);
   }
 
   return (
@@ -45,7 +39,7 @@ export const Button = (): React.JSX.Element => {
         className={styles.button}
         onClick={onPress}
       >
-        {isLoading ? <Spinner size={16} /> : t("resume")}
+        {t("resume")}
       </button>
     </div>
   )

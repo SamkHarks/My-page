@@ -1,25 +1,18 @@
 import { lazy, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GoLinkExternal } from 'react-icons/go';
-import { Spinner } from 'src/components/spinner/Spinner';
 import { usePreloadModalContent } from 'src/hooks/hooks';
 import * as styles from 'src/components/sections/contact/Contact.module.css';
 import { AiOutlineMail } from 'react-icons/ai';
 
-const Email = Object.assign(
-  lazy(() => import('src/components/email/Email').then((module) => ({ default: module.Email }))),
-  {
-    preload: () => import("src/components/email/Email"),
-  }
-);
+const Email = lazy(() => import('src/components/email/Email').then((module) => ({ default: module.Email })));
 
 export const IconButton = (): React.JSX.Element => {
-  const {handlePress, isLoading} = usePreloadModalContent();
+  const handlePress = usePreloadModalContent();
   const {t} = useTranslation('contact');
   const onClick = useCallback(() => {
     window.open('mailto:samikh90@gmail.com', '_blank');
   }, []);
-  
   const modalConfig = useMemo(() => ({
     content: <Email />,
     title: t('form.title'),
@@ -29,10 +22,10 @@ export const IconButton = (): React.JSX.Element => {
       onClick
     }
   }), [onClick, t]);
-  
-  const onPress = useCallback(() => {
-    handlePress(Email.preload, modalConfig);
-  }, [handlePress, modalConfig]);
+
+  const onPress = () => {
+    handlePress(modalConfig);
+  }
 
   return (
     <>
@@ -40,7 +33,7 @@ export const IconButton = (): React.JSX.Element => {
         className={styles.icon}
         onClick={onPress}
       >
-        {isLoading ? <Spinner size={25} /> : <AiOutlineMail size={25} />}
+        <AiOutlineMail size={25} />
       </span>
     </>
   )

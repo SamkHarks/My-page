@@ -6,7 +6,7 @@ import { Boundaries } from 'src/components/boundaries/Boundaries';
 import { BasicFallback } from 'src/components/boundaries/errorBoundary/BasicFallback';
 
 export const Modal = (): React.JSX.Element | null => {
-  const { isOpen, content, onClose, closeModal, title, IconButton, iconButtonProps, isLoading  } = useModalStore();
+  const { isOpen, content, onClose, closeModal, title, IconButton, iconButtonProps, isLoading, isPreloading, setPreloading  } = useModalStore();
   const [isVisible, setIsVisible] = useState(false);
 
   const documentRef = useRef(document);
@@ -19,7 +19,12 @@ export const Modal = (): React.JSX.Element | null => {
   }, [isOpen]);
 
   useEffect(() => {
-    if (!isOpen) return
+    if (!isVisible) return;
+    setPreloading(false);
+  }, [isVisible, setPreloading]);
+
+  useEffect(() => {
+    if (!isOpen) return;
     const id = setTimeout(() => setIsVisible(true), 0);
     return () => clearTimeout(id);
   }, [isOpen]);
@@ -62,19 +67,21 @@ export const Modal = (): React.JSX.Element | null => {
             />
           </div>
         </header>
-        <Boundaries
-          ErrorFallback={
-            (props) => (
-              <BasicFallback
-                variant={'default'}
-                size={24}
-                color={'black'}
-                {...props} 
-              />
-          )}
-        >
-          {content}
-        </Boundaries>
+        {!isPreloading &&
+          <Boundaries
+            ErrorFallback={
+              (props) => (
+                <BasicFallback
+                  variant={'default'}
+                  size={24}
+                  color={'black'}
+                  {...props} 
+                />
+            )}
+          >
+            {content}
+          </Boundaries>
+        }
       </div>
     </div>
 

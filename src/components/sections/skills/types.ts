@@ -1,6 +1,9 @@
 type SkillsData = {
-  category: "Front-end";
-  items: string[];
+  category: "Frontend" | "Backend" | "Misc";
+  subcategories: Array<{
+    name: string;
+    items: string[];
+  }>;
 };
 
 export type SkillsResponse = {

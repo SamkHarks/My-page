@@ -35,7 +35,7 @@ export const Skill = ({ skill, category }: Props): React.JSX.Element => {
       </div>
       {isExpanded && (
         <div className={styles.expanded}>
-          <p className={styles.text}>{t(`${category}.${skill}`)}</p>
+          <p className={styles.text}>{t(`${category}.skill.${skill}`)}</p>
         </div>
       )}
     </button>

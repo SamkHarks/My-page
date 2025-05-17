@@ -1,20 +1,27 @@
 .button {
   -webkit-tap-highlight-color: transparent;
-  padding: var(--spacing-XXS);
+  padding-top: var(--spacing-XXS);
+  padding-bottom: var(--spacing-XXS);
+  padding-left: var(--spacing-M);
+  padding-right: var(--spacing-M);
   width: 100%;
   min-width: 150px;
   background-color: transparent;
   color: var(--text-color-primary);
   display: flex;
   flex-direction: column;
-  border-radius: 20px;
+  /*border-radius: 20px;*/
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
   border: none;
   cursor: pointer;
-  transition: all 0.3 ease;
+  /*transition: all 0.3 ease;*/
   font-size: var(--font-size-S);
+  /*transform: scale(1);
+  transition: transform ease-in-out 0.4s;*/
 
   .expanded {
-      padding: 2px;
+    padding: 2px;
       .text {
           text-align: left;
           font-size: var(--font-size-S);
@@ -23,14 +30,18 @@
 }
 
 .button:hover {
-  transform: scale(1.04);
-  box-shadow: 0 0 5px var(--color-grey-secondary);
-  background-color: rgba(0,0,0,0.09);
+  /*transform: scale(1.04);
+  transition: transform ease-in-out 0.4s;*/
+  box-shadow: 0 -8px 5px rgba(0, 0, 0, 0.2);
+  /*box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.2);*/
+  /*background-color: rgba(0,0,0,0.09);*/
 }
 
 @media (hover: none) and (pointer: coarse) {
   .button:hover {
     transform: none;
+    /*box-shadow: none;*/
+    box-shadow: inherit;
     background-color: transparent;
   }
 }
@@ -52,8 +63,9 @@
 
 
 
-.selected {
-  box-shadow: 0 0 5px var(--color-grey-secondary);
+.button.selected {
+  box-shadow: 0 -8px 5px rgba(0, 0, 0, 0.2);
+  /*border-top: 3px solid rgba(255, 255, 255, 0.2);*/
 }
 
 .rotate_up {

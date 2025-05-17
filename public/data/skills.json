@@ -2,15 +2,62 @@
     "skills": [
         {
             "category": "Frontend",
-            "items": ["React", "React Native", "HTML5", "CSS", "SVG", "Redux", "Redux-Saga", "Apollo GraphQL"]
+            "subcategories": [
+                {
+                    "name": "Frameworks & Libraries",
+                    "items": ["React", "React Native"]
+                },
+                {
+                    "name": "Markup & Styling",
+                    "items": ["HTML5", "CSS", "SVG"]
+                },
+                {
+                    "name": "State Management",
+                    "items": ["Redux", "Redux-Saga"]
+                },
+                {
+                    "name": "Serve State Management",
+                    "items": ["Apollo GraphQL"]
+                }
+            ]
         },
         {
             "category": "Backend",
-            "items": ["REST APIs", "GraphQL", "Firebase", "Node.js", "Deno", "Express", "SQL", "NoSQL"]
+            "subcategories": [
+                {
+                    "name": "Frameworks & Runtimes",
+                    "items": ["Node.js", "Deno", "Express"]
+                },
+                {
+                    "name": "APIs",
+                    "items": ["REST APIs", "GraphQL"]
+                },
+                {
+                    "name": "Databases",
+                    "items": ["SQL", "NoSQL"]
+                },
+                {
+                    "name": "Cloud Services",
+                    "items": ["Firebase"]
+                }
+            ]
         },
         {
-            "category": "Universal",
-            "items": ["TypeScript", "JavaScript", "C++", "Python", "Git", "Docker", "CI/CD"]
+            "category": "Misc",
+            "subcategories": [
+                {
+                    "name": "Languages",
+                    "items": ["TypeScript", "JavaScript", "C++", "Python"]
+                },
+                {
+                    "name": "DevOps & Tools",
+                    "items": ["Docker", "CI/CD"]
+                },
+                {
+                    "name": "Version Control",
+                    "items": ["Git"]
+                }
+            ]
         }
     ]
 }

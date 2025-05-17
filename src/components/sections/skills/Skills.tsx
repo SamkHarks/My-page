@@ -8,7 +8,7 @@ import { Spinner } from "src/components/spinner/Spinner";
 export const Skills = (): React.JSX.Element => {
   const paths = useConfiguration().paths;
   const urlOptions = { path: paths.data.skills };
-  const skills = useService<SkillsResponse>({urlOptions})//useFetchData<SkillsResponse>(paths.data.skills);
+  const skills = useService<SkillsResponse>({urlOptions});
   return (
     <ServiceData
       service={skills.service}
@@ -31,13 +31,22 @@ const Renderer = (props: DataProps<SkillsResponse>) => {
         return (
           <section key={item.category} className={styles.category_container}>
             <h3>{item.category}</h3>
-            <div className={styles.items_container}>
-              {item.items.map((skill) => {
-                return (
-                  <Skill key={skill} skill={skill} category={item.category} />
-                );
-              })}
-            </div>
+            <ol className={styles.subcategories_list}>
+              {item.subcategories.map((subcategory) => (
+              <li key={subcategory.name}>
+                <h4>{subcategory.name}</h4>
+                <div className={styles.items_container}>
+                  {subcategory.items.map((skill) => (
+                    <Skill
+                      key={skill}
+                      skill={skill}
+                      category={item.category}
+                    />
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ol>
           </section>
         );
       })}

@@ -11,13 +11,8 @@
     
     .category_container {
         border: solid rgba(255,255,255,0.2);
-        /*opacity: 1;*/
         background-color: rgba(0, 0, 0, 0.2);
         transition: opacity 0.2s ease-in-out;
-       /* &:hover {
-            opacity: 1; 
-
-        }*/
         flex: 1;
         border-radius: 20px;
         padding: var(--spacing-M);
@@ -75,10 +70,6 @@
         }
     }
 }
-/*
-.skills_container:hover .category_container:not(:hover) {
-    opacity: 0.5; 
-}*/
 
 
 .loading_container {

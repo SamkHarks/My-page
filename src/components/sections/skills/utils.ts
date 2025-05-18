@@ -14,6 +14,9 @@ import {
   SiSvg,
   SiCplusplus,
   SiDeno,
+  SiJest,
+  SiCypress,
+  SiWebpack
 } from "react-icons/si";
 import {
   DiPython,
@@ -54,4 +57,7 @@ export const ICONS: Record<string, IconType>  = {
   "C++": SiCplusplus,
   Deno: SiDeno,
   "CI/CD": IoInfinite,
+  Jest: SiJest,
+  Cypress: SiCypress,
+  Webpack: SiWebpack
 };

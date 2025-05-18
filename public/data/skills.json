@@ -50,8 +50,12 @@
                     "items": ["TypeScript", "JavaScript", "C++", "Python"]
                 },
                 {
+                    "name": "Testing",
+                    "items": ["Jest", "Cypress"]
+                },
+                {
                     "name": "DevOps & Tools",
-                    "items": ["Docker", "CI/CD"]
+                    "items": ["Docker", "CI/CD", "Webpack"]
                 },
                 {
                     "name": "Version Control",

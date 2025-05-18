@@ -38,6 +38,7 @@
     "Misc": {
         "subcategories": {
             "Languages": "Kielet",
+            "Testing": "Testaus",
             "DevOps & Tools": "DevOps & Työkalut",
             "Version Control": "Versionhallinta"
         },
@@ -48,7 +49,10 @@
             "Python": "Python on laajalti käytetty kieli skriptaukseen, automaatioon, datan käsittelyyn ja koneoppimiseen sen selkeyden ja laajan kirjastoekosysteemin ansiosta. Olen käyttänyt Pythonia pääasiassa yliopistoprojekteissa, mukaan lukien syväoppimiseen perustuvat sovellukset ja akateemiset tutkimustehtävät",
             "Docker": "Docker mahdollistaa yhdenmukaiset ja siirrettävät sovellusympäristöt paketoimalla koodin ja riippuvuudet kontteihin. Olen käyttänyt Dockeria projekteissa kontittaakseni sovelluksia ja varmistaakseni ennakoitavan käyttäytymisen kehitys- ja tuotantoympäristöissä",
             "CI/CD": "CI/CD automatisoi ohjelmiston rakentamisen, testauksen ja käyttöönoton, mikä parantaa kehitysnopeutta ja ohjelmiston luotettavuutta. Olen rakentanut julkaisuputkia GitHub Actionsin avulla (esimerkiksi tämän portfoliosivuston julkaisuun), ja kokemusta myös GitLabin CI/CD-prosessista sekä Jenkinsistä. Ammattikokemusta on myös mobiilisovellusten julkaisemisesta OTA-päivityksillä",
-            "Git": "Git on keskeinen versionhallintatyökalu koodipohjien hallintaan ja kehittäjien yhteistyöhön. Käytän Gitiä päivittäin työssäni, hallitsen esimerkiksi haarastrategiat, konfliktien ratkaisun ja tiimityöskentelyn jaetussa koodipohjassa"
+            "Git": "Git on keskeinen versionhallintatyökalu koodipohjien hallintaan ja kehittäjien yhteistyöhön. Käytän Gitiä päivittäin työssäni, hallitsen esimerkiksi haarastrategiat, konfliktien ratkaisun ja tiimityöskentelyn jaetussa koodipohjassa",
+            "Jest": "Jest on tehokas JavaScript-testauskehys, jota käytetään luotettavien testien kirjoittamiseen sekä frontend- että backend-sovelluksiin. Käytän Jestiä varmistaakseni koodin toimivuuden yksikkötesteillä ja integraatiotesteillä, jotka testaavat moduulien välistä vuorovaikutusta. Hyödynnän myös mockausta hallituissa testausympäristöissä, mikä parantaa testien luotettavuutta ja ylläpidettävyyttä",
+            "Cypress": "Cypress on end-to-end-testaukseen tarkoitettu työkalu modernien verkkosovellusten testaamiseen. Käytän Cypressiä simuloimaan todellisia käyttäjätoimintoja ja validoimaan koko sovelluspolkuja käyttöliittymästä palvelimeen asti. Se auttaa varmistamaan, että kriittiset toiminnot, kuten kirjautuminen, navigointi ja tiedon lähetys, toimivat luotettavasti eri selaimissa",
+            "Webpack": "Webpack on tehokas moduulipaketoija, jota käytetään JavaScript-sovellusten optimointiin ja kokoamiseen. Olen käyttänyt ja konfiguroinut Webpackia frontend-projektien resurssien niputtamiseen sekä hyödyntänyt ominaisuuksia kuten koodin pilkkominen (code splitting), turhan koodin poisto (tree shaking) ja tehokkaat tuotantorakenteet erityisesti omissa React-projekteissani"
         }
     }
 }

@@ -38,6 +38,7 @@
     "Misc": {
         "subcategories": {
             "Languages": "Languages",
+            "Testing": "Testing",
             "DevOps & Tools": "DevOps & Tools",
             "Version Control": "Version Control"
         },
@@ -48,7 +49,10 @@
             "Python": "Python is widely used for scripting, automation, data analysis, and machine learning due to its readability and rich ecosystem. I have used Python primarily in university projects, including deep learning applications and academic research tasks",
             "Docker": "Docker enables consistent, portable application environments by packaging code and dependencies into containers. I have used Docker in projects to containerize applications and ensure predictable behavior across development and production environments",
             "CI/CD": "CI/CD automates the build, test, and deployment pipeline, improving development speed and software reliability. I have built deployment pipelines using GitHub Actions (e.g., for this portfolio site) and am familiar with GitLab CI/CD and Jenkins. In a professional setting, I have also managed mobile deployments by using OTA-updates",
-            "Git": "Git is a version control system essential for managing codebases, enabling collaboration and parallel development. I use Git daily in professional work, with strong proficiency in branching strategies, resolving conflicts, and coordinating with teams in shared repositories"
+            "Git": "Git is a version control system essential for managing codebases, enabling collaboration and parallel development. I use Git daily in professional work, with strong proficiency in branching strategies, resolving conflicts, and coordinating with teams in shared repositories",
+            "Jest": "Jest is a powerful JavaScript testing framework used to create reliable tests across both frontend and backend applications. I use Jest to validate the functionality of my code through isolated unit tests and integration tests that verify interactions between modules. I also leverage mocking to simulate controlled environments, improving test reliability and maintainability",
+            "Cypress": "Cypress is an end-to-end testing tool designed for modern web applications. I use Cypress to simulate real user interactions and validate entire application flows from the user interface to the backend. It helps ensure that critical paths—such as authentication, navigation, and data submission—function reliably across different browsers",
+            "Webpack": "Webpack is a powerful module bundler used to optimize and package JavaScript applications. I have configured and used Webpack for bundling frontend assets, enabling features like code splitting, tree shaking, and efficient production builds in custom React projects"
         }
     }
 }

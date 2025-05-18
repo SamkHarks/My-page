@@ -7,14 +7,14 @@
             "Serve State Management": "Serve State Management"
         },
         "skill": {
-            "React": "I have extensive experience working with React and a strong command of its core concepts, including component-based architecture, hooks, and state management. This website is one example of my work, built entirely with React to showcase performance, scalability, and modern frontend best practices",
-            "React Native": "I use React Native daily in a professional setting, building and maintaining cross-platform mobile applications. This hands-on experience has given me deep expertise in developing custom features, integrating native modules when needed, and optimizing performance to deliver a smooth, native-like user experience",
-            "HTML5": "Proficient in HTML5 and its role in building structured, semantic, and accessible web content. I follow modern standards to ensure maintainability, SEO optimization, and compatibility across browsers and devices",
-            "CSS": "I enjoy crafting responsive, pixel-perfect user interfaces using modern CSS techniques such as Flexbox, Grid, media queries, and CSS variables. I focus on writing maintainable, scalable, and consistent styles that work seamlessly across a wide range of devices and screen sizes",
-            "SVG": "Experience in creating lightweight, scalable vector graphics tailored for modern web applications",
-            "Redux": "Extensive experience with Redux in both professional and personal projects. Proficient in applying Redux's state management patterns to build efficient, maintainable, and scalable React applications",
-            "Redux-Saga": "In my work, I have used Redux-Saga to manage complex asynchronous flows such as API communication, background tasks, and error handling. Its generator-based approach helps me write clean, predictable side-effect logic in Redux applications",
-            "Apollo GraphQL": "I have used Apollo GraphQL extensively in my front-end work to simplify data fetching, caching, and state management. It allows me to build highly responsive user interfaces by efficiently integrating client-side logic with GraphQL APIs"
+            "React": "React is a declarative JavaScript library for building interactive user interfaces using component-based architecture. Extensive experience working with React and a strong command of its core concepts, including hooks and state management. This website is one example of my work, built entirely with React to showcase performance, scalability, and modern frontend best practices",
+            "React Native": "React Native enables cross-platform mobile app development using JavaScript and React principles. Daily professional experience has developed deep expertise in building new features, integrating native modules, and optimizing performance to deliver smooth, native-like experiences on both Android and iOS",
+            "HTML5": "HTML5 provides the foundation for structured, semantic, and accessible web content. I follow modern HTML standards to ensure search engine optimization, maintainability, and consistent behavior across different browsers and devices",
+            "CSS": "CSS powers the visual design and responsiveness of web interfaces. I enjoy crafting responsive, pixel-perfect user interfaces using modern CSS techniques such as Flexbox, Grid, media queries, and CSS variables. I focus on writing maintainable, scalable, and consistent styles that work seamlessly across a wide range of devices and screen sizes",
+            "SVG": "SVG (Scalable Vector Graphics) is ideal for creating resolution-independent visuals and icons. Experience in creating lightweight, scalable vector graphics tailored for modern web applications",
+            "Redux": "Redux is a predictable state container for managing application state across components. Extensive experience applying Redux in production and personal projects to implement scalable, testable, and maintainable state management in React applications",
+            "Redux-Saga": "Redux-Saga is a middleware library for handling complex asynchronous flows in Redux using generator functions. Extensive working experience using it for API calls, background processes, error handling, and centralized side-effect logic in real-world project",
+            "Apollo GraphQL": "Apollo Client simplifies data fetching, caching, and local state management in React apps using GraphQL. Extensive experience integrating Apollo to connect UI with backend GraphQL APIs, enabling efficient, client-driven data workflows and responsive user interfaces"
         }
     },
     "Backend": {
@@ -42,13 +42,13 @@
             "Version Control": "Version Control"
         },
         "skill": {
-            "TypeScript": "Skilled in TypeScript as I utilize TypeScript daily in a professional setting. Experienced in leveraging TypeScript's strong typing and advanced features to build robust and scalable applications",
-            "JavaScript": "Experienced in JavaScript, I have utilized JavaScript extensively in different projects, proficient in creating dynamic and interactive web applications. Skilled in both front-end and back-end JavaScript frameworks and libraries",
-            "C++": "I am proficient in C++ and have used it for developing simple games and optimizing code for better performance by utilizing parallel computing techniques. With a keen interest in game development, it would be tempting to pursue a career as a game developer in the future and explore the vast possibilities with C++",
-            "Python": "Primarily used Python during my university studies for various academic projects, including deep learning applications",
-            "Docker": "Utilized Docker primarily during my university studies for containerizing applications and ensuring consistent environments",
-            "CI/CD": "I have some experience in creating CI/CD pipelines by using GitHub Actions (For example I have set up pipelines for this web site). While I haven't set up pipelines myself at work, I am familiar with GitLab's CI/CD processes (and Jenkins, as we used it before).  Additionally, I have deployed CodePush releases for AppCenter to update mobile applications in a professional environment",
-            "Git": "I use Git daily in my professional work, demonstrating strong skills in version control, branch management, and collaboration with other developers in concurrent workflows"
+            "TypeScript": "TypeScript enhances code quality and maintainability through static typing and modern language features. Used daily in a professional setting to build scalable applications with improved developer productivity and reduced runtime errors",
+            "JavaScript": "Core language used across both front-end and back-end development. Proficient in building dynamic, interactive web applications and experienced with JavaScript frameworks and libraries in diverse environments",
+            "C++": "C++ is a high-performance language well-suited for systems programming, game development, and applications that require low-level memory control or computational efficiency. I have used C++ to develop games and optimize performance using parallel computing techniques",
+            "Python": "Python is widely used for scripting, automation, data analysis, and machine learning due to its readability and rich ecosystem. I have used Python primarily in university projects, including deep learning applications and academic research tasks",
+            "Docker": "Docker enables consistent, portable application environments by packaging code and dependencies into containers. I have used Docker in projects to containerize applications and ensure predictable behavior across development and production environments",
+            "CI/CD": "CI/CD automates the build, test, and deployment pipeline, improving development speed and software reliability. I have built deployment pipelines using GitHub Actions (e.g., for this portfolio site) and am familiar with GitLab CI/CD and Jenkins. In a professional setting, I have also managed mobile deployments by using OTA-updates",
+            "Git": "Git is a version control system essential for managing codebases, enabling collaboration and parallel development. I use Git daily in professional work, with strong proficiency in branching strategies, resolving conflicts, and coordinating with teams in shared repositories"
         }
     }
 }

@@ -33,6 +33,7 @@ const useWebGLContext = (
   const animationStartTime = useRef<DOMHighResTimeStamp | null>(null);
   const verticesCount = useRef<number>(0);
   const isDeleted = program.current === null || vShader.current === null || fShader.current === null || vBuffer.current === null || cBuffer.current === null;
+  const prevElapsedTime = useRef<number>(0);
   useEffect(() => {
     if (!canvasRef.current) return;
     const canvas = canvasRef.current;
@@ -79,12 +80,19 @@ const useWebGLContext = (
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.useProgram(shaderProgram);
       // Calculate the elapsed time based on the animation start time
-      const startNewTimer = (isCircle && (isDynamicMode.current || animate.current));
-      if (startNewTimer && animationStartTime.current !== null) {
-        elapsedTime = (time - animationStartTime.current) * 0.001;
+      if (isCircle) {
+        const startTime = animationStartTime.current ?? 0;
+        if (animate.current) {
+          // Forward animation
+          elapsedTime = (time - startTime) * 0.001;
+          prevElapsedTime.current = elapsedTime;
+        } else {
+          // Reverse animation
+          elapsedTime = ((time - startTime) * 0.001) - prevElapsedTime.current;
+        }
       }
       // Pass the calculated time to the shader
-      gl.uniform1f(u_time, startNewTimer ? elapsedTime + offsetTime  : time * 0.001);
+      gl.uniform1f(u_time, isCircle ? elapsedTime + offsetTime  : time * 0.001);
       if (isCircle) {
         gl.drawArrays(drawType, 0, verticesCount.current);
       } else if (props.type === 'zigzag') {
@@ -135,12 +143,14 @@ const useWebGLContext = (
 };
 
 const useEvents = (props: Props, isDeleted: boolean, webGLContext: WebGLContext, animationContext: AnimationContext) => {
+  const documentRef = useRef<Document | null>(document);
   const isSmallScreen = useRef<boolean>(window.innerWidth <= 400);
   const currentNumVertices = useRef<number>(props.numVertices);
   const { canvasRef, glRef, program, uniformsRef, vBuffer, cBuffer } = webGLContext;
   const { animate, isDynamicMode, verticesCount, animationStartTime } = animationContext;
   useEffect(() => {
-    if (!canvasRef.current || !glRef.current || !program.current || isDeleted) return;
+    if (!canvasRef.current || !glRef.current || !program.current || isDeleted || !documentRef.current) return;
+    const currentDocument = documentRef.current;
     const canvas = canvasRef.current;
     const gl = glRef.current;
     const { u_animate, u_dynamic, u_width, u_resolution } = uniformsRef.current;
@@ -184,24 +194,9 @@ const useEvents = (props: Props, isDeleted: boolean, webGLContext: WebGLContext,
       gl.useProgram(program.current);
       gl.uniform1i(u_animate, value ? 1 : 0);
       animate.current = value;
-      animationStartTime.current = value ? performance.now() : null;
-    };
-    const isScrollendSupported = 'onscrollend' in window;
-    let isScrolling = false;
-    let timeout: NodeJS.Timeout;
-    const handleScroll = () => {
-      setAnimation(true);
-      isScrolling = true;
-      // Manually handle scrollend event if not supported by the browser
-      if (!isScrollendSupported) {
-        clearTimeout(timeout);
-        timeout = setTimeout(handleScrollEnd, 500);
+      if (value) {
+        animationStartTime.current = performance.now();
       }
-    };
-
-    const handleScrollEnd = () => {
-      setAnimation(isDynamicMode.current);
-      isScrolling = false;
     };
 
     const handleMouseEnter = () => {
@@ -217,24 +212,19 @@ const useEvents = (props: Props, isDeleted: boolean, webGLContext: WebGLContext,
       gl.useProgram(program.current);
       gl.uniform1i(u_dynamic, 0);
       isDynamicMode.current = false;
-      setAnimation(isScrolling);
+      setAnimation(false);
     };
 
     window.addEventListener('resize', handleResize);
     if (props.type === 'circle') {
-      document.getElementById('about')?.addEventListener('mouseenter', handleMouseEnter);
-      document.getElementById('about')?.addEventListener('mouseleave', handleMouseLeave);
-      window.addEventListener('scroll', handleScroll);
-      window.addEventListener('scrollend', handleScrollEnd);
+      currentDocument.getElementById('about')?.addEventListener('mouseenter', handleMouseEnter);
+      currentDocument.getElementById('about')?.addEventListener('mouseleave', handleMouseLeave);
     }
     return () => {
       window.removeEventListener('resize', handleResize);
       if (props.type === 'circle') {
-        window.removeEventListener('scroll', handleScroll);
-        window.removeEventListener('scrollend', handleScrollEnd);
-        document.getElementById('about')?.removeEventListener('mouseenter', handleMouseEnter);
-        document.getElementById('about')?.removeEventListener('mouseleave', handleMouseLeave);
-        clearTimeout(timeout);
+        currentDocument.getElementById('about')?.removeEventListener('mouseenter', handleMouseEnter);
+        currentDocument.getElementById('about')?.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
   /**

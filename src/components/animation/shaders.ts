@@ -66,6 +66,10 @@ const circleFragmentShaderSource = `
     float d = length(uv);
     vec3 finalColor = vec3(0.0);
 
+    if (u_Width < 400.0) {
+      return;
+    }
+
     // Dynamic mode, create wierd patterns and color effects
     if (u_Dynamic) {
       vec2 uv0 = uv;
@@ -108,7 +112,9 @@ const circleFragmentShaderSource = `
 
     // Animate the shape
     if (u_Animate) {
-      gl_FragColor *= smoothstep(0.12, 0.15,sin(2.0 * d + 3.0*pow(sin(u_Time*0.5),2.0)) / 2.0);
+      gl_FragColor *= smoothstep(0.12, 0.15,1.5 + (-d-(u_Time * 0.4)));
+    } else {
+      gl_FragColor *= smoothstep(0.12, 0.15,-d+(u_Time * 0.4));
     }
   }
 `;
@@ -135,12 +141,12 @@ const shockwaveFragmentShaderSource = `
       return;
     }
     float d = length(uv);
-    float xPos = fract(u_Time * 0.3) * 2.0 - 1.0;
+    float xPos = fract(u_Time * 0.26) * 2.0 - 1.0;
     if (xPos < 0.0 && xPos + 0.01 > uv.x && xPos - 0.2 < uv.x) {
-      gl_FragColor = mix(vec4(1), vec4(vec3(0.2, 0.4, 0.6), 1) + vec4(getColors(u_Time * 0.4), 1) ,smoothstep(0.09, 0.11, abs(1.0 - d - fract(u_Time*0.3))));
+      gl_FragColor = mix(vec4(1), vec4(vec3(0.2, 0.4, 0.6), 1) + vec4(getColors(u_Time * 0.4), 1) ,smoothstep(0.09, 0.11, abs(1.0 - d - fract(u_Time*0.26))));
       return;
     } else if (xPos > 0.0 && xPos + 0.2 > uv.x && xPos - 0.01 < uv.x) {
-      gl_FragColor = mix(vec4(1), vec4(vec3(0.2, 0.4, 0.6), 1) + vec4(getColors(u_Time * 0.4), 1) ,smoothstep(0.09 , 0.11, abs(d - fract(u_Time*0.3))));
+      gl_FragColor = mix(vec4(1), vec4(vec3(0.2, 0.4, 0.6), 1) + vec4(getColors(u_Time * 0.4), 1) ,smoothstep(0.09 , 0.11, abs(d - fract(u_Time*0.26))));
       return;
     }
   }

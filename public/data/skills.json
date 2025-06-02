@@ -16,7 +16,7 @@
                     "items": ["Redux", "Redux-Saga"]
                 },
                 {
-                    "name": "Serve State Management",
+                    "name": "Server State Management",
                     "items": ["Apollo GraphQL"]
                 }
             ]

@@ -17,7 +17,9 @@
     "analyze-build": "webpack --config webpack.analyze.cjs",
     "serve-build": "serve -s build",
     "lint": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "generate-localization-resources": "i18next --silent",
+    "generate-localization-types": "i18next-resources-for-ts interface -i src/locales/fi -o src/locales/resources.d.ts"
   },
   "browserslist": {
     "production": [
@@ -49,11 +51,14 @@
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
     "eslint": "^9.20.1",
+    "eslint-plugin-i18next": "^6.1.1",
     "eslint-plugin-no-relative-import-paths": "^1.6.1",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-webpack-plugin": "^4.2.0",
     "html-webpack-plugin": "^5.6.3",
+    "i18next-parser": "^9.3.0",
+    "i18next-resources-for-ts": "^1.6.0",
     "jest": "^29.7.0",
     "jest-css-modules-transform": "^4.4.2",
     "jest-environment-jsdom": "^29.7.0",

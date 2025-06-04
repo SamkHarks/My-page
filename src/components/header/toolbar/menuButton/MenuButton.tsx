@@ -25,13 +25,15 @@ export const MenuButton = ({ isOpen, onClick }: HeaderToolbarProps): React.JSX.E
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
+  const buttonText = isOpen ? t("close") : t("open");
+
   return (
     <button className={styles.header_button} onClick={onClickAnimate}>
       <RxHamburgerMenu
         className={`${styles.hamburger_icon} ${isPressed ? styles.animate : ""}`}
       />
       <span className={styles.button_text}>
-        {t(isOpen ? "close" : "open")}
+        {buttonText}
       </span>
     </button>
   );

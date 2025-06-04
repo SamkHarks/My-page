@@ -1,8 +1,8 @@
 import { HeaderSectionProps } from "src/components/header/types";
 import { useSectionTitleIdContext } from "src/components/header/SectionIdProvider";
 import { Section } from "src/components/app/types";
-import { useTranslation } from "react-i18next";
 import * as styles from "src/components/header/sections/HeaderSections.module.css";
+import { useTranslatedSectionId } from "src/hooks/hooks";
 
 export const HeaderSections = ({
   onClick,
@@ -10,7 +10,7 @@ export const HeaderSections = ({
   isOpen,
   sections,
 }: HeaderSectionProps): React.JSX.Element => {
-  const { t } = useTranslation("sections");
+  const getTranslatedSectionById = useTranslatedSectionId();
   const { titleId } = useSectionTitleIdContext();
   const scrollToSection = (sectionId: Section["id"]) => {
     const section = sectionRefs[sectionId];
@@ -36,7 +36,7 @@ export const HeaderSections = ({
               className={styles.li_item}
               onClick={() => scrollToSection(section.id)}
             >
-              {t(section.id)}
+              {getTranslatedSectionById(section.id)}
             </li>
           );
         })}

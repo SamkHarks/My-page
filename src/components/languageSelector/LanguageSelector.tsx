@@ -33,14 +33,14 @@ const LanguageSelector = (): React.JSX.Element => {
               type={"button"}
               onClick={() => changeLanguage("fi")}
             >
-              fi
+              {'fi'}
             </button>
             <button
               className={styles.small_button}
               type={"button"}
               onClick={() => changeLanguage("en")}
             >
-              en
+              {'en'}
             </button>
           </>
         )

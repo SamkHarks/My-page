@@ -5,6 +5,7 @@ import { createUrl, handleNetworkError } from "src/utils/utils";
 import { HandledError } from "src/components/boundaries/errorBoundary/HandledError";
 import configuration from "src/config/configuration.json";
 import { OpenModalConfig, useModalStore } from "src/stores/useModalStore";
+import { useTranslation } from "react-i18next";
 
 export const useRefs = (sections: Section[]): SectionRefs => {
   const refs = sections.reduce((acc, section) => {
@@ -289,4 +290,20 @@ export const usePreloadModalContent = (): (modalConfig: OpenModalConfig) => void
       openModal(modalConfig);
       setIsPreloaded(true);
   }, [openModal, setPreloading, isPreloaded]);
+}
+
+export const useTranslatedSectionId = (
+): (id: Section['id']) => string => {
+  const { t } = useTranslation("sections");
+  const translatedSections = useMemo(
+    () => ({
+      home: t('home'),
+      contact: t('contact'),
+      skills: t('skills'),
+      about: t('about'),
+    }),
+    [t]
+  );
+
+  return (id: Section['id']) => translatedSections[id];
 }

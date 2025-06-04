@@ -9,11 +9,16 @@ export const Title = (props: Props): React.JSX.Element => {
   const {t} = useTranslation('contact');
   const isSuccess = props.state === 'SUCCESS';
   const isFailure = props.state === 'FAILURE';
+
+  const getTitleOnResolution = () => {
+    return isSuccess ? t('form.success.line1') : t('form.failure.line1');
+  }
+
   return (
     <p className={styles.header}>
       {
         isSuccess || isFailure ? (
-          <>{t(`form.${isSuccess ? 'success' : 'failure'}.line1`)}</>
+          <>{getTitleOnResolution()}</>
         ) : (
           <>
             {t('form.intro.line1')}<br />

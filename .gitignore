@@ -25,3 +25,6 @@ yarn-error.log*
 
 # Ignore Firebase CLI cache and metadata
 .firebase/
+
+# Generated translation types
+/src/locales/resources.d.ts

@@ -16,6 +16,6 @@
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*",  "i18next-parser.config.ts"],
   "exclude": ["node_modules", "build"]
 }

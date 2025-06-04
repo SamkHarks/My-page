@@ -7,6 +7,6 @@
   "503": "503 Hups! Palvelu ei ole käytettävissä, yritä myöhemmin uudelleen.",
   "504": "504 Hups! Yhdyskäytävän aikakatkaisu, yritä myöhemmin uudelleen.",
   "505": "505 Hups! HTTP-versiota ei tueta.",
-  "otherStatus": "{{status}} Hups! Odottamaton virhe tapahtui, yritä myöhemmin uudelleen.",
-  "error": "Odottamaton virhe tapahtui, yritä myöhemmin uudelleen."
+  "error": "Odottamaton virhe tapahtui, yritä myöhemmin uudelleen.",
+  "otherStatus": "{{status}} Hups! Odottamaton virhe tapahtui, yritä myöhemmin uudelleen."
 }

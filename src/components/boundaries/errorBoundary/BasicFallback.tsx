@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { IoReload } from "react-icons/io5";
 import * as styles from "src/components/boundaries/errorBoundary/BasicFallback.module.css";
 import { HandledError } from "src/components/boundaries/errorBoundary/HandledError";
+import { useTranslatedErrors } from "src/components/boundaries/errorBoundary/useTranslatedErrors";
 
 type Props = {
   onResetError: () => void;
@@ -12,10 +13,9 @@ type Props = {
  }
 
 export const BasicFallback = (props: Props): React.JSX.Element => {
-  const { t } = useTranslation(['errors', 'common']);
-  const message = props.error
-    ? t(`errors:${props.error.key}`, props.error.args)
-    : t('errors:error');
+  const { t } = useTranslation(['common']);
+  const getTranslatedError = useTranslatedErrors();
+  const message = getTranslatedError(props.error);
   if (props.variant === 'default') {
     return (
       <div className={styles.container}>
@@ -31,7 +31,7 @@ export const BasicFallback = (props: Props): React.JSX.Element => {
           onClick={props.onResetError}
           style={{color: props.color, borderColor: props.color}}
         >
-          {t('common:reload')}
+          {t('reload')}
         </button>
       </div>
     );

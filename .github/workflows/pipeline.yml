@@ -18,6 +18,8 @@ jobs:
                 node-version: '20'
             - name: install dependencies
               run: npm install
+            - name: generate localization types
+              run: npm run generate-localization-types
             - name: lint
               run: npm run lint
             - name: tests

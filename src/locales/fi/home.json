@@ -1,8 +1,8 @@
 {
-    "education": "DI Aalto-yliopistosta",
-    "work": "Sovelluskehittäjä Veikkauksella",
-    "shortIntro": "Kiinnostuksen kohteina erityisesti Full Stack-kehitys, suorityskykyiset, ylläpidettävät ja interaktiiviset käyttäjäystävälliset sovellukset mobiili- ja web-alustoille",
-    "intro": "Tervetuloa portfolio-sivustolleni. Tältä sivulta näet tiiviin katsauksen matkastani ohjelmistokehittäjänä — Aalto-yliopistossa suoritetuista diplomi-insinöörin opinnoista aina nykyiseen rooliin Veikkauksella. Sivustolta löytyy myös tietoa taidoista, työkaluista ja innovatiivisista ratkaisuista, joita tuon web- ja mobiilikehityksen haasteisiin. Mikäli haluat tutustua taustaani tarkemmin, voit tutkia ansioluetteloa alta. Yhteystiedot löytyvät sivun lopusta, voit halutessasi jättää viestin lomakkeella, joka avautuu napsauttamalla sähköposti kuvaketta. Kiitos vierailustasi, toivottavasti kuulemme pian!",
-    "resume": "Ansioluettelo",
-    "resumeLong": "Katso Ansioluettelo"
+  "education": "DI Aalto-yliopistosta",
+  "intro": "Tervetuloa portfolio-sivustolleni. Tältä sivulta näet tiiviin katsauksen matkastani ohjelmistokehittäjänä — Aalto-yliopistossa suoritetuista diplomi-insinöörin opinnoista aina nykyiseen rooliin Veikkauksella. Sivustolta löytyy myös tietoa taidoista, työkaluista ja innovatiivisista ratkaisuista, joita tuon web- ja mobiilikehityksen haasteisiin. Mikäli haluat tutustua taustaani tarkemmin, voit tutkia ansioluetteloa alta. Yhteystiedot löytyvät sivun lopusta, voit halutessasi jättää viestin lomakkeella, joka avautuu napsauttamalla sähköposti kuvaketta. Kiitos vierailustasi, toivottavasti kuulemme pian!",
+  "resume": "Ansioluettelo",
+  "resumeLong": "Katso Ansioluettelo",
+  "shortIntro": "Kiinnostuksen kohteina erityisesti Full Stack-kehitys, suorityskykyiset, ylläpidettävät ja interaktiiviset käyttäjäystävälliset sovellukset mobiili- ja web-alustoille",
+  "work": "Sovelluskehittäjä Veikkauksella"
 }

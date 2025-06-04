@@ -3,7 +3,10 @@ import babelParser from '@babel/eslint-parser';
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import noRelativeImportPaths from 'eslint-plugin-no-relative-import-paths';
+import i18next from 'eslint-plugin-i18next';
 import { FlatCompat } from '@eslint/eslintrc';
+
+import noDynamicTranslationKeys from './eslintRules/no-dynamic-translation-keys.js';
 
 const compat = new FlatCompat();
 
@@ -134,4 +137,25 @@ export default tseslint.config(
       '@typescript-eslint/no-require-imports': 'off',
     },
   },
+
+  // eslint-plugin-i18next
+  {
+    files: [...files.tsx, ...files.ts],
+    extends: [i18next.configs['flat/recommended']]
+  },
+
+  {
+  files: files.all,
+  rules: {
+    'custom/no-dynamic-translation-keys': 'error',
+  },
+  plugins: {
+    custom: {
+      rules: {
+        'no-dynamic-translation-keys': noDynamicTranslationKeys,
+      },
+    },
+  },
+  ignores: ['**/node_modules/*', '**/build/*'],
+}
 );

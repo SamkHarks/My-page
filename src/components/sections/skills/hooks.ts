@@ -15,7 +15,7 @@ export const useTranslatedSkills = (): Record<Item, string> => {
     Redux: t('Frontend.skill.Redux'),
     'Redux-Saga': t('Frontend.skill.Redux-Saga'),
     SVG: t('Frontend.skill.SVG'),
-    'Node.js': t('Backend.skill.Node.js'),
+    'Node.js': t('Backend.skill.Node'),
     Deno: t('Backend.skill.Deno'),
     Express: t('Backend.skill.Express'),
     'REST APIs': t('Backend.skill.REST APIs'),

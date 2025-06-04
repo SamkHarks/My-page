@@ -1,32 +1,32 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { ICONS } from "src/components/sections/skills/utils";
 import * as styles from "src/components/sections/skills/Skill.module.css";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import { type Item } from "src/components/sections/skills/types";
+import { useTranslatedSkills } from "src/components/sections/skills/hooks";
 
 
 type Props = {
-  skill: string;
-  category: string;
+  skill: Item;
 };
 
-export const Skill = ({ skill, category }: Props): React.JSX.Element => {
+export const Skill = (props: Props): React.JSX.Element => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { t } = useTranslation("skills");
+  const translatedSkills = useTranslatedSkills();
   const onClick = () => {
     setIsExpanded(!isExpanded);
   };
-  const IconComponent = ICONS[skill];
+  const IconComponent = ICONS[props.skill];
   return (
     <button
       className={`${styles.button} ${isExpanded ? styles.selected : ""}`}
-      key={skill}
+      key={props.skill}
       onClick={onClick}
     >
       <div className={styles.button_title_row}>
         <div className={styles.button_title}>
           {IconComponent && <IconComponent size={30} />}
-          <p>{skill}</p>
+          <p>{props.skill}</p>
         </div>
         <MdKeyboardArrowDown
           className={`${isExpanded ? styles.rotate_down : styles.rotate_up}`}
@@ -35,7 +35,7 @@ export const Skill = ({ skill, category }: Props): React.JSX.Element => {
       </div>
       {isExpanded && (
         <div className={styles.expanded}>
-          <p className={styles.text}>{t(`${category}.skill.${skill}`)}</p>
+          <p className={styles.text}>{translatedSkills[props.skill]}</p>
         </div>
       )}
     </button>

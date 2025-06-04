@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslatedSectionId } from "src/hooks/hooks";
 import { useSectionTitleIdContext } from "src/components/header/SectionIdProvider";
 import { HeaderToolbarProps } from "src/components/header/types";
 import { isTypeOfElementArray } from "src/components/header/utils";
@@ -11,7 +11,7 @@ import * as styles from "src/components/header/toolbar/title/Title.module.css";
 export const Title = ({ sections, isOpen }: Omit<HeaderToolbarProps, 'onClick'>): React.JSX.Element => {
   const { titleId, setTitleId } = useSectionTitleIdContext();
   const [data, setData] = useState<HTMLElement[]>([]);
-  const { t } = useTranslation("sections");
+   const getTranslatedSectionById = useTranslatedSectionId();
 
   useEffect(() => {
     const getData = () => {
@@ -31,7 +31,7 @@ export const Title = ({ sections, isOpen }: Omit<HeaderToolbarProps, 'onClick'>)
 
   return (
     <span className={`${styles.title} ${isOpen ? styles.hidden : styles.visible}`}>
-      {t(titleId)}
+      {getTranslatedSectionById(titleId)}
     </span>
   );
 };

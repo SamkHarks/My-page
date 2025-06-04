@@ -12,7 +12,7 @@ const compat = new FlatCompat();
 
 const files = {
   js: ['**/*.js'],
-  ts: ['**/!(*.d)/*.ts'],
+  ts: ['**/!(*.d).ts'],
   tsx: ['**/*.tsx'],
   all: []
 }

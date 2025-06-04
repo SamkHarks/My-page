@@ -7,6 +7,6 @@
   "503": "503 Ooops! Service unavailable, try again later.",
   "504": "504 Ooops! Gateway timeout, try again later.",
   "505": "505 Ooops! HTTP version not supported.",
-  "otherStatus": "{{status}} Ooops! An unexpected error occurred, try again later.",
-  "error": "An unexpected error occurred, try again later."
+  "error": "An unexpected error occurred, try again later.",
+  "otherStatus": "{{status}} Ooops! An unexpected error occurred, try again later."
 }

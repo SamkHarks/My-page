@@ -1,58 +1,58 @@
 {
-    "Frontend": {
-        "subcategories": {
-            "Frameworks & Libraries": "Frameworks & Libraries",
-            "Markup & Styling": "Markup & Styling",
-            "State Management": "State Management",
-            "Server State Management": "Server State Management"
-        },
-        "skill": {
-            "React": "React is a declarative JavaScript library for building interactive user interfaces using component-based architecture. Extensive experience working with React and a strong command of its core concepts, including hooks and state management. This website is one example of my work, built entirely with React to showcase performance, scalability, and modern frontend best practices",
-            "React Native": "React Native enables cross-platform mobile app development using JavaScript and React principles. Daily professional experience has developed deep expertise in building new features, integrating native modules, and optimizing performance to deliver smooth, native-like experiences on both Android and iOS",
-            "HTML5": "HTML5 provides the foundation for structured, semantic, and accessible web content. I follow modern HTML standards to ensure search engine optimization, maintainability, and consistent behavior across different browsers and devices",
-            "CSS": "CSS powers the visual design and responsiveness of web interfaces. I enjoy crafting responsive, pixel-perfect user interfaces using modern CSS techniques such as Flexbox, Grid, media queries, and CSS variables. I focus on writing maintainable, scalable, and consistent styles that work seamlessly across a wide range of devices and screen sizes",
-            "SVG": "SVG (Scalable Vector Graphics) is ideal for creating resolution-independent visuals and icons. Experience in creating lightweight, scalable vector graphics tailored for modern web applications",
-            "Redux": "Redux is a predictable state container for managing application state across components. Extensive experience applying Redux in production and personal projects to implement scalable, testable, and maintainable state management in React applications",
-            "Redux-Saga": "Redux-Saga is a middleware library for handling complex asynchronous flows in Redux using generator functions. Extensive working experience using it for API calls, background processes, error handling, and centralized side-effect logic in real-world project",
-            "Apollo GraphQL": "Apollo Client simplifies data fetching, caching, and local state management in React apps using GraphQL. Extensive experience integrating Apollo to connect UI with backend GraphQL APIs, enabling efficient, client-driven data workflows and responsive user interfaces"
-        }
+  "Backend": {
+    "skill": {
+      "Deno": "Experience with Deno as a modern, secure runtime for building server-side applications. Combined with frameworks like Oak, it supports maintainable MPA and SPA architecture with built-in tooling and strict security",
+      "Express": "Express is a minimal and flexible Node.js framework for building server-side applications and RESTful APIs. Experience in implementing middleware for authentication, logging, error handling, and request processing, enabling maintainable and extensible backend systems",
+      "Firebase": "Firebase offers backend services for real-time data syncing, analytics, crash reporting, and app monitoring — ideal for mobile and web apps. Used extensively to track performance, crashes, gather insights, and maintain reliability across the application lifecycle",
+      "GraphQL": "GraphQL enables flexible and efficient data querying by allowing clients to request exactly the data they need, reducing over-fetching and improving performance. Experience building GraphQL APIs and connecting them to NoSQL databases, enabling dynamic and client-driven data access for modern web applications",
+      "Node": "Node.js is a non-blocking, event-driven runtime environment well-suited for building scalable network applications and real-time services. Experience using Node.js to develop RESTful APIs, handle asynchronous operations, and build backend systems for modern web applications",
+      "NoSQL": "NoSQL databases offer schema flexibility and horizontal scalability, making them ideal for handling unstructured or rapidly evolving data in distributed environments. Experience in MongoDB for managing and manipulating non-relational data structures",
+      "REST APIs": "REST APIs provide a standardized way for client and server components to communicate over HTTP using structured endpoints. Experience in designing and integrating REST APIs to support data exchange, improve modularity, and enable scalable web application architectures",
+      "SQL": "Relational databases provide strong consistency, support for complex queries, and transactional integrity — making them essential for systems that demand structured data and reliable operations. Experience in PostgreSQL to design normalized schemas, implement relational logic, and manage data with precise control in university projects and backend development tasks"
     },
-    "Backend": {
-        "subcategories": {
-            "Frameworks & Runtimes": "Frameworks & Runtimes",
-            "APIs": "APIs",
-            "Databases": "Databases",
-            "Cloud Services": "Cloud Services"
-        },
-        "skill": {
-            "REST APIs": "REST APIs provide a standardized way for client and server components to communicate over HTTP using structured endpoints. Experience in designing and integrating REST APIs to support data exchange, improve modularity, and enable scalable web application architectures",
-            "GraphQL": "GraphQL enables flexible and efficient data querying by allowing clients to request exactly the data they need, reducing over-fetching and improving performance. Experience building GraphQL APIs and connecting them to NoSQL databases, enabling dynamic and client-driven data access for modern web applications",
-            "Firebase": "Firebase offers backend services for real-time data syncing, analytics, crash reporting, and app monitoring — ideal for mobile and web apps. Used extensively to track performance, crashes, gather insights, and maintain reliability across the application lifecycle",
-            "Node.js": "Node.js is a non-blocking, event-driven runtime environment well-suited for building scalable network applications and real-time services. Experience using Node.js to develop RESTful APIs, handle asynchronous operations, and build backend systems for modern web applications",
-            "Deno": "Experience with Deno as a modern, secure runtime for building server-side applications. Combined with frameworks like Oak, it supports maintainable MPA and SPA architecture with built-in tooling and strict security",
-            "Express": "Express is a minimal and flexible Node.js framework for building server-side applications and RESTful APIs. Experience in implementing middleware for authentication, logging, error handling, and request processing, enabling maintainable and extensible backend systems",
-            "SQL": "Relational databases provide strong consistency, support for complex queries, and transactional integrity — making them essential for systems that demand structured data and reliable operations. Experience in PostgreSQL to design normalized schemas, implement relational logic, and manage data with precise control in university projects and backend development tasks",
-            "NoSQL": "NoSQL databases offer schema flexibility and horizontal scalability, making them ideal for handling unstructured or rapidly evolving data in distributed environments. Experience in MongoDB for managing and manipulating non-relational data structures"
-        }
-    },
-    "Misc": {
-        "subcategories": {
-            "Languages": "Languages",
-            "Testing": "Testing",
-            "DevOps & Tools": "DevOps & Tools",
-            "Version Control": "Version Control"
-        },
-        "skill": {
-            "TypeScript": "TypeScript enhances code quality and maintainability through static typing and modern language features. Used daily in a professional setting to build scalable applications with improved developer productivity and reduced runtime errors",
-            "JavaScript": "Core language used across both front-end and back-end development. Proficient in building dynamic, interactive web applications and experienced with JavaScript frameworks and libraries in diverse environments",
-            "C++": "C++ is a high-performance language well-suited for systems programming, game development, and applications that require low-level memory control or computational efficiency. I have used C++ to develop games and optimize performance using parallel computing techniques",
-            "Python": "Python is widely used for scripting, automation, data analysis, and machine learning due to its readability and rich ecosystem. I have used Python primarily in university projects, including deep learning applications and academic research tasks",
-            "Docker": "Docker enables consistent, portable application environments by packaging code and dependencies into containers. I have used Docker in projects to containerize applications and ensure predictable behavior across development and production environments",
-            "CI/CD": "CI/CD automates the build, test, and deployment pipeline, improving development speed and software reliability. I have built deployment pipelines using GitHub Actions (e.g., for this portfolio site) and am familiar with GitLab CI/CD and Jenkins. In a professional setting, I have also managed mobile deployments by using OTA-updates",
-            "Git": "Git is a version control system essential for managing codebases, enabling collaboration and parallel development. I use Git daily in professional work, with strong proficiency in branching strategies, resolving conflicts, and coordinating with teams in shared repositories",
-            "Jest": "Jest is a powerful JavaScript testing framework used to create reliable tests across both frontend and backend applications. I use Jest to validate the functionality of my code through isolated unit tests and integration tests that verify interactions between modules. I also leverage mocking to simulate controlled environments, improving test reliability and maintainability",
-            "Cypress": "Cypress is an end-to-end testing tool designed for modern web applications. I use Cypress to simulate real user interactions and validate entire application flows from the user interface to the backend. It helps ensure that critical paths—such as authentication, navigation, and data submission—function reliably across different browsers",
-            "Webpack": "Webpack is a powerful module bundler used to optimize and package JavaScript applications. I have configured and used Webpack for bundling frontend assets, enabling features like code splitting, tree shaking, and efficient production builds in custom React projects"
-        }
+    "subcategories": {
+      "APIs": "APIs",
+      "Cloud Services": "Cloud Services",
+      "Databases": "Databases",
+      "Frameworks & Runtimes": "Frameworks & Runtimes"
     }
+  },
+  "Frontend": {
+    "skill": {
+      "Apollo GraphQL": "Apollo Client simplifies data fetching, caching, and local state management in React apps using GraphQL. Extensive experience integrating Apollo to connect UI with backend GraphQL APIs, enabling efficient, client-driven data workflows and responsive user interfaces",
+      "CSS": "CSS powers the visual design and responsiveness of web interfaces. I enjoy crafting responsive, pixel-perfect user interfaces using modern CSS techniques such as Flexbox, Grid, media queries, and CSS variables. I focus on writing maintainable, scalable, and consistent styles that work seamlessly across a wide range of devices and screen sizes",
+      "HTML5": "HTML5 provides the foundation for structured, semantic, and accessible web content. I follow modern HTML standards to ensure search engine optimization, maintainability, and consistent behavior across different browsers and devices",
+      "React": "React is a declarative JavaScript library for building interactive user interfaces using component-based architecture. Extensive experience working with React and a strong command of its core concepts, including hooks and state management. This website is one example of my work, built entirely with React to showcase performance, scalability, and modern frontend best practices",
+      "React Native": "React Native enables cross-platform mobile app development using JavaScript and React principles. Daily professional experience has developed deep expertise in building new features, integrating native modules, and optimizing performance to deliver smooth, native-like experiences on both Android and iOS",
+      "Redux": "Redux is a predictable state container for managing application state across components. Extensive experience applying Redux in production and personal projects to implement scalable, testable, and maintainable state management in React applications",
+      "Redux-Saga": "Redux-Saga is a middleware library for handling complex asynchronous flows in Redux using generator functions. Extensive working experience using it for API calls, background processes, error handling, and centralized side-effect logic in real-world project",
+      "SVG": "SVG (Scalable Vector Graphics) is ideal for creating resolution-independent visuals and icons. Experience in creating lightweight, scalable vector graphics tailored for modern web applications"
+    },
+    "subcategories": {
+      "Frameworks & Libraries": "Frameworks & Libraries",
+      "Markup & Styling": "Markup & Styling",
+      "Server State Management": "Server State Management",
+      "State Management": "State Management"
+    }
+  },
+  "Misc": {
+    "skill": {
+      "C++": "C++ is a high-performance language well-suited for systems programming, game development, and applications that require low-level memory control or computational efficiency. I have used C++ to develop games and optimize performance using parallel computing techniques",
+      "CI/CD": "CI/CD automates the build, test, and deployment pipeline, improving development speed and software reliability. I have built deployment pipelines using GitHub Actions (e.g., for this portfolio site) and am familiar with GitLab CI/CD and Jenkins. In a professional setting, I have also managed mobile deployments by using OTA-updates",
+      "Cypress": "Cypress is an end-to-end testing tool designed for modern web applications. I use Cypress to simulate real user interactions and validate entire application flows from the user interface to the backend. It helps ensure that critical paths—such as authentication, navigation, and data submission—function reliably across different browsers",
+      "Docker": "Docker enables consistent, portable application environments by packaging code and dependencies into containers. I have used Docker in projects to containerize applications and ensure predictable behavior across development and production environments",
+      "Git": "Git is a version control system essential for managing codebases, enabling collaboration and parallel development. I use Git daily in professional work, with strong proficiency in branching strategies, resolving conflicts, and coordinating with teams in shared repositories",
+      "JavaScript": "Core language used across both front-end and back-end development. Proficient in building dynamic, interactive web applications and experienced with JavaScript frameworks and libraries in diverse environments",
+      "Jest": "Jest is a powerful JavaScript testing framework used to create reliable tests across both frontend and backend applications. I use Jest to validate the functionality of my code through isolated unit tests and integration tests that verify interactions between modules. I also leverage mocking to simulate controlled environments, improving test reliability and maintainability",
+      "Python": "Python is widely used for scripting, automation, data analysis, and machine learning due to its readability and rich ecosystem. I have used Python primarily in university projects, including deep learning applications and academic research tasks",
+      "TypeScript": "TypeScript enhances code quality and maintainability through static typing and modern language features. Used daily in a professional setting to build scalable applications with improved developer productivity and reduced runtime errors",
+      "Webpack": "Webpack is a powerful module bundler used to optimize and package JavaScript applications. I have configured and used Webpack for bundling frontend assets, enabling features like code splitting, tree shaking, and efficient production builds in custom React projects"
+    },
+    "subcategories": {
+      "DevOps & Tools": "DevOps & Tools",
+      "Languages": "Languages",
+      "Testing": "Testing",
+      "Version Control": "Version Control"
+    }
+  }
 }

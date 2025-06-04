@@ -1,6 +1,6 @@
 {
-    "loading": "loading...",
-    "open": "Open Menu",
-    "close": "Close Menu",
-    "reload": "Reload"
+  "close": "Close Menu",
+  "loading": "loading...",
+  "open": "Open Menu",
+  "reload": "Reload"
 }

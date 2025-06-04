@@ -1,31 +1,31 @@
 {
   "form": {
-    "title": "Yhteydenottolomake",
-    "name": "Nimi",
-    "email": "Sähköposti",
-    "message": "Viesti",
-    "submit": "Lähetä",
     "cancel": "Kumoa",
-    "intro": {
-      "line1": "Valmis kehittämään jotain mahtavaa?",
-      "line2_pre": "Vai tuumailla tekniikasta, mahdollisuuksista tai miksi ",
-      "nan_equals": "NaN === NaN",
-      "line2_mid": " on ",
-      "false_text": "false?",
-      "line3": "Täytä lomake alla, niin palainen asiaan asappina!"
-    },
-    "success": {
-      "line1": "Kiitos yhteydenotosta! Vastaan pian.",
-      "message": "Sähköposti lähetetty onnistuneesti!"
-    },
+    "email": "Sähköposti",
     "failure": {
       "line1": "Hups, jotain meni pieleen! Yritä uudelleen.",
       "message": "Sähköpostin lähetys epäonnistui."
     },
+    "intro": {
+      "false_text": "false?",
+      "line1": "Valmis kehittämään jotain mahtavaa?",
+      "line2_mid": " on ",
+      "line2_pre": "Vai tuumailla tekniikasta, mahdollisuuksista tai miksi ",
+      "line3": "Täytä lomake alla, niin palainen asiaan asappina!",
+      "nan_equals": "NaN === NaN"
+    },
+    "message": "Viesti",
+    "name": "Nimi",
     "placeholder": {
-      "name": "Syötä nimesi",
       "email": "Syötä.sähköposti@esimerkki.com",
-      "message": "Syötä viestisi tähän..."
-    }
+      "message": "Syötä viestisi tähän...",
+      "name": "Syötä nimesi"
+    },
+    "submit": "Lähetä",
+    "success": {
+      "line1": "Kiitos yhteydenotosta! Vastaan pian.",
+      "message": "Sähköposti lähetetty onnistuneesti!"
+    },
+    "title": "Yhteydenottolomake"
   }
 }

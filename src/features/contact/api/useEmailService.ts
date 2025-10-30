@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { useConfiguration } from 'src/common/hooks/hooks';
+import { useConfiguration } from 'src/common/hooks/useConfiguration';
 import { useModalStore } from 'src/stores/useModalStore';
 import { useNotificationStore } from 'src/stores/useNotificationStore';
 import { Service } from 'src/common/components/serviceData/types';

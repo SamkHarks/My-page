@@ -1,4 +1,4 @@
-import { useConfiguration } from "src/common/hooks/hooks";
+import { useConfiguration } from "src/common/hooks/useConfiguration";
 import { ServiceData } from "src/common/components/serviceData/ServiceData";
 import { SectionResponse } from "src/common/types/sections/types";
 import { AppContent } from "src/app/appPage/AppContent";

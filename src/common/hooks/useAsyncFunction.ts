@@ -1,7 +1,5 @@
 import { Service } from "src/common/components/serviceData/types";
 import { useCallback, useEffect, useRef, useState } from "react";
-import configuration from "src/config/configuration.json";
-import { OpenModalConfig, useModalStore } from "src/stores/useModalStore";
 
 export const useAsyncFunction = <T>(
   asyncFunction: () => Promise<T>,
@@ -44,30 +42,5 @@ const useIsMounted = () => {
   return isMounted;
 };
 
-export const useConfiguration = (): {
-  baseUrls: Omit<typeof configuration["baseUrls"], 'dev' | 'prod'> & { baseUrl: string };
-  paths: typeof configuration["paths"];
-} => {
-  const {dev, prod, ...restBaseUrls} = configuration.baseUrls;
-  const env = (process.env.NODE_ENV ?? 'production');
-  const baseUrls = {...restBaseUrls, baseUrl: env === 'production' ? prod : dev};
-  const paths = configuration.paths;
-  return { baseUrls, paths };
-}
-
-
-export const usePreloadModalContent = (): (modalConfig: OpenModalConfig) => void => {
-  const [isPreloaded, setIsPreloaded] = useState(false);
-
-  const openModal = useModalStore((state) => state.openModal);
-  const setPreloading = useModalStore((state) => state.setPreloading);
-
-  return useCallback(
-    (modalConfig: OpenModalConfig) => {
-      setPreloading(!isPreloaded);
-      openModal(modalConfig);
-      setIsPreloaded(true);
-  }, [openModal, setPreloading, isPreloaded]);
-}
 
 

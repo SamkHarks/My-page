@@ -2,9 +2,10 @@ import { lazy, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { GoLinkExternal } from "react-icons/go";
 import * as styles from "src/features/home/Button.module.css";
-import { useConfiguration, usePreloadModalContent } from "src/common/hooks/hooks";
+import { usePreloadModalContent } from "src/common/hooks/usePreloadModalContent";
 import { OpenModalConfig } from "src/stores/useModalStore";
 import { createUrl } from "src/common/utils/utils";
+import { useConfiguration } from "src/common/hooks/useConfiguration";
 
 const Content = lazy(() => import("src/common/components/documentViewer/DocumentViewer"));
 

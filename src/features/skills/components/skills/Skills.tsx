@@ -1,5 +1,5 @@
 import * as styles from "src/features/skills/components/skills/Skills.module.css";
-import { useConfiguration } from "src/common/hooks/hooks";
+import { useConfiguration } from "src/common/hooks/useConfiguration";
 import { SkillsResponse } from "src/features/skills/types";
 import { ServiceData } from "src/common/components/serviceData/ServiceData";
 

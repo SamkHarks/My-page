@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import * as styles from "src/features/about/About.module.css";
 import { Animation } from "src/common/components/animation/Animation";
-import { useConfiguration } from "src/common/hooks/hooks";
+import { useConfiguration } from "src/common/hooks/useConfiguration";
 import { createUrl } from "src/common/utils/utils";
 
 export const About = (): React.JSX.Element => {

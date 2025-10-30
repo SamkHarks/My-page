@@ -1,7 +1,7 @@
 import { lazy, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GoLinkExternal } from 'react-icons/go';
-import { usePreloadModalContent } from 'src/common/hooks/hooks';
+import { usePreloadModalContent } from 'src/common/hooks/usePreloadModalContent';
 import * as styles from 'src/features/contact/components/Contact.module.css';
 import { AiOutlineMail } from 'react-icons/ai';
 

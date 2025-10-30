@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
-import * as styles from "src/components/sections/home/Home.module.css";
+import * as styles from "src/features/home/Home.module.css";
 import { useConfiguration } from "src/hooks/hooks";
 import { createUrl } from "src/utils/utils";
-import { Button } from "src/components/sections/home/Button";
+import { Button } from "src/features/home/Button";
 
 
 export const Home = (): React.JSX.Element => {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Home } from "src/components/sections/home/Home";
+import { Home } from "src/features/home/Home";
 import { About } from "src/features/about/About";
 import { Skills } from "src/features/skills/components/skills/Skills";
 import { Contact } from "src/features/contact/components/Contact";

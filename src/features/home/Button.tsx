@@ -1,7 +1,7 @@
 import { lazy, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { GoLinkExternal } from "react-icons/go";
-import * as styles from "src/components/sections/home/Button.module.css";
+import * as styles from "src/features/home/Button.module.css";
 import { useConfiguration, usePreloadModalContent } from "src/hooks/hooks";
 import { OpenModalConfig } from "src/stores/useModalStore";
 import { createUrl } from "src/utils/utils";

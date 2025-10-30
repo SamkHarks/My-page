@@ -1,6 +1,6 @@
 import { HeaderSectionProps } from "src/features/header/types";
 import { useSectionTitleIdContext } from "src/features/header/context/SectionIdProvider";
-import { Section } from "src/types/sections/types";
+import { Section } from "src/common/types/sections/types";
 import * as styles from "src/features/header/components/headerSections/HeaderSections.module.css";
 import { useTranslatedSectionId } from "src/common/hooks/useTranslatedSectionId";
 

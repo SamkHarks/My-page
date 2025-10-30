@@ -1,6 +1,6 @@
 import { AppLoader } from "src/app/appPage/AppLoader";
-import { Modal } from "src/components/modal/Modal";
-import { Notifications } from "src/components/notifications/Notifications";
+import { Modal } from "src/common/components/modal/Modal";
+import { Notifications } from "src/common/components/notifications/Notifications";
 
 
 const App = (): React.JSX.Element => (

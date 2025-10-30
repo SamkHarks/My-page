@@ -1,4 +1,4 @@
-import { getStyle } from "src/utils/utils";
+import { getStyle } from "src/common/utils/utils";
 import { useScrollListener } from "src/features/header/hooks/useScrollListener";
 
 type Props = {

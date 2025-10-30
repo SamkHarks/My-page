@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Languages } from "src/i18n";
 import * as styles from "src/features/header/components/languageSelector/LanguageSelector.module.css";
 import { useEffect, useState } from "react";
-import { Spinner } from "src/components/spinner/Spinner";
+import { Spinner } from "src/common/components/spinner/Spinner";
 
 //TODO: handle error state
 const LanguageSelector = (): React.JSX.Element => {

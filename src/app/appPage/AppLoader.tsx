@@ -1,6 +1,6 @@
 import { useConfiguration } from "src/common/hooks/hooks";
-import { ServiceData } from "src/components/serviceData/ServiceData";
-import { SectionResponse } from "src/types/sections/types";
+import { ServiceData } from "src/common/components/serviceData/ServiceData";
+import { SectionResponse } from "src/common/types/sections/types";
 import { AppContent } from "src/app/appPage/AppContent";
 import { useService } from "src/common/api/useService";
 

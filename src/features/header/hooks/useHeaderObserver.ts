@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Section } from "src/types/sections/types";
+import { Section } from "src/common/types/sections/types";
 
 
 export const useHeaderObserver = (

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Section } from "src/types/sections/types";
+import { Section } from "src/common/types/sections/types";
 
 
 export const useTranslatedSectionId = (

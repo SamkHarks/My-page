@@ -4,7 +4,7 @@ import { About } from "src/features/about/About";
 import { Skills } from "src/features/skills/components/skills/Skills";
 import { Contact } from "src/features/contact/components/Contact";
 import { useInterSectionObserver } from "src/app/sections/useSectionInterSectionObserver";
-import { Section, SectionRefs } from "src/types/sections/types";
+import { Section, SectionRefs } from "src/common/types/sections/types";
 import { SectionWrapper } from "src/app/sections/SectionWrapper";
 
 const components: Record<Section["id"], React.ComponentType> = {

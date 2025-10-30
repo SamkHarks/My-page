@@ -1,4 +1,4 @@
-import { Section, SectionRefs } from "src/types/sections/types";
+import { Section, SectionRefs } from "src/common/types/sections/types";
 
 
 export type HeaderProps = {

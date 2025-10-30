@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo } from "react";
-import { HandledError } from "src/components/boundaries/errorBoundary/HandledError";
-import { Service } from "src/components/serviceData/types";
+import { HandledError } from "src/common/components/boundaries/errorBoundary/HandledError";
+import { Service } from "src/common/components/serviceData/types";
 import { useAsyncFunction } from "src/common/hooks/hooks";
-import { createUrl, handleNetworkError } from "src/utils/utils";
+import { createUrl, handleNetworkError } from "src/common/utils/utils";
 
 type RequestOptions = {
   method: 'GET' | 'POST' | 'HEAD';

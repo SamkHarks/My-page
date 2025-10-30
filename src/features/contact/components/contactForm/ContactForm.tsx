@@ -3,7 +3,7 @@ import * as styles from 'src/features/contact/components/contactForm/ContactForm
 import { InputField } from 'src/features/contact/components/contactForm/InputField';
 import { TextArea } from 'src/features/contact/components/contactForm/TextArea';
 import { useEffect, useState } from 'react';
-import { Spinner } from 'src/components/spinner/Spinner';
+import { Spinner } from 'src/common/components/spinner/Spinner';
 import { useEmailService } from 'src/features/contact/api/useEmailService';
 import { ContactFormType } from 'src/features/contact/components/contactForm/types';
 import { Title } from 'src/features/contact/components/contactForm/Title';

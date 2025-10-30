@@ -1,4 +1,4 @@
-import { Service } from "src/components/serviceData/types";
+import { Service } from "src/common/components/serviceData/types";
 import { useCallback, useEffect, useRef, useState } from "react";
 import configuration from "src/config/configuration.json";
 import { OpenModalConfig, useModalStore } from "src/stores/useModalStore";

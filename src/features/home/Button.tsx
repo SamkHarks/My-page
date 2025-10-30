@@ -4,9 +4,9 @@ import { GoLinkExternal } from "react-icons/go";
 import * as styles from "src/features/home/Button.module.css";
 import { useConfiguration, usePreloadModalContent } from "src/common/hooks/hooks";
 import { OpenModalConfig } from "src/stores/useModalStore";
-import { createUrl } from "src/utils/utils";
+import { createUrl } from "src/common/utils/utils";
 
-const Content = lazy(() => import("src/components/documentViewer/DocumentViewer"));
+const Content = lazy(() => import("src/common/components/documentViewer/DocumentViewer"));
 
 export const Button = (): React.JSX.Element => {
   const handlePress = usePreloadModalContent();

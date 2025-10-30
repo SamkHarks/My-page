@@ -1,5 +1,5 @@
 import { createRef } from "react";
-import { Section, SectionRefs } from "src/types/sections/types";
+import { Section, SectionRefs } from "src/common/types/sections/types";
 
 export const useRefs = (sections: Section[]): SectionRefs => {
   const refs = sections.reduce((acc, section) => {

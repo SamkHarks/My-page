@@ -13,7 +13,7 @@ export const Home = (): React.JSX.Element => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{'Sami Härkönen'}</h1>
-      <h2 className={styles.sub_title}>{`${t("education")} & ${t("work")}`}</h2>
+      <h2 className={styles.sub_title}>{t("punchLine", {work: t("work"), education: t("education")})}</h2>
       <p className={styles.text}>{t("shortIntro")}</p>
       <span className={styles.divider} />
       <div>

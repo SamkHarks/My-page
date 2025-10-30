@@ -1,10 +1,10 @@
 import { lazy } from "react";
 import { DataProps } from "src/components/serviceData/ServiceData";
 import { SectionResponse } from "src/types/sections/types";
-import { useRefs } from "src/hooks/useSectionRefs";
-import { Header } from "src/components/header/Header";
+import { useRefs } from "src/common/hooks/useSectionRefs";
+import { Header } from "src/app/header/Header";
 import { Loader } from "src/components/loader/Loader";
-import { MouseTrackerBackground } from "src/components/mouseTrackerBackground/MouseTrackerBackground";
+import { MouseTrackerBackground } from "src/features/mouseTrackerBackground/MouseTrackerBackground";
 import { Boundaries } from "src/components/boundaries/Boundaries";
 
 const Sections = lazy(() => import("../sections/Sections"));

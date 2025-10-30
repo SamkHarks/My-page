@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { HeaderToolbar } from "src/components/header/toolbar/HeaderToolbar";
-import { HeaderProps } from "src/components/header/types";
-import { SectionIdProvider } from "src/components/header/SectionIdProvider";
-import { HeaderSections } from "src/components/header/sections/HeaderSections";
+import { HeaderToolbar } from "src/features/header/components/headerToolbar/HeaderToolbar";
+import { HeaderProps } from "src/features/header/types";
+import { SectionIdProvider } from "src/features/header/context/SectionIdProvider";
+import { HeaderSections } from "src/features/header/components/headerSections/HeaderSections";
 
 export const Header = ({ sectionRefs, sections }: HeaderProps): React.JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,5 +1,5 @@
-import { useScroll } from "src/hooks/hooks";
 import { getStyle } from "src/utils/utils";
+import { useScrollListener } from "src/features/header/hooks/useScrollListener";
 
 type Props = {
   text: string;
@@ -23,7 +23,7 @@ export const RectangleProgress = ({
   textFill = "white",
   textProgressFill = "cyan",
 }: Props): React.JSX.Element => {
-  const progress = useScroll();
+  const progress = useScrollListener();
   // Rectangle's side width
   const sideWidth = size / Math.sqrt(2);
   const halfSize = size / 2;

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo } from "react";
 import { HandledError } from "src/components/boundaries/errorBoundary/HandledError";
 import { Service } from "src/components/serviceData/types";
-import { useAsyncFunction } from "src/hooks/hooks";
+import { useAsyncFunction } from "src/common/hooks/hooks";
 import { createUrl, handleNetworkError } from "src/utils/utils";
 
 type RequestOptions = {

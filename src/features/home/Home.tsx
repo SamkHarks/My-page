@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import * as styles from "src/features/home/Home.module.css";
-import { useConfiguration } from "src/hooks/hooks";
+import { useConfiguration } from "src/common/hooks/hooks";
 import { createUrl } from "src/utils/utils";
 import { Button } from "src/features/home/Button";
 

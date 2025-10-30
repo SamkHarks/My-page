@@ -1,4 +1,4 @@
-import { useTranslatedSectionId } from "src/hooks/hooks";
+import { useTranslatedSectionId } from "src/common/hooks/useTranslatedSectionId";
 import { Section, SectionRefs } from "src/types/sections/types";
 import { getCanvasDimensions } from "src/components/animation/utils";
 import { Animation } from "src/components/animation/Animation";

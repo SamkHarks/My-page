@@ -3,7 +3,7 @@ import { Home } from "src/features/home/Home";
 import { About } from "src/features/about/About";
 import { Skills } from "src/features/skills/components/skills/Skills";
 import { Contact } from "src/features/contact/components/Contact";
-import { useInterSectionObserver } from "src/hooks/hooks";
+import { useInterSectionObserver } from "src/app/sections/useSectionInterSectionObserver";
 import { Section, SectionRefs } from "src/types/sections/types";
 import { SectionWrapper } from "src/app/sections/SectionWrapper";
 

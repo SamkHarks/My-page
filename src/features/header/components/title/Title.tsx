@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useTranslatedSectionId } from "src/hooks/hooks";
-import { useSectionTitleIdContext } from "src/components/header/SectionIdProvider";
-import { HeaderToolbarProps } from "src/components/header/types";
-import { isTypeOfElementArray } from "src/components/header/utils";
-import { useHeaderObserver } from "src/hooks/hooks";
-import * as styles from "src/components/header/toolbar/title/Title.module.css";
+import { useTranslatedSectionId } from "src/common/hooks/useTranslatedSectionId";
+import { useSectionTitleIdContext } from "src/features/header/context/SectionIdProvider";
+import { HeaderToolbarProps } from "src/features/header/types";
+import { isTypeOfElementArray } from "src/features/header/utils";
+import { useHeaderObserver } from "src/features/header/hooks/useHeaderObserver";
+import * as styles from "src/features/header/components/title/Title.module.css";
 
 
 

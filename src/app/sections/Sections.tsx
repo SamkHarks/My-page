@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Home } from "src/components/sections/home/Home";
 import { About } from "src/features/about/About";
 import { Skills } from "src/components/sections/skills/Skills";
-import { Contact } from "src/components/sections/contact/Contact";
+import { Contact } from "src/features/contact/components/Contact";
 import { useInterSectionObserver } from "src/hooks/hooks";
 import { Section, SectionRefs } from "src/types/sections/types";
 import { SectionWrapper } from "src/app/sections/SectionWrapper";

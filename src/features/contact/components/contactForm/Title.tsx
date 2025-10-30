@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import * as styles from "src/components/email/Title.module.css";
+import * as styles from "src/features/contact/components/contactForm/Title.module.css";
 
 type Props = {
   state: 'IDLE' | 'LOADING' | 'SUCCESS' | 'FAILURE';

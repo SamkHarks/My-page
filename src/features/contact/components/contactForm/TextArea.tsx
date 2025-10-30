@@ -1,20 +1,20 @@
-import { useEffect, useRef, useState } from "react";
-import { IoCloseOutline } from "react-icons/io5";
-import * as styles from "src/components/email/InputField.module.css";
-import * as commonStyles from "src/components/email/Common.module.css";
-import { useTranslation } from "react-i18next";
+import * as styles from 'src/features/contact/components/contactForm/TextArea.module.css';
+import * as commonStyles from 'src/features/contact/components/contactForm/Common.module.css';
+import { useEffect, useRef, useState } from 'react';
+import { IoCloseOutline } from 'react-icons/io5';
+import { useTranslation } from 'react-i18next';
 
-type Props = React.InputHTMLAttributes<HTMLInputElement> & {
+type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label: string;
 };
 
 // TODO: Handle error messages, currently uses browser default messages
-export const InputField = (props: Props): React.JSX.Element => {
-  const { t } = useTranslation('contact');
+export const TextArea = (props: Props): React.JSX.Element => {
+  const {t} = useTranslation('contact');
   const [value, setValue] = useState<string>('');
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [displayError, setDisplayError] = useState<boolean>(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (props.disabled) {
@@ -22,16 +22,16 @@ export const InputField = (props: Props): React.JSX.Element => {
     }
   }, [props.disabled]);
   
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-   setValue(event.target.value);
-    if (displayError/* && !inputRef.current?.validationMessage*/) {
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(event.target.value);
+    if (displayError) {
       setDisplayError(false);
     }
   }
 
   const clearInput = (e: React.MouseEvent) => {
     e.preventDefault();
-    inputRef.current?.focus();
+    textAreaRef.current?.focus();
     setValue('');
   }
 
@@ -48,27 +48,25 @@ export const InputField = (props: Props): React.JSX.Element => {
   const showButton = value.length > 0;
 
   return (
-    <div className={commonStyles.container}>     
+    <div className={commonStyles.container}>
       <label className={commonStyles.label} htmlFor={props.id}>{props.label}</label>
       <div className={commonStyles.row_container}>
         <div className={commonStyles.field_container}>
-          <input
-            ref={inputRef}
-            className={`${styles.input} ${displayError ? styles.error : ''}`}
+          <textarea
+            ref={textAreaRef}
+            className={`${styles.text_area} ${displayError ? styles.error : ''}`}
+            id={props.id}
+            placeholder={props.placeholder} 
+            rows={props.rows}
+            required={props.required}
+            onChange={handleChange}
             onFocus={handleFocus(true)}
             onBlur={handleFocus(false)}
-            id={props.id}
-            type={props.type}
-            placeholder={props.placeholder}
-            required={props.required}
-            spellCheck={props.spellCheck}
-            value={value}
             onInvalid={() => {setDisplayError(true)}}
-            onChange={handleChange}
+            value={value}
             disabled={props.disabled}
-            autoComplete={props.autoComplete}
           />
-          {showButton && isFocused && 
+          {showButton && isFocused &&
             <IoCloseOutline
               className={styles.inner_clear_button}
               onClick={clearInput}
@@ -80,7 +78,7 @@ export const InputField = (props: Props): React.JSX.Element => {
         </div>
         {showButton && <button className={styles.clear_button} onClick={closeInput}>{t('form.cancel')}</button>}
       </div>
-      {displayError && inputRef.current?.validationMessage && <p className={commonStyles.error_message}>{inputRef.current.validationMessage}</p>}
+       {displayError && textAreaRef.current?.validationMessage && <p className={commonStyles.error_message}>{textAreaRef.current.validationMessage}</p>}
     </div>
   )
 }

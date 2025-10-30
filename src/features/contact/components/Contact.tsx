@@ -1,8 +1,8 @@
-import * as styles from "src/components/sections/contact/Contact.module.css";
+import * as styles from "src/features/contact/components/Contact.module.css";
 import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
 import { Animation } from "src/components/animation/Animation";
-import { IconButton } from "src/components/sections/contact/IconButton";
+import { IconButtonContact } from "src/features/contact/components/iconButtonContact/IconButtonContact";
 
 
 export const Contact = (): React.JSX.Element => (
@@ -17,7 +17,7 @@ export const Contact = (): React.JSX.Element => (
       />
     </div>
     <div className={styles.container}>
-      <IconButton />
+      <IconButtonContact />
       <a
         href={"https://github.com/SamkHarks"}
         target={"_blank"}

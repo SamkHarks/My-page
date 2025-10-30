@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import * as styles from 'src/components/email/Email.module.css';
-import { InputField } from 'src/components/email/InputField';
-import { TextArea } from 'src/components/email/TextArea';
+import * as styles from 'src/features/contact/components/contactForm/ContactForm.module.css';
+import { InputField } from 'src/features/contact/components/contactForm/InputField';
+import { TextArea } from 'src/features/contact/components/contactForm/TextArea';
 import { useEffect, useState } from 'react';
 import { Spinner } from 'src/components/spinner/Spinner';
-import { useEmailService } from 'src/components/email/hooks';
-import { ContactForm } from 'src/components/email/types';
-import { Title } from 'src/components/email/Title';
+import { useEmailService } from 'src/features/contact/api/useEmailService';
+import { ContactFormType } from 'src/features/contact/components/contactForm/types';
+import { Title } from 'src/features/contact/components/contactForm/Title';
 
 
-export const Email = (): React.JSX.Element => {
+export const ContactForm = (): React.JSX.Element => {
   const {t} = useTranslation('contact');
   const [formData, setFormData] = useState<{name: string, email: string, message: string} | null>(null);
   const {service, callService} = useEmailService(formData);
@@ -20,7 +20,7 @@ export const Email = (): React.JSX.Element => {
     }
   },[formData, callService]);
  
-  const handleSubmit = (event: React.FormEvent<ContactForm>) => {
+  const handleSubmit = (event: React.FormEvent<ContactFormType>) => {
     event.preventDefault();
     const form = event.currentTarget;
     if(!form.checkValidity()) {

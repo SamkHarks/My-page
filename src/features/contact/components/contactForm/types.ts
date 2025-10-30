@@ -7,7 +7,7 @@ type ContactFormElements = HTMLFormControlsCollection & {
   message: HTMLTextAreaElement;
 };
 
-export type ContactForm = HTMLFormElement & {
+export type ContactFormType = HTMLFormElement & {
   readonly elements: ContactFormElements;
 };
 
@@ -17,7 +17,3 @@ export type FormData = {
   email: string;
   message: string;
 };
-
-export type EmailResponse = {
-  message: string;
-}

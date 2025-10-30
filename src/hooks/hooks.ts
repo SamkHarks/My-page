@@ -1,19 +1,10 @@
 import { Service } from "src/components/serviceData/types";
-import { Section, SectionRefs } from "src/types/sections/types";
-import { createRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { createUrl, handleNetworkError } from "src/utils/utils";
-import { HandledError } from "src/components/boundaries/errorBoundary/HandledError";
+import { Section } from "src/types/sections/types";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import configuration from "src/config/configuration.json";
 import { OpenModalConfig, useModalStore } from "src/stores/useModalStore";
 import { useTranslation } from "react-i18next";
 
-export const useRefs = (sections: Section[]): SectionRefs => {
-  const refs = sections.reduce((acc, section) => {
-    acc[section.id] = createRef<HTMLDivElement>();
-    return acc;
-  }, {} as SectionRefs);
-  return refs;
-};
 
 export const useScroll = (): number => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -134,79 +125,6 @@ export const useConfiguration = (): {
   return { baseUrls, paths };
 }
 
-type RequestOptions = {
-  method: 'GET' | 'POST' | 'HEAD';
-  headers?: Record<string, string>;
-  body?: Record<string, unknown>;
-};
-
-type ServiceOptions<T> = {
-  immediate?: boolean; // Whether to call the service immediately
-  transformResponse?: (response: Response) => Promise<T>; // Transform the response
-};
-
-type UrlOptions = {
-  baseUrl?: string
-  path: string;
-  //queryParams?: Record<string, string>; Add later if needed
-}
-
-const getRequestOptions = (requestOptions: RequestOptions = { method: 'GET' }): RequestInit => {
-  const { body, method, ...rest } = requestOptions;
-  const defaultHeaders =  method !== 'HEAD' ? { 'Content-Type': 'application/json' } : undefined;
-  const headers = {
-    ...defaultHeaders,
-    ...rest.headers,
-  };
-
-  return {
-    method,
-    headers,
-    ...(body && method === 'POST' && { body: JSON.stringify(body) }),
-  };
-};
-
-type ServiceParams<T> = {
-  urlOptions: UrlOptions;
-  requestOptions?: RequestOptions;
-  serviceOptions?: ServiceOptions<T>;
-}
-
-export const useService = <T>({
-  urlOptions,
-  requestOptions,
-  serviceOptions
-}: ServiceParams<T>): {
-  service: Service<T>;
-  callService: () => Promise<void>;
-  clearService: () => void;
-} => {
-  const { baseUrl, path } = urlOptions;
-  const { transformResponse, immediate = true } = serviceOptions ?? {};
-
-  const asyncFunction = useCallback(async () => {
-    const url = createUrl(path, baseUrl);
-    const options: RequestInit = getRequestOptions(requestOptions);
-    const response = await fetch(url, options);
-    if (response.ok) {
-      return transformResponse
-        ? transformResponse(response)
-        : response.json();
-    }
-    const errorArgs = handleNetworkError(response.status);
-    throw new HandledError(errorArgs.key, errorArgs.args);
-  }, [baseUrl, path, requestOptions, transformResponse]);
-
-  const [service, callService, clearService] = useAsyncFunction<T>(asyncFunction);
-
-  useEffect(() => {
-    if (immediate) {
-      callService();
-    }
-  }, [callService, immediate]);
-
-  return useMemo(() => ({ service, callService, clearService }), [service, callService, clearService]);
-}
 
 export const useHeaderObserver = (
   data: HTMLElement[], setTitleId: React.Dispatch<React.SetStateAction<"home" | "about" | "skills" | "contact">>

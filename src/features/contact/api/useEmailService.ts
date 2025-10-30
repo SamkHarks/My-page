@@ -1,10 +1,11 @@
 import { useEffect, useMemo } from 'react';
-import { useConfiguration, useService } from 'src/hooks/hooks';
+import { useConfiguration } from 'src/hooks/hooks';
 import { useModalStore } from 'src/stores/useModalStore';
 import { useNotificationStore } from 'src/stores/useNotificationStore';
 import { Service } from 'src/components/serviceData/types';
 import { FormData } from 'src/features/contact/components/contactForm/types';
 import { useTranslation } from 'react-i18next';
+import { useService } from 'src/api/useService';
 
 type EmailResponse = {
   message: string;

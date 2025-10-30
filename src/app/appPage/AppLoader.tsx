@@ -1,7 +1,8 @@
-import { useConfiguration, useService } from "src/hooks/hooks";
+import { useConfiguration } from "src/hooks/hooks";
 import { ServiceData } from "src/components/serviceData/ServiceData";
 import { SectionResponse } from "src/types/sections/types";
 import { AppContent } from "src/app/appPage/AppContent";
+import { useService } from "src/api/useService";
 
 
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Home } from "src/components/sections/home/Home";
-import { About } from "src/components/sections/about/About";
+import { About } from "src/features/about/About";
 import { Skills } from "src/components/sections/skills/Skills";
 import { Contact } from "src/components/sections/contact/Contact";
 import { useInterSectionObserver } from "src/hooks/hooks";

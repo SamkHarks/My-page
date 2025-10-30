@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import * as styles from "src/components/sections/about/About.module.css";
+import * as styles from "src/features/about/About.module.css";
 import { Animation } from "src/components/animation/Animation";
 import { useConfiguration } from "src/hooks/hooks";
 import { createUrl } from "src/utils/utils";

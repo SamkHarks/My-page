@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useMemo } from "react";
 import { useService } from "src/hooks/hooks";
-import { Service } from "src/hooks/types";
+import { Service } from "src/components/serviceData/types";
 
 export const useCheckLink = (link: string): {
   service: Service<string>;

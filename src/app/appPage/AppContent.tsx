@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { DataProps } from "src/components/serviceData/ServiceData";
-import { SectionResponse } from "src/components/app/types";
+import { SectionResponse } from "src/types/sections/types";
 import { useRefs } from "src/hooks/hooks";
 import { Header } from "src/components/header/Header";
 import { Loader } from "src/components/loader/Loader";

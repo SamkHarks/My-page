@@ -1,4 +1,4 @@
-import { AppLoader } from "src/components/app/AppLoader";
+import { AppLoader } from "src/app/appPage/AppLoader";
 import { Modal } from "src/components/modal/Modal";
 import { Notifications } from "src/components/notifications/Notifications";
 

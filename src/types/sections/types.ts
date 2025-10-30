@@ -5,3 +5,8 @@ export type Section = {
 export type SectionResponse = {
   sections: Section[];
 };
+
+export type SectionRefs = Record<
+  Section["id"],
+  React.RefObject<HTMLDivElement>
+>;

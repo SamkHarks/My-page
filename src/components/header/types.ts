@@ -1,5 +1,4 @@
-import { Section } from "src/components/app/types";
-import { SectionRefs } from "src/hooks/types";
+import { Section, SectionRefs } from "src/types/sections/types";
 
 
 export type HeaderProps = {

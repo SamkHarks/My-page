@@ -1,5 +1,5 @@
-import { SectionRefs, Service } from "src/hooks/types";
-import { Section } from "src/components/app/types";
+import { Service } from "src/components/serviceData/types";
+import { Section, SectionRefs } from "src/types/sections/types";
 import { createRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createUrl, handleNetworkError } from "src/utils/utils";
 import { HandledError } from "src/components/boundaries/errorBoundary/HandledError";

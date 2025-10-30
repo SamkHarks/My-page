@@ -4,9 +4,8 @@ import { About } from "src/components/sections/about/About";
 import { Skills } from "src/components/sections/skills/Skills";
 import { Contact } from "src/components/sections/contact/Contact";
 import { useInterSectionObserver } from "src/hooks/hooks";
-import { SectionRefs } from "src/hooks/types";
-import { Section } from "src/components/app/types";
-import { SectionWrapper } from "src/components/sections/SectionWrapper";
+import { Section, SectionRefs } from "src/types/sections/types";
+import { SectionWrapper } from "src/app/sections/SectionWrapper";
 
 const components: Record<Section["id"], React.ComponentType> = {
   home: Home,
@@ -15,12 +14,12 @@ const components: Record<Section["id"], React.ComponentType> = {
   contact: Contact,
 };
 
-type SectionProps = {
+type Props = {
   sections: Section[];
   sectionRefs: SectionRefs;
 };
 
-const Sections = ({ sectionRefs, sections }: SectionProps): React.JSX.Element => {
+const Sections = (props: Props): React.JSX.Element => {
   const [data, setData] = useState<Element[]>([]);
   useEffect(() => {
     const queryData = document.querySelectorAll(".section_content");
@@ -29,13 +28,13 @@ const Sections = ({ sectionRefs, sections }: SectionProps): React.JSX.Element =>
   useInterSectionObserver(data);
   return (
     <>
-      {sections.map((section) => {
+      {props.sections.map((section) => {
         const SectionComponent = components[section.id];
         return (
           <SectionWrapper
             key={section.id}
             section={section}
-            sectionRefs={sectionRefs}
+            sectionRefs={props.sectionRefs}
           >
             <SectionComponent />
           </SectionWrapper>

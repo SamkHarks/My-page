@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react';
 import { useConfiguration, useService } from 'src/hooks/hooks';
 import { useModalStore } from 'src/stores/useModalStore';
 import { useNotificationStore } from 'src/stores/useNotificationStore';
-import { Service } from 'src/hooks/types';
+import { Service } from 'src/components/serviceData/types';
 import { EmailResponse, FormData } from 'src/components/email/types';
 import { useTranslation } from 'react-i18next';
 

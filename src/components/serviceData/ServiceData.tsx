@@ -1,4 +1,4 @@
-import { Service } from "src/hooks/types";
+import { Service } from "src/components/serviceData/types";
 import { Loader } from "src/components/loader/Loader";
 import { HandledError } from "src/components/boundaries/errorBoundary/HandledError";
 

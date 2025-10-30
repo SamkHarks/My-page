@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
-import "src/global/global.css";
-import App from "src/components/app/App";
+import "src/app/styles/global.css";
+import App from "src/app/appPage/App";
 
 // import i18n (needs to be bundled ;))
 import "src/i18n";

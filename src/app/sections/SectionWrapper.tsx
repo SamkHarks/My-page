@@ -1,9 +1,8 @@
 import { useTranslatedSectionId } from "src/hooks/hooks";
-import { Section } from "src/components/app/types";
+import { Section, SectionRefs } from "src/types/sections/types";
 import { getCanvasDimensions } from "src/components/animation/utils";
-import { SectionRefs } from "src/hooks/types";
 import { Animation } from "src/components/animation/Animation";
-import * as styles from "src/components/sections/Sections.module.css";
+import * as styles from "src/app/sections/Sections.module.css";
 
 type Props = {
   section: Section;

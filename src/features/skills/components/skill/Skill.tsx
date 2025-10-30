@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { ICONS } from "src/components/sections/skills/utils";
-import * as styles from "src/components/sections/skills/Skill.module.css";
+import { ICONS } from "src/features/skills/utils";
+import * as styles from "src/features/skills/components/skill/Skill.module.css";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { type Item } from "src/components/sections/skills/types";
-import { useTranslatedSkills } from "src/components/sections/skills/hooks";
+import { type Item } from "src/features/skills/types";
+import { useTranslatedSkills } from "src/features/skills/hooks";
 
 
 type Props = {

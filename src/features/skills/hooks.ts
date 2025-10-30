@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Item, Subcategory } from "src/components/sections/skills/types";
+import { Item, Subcategory } from "src/features/skills/types";
 
 
 export const useTranslatedSkills = (): Record<Item, string> => {

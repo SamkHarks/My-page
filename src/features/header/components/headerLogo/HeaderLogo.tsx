@@ -12,7 +12,7 @@ type Props = {
   rx?: number;
   ry?: number;
 };
-export const RectangleProgress = ({
+export const HeaderLogo = ({
   text,
   size,
   strokeWidth = 3,

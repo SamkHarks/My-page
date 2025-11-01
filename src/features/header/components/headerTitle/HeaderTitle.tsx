@@ -4,11 +4,11 @@ import { useSectionTitleIdContext } from "src/features/header/context/SectionIdP
 import { HeaderToolbarProps } from "src/features/header/types";
 import { isTypeOfElementArray } from "src/features/header/utils";
 import { useHeaderObserver } from "src/features/header/hooks/useHeaderObserver";
-import * as styles from "src/features/header/components/title/Title.module.css";
+import * as styles from "src/features/header/components/headerTitle/HeaderTitle.module.css";
 
 
 
-export const Title = ({ sections, isOpen }: Omit<HeaderToolbarProps, 'onClick'>): React.JSX.Element => {
+export const HeaderTitle = ({ sections, isOpen }: Omit<HeaderToolbarProps, 'onClick'>): React.JSX.Element => {
   const { titleId, setTitleId } = useSectionTitleIdContext();
   const [data, setData] = useState<HTMLElement[]>([]);
    const getTranslatedSectionById = useTranslatedSectionId();

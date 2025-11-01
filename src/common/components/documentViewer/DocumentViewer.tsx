@@ -1,5 +1,5 @@
 import { ServiceData } from "src/common/components/serviceData/ServiceData";
-import { Content } from "src/common/components/documentViewer/Content";
+import { Content } from "src/common/components/documentViewer/components/Content";
 import { useCheckLink } from "src/common/components/documentViewer/hooks";
 import { DefaultFallback as LoadingFallback } from "src/common/components/boundaries/loadingBoundary/DefaultFallback";
 

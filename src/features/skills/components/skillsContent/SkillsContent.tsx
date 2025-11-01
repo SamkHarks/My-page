@@ -1,8 +1,9 @@
-import * as styles from "src/features/skills/components/skills/Skills.module.css";
-import { useTranslatedSubcategories } from "src/features/skills/hooks";
+import * as styles from "src/features/skills/components/skillsContent/SkillsContent.module.css";
+
 import { Skill } from "src/features/skills/components/skill/Skill";
 import { DataProps } from "src/common/components/serviceData/ServiceData";
 import { SkillsResponse } from "src/features/skills/types";
+import { useTranslatedSubcategories } from "src/features/skills/hooks/useTranslatedSubcategories";
 
 export const SkillsContent = (props: DataProps<SkillsResponse>): React.JSX.Element => {
   const { skills } = props.data;

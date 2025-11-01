@@ -1,4 +1,4 @@
-import * as styles from "src/features/contact/components/Contact.module.css";
+import * as styles from "src/features/contact/Contact.module.css";
 import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
 import { Animation } from "src/common/components/animation/Animation";

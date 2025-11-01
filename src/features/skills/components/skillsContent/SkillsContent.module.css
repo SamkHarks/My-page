@@ -72,15 +72,6 @@
 }
 
 
-.loading_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-
 /* Media query for smaller screens */
 @media (max-width: 767px) {
     .skills_container {

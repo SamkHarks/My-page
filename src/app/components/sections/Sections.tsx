@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Home } from "src/features/home/Home";
 import { About } from "src/features/about/About";
-import { Skills } from "src/features/skills/components/skills/Skills";
-import { Contact } from "src/features/contact/components/Contact";
-import { useInterSectionObserver } from "src/app/sections/hooks/useSectionInterSectionObserver";
+import { Skills } from "src/features/skills/Skills";
+import { Contact } from "src/features/contact/Contact";
+import { useInterSectionObserver } from "src/app/components/sections/hooks/useSectionInterSectionObserver";
 import { Section, SectionRefs } from "src/common/types/sections/types";
-import { SectionWrapper } from "src/app/sections/SectionWrapper";
+import { SectionWrapper } from "src/app/components/sections/components/SectionWrapper";
 
 const components: Record<Section["id"], React.ComponentType> = {
   home: Home,

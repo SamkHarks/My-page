@@ -1,10 +1,10 @@
-import * as styles from "src/features/skills/components/skills/Skills.module.css";
+import * as styles from "src/features/skills/Skills.module.css";
 import { useConfiguration } from "src/common/hooks/useConfiguration";
 import { SkillsResponse } from "src/features/skills/types";
 import { ServiceData } from "src/common/components/serviceData/ServiceData";
 
 import { Spinner } from "src/common/components/spinner/Spinner";
-import { SkillsContent } from "src/features/skills/components/skills/SkillsContent";
+import { SkillsContent } from "src/features/skills/components/skillsContent/SkillsContent";
 import { useService } from "src/common/api/useService";
 
 

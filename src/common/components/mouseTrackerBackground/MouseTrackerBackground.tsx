@@ -1,6 +1,6 @@
 import { useState } from "react";
-import * as styles from "src/features/mouseTrackerBackground/mouseTrackerBackground.module.css";
-import { useTouchDevice } from "src/features/mouseTrackerBackground/hooks";
+import * as styles from "src/common/components/mouseTrackerBackground/mouseTrackerBackground.module.css";
+import { useTouchDevice } from "src/common/components/mouseTrackerBackground/hooks";
 
 const GRADIENT_SIZE = 450;
 

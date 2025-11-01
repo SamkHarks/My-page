@@ -1,5 +1,5 @@
 import { DataProps } from "src/common/components/serviceData/ServiceData";
-import * as styles from "src/common/components/documentViewer/Content.module.css";
+import * as styles from "src/common/components/documentViewer/components/Content.module.css";
 
 type Props = DataProps<string>;
 

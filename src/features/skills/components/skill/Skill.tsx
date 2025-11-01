@@ -3,7 +3,7 @@ import { ICONS } from "src/features/skills/utils";
 import * as styles from "src/features/skills/components/skill/Skill.module.css";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { type Item } from "src/features/skills/types";
-import { useTranslatedSkills } from "src/features/skills/hooks";
+import { useTranslatedSkills } from "src/features/skills/hooks/useTranslatedSkills";
 
 
 type Props = {

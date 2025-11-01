@@ -1,11 +1,11 @@
-import { AppLoader } from "src/app/appPage/AppLoader";
+import { Main } from "src/app/components/main/Main";
 import { Modal } from "src/common/components/modal/Modal";
 import { Notifications } from "src/common/components/notifications/Notifications";
 
 
 const App = (): React.JSX.Element => (
   <>
-    <AppLoader />
+    <Main />
     <Modal />
     <Notifications />
   </>

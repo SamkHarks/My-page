@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const useIntersectionObserver = (data: Element[]): void => {
+export const useSectionIntersectionObserver = (data: Element[]): void => {
   useEffect(() => {
     if (data.length === 0) {
       return;

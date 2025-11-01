@@ -11,7 +11,7 @@ export type Languages = typeof languages[number];
 const namespaces = ["common", "home", "about", "skills", "sections", "errors", "contact"] as const;
 
 i18n
-  .use(resourcesToBackend((language: Languages, namespace: typeof namespaces[number]) => import(`./locales/${language}/${namespace}.json`))) // Lazy-load translations
+  .use(resourcesToBackend((language: Languages, namespace: typeof namespaces[number]) => import(`src/locales/${language}/${namespace}.json`))) // Lazy-load translations
   .use(initReactI18next) // Initialize react-i18next
   .init({
     fallbackLng: "en", // Fallback language

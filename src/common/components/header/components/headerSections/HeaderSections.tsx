@@ -1,7 +1,7 @@
-import { HeaderSectionProps } from "src/features/header/types";
-import { useSectionTitleIdContext } from "src/features/header/context/SectionIdProvider";
+import { HeaderSectionProps } from "src/common/components/header/types";
+import { useSectionTitleIdContext } from "src/common/components/header/context/SectionIdProvider";
 import { Section } from "src/common/types/sections/types";
-import * as styles from "src/features/header/components/headerSections/HeaderSections.module.css";
+import * as styles from "src/common/components/header/components/headerSections/HeaderSections.module.css";
 import { useTranslatedSectionId } from "src/common/hooks/useTranslatedSectionId";
 
 export const HeaderSections = ({

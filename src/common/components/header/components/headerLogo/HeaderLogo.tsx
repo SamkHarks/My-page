@@ -1,5 +1,5 @@
 import { getStyle } from "src/common/utils/utils";
-import { useScrollListener } from "src/features/header/hooks/useScrollListener";
+import { useScrollListener } from "src/common/components/header/hooks/useScrollListener";
 
 type Props = {
   text: string;

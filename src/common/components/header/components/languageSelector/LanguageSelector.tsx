@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Languages } from "src/i18n";
-import * as styles from "src/features/header/components/languageSelector/LanguageSelector.module.css";
+import * as styles from "src/common/components/header/components/languageSelector/LanguageSelector.module.css";
 import { useEffect, useState } from "react";
 import { Spinner } from "src/common/components/spinner/Spinner";
 

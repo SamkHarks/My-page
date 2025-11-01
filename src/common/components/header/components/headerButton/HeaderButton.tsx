@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { HeaderToolbarProps } from "src/features/header/types";
-import * as styles from "src/features/header/components/headerButton/HeaderButton.module.css";
+import { HeaderToolbarProps } from "src/common/components/header/types";
+import * as styles from "src/common/components/header/components/headerButton/HeaderButton.module.css";
 
 
 export const HeaderButton = ({ isOpen, onClick }: HeaderToolbarProps): React.JSX.Element => {

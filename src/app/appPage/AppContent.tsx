@@ -2,7 +2,7 @@ import { lazy } from "react";
 import { DataProps } from "src/common/components/serviceData/ServiceData";
 import { SectionResponse } from "src/common/types/sections/types";
 import { useSectionRefs } from "src/app/sections/hooks/useSectionRefs";
-import { Header } from "src/app/header/Header";
+import { Header } from "src/common/components/header/Header";
 import { Loader } from "src/common/components/loader/Loader";
 import { MouseTrackerBackground } from "src/features/mouseTrackerBackground/MouseTrackerBackground";
 import { Boundaries } from "src/common/components/boundaries/Boundaries";

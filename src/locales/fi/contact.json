@@ -16,6 +16,7 @@
     },
     "message": "Viesti",
     "name": "Nimi",
+    "openContactForm": "Avaa yhteydenottolomake",
     "placeholder": {
       "email": "Syötä.sähköposti@esimerkki.com",
       "message": "Syötä viestisi tähän...",

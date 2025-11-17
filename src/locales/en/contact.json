@@ -16,6 +16,7 @@
     },
     "message": "Message",
     "name": "Name",
+    "openContactForm": "Open contact form",
     "placeholder": {
       "email": "Your.email@example.com",
       "message": "Your message...",

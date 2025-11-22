@@ -24,7 +24,7 @@
   }
 
   .hamburger_icon.open .line:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
+      transform: translateY(6.8px) rotate(45deg);
   }
 
   .hamburger_icon.open .line:nth-child(2) {
@@ -33,6 +33,6 @@
   }
 
   .hamburger_icon.open .line:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
+      transform: translateY(-6.8px) rotate(-45deg);
   }
 }

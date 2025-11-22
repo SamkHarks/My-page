@@ -19,8 +19,8 @@ import { vertexShaderSource } from 'src/common/components/animation/shaders';
 
 const useWebGLContext = (
   props: Props,
-  canvasRef: React.RefObject<HTMLCanvasElement>
-): {isDeleted: boolean, webGLContext: WebGLContext, animationContext: AnimationContext } => {
+  canvasRef: React.RefObject<HTMLCanvasElement | null>
+): {webGLContext: WebGLContext, animationContext: AnimationContext } => {
   const isDynamicMode = useRef<boolean>(props.allowDynamic && props.type === 'zigzag');
   const vShader = useRef<WebGLShader | null>(null);
   const fShader = useRef<WebGLShader | null>(null);
@@ -32,7 +32,6 @@ const useWebGLContext = (
   const animate = useRef<boolean>(false);
   const animationStartTime = useRef<DOMHighResTimeStamp | null>(null);
   const verticesCount = useRef<number>(0);
-  const isDeleted = program.current === null || vShader.current === null || fShader.current === null || vBuffer.current === null || cBuffer.current === null;
   const prevElapsedTime = useRef<number>(0);
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -60,13 +59,12 @@ const useWebGLContext = (
     // Setup buffers
     const vertices = getVertices(props.type, props.numVertices);
     const colors = getRandomColorVertices(vertices.length / 3 * 4);
-    const { vertexBuffer, colorBuffer } = setupBuffers(gl,shaderProgram, vertices, colors);
+    const { vertexBuffer, colorBuffer } = setupBuffers(gl,program.current, vertices, colors);
     vBuffer.current = vertexBuffer;
     cBuffer.current = colorBuffer;
 
-    const uniforms = setupUniforms(gl, shaderProgram, props, isDynamicMode.current);
+    const uniforms = setupUniforms(gl, program.current, props, isDynamicMode.current);
     uniformsRef.current = uniforms;
-    const { u_time } = uniforms;
 
     // Draw the scene
     const isCircle = props.type === 'circle';
@@ -76,9 +74,12 @@ const useWebGLContext = (
     verticesCount.current = getVerticesCount(props.type, vertices);
     const offsetTime = 0.8;
     const render = (time: number) => {
-      if (isDeleted) return; // Program has been deleted
-      gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.useProgram(shaderProgram);
+      if (!glRef.current || !program.current) return; // Program has been deleted
+      const currentGl = glRef.current;
+      currentGl.clear(currentGl.COLOR_BUFFER_BIT);
+      currentGl.useProgram(program.current);
+      const u_time = uniformsRef.current.u_time;
+      if (!u_time) return;
       // Calculate the elapsed time based on the animation start time
       if (isCircle) {
         const startTime = animationStartTime.current ?? 0;
@@ -134,22 +135,21 @@ const useWebGLContext = (
      * Adding only non-ref dependencies to ensure the effect runs when the relevant state or props change.
      */
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDeleted, props]);
+  }, [props]);
   return {
-    isDeleted,
     webGLContext: { canvasRef, glRef, program, uniformsRef, vBuffer, cBuffer, vShader, fShader },
     animationContext: { animate, isDynamicMode, verticesCount, animationStartTime }
   };
 };
 
-const useEvents = (props: Props, isDeleted: boolean, webGLContext: WebGLContext, animationContext: AnimationContext) => {
+const useEvents = (props: Props, webGLContext: WebGLContext, animationContext: AnimationContext) => {
   const documentRef = useRef<Document | null>(document);
   const isSmallScreen = useRef<boolean>(window.innerWidth <= 400);
   const currentNumVertices = useRef<number>(props.numVertices);
   const { canvasRef, glRef, program, uniformsRef, vBuffer, cBuffer } = webGLContext;
   const { animate, isDynamicMode, verticesCount, animationStartTime } = animationContext;
   useEffect(() => {
-    if (!canvasRef.current || !glRef.current || !program.current || isDeleted || !documentRef.current) return;
+    if (!canvasRef.current || !glRef.current || !program.current || !documentRef.current) return;
     const currentDocument = documentRef.current;
     const canvas = canvasRef.current;
     const gl = glRef.current;
@@ -239,14 +239,14 @@ const useEvents = (props: Props, isDeleted: boolean, webGLContext: WebGLContext,
   * runs when the relevant state or props change.
   */
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props, isDeleted]);
+  }, [props]);
 };
 
-const useWebGL = (props: Props, canvasRef: React.RefObject<HTMLCanvasElement>): void => {
+const useWebGL = (props: Props, canvasRef: React.RefObject<HTMLCanvasElement | null>): void => {
   // Create the WebGL context
-  const { webGLContext, animationContext, isDeleted } = useWebGLContext(props, canvasRef);
+  const { webGLContext, animationContext } = useWebGLContext(props, canvasRef);
   // Add event listeners
-  useEvents(props, isDeleted, webGLContext, animationContext);
+  useEvents(props, webGLContext, animationContext);
 };
 
 export { useWebGL };

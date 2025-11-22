@@ -15,7 +15,7 @@ export type Props = {
 }
 
 export type WebGLContext = {
-  canvasRef: React.RefObject<HTMLCanvasElement>,
+  canvasRef: React.RefObject<HTMLCanvasElement | null>,
   glRef: React.MutableRefObject<WebGL2RenderingContext | null>,
   vShader: React.MutableRefObject<WebGLShader | null>,
   fShader: React.MutableRefObject<WebGLShader | null>,

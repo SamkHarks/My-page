@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { HandledError } from "src/common/components/boundaries/errorBoundary/HandledError";
 import { Service } from "src/common/components/serviceData/types";
 import { useAsyncFunction } from "src/common/hooks/useAsyncFunction";
@@ -38,7 +38,7 @@ export const useService = <T>({
   const { baseUrl, path } = urlOptions;
   const { transformResponse, immediate = true } = serviceOptions ?? {};
 
-  const asyncFunction = useCallback(async () => {
+  const asyncFunction = async () => {
     const url = createUrl(path, baseUrl);
     const options: RequestInit = getRequestOptions(requestOptions);
     const response = await fetch(url, options);
@@ -49,7 +49,7 @@ export const useService = <T>({
     }
     const errorArgs = handleNetworkError(response.status);
     throw new HandledError(errorArgs.key, errorArgs.args);
-  }, [baseUrl, path, requestOptions, transformResponse]);
+  };
 
   const [service, callService, clearService] = useAsyncFunction<T>(asyncFunction);
 
@@ -59,7 +59,7 @@ export const useService = <T>({
     }
   }, [callService, immediate]);
 
-  return useMemo(() => ({ service, callService, clearService }), [service, callService, clearService]);
+  return { service, callService, clearService }
 }
 
 

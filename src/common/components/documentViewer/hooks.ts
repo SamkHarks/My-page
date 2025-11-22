@@ -1,5 +1,3 @@
-import { useCallback } from "react";
-import { useMemo } from "react";
 import { useService } from "src/common/api/useService";
 import { Service } from "src/common/components/serviceData/types";
 
@@ -7,9 +5,9 @@ export const useCheckLink = (link: string): {
   service: Service<string>;
   callService: () => void;
 } => {
-  const transformResponse = useCallback(async (_res: Response) => { return link; }, [link]);
+  const transformResponse = async (_res: Response) => { return link; };
   const serviceOptions = { transformResponse };
-  const requestOptions = useMemo(() => ({ method: 'HEAD' } as const), []);
+  const requestOptions = { method: 'HEAD' } as const;
   const urlOptions = { path: link };
 
   const service = useService<string>({

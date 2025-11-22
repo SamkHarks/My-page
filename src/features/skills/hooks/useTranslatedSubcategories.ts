@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Subcategory } from "src/features/skills/types";
 
@@ -7,7 +6,7 @@ import { Subcategory } from "src/features/skills/types";
 export const useTranslatedSubcategories = (): Record<Subcategory, string> => {
   const { t } = useTranslation("skills");
 
-  return useMemo(() =>({
+  return {
     "Frameworks & Libraries": t("Frontend.subcategories.Frameworks & Libraries"),
     "Markup & Styling": t("Frontend.subcategories.Markup & Styling"),
     "State Management": t("Frontend.subcategories.State Management"),
@@ -20,5 +19,5 @@ export const useTranslatedSubcategories = (): Record<Subcategory, string> => {
     "Testing": t("Misc.subcategories.Testing"),
     "DevOps & Tools": t("Misc.subcategories.DevOps & Tools"),
     "Version Control": t("Misc.subcategories.Version Control"),
-  }), [t]);
+  }
 }

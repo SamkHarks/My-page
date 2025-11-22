@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Item } from "src/features/skills/types";
 
@@ -6,7 +5,7 @@ import { Item } from "src/features/skills/types";
 export const useTranslatedSkills = (): Record<Item, string> => {
   const { t } = useTranslation("skills");
 
-  return useMemo(() =>({
+  return {
     React: t('Frontend.skill.React'),
     'React Native': t('Frontend.skill.React Native'),
     HTML5: t('Frontend.skill.HTML5'),
@@ -33,7 +32,7 @@ export const useTranslatedSkills = (): Record<Item, string> => {
     'CI/CD': t('Misc.skill.CI/CD'),
     Webpack: t('Misc.skill.Webpack'),
     Git: t('Misc.skill.Git'),
-  }), [t]);
+  }
 }
 
 

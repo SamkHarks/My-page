@@ -10,6 +10,7 @@ export const Content = (props: Props): React.JSX.Element => (
       src={props.data}
       width={'100%'}
       height={'100%'}
+      allowFullScreen={true}
     />
   </div>
 );

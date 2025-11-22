@@ -1,16 +1,13 @@
 import { Service } from "src/common/components/serviceData/types";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const useAsyncFunction = <T>(
   asyncFunction: () => Promise<T>,
 ): [Service<T>, () => Promise<void>, () => void] => {
   const [service, setService] = useState<Service<T>>({ state: "IDLE" });
   const isMounted = useIsMounted();
-  const clearService = useCallback(
-    () => setService({ state: "IDLE" }),
-    [],
-  );
-  const callService = useCallback(async () => {
+  const clearService = () => setService({ state: "IDLE" });
+  const callService = async () => {
     setService({ state: "LOADING" });
     try {
       const data = await asyncFunction();
@@ -25,7 +22,7 @@ export const useAsyncFunction = <T>(
         });
       }
     }
-  }, [asyncFunction, isMounted]);
+  }
   return [service, callService, clearService];
 };
 

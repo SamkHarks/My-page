@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useConfiguration } from 'src/common/hooks/useConfiguration';
 import { useModalStore } from 'src/stores/useModalStore';
 import { useNotificationStore } from 'src/stores/useNotificationStore';
@@ -22,12 +22,12 @@ export const useEmailService = (formData: FormData | null): {
   const {baseUrls, paths} = useConfiguration();
 
   const urlOptions = { baseUrl: baseUrls.baseUrl, path: paths.email.contact };
-  const serviceOptions = useMemo(() => ({ immediate: false }), []);
-  const requestOptions = useMemo(() => ({
+  const serviceOptions = { immediate: false };
+  const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     ...(formData && { body: formData }),
-  } as const), [formData]);
+  } as const;
   
   const email = useService<{message: string}>({
     urlOptions,

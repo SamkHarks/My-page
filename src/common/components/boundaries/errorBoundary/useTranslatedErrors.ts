@@ -1,4 +1,3 @@
-import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { HandledError } from "src/common/components/boundaries/errorBoundary/HandledError";
 
@@ -19,8 +18,7 @@ export const useTranslatedErrors = (
 ): (error?: HandledError) => string => {
   const { t } = useTranslation('errors');
 
-  const staticErrors = useMemo(
-    () => ({
+  const staticErrors = {
       '400': t('400'),
       '404': t('404'),
       '500': t('500'),
@@ -30,12 +28,9 @@ export const useTranslatedErrors = (
       '504': t('504'),
       '505': t('505'),
       'error': t('error'),
-    }),
-    [t]
-  )
+    }
 
-  return useCallback(
-    (error?: HandledError) => {
+  return (error?: HandledError) => {
       if (!error) return staticErrors.error;
       if (error.key in staticErrors) {
         return staticErrors[error.key as keyof typeof staticErrors];
@@ -46,9 +41,7 @@ export const useTranslatedErrors = (
       }
       // Fallback
       return staticErrors.error;
-    },
-    [staticErrors, t]
-  );
+    }
 }
 
 type OtherStatusArgs = { status: string | number };

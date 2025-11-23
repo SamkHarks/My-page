@@ -15,7 +15,8 @@ export const Main = (): React.JSX.Element => {
   const paths = useConfiguration().paths;
   const {data} = useSuspenseQuery({
     queryKey: ['sections'],
-    queryFn: () => publicClient.get<SectionResponse>(paths.data.sections).then(res => res.body)
+    queryFn: () => publicClient.get<SectionResponse>(paths.data.sections).then(res => res.body),
+    staleTime: Infinity,
   });
   const sectionRefs = useSectionRefs(data.sections);
   return (

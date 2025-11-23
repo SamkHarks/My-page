@@ -7,10 +7,11 @@ import { publicClient } from "src/common/api/http/clients";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 export const Skills = (): React.JSX.Element => {
-  const paths = useConfiguration().paths;
+  const { paths } = useConfiguration();
   const { data } = useSuspenseQuery({
     queryKey: ['skills'],
-    queryFn: () => publicClient.get<SkillsResponse>(paths.data.skills).then(res => res.body)
+    queryFn: () => publicClient.get<SkillsResponse>(paths.data.skills).then(res => res.body),
+    staleTime: Infinity,
   })
   const { skills } = data;
   const translatedSubcategories = useTranslatedSubcategories();

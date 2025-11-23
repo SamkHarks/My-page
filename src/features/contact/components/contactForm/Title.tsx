@@ -2,22 +2,21 @@ import { useTranslation } from "react-i18next";
 import * as styles from "src/features/contact/components/contactForm/Title.module.css";
 
 type Props = {
-  state: 'IDLE' | 'LOADING' | 'SUCCESS' | 'FAILURE';
+  isSuccess: boolean;
+  isError: boolean;
 }
 
 export const Title = (props: Props): React.JSX.Element => {
   const {t} = useTranslation('contact');
-  const isSuccess = props.state === 'SUCCESS';
-  const isFailure = props.state === 'FAILURE';
 
   const getTitleOnResolution = () => {
-    return isSuccess ? t('form.success.line1') : t('form.failure.line1');
+    return props.isSuccess ? t('form.success.line1') : t('form.failure.line1');
   }
 
   return (
     <p className={styles.header}>
       {
-        isSuccess || isFailure ? (
+        props.isSuccess || props.isError ? (
           <>{getTitleOnResolution()}</>
         ) : (
           <>

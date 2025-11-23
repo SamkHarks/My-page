@@ -1,49 +1,62 @@
 import { useEffect } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { useConfiguration } from 'src/common/hooks/useConfiguration';
 import { useModalStore } from 'src/stores/useModalStore';
 import { useNotificationStore } from 'src/stores/useNotificationStore';
-import { Service } from 'src/common/components/serviceData/types';
 import { FormData } from 'src/features/contact/components/contactForm/types';
 import { useTranslation } from 'react-i18next';
-import { useService } from 'src/common/api/useService';
+import { apiClient } from 'src/common/api/http/clients';
 
 type EmailResponse = {
   message: string;
-}
+};
 
-export const useEmailService = (formData: FormData | null): {
-  service: Service<EmailResponse>;
-  callService: () => Promise<void>;
-  clearService: () => void;
+export const useEmailService = (): {
+  sendEmail: (formData: FormData) => void;
+  sendEmailAsync: (formData: FormData) => Promise<EmailResponse>;
+  isLoading: boolean;
+  isSuccess: boolean;
+  isError: boolean;
+  data: EmailResponse | undefined;
+  error: Error | null;
+  reset: () => void;
 } => {
   const { t } = useTranslation('contact');
   const addNotification = useNotificationStore((state) => state.addNotification);
-  const setLoading = useModalStore(state => state.setLoading);
-  const {baseUrls, paths} = useConfiguration();
+  const setLoading = useModalStore((state) => state.setLoading);
+  const { paths } = useConfiguration();
 
-  const urlOptions = { baseUrl: baseUrls.baseUrl, path: paths.email.contact };
-  const serviceOptions = { immediate: false };
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    ...(formData && { body: formData }),
-  } as const;
-  
-  const email = useService<{message: string}>({
-    urlOptions,
-    requestOptions,
-    serviceOptions
+  const mutation = useMutation({
+    mutationFn: async (formData: FormData) => {
+      const response = await apiClient.post<EmailResponse>(
+        paths.email.contact,
+        formData
+      );
+      return response.body;
+    },
+    onSuccess: () => {
+      addNotification(t('form.success.message'), 'success', { dismissAfter: 5000 });
+    },
+    onError: () => {
+      addNotification(t('form.failure.message'), 'error', { 
+        onDissmiss: () => mutation.reset(),
+        dismissAfter: 8000 
+      });
+    },
   });
 
   useEffect(() => {
-    setLoading(email.service.state === 'LOADING');
-    if (email.service.state === 'SUCCESS') {
-      addNotification(t('form.success.message'), 'success', { dismissAfter: 5000 });
-    } else if (email.service.state === 'FAILURE') {
-      addNotification(t('form.failure.message'), 'error', { onDissmiss: () => email.clearService(), dismissAfter: 8000});
-    }
+    setLoading(mutation.isPending);
+  }, [mutation.isPending, setLoading]);
 
-  }, [email, setLoading, addNotification, t]);
-
-  return email;
-}
+  return {
+    sendEmail: mutation.mutate,
+    sendEmailAsync: mutation.mutateAsync,
+    isLoading: mutation.isPending,
+    isSuccess: mutation.isSuccess,
+    isError: mutation.isError,
+    data: mutation.data,
+    error: mutation.error,
+    reset: mutation.reset,
+  };
+};

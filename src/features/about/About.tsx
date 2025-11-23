@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
 import * as styles from "src/features/about/About.module.css";
 import { Animation } from "src/common/components/animation/Animation";
-import { useConfiguration } from "src/common/hooks/useConfiguration";
-import { createUrl } from "src/common/utils/utils";
+import { getAssetUrl } from "src/common/api/http/clients";
+import { getConfiguration } from "src/config/utils";
 
 export const About = (): React.JSX.Element => {
-  const {paths, baseUrls} = useConfiguration();
-  const imageUrl = createUrl(paths.images.skate, baseUrls.firebase);
+  const { paths } = getConfiguration();
+  const imageUrl = getAssetUrl(paths.images.skate);
   const { t } = useTranslation("about");
   return (
     <div className={styles.container}>

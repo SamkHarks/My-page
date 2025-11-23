@@ -1,14 +1,14 @@
 import { useTranslation } from "react-i18next";
 import * as styles from "src/features/home/Home.module.css";
-import { useConfiguration } from "src/common/hooks/useConfiguration";
-import { createUrl } from "src/common/utils/utils";
 import { Button } from "src/features/home/components/Button";
+import { getAssetUrl } from "src/common/api/http/clients";
+import { getConfiguration } from "src/config/utils";
 
 
 export const Home = (): React.JSX.Element => {
   const { t } = useTranslation("home");
-  const {baseUrls, paths} = useConfiguration();
-  const imageUrl = createUrl(paths.images.me, baseUrls.firebase);
+  const { paths } = getConfiguration();
+  const imageUrl = getAssetUrl(paths.images.me);
 
   return (
     <div className={styles.container}>

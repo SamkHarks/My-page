@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tanstack/react-query": "^5.90.10",
     "i18next": "^23.6.0",
-    "i18next-resources-to-backend": "^1.2.1",
+    "i18next-http-backend": "^3.0.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-i18next": "^13.3.1",
@@ -19,7 +20,7 @@
     "lint": "eslint .",
     "test": "jest",
     "generate-localization-resources": "i18next --silent",
-    "generate-localization-types": "i18next-resources-for-ts interface -i src/locales/fi -o src/locales/resources.d.ts"
+    "generate-localization-types": "i18next-resources-for-ts interface -i public/locales/fi -o public/locales/resources.d.ts"
   },
   "browserslist": {
     "production": [

@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import * as styles from 'src/features/contact/components/contactForm/ContactForm.module.css';
 import { InputField } from 'src/features/contact/components/contactForm/InputField';
 import { TextArea } from 'src/features/contact/components/contactForm/TextArea';
-import { useEffect, useState } from 'react';
 import { Spinner } from 'src/common/components/spinner/Spinner';
 import { useEmailService } from 'src/features/contact/api/useEmailService';
 import { ContactFormType } from 'src/features/contact/components/contactForm/types';
@@ -11,14 +10,7 @@ import { Title } from 'src/features/contact/components/contactForm/Title';
 
 export const ContactForm = (): React.JSX.Element => {
   const {t} = useTranslation('contact');
-  const [formData, setFormData] = useState<{name: string, email: string, message: string} | null>(null);
-  const {service, callService} = useEmailService(formData);
-
-  useEffect(() => {
-    if (formData) {
-      callService();
-    }
-  },[formData, callService]);
+  const { sendEmail, isLoading, isSuccess, isError } = useEmailService();
  
   const handleSubmit = (event: React.FormEvent<ContactFormType>) => {
     event.preventDefault();
@@ -32,9 +24,9 @@ export const ContactForm = (): React.JSX.Element => {
       email: form.elements.email.value,
       message: form.elements.message.value,
     };
-    setFormData(data);
+    sendEmail(data);
   }
-  const isSuccess = service.state === 'SUCCESS';
+
   return (
     <div className={styles.container}>
       <form
@@ -42,7 +34,7 @@ export const ContactForm = (): React.JSX.Element => {
         noValidate={true}
         onSubmit={handleSubmit}
       >
-        <Title state={service.state}/>
+        <Title isSuccess={isSuccess} isError={isError} />
         <InputField
           label={t('form.name')}
           id={'name'}
@@ -70,12 +62,12 @@ export const ContactForm = (): React.JSX.Element => {
           disabled={isSuccess}
           rows={10}
         />
-        {service.state === 'LOADING'
+        {isLoading
         ? <div className={styles.spinner}><Spinner size={40} /></div>
         : <button
           className={styles.submit_button}
           type={'submit'}
-          disabled={isSuccess || service.state === 'FAILURE'}
+          disabled={isSuccess || isError}
         >
           {t('form.submit')}
         </button>

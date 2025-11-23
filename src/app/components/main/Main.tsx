@@ -7,13 +7,13 @@ import { MouseTrackerBackground } from "src/common/components/mouseTrackerBackgr
 import { Boundaries } from "src/common/components/boundaries/Boundaries";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { publicClient } from "src/common/api/http/clients";
-import { useConfiguration } from "src/common/hooks/useConfiguration";
+import { getConfiguration } from "src/config/utils";
 
 const Sections = lazy(() => import("../sections/Sections"));
 
 export const Main = (): React.JSX.Element => {
-  const paths = useConfiguration().paths;
-  const {data} = useSuspenseQuery({
+  const { paths } = getConfiguration();
+  const { data } = useSuspenseQuery({
     queryKey: ['sections'],
     queryFn: () => publicClient.get<SectionResponse>(paths.data.sections).then(res => res.body),
     staleTime: Infinity,

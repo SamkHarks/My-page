@@ -2,12 +2,12 @@ import * as styles from "src/features/skills/Skills.module.css";
 import { Skill } from "src/features/skills/components/skill/Skill";
 import { SkillsResponse } from "src/features/skills/types";
 import { useTranslatedSubcategories } from "src/features/skills/hooks/useTranslatedSubcategories";
-import { useConfiguration } from "src/common/hooks/useConfiguration";
 import { publicClient } from "src/common/api/http/clients";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { getConfiguration } from "src/config/utils";
 
 export const Skills = (): React.JSX.Element => {
-  const { paths } = useConfiguration();
+  const { paths } = getConfiguration();
   const { data } = useSuspenseQuery({
     queryKey: ['skills'],
     queryFn: () => publicClient.get<SkillsResponse>(paths.data.skills).then(res => res.body),

@@ -4,15 +4,15 @@ import { GoLinkExternal } from "react-icons/go";
 import * as styles from "src/features/home/components/Button.module.css";
 import { usePreloadModalContent } from "src/common/hooks/usePreloadModalContent";
 import { OpenModalConfig } from "src/stores/useModalStore";
-import { useConfiguration } from "src/common/hooks/useConfiguration";
 import { getAssetUrl } from "src/common/api/http/clients";
+import { getConfiguration } from "src/config/utils";
 
 const Content = lazy(() => import("src/common/components/documentViewer/DocumentViewer"));
 
 export const Button = (): React.JSX.Element => {
   const handlePress = usePreloadModalContent();
   const { t, i18n } = useTranslation("home");
-  const { paths } = useConfiguration();
+  const { paths } = getConfiguration();
   const link = getAssetUrl(i18n.language === "fi" ? paths.cv.fi : paths.cv.en);
   const onClick = () => {
     window.open(link, "_blank");

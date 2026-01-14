@@ -7,9 +7,14 @@
     "contact": {
       "description": "Path for posting email",
       "type": "string"
+    },
+    "health": {
+      "description": "Path for health check",
+      "type": "string"
     }
   },
   "required": [
-    "contact"
+    "contact",
+    "health"
   ]
 }

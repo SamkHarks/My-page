@@ -12,9 +12,14 @@ export const useBackendWakeup = (): void => {
   useQuery({
     queryKey: ['backend-wakeup'],
     queryFn: async () => {
-      apiClient.get(paths.email.health);
+      try {
+        return await apiClient.get(paths.email.health);
+      } catch {
+        return null;
+      }
     },
     staleTime: Infinity,
+    retry: false,
     enabled: process.env.NODE_ENV === 'production',
   });
 

@@ -19,7 +19,8 @@
       "sections": "/data/sections.json"
     },
     "email": {
-      "contact": "/api/contact"
+      "contact": "/api/contact",
+      "health": "/health"
     }
   }
 }

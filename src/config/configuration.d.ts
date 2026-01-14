@@ -19,6 +19,7 @@ declare const configuration: {
     };
     email: {
       contact: string;
+      health: string;
     };
   };
 };

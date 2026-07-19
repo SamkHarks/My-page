@@ -5,7 +5,7 @@ This repository contains the source code for the frontend of my personal portfol
 ## Deployment
 
 The portfolio is now live and accessible at:
-🌐 [samkharks.dev](https://samkharks.dev)
+🌐 [portfolio](https://samis-portfolio.onrender.com/)
 
 **Hosting:** Deployed via [Render](https://render.com/)
 
@@ -20,22 +20,6 @@ The portfolio is now live and accessible at:
 - **About**: Professional background and personal journey
 - **Skills**: Interactive display of technical competencies
 - **Contact**: Integrated communication channels
-
-### Advanced Components
-- **Modal:** A dynamic, reusable pop-up that seamlessly displays additional content in context—keeping users on the page. Currently supports:
-    - **CV preview**: Automatically displays my CV in Finnish or English based on your selected language preference. Includes option to open in new tab for full-view reading or downloading.
-- **Error Handling Framework**:
-  - **Error Boundaries**:
-    - Gracefully captures runtime errors and network failures
-    - Context-aware recovery (retry failed actions or full reload)
-    - Custom error classification system (`HandledError`)
-  - **Loading States**:
-    - Unified loading indicators across async operations
-    - Configurable presentation modes
-  - **User Experience**:
-    - Localized error messages (i18n integrated)
-    - Customizable UI variants (text/icon/default)
-    - Themed appearance matching site design
 
 ## Tech Stack and CI/CD
 

@@ -7,7 +7,6 @@ This repository contains the source code for the frontend of my personal portfol
 The portfolio is now live and accessible at:
 🌐 [portfolio](https://samis-portfolio.onrender.com/)
 
-**Hosting:** Deployed via [Render](https://render.com/)
 
 ## Features
 
